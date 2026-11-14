@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f3f0e6">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.4</title>
+  <title>八目 HACHIME｜網站互動原型 V0.5</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -155,6 +155,17 @@
 .workspace { -webkit-tap-highlight-color: transparent; }
 .workspace.dragging, .workspace.dragging * { cursor: grabbing !important; }
 
+
+/* V0.5 — contextual onboarding: fade the hint after meaningful interaction,
+   keep a discreet restore control; fade the duplicate note on the board. */
+.viewport-hint{transition:opacity .24s ease,transform .24s ease}
+.viewport-hint.is-dismissed{opacity:0;transform:translateY(-6px);pointer-events:none}
+.hint-reopen{position:absolute;top:24px;left:24px;z-index:30;width:36px;height:36px;border:1px solid #d8d6cb;border-radius:5px;background:#fbfaf3e6;color:#617566;font-size:17px;font-weight:650;cursor:pointer;opacity:.62;box-shadow:0 3px 12px #0000000c;transition:opacity .2s ease,background .2s ease}
+.hint-reopen:hover,.hint-reopen:focus-visible{opacity:1;background:#fbfaf3}
+.start-note{transition:opacity .24s ease}
+.start-note.is-dismissed{opacity:.17;pointer-events:none}
+@media(max-width:960px){.hint-reopen{top:14px;left:12px}}
+@media(max-width:600px){.viewport-hint{display:flex;max-width:calc(100% - 24px);font-size:11px;padding:8px 10px}}
 </style>
 </head>
 <body>
@@ -286,12 +297,13 @@
 <dl class="values"><dt>精品化</dt><dd>重視產品設計、材料與製作品質。</dd><dt>方便化</dt><dd>改善餵食、清潔和日常操作的便利性。</dd><dt>專業化</dt><dd>整理物種資料、飼養知識與實際測試紀錄。</dd></dl>
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p>
 </section></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.3</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.5</div>
       </div>
     </div>
-    <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="隱藏操作提示">×</button></div>
+    <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
+    <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="桌面控制"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">回總覽</button></div>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.3</span></div>
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.5</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
@@ -417,7 +429,24 @@
   // V0.3: overview is a draggable canvas; each category is a readable document.
   const viewport=$('#viewport'), board=$('#board'), detailView=$('#detailView'), detailScroll=$('#detailScroll');
   const names={home:'總覽',beginner:'第一次養跳蛛',atlas:'跳蛛圖鑑',knowledge:'飼養知識',lab:'飼養盒',about:'關於八目'};
-  let scale=1,panX=0,panY=0,drag=null,raf=0, hintDismissed=false;
+  let scale=1,panX=0,panY=0,drag=null,raf=0;
+  let hintDismissed=false;
+  try { hintDismissed=localStorage.getItem('hachime-board-hint-seen')==='1'; } catch(e) {}
+  if(window.matchMedia('(max-width:600px)').matches)hintDismissed=true;
+  function updateHint(){
+    const showing=!detailView.hidden;
+    $('#viewportHint').hidden=showing;
+    $('#viewportHint').classList.toggle('is-dismissed',hintDismissed);
+    $('#hintReopen').hidden=showing||!hintDismissed;
+    $('.start-note').classList.toggle('is-dismissed',hintDismissed);
+  }
+  function collapseHint(){
+    if(hintDismissed)return;
+    hintDismissed=true;
+    try { localStorage.setItem('hachime-board-hint-seen','1'); } catch(e) {}
+    updateHint();
+  }
+  function reopenHint(){hintDismissed=false;updateHint();}
   const boardSize=()=>({w:board.offsetWidth,h:board.offsetHeight});
   const bounds=()=>({w:viewport.clientWidth,h:viewport.clientHeight});
   const mobile=()=>window.matchMedia('(max-width:600px)').matches;
@@ -433,8 +462,9 @@
   function currentRoute(){const x=decodeURIComponent((location.hash||'#home').slice(1));return Object.prototype.hasOwnProperty.call(names,x)?x:'home';}
   function navigate(id,updateUrl=true){
     if(!names[id])id='home';
+    if(updateUrl)collapseHint();
     const showing=id!=='home';detailView.hidden=!showing;
-    viewport.hidden=showing;$('#viewportHint').hidden=showing||hintDismissed;$('#canvasControls').hidden=showing;$('#bottomMark').hidden=showing;
+    viewport.hidden=showing;$('#canvasControls').hidden=showing;$('#bottomMark').hidden=showing;updateHint();
     $$('.detail-page').forEach(el=>el.hidden=el.dataset.page!==id);
     if(showing){$('#currentPageName').textContent=names[id];detailScroll.scrollTop=0;requestAnimationFrame(()=>detailScroll.focus({preventScroll:true}));}
     else{requestAnimationFrame(()=>apply());}
@@ -446,11 +476,12 @@
   $('#detailBack').addEventListener('click',()=>navigate('home'));
   window.addEventListener('hashchange',()=>navigate(currentRoute(),false));
   window.addEventListener('popstate',()=>navigate(currentRoute(),false));
-  $('#resetBoard').addEventListener('click',focusHome);
-  $('#zoomIn').addEventListener('click',()=>zoom(scale+.12));
-  $('#zoomOut').addEventListener('click',()=>zoom(scale-.12));
-  $('#fitBoard').addEventListener('click',centerBoard);
-  $('#hintClose').addEventListener('click',()=>{hintDismissed=true;$('#viewportHint').hidden=true;});
+  $('#resetBoard').addEventListener('click',()=>{collapseHint();focusHome();});
+  $('#zoomIn').addEventListener('click',()=>{collapseHint();zoom(scale+.12);});
+  $('#zoomOut').addEventListener('click',()=>{collapseHint();zoom(scale-.12);});
+  $('#fitBoard').addEventListener('click',()=>{collapseHint();centerBoard();});
+  $('#hintClose').addEventListener('click',collapseHint);
+  $('#hintReopen').addEventListener('click',reopenHint);
   // The notebook is a draggable UI, not a selectable document.
   // Prevent native selection and image dragging without affecting details.
   viewport.addEventListener('selectstart', e=>e.preventDefault());
@@ -467,7 +498,7 @@
   viewport.addEventListener('pointermove',e=>{
     if(!drag||drag.pointer!==e.pointerId)return;
     const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
-    if(Math.abs(dx)+Math.abs(dy)>7){drag.moved=true;viewport.classList.add('dragging');}
+    if(Math.abs(dx)+Math.abs(dy)>7){drag.moved=true;viewport.classList.add('dragging');collapseHint();}
     if(!drag.moved)return;
     panX=drag.startX+dx;panY=drag.startY+dy;
     if(!raf)raf=requestAnimationFrame(()=>{raf=0;apply();});
@@ -481,15 +512,15 @@
   }
   viewport.addEventListener('pointerup',endDrag);viewport.addEventListener('pointercancel',e=>{if(drag){drag=null;viewport.classList.remove('dragging');}});
   $$('.cover-note').forEach(n=>n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();navigate(n.dataset.open);}}));
-  viewport.addEventListener('wheel',e=>{e.preventDefault();const r=viewport.getBoundingClientRect();if(e.ctrlKey||e.metaKey)zoom(scale*(e.deltaY>0?.93:1.07),e.clientX-r.left,e.clientY-r.top);else{panX-=e.deltaX;panY-=e.deltaY;apply();}},{passive:false});
+  viewport.addEventListener('wheel',e=>{e.preventDefault();collapseHint();const r=viewport.getBoundingClientRect();if(e.ctrlKey||e.metaKey)zoom(scale*(e.deltaY>0?.93:1.07),e.clientX-r.left,e.clientY-r.top);else{panX-=e.deltaX;panY-=e.deltaY;apply();}},{passive:false});
   document.addEventListener('keydown',e=>{
     if(e.key==='Escape'){$('#pricePopover').hidden=true;if(drawer.classList.contains('open')){closeCart();return;}if(!detailView.hidden){navigate('home');return;}}
     if(!detailView.hidden||drawer.classList.contains('open')||e.target.closest('input,button,a,textarea,select'))return;
     const step=e.shiftKey?130:70;
-    if(e.key==='ArrowUp'){e.preventDefault();panY+=step;apply();}
-    if(e.key==='ArrowDown'){e.preventDefault();panY-=step;apply();}
-    if(e.key==='ArrowLeft'){e.preventDefault();panX+=step;apply();}
-    if(e.key==='ArrowRight'){e.preventDefault();panX-=step;apply();}
+    if(e.key==='ArrowUp'){e.preventDefault();collapseHint();panY+=step;apply();}
+    if(e.key==='ArrowDown'){e.preventDefault();collapseHint();panY-=step;apply();}
+    if(e.key==='ArrowLeft'){e.preventDefault();collapseHint();panX+=step;apply();}
+    if(e.key==='ArrowRight'){e.preventDefault();collapseHint();panX-=step;apply();}
   });
   let resizeTimer;
   window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(detailView.hidden)apply();},90);});
