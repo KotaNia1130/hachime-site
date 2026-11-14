@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 260" role="img" aria-labelledby="s-regius-title s-regius-desc">
+ <title id="s-regius-title">跳蛛示意插畫</title><desc id="s-regius-desc">依一般跳蛛外型構想的 Q 版插畫，並非物種鑑定用的寫實照片。</desc>
+ <ellipse cx="173" cy="228" rx="100" ry="11" fill="#8A8A7240"/>
+ <g fill="none" stroke="#8E5E47" stroke-width="12" stroke-linecap="round">
+ <path d="M133 130 C96 100 78 107 59 72"/><path d="M126 145 C83 136 56 148 38 126"/>
+ <path d="M124 159 C88 174 76 186 63 204"/><path d="M145 168 C113 199 103 206 101 223"/>
+ <path d="M213 130 C251 99 275 107 294 73"/><path d="M218 145 C262 136 291 149 305 127"/>
+ <path d="M218 159 C253 174 272 190 285 205"/><path d="M198 168 C232 199 238 211 240 224"/>
+ </g>
+ <g fill="none" stroke="#F8E6D3" stroke-width="2.4" stroke-linecap="round" opacity=".65">
+ <path d="M60 81l12 4M42 132l13 0M64 198l14-3M105 220l9-10M279 79l12-3M286 133l14 2M278 200l-13-2M236 219l-8-8"/>
+ </g>
+ <ellipse cx="171" cy="147" rx="56" ry="65" fill="#8E5E47" stroke="#544639" stroke-width="2.5"/>
+ <ellipse cx="171" cy="133" rx="80" ry="70" fill="#C58A5D" stroke="#704A39" stroke-width="3"/>
+ <path d="M115 112Q172 82 227 112" fill="none" stroke="#F8E6D3" stroke-width="6" stroke-linecap="round" opacity=".76"/>
+ <path d="M118 147Q170 134 226 148" fill="none" stroke="#704A39" stroke-width="2.2" opacity=".5"/>
+ <ellipse cx="128" cy="145" rx="28" ry="31" fill="#F8E6D3" stroke="#704A39" stroke-width="2"/>
+ <ellipse cx="213" cy="145" rx="28" ry="31" fill="#F8E6D3" stroke="#704A39" stroke-width="2"/>
+ <ellipse cx="130" cy="147" rx="21" ry="24" fill="#273329"/>
+ <ellipse cx="212" cy="147" rx="21" ry="24" fill="#273329"/>
+ <circle cx="137" cy="139" r="7" fill="#FFFFFF" opacity=".96"/>
+ <circle cx="219" cy="139" r="7" fill="#FFFFFF" opacity=".96"/>
+ <circle cx="122" cy="157" r="3" fill="#62B8B3"/><circle cx="204" cy="157" r="3" fill="#62B8B3"/>
+ <circle cx="104" cy="125" r="9" fill="#704A39" stroke="#F8E6D3" stroke-width="3"/>
+ <circle cx="238" cy="125" r="9" fill="#704A39" stroke="#F8E6D3" stroke-width="3"/>
+ <circle cx="133" cy="102" r="5.5" fill="#704A39" stroke="#F8E6D3" stroke-width="2"/>
+ <circle cx="152" cy="96" r="4.8" fill="#704A39" stroke="#F8E6D3" stroke-width="2"/>
+ <circle cx="189" cy="96" r="4.8" fill="#704A39" stroke="#F8E6D3" stroke-width="2"/>
+ <circle cx="209" cy="102" r="5.5" fill="#704A39" stroke="#F8E6D3" stroke-width="2"/>
+ <path d="M159 170Q169 183 180 170" fill="none" stroke="#704A39" stroke-width="3" stroke-linecap="round"/>
+ <path d="M155 176L151 186M187 176l4 10" fill="none" stroke="#62B8B3" stroke-width="5" stroke-linecap="round"/>
+ <g fill="none" stroke="#8E5E47" stroke-width="1.3" stroke-linecap="round" opacity=".6">
+ <path d="M103 106l-8-9M116 93l-4-11M124 91l-3-12M211 94l4-12M227 106l8-9M146 79l-2-10M194 81l2-10"/>
+ </g>
+ <path d="M39 218Q60 189 87 188M267 220Q287 186 309 191" fill="none" stroke="#A5BE98" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+ <path d="M60 200q-4-17 10-20 5 11-10 20ZM281 203q5-16-11-21-6 14 11 21Z" fill="#A5BE98" opacity=".65"/>
+ </svg>
