@@ -4,9 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#EFE9DD">
-  <link rel="icon" type="image/svg+xml" href="./assets/hachime-mark.svg">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.12</title>
+  <title>八目 HACHIME｜網站互動原型 V0.12.1</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -695,7 +694,7 @@ body{background:var(--ground);color:var(--ink)}
 }
 
 
-/* V0.12 — illustration and editorial annotations on the draggable notebook.
+/* V0.12.1 — illustration and editorial annotations on the draggable notebook.
    Body text stays readable; Q handwriting is for short curved decorative phrases. */
 :root{
  --font-rounded:"Zen Maru Gothic","Noto Sans TC","PingFang TC",sans-serif;
@@ -753,7 +752,7 @@ body{background:var(--ground);color:var(--ink)}
 }
 
 
-/* HACHIME V0.12 layout, gallery and typography refinement */
+/* HACHIME V0.12.1 layout, gallery and typography refinement */
 :root{--font-rounded:"Huninn","Zen Maru Gothic","Noto Sans TC",sans-serif}
 .brand-mark{display:block;width:44px;height:44px;object-fit:contain;flex-shrink:0}
 .home-symbol{position:absolute;right:36px;top:53px;width:82px;height:82px;opacity:.24;pointer-events:none}
@@ -838,6 +837,11 @@ body{background:var(--ground);color:var(--ink)}
  .board-gallery,.gallery-visual,.gallery-visual img{transition:none!important;animation:none!important}
 }
 
+
+/* V0.12.1 — simple wordmark; cartoon icon withdrawn. */
+.site-header .logo{min-width:235px;gap:0}
+.site-header .logo-text strong{font-weight:500;letter-spacing:.025em}
+.site-header .logo-text strong span{font-weight:300}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -847,7 +851,7 @@ body{background:var(--ground);color:var(--ink)}
   <a class="skip" href="#workspace">跳至主要內容</a>
   <header class="site-header">
 <a aria-label="八目 HACHIME，回到總覽" class="logo" data-go="home" href="#home">
-<img class="brand-mark" src="./assets/hachime-mark.svg" alt="" width="44" height="44">
+
 <span class="logo-text"><strong>八目 <span>HACHIME</span></strong><small>跳蛛研造 ／ JUMPING SPIDER LAB</small></span>
 </a>
 <nav aria-label="網站導覽" class="top-nav">
@@ -870,7 +874,7 @@ body{background:var(--ground);color:var(--ink)}
           <div class="paper-topline"><span>00 / HACHIME</span><span>網站測試版</span></div>
           <div class="home-core">
             <span class="small-kicker">JUMPING SPIDER LAB</span>
-            <h1 id="homeTitle">八目 <em>HACHIME</em></h1><img class="home-symbol" src="./assets/hachime-mark.svg" alt="" aria-hidden="true">
+            <h1 id="homeTitle">八目 <em>HACHIME</em></h1>
             <p class="brand-phrase">微觀視野，躍動生活。</p>
             <div class="home-divider"></div>
             <h2>跳蛛飼養知識與用品</h2>
@@ -1045,13 +1049,13 @@ body{background:var(--ground);color:var(--ink)}
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p>
 <p class="fine-print asset-note">筆記插圖使用 <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">OpenMoji</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）；飼養盒為示意線稿。詳細來源見專案 <a href="https://github.com/KotaNia1130/hachime-site/blob/main/ASSET_CREDITS.md" target="_blank" rel="noopener noreferrer">素材授權</a>。</p>
 </section></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.12</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.12.1</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
     <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="桌面控制"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">回總覽</button></div>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.12</span></div>
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.12.1</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
@@ -1097,7 +1101,7 @@ body{background:var(--ground);color:var(--ink)}
   const prices={mini:{core:399,plus:649,pro:990},standard:{core:499,plus:849,pro:1390},large:{core:749,plus:1190,pro:1990},xl:{core:1190,plus:1690,pro:2790}};
 
 
-  // V0.12 — curated notebook illustration previews; artwork is not product photography.
+  // V0.12.1 — curated notebook illustration previews; artwork is not product photography.
   const showcase={
     spiders:[
       {name:"佛羅里達跳蛛",sub:"Phidippus regius",image:"./assets/spider-regius.svg",desc:"常見的寵物跳蛛物種之一。個體的性別、成長階段與來源應在購買前確認。這張插畫只用於版面示意，不能拿來鑑別物種。"},
@@ -1122,7 +1126,7 @@ body{background:var(--ground);color:var(--ink)}
     $('#'+which+'GalleryCounter').textContent=String(i+1).padStart(2,'0')+' / '+String(records.length).padStart(2,'0');
     $('#'+which+'GalleryDots').textContent=records.map((_,n)=>n===i?'●':'○').join(' ');
   }
-  $('[data-gallery-dir]').forEach(btn=>btn.addEventListener('click',()=>{
+  $$('[data-gallery-dir]').forEach(btn=>btn.addEventListener('click',()=>{
     const which=btn.dataset.gallery;
     if(!showcase[which])return;
     showcaseIndex[which]=(showcaseIndex[which]+Number(btn.dataset.galleryDir)+showcase[which].length)%showcase[which].length;
