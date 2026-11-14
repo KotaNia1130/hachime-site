@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#DED7CB">
+  <meta name="theme-color" content="#CDBFAC">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.6</title>
+  <title>八目 HACHIME｜網站互動原型 V0.7</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -346,7 +346,178 @@ body{color:var(--ink);background:var(--ground)}
  .cover-note{transition:none}
 }
 
+
+/* V0.7 — clearer ink, more distinct stationery colours, purpose-based typography.
+   Typography:
+   display/brand = Noto Serif TC; section labels = Zen Maru Gothic;
+   articles = Noto Sans TC; specs, numbers = IBM Plex Mono. */
+:root{
+  --ground:#CDBFAC;
+  --paper:#FFF8EC;
+  --ink:#282E28;
+  --muted:#455047;
+  --rule:#B5A996;
+  --olive:#31583F;
+  --sage:#C5D5BB;
+  --yellow:#E4CF91;
+  --peach:#EAB7A3;
+  --blue:#C8DAD4;
+  --font-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --font-display:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --font-round:"Zen Maru Gothic","Noto Sans TC","PingFang TC",sans-serif;
+  --font-mono:"IBM Plex Mono","SFMono-Regular","Consolas",monospace;
+  font-family:var(--font-body);
+  background:var(--ground);
+  color:var(--ink);
+}
+body,button,input,select,textarea{font-family:var(--font-body)}
+body{background:var(--ground);color:var(--ink)}
+.site-header{background:#F6ECDC;border-bottom:1px solid #B2A48F;box-shadow:0 3px 15px #4E3F2B12}
+.logo-text strong{font-family:var(--font-round);font-weight:900;color:#2C4A36;letter-spacing:.035em}
+.logo-text strong span{font-family:var(--font-display);font-weight:600;color:#2C4A36}
+.logo-text small{font-family:var(--font-mono);font-size:10px;letter-spacing:.025em;color:#3E5141}
+.eyes i{background:#345A40}
+.top-nav a{font-family:var(--font-round);font-size:14px;font-weight:700;color:#344639;letter-spacing:.015em}
+.top-nav a:hover{background:#E4D8C6}
+.top-nav a.active{background:#D2DECD;color:#224E35;border-bottom-color:#2F6849}
+.cart-trigger{background:#F3E7D6;border-color:#A99A83;color:#254633;font-family:var(--font-round);font-weight:700}
+.cart-trigger:hover{background:#DCE6D7}
+.cart-count{background:#31583F;color:#fff;font-family:var(--font-mono)}
+.main-area{background:#CDBFAC}
+.workspace{background:radial-gradient(ellipse at 30% 18%,#D9CCB9 0%,#C5B8A5 100%)}
+.infinite-sheet{
+  background-color:#E4D8C8;
+  background-image:
+    linear-gradient(#BCAA9144 1px,transparent 1px),
+    linear-gradient(90deg,#BCAA9144 1px,transparent 1px),
+    linear-gradient(#BCAA912C 1px,transparent 1px),
+    linear-gradient(90deg,#BCAA912C 1px,transparent 1px);
+  border-color:#AFA08D;
+  box-shadow:0 8px 42px #3E302328;
+}
+.board-corner,.paper-end,.bottom-mark{color:#4F5C50;font-family:var(--font-mono);font-weight:500}
+.paper{background:var(--paper);border-color:#B8AA95;box-shadow:4px 6px 0 #95846732,0 15px 28px #4C392727}
+.paper::after{border-color:#E2D2BA}
+.paper-topline{color:#425143;border-bottom-color:#B9AD9A;font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;font-weight:500}
+.paper-heading p,.main-description{color:#333F35}
+.paper-heading h2,.about-sheet h2{font-family:var(--font-round);font-weight:900;letter-spacing:.008em}
+.stamp-text{color:#405E47;border-color:#91A48D;font-family:var(--font-mono)}
+.notebook-intro{background:#FFF8EB;border:1px solid #AA9B83;box-shadow:6px 8px 0 #95846733,0 20px 34px #4C392726}
+.notebook-intro .small-kicker{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.09em;color:#345F43}
+.notebook-intro .home-core h1{font-family:var(--font-display);font-weight:700;color:#253A2D;letter-spacing:.02em}
+.notebook-intro .home-core h1 em{font-family:var(--font-display);font-weight:600}
+.notebook-intro .home-core h2{font-family:var(--font-round);font-weight:900;font-size:23px;color:#2E523A}
+.brand-phrase{color:#315C40;font-weight:600;letter-spacing:.09em}
+.home-divider{background:#AE9F8B}
+.notebook-intro .main-description{color:#364237;font-size:15px;line-height:1.9}
+.home-bottom{color:#465945;font-family:var(--font-mono);letter-spacing:.04em;font-weight:500}
+.ink-link{color:#235B3A;border-bottom-color:#276341;font-family:var(--font-round);font-weight:900}
+.ink-link.subtle{color:#3C5243;border-color:#6D8B73}
+.tape{background:#DAB58CBD}
+.tape-green{background:#AFCBA9D9}
+.tape-yellow{background:#DCC27CD9}
+.tape-peach{background:#E0AB96D9}
+.tape-blue{background:#ACCFCBD9}
+.tape-about{background:#D7B49AD9}
+.tiny-note{background:#E8D09C;border:1px solid #C4A978;color:#30382F;box-shadow:4px 7px 13px #4A38282A}
+.tiny-note strong{font-family:var(--font-round);font-weight:900;color:#2D4B34}
+.tiny-note p{font-family:var(--font-body);color:#3A4139}
+.start-note{background:#EBD4A7}
+.species-note{background:#BFD6B8}
+.notebook-note{background:#E6C7B4}
+.tiny-note>span:last-child{color:#4B5547;font-family:var(--font-mono)}
+.cover-note{border-color:#B3A48E;box-shadow:4px 6px 0 #94806136,0 15px 26px #4B38272B}
+.cover-note::after{border-color:#DDC9B0}
+.cover-note:hover,.cover-note:focus-visible{border-color:#477550;box-shadow:7px 9px 0 #947E6133,0 16px 28px #402E2238}
+.cover-note::before{border-color:#9D977E;background:var(--tab-color,#B8CCA9)}
+.cover-content h2{font-family:var(--font-round);font-weight:900;font-size:29px;color:#293D2C;letter-spacing:.008em}
+.cover-content p{font-family:var(--font-body);color:#344238;font-size:15px;line-height:1.85}
+.cover-footer{border-top-color:#BBAE99;color:#2C5B3D;font-family:var(--font-round);font-weight:700}
+.cover-footer span:last-child{font-weight:900}
+.beginner-cover{--tab-color:#D98D77;background:#F3D4C0}
+.atlas-cover{--tab-color:#8EAE83;background:#D7E5CC}
+.knowledge-cover{--tab-color:#D5AE58;background:#F1E2B4}
+.lab-cover{--tab-color:#7EACA5;background:#D2E5DD}
+.about-cover{--tab-color:#C69479;background:#E9CFC1}
+.cover-note .paper-topline{color:#435344;border-bottom-color:#BDAF9A}
+.detail-view{background:#CDC0AE}
+.detail-toolbar{background:#F5EADA;border-bottom-color:#B7A995}
+.detail-breadcrumb{font-family:var(--font-mono);color:#455647;font-size:12px}
+.back-to-board{font-family:var(--font-round);color:#245F3C;font-weight:900}
+.detail-scroll{background:#CDC0AE;scrollbar-color:#988C78 #D5C8B5}
+.detail-view .paper{background:#FFF8EC!important;border-color:#B3A48F;box-shadow:5px 7px 0 #9B8B7130,0 17px 30px #3E332B20}
+.detail-view .paper::after{border-color:#E5D5BF}
+.detail-view .paper-heading h2,.detail-view .about-sheet h2{font-family:var(--font-round);font-weight:900;color:#263F2E}
+.detail-view .chapter-content h3{font-family:var(--font-display);font-weight:700;color:#2B3D30}
+.detail-view .chapter-content p,.detail-view .chapter-content li,
+.detail-view .species-panel>p,.detail-view .about-lead{font-family:var(--font-body);color:#303B32;font-size:15px;line-height:1.95}
+.chapter-subtitle{font-family:var(--font-mono);color:#345841;font-weight:600;letter-spacing:.02em}
+.detail-view .chapter-nums button{font-family:var(--font-mono);font-weight:600;color:#344737}
+.chapter-nums button{background:#FBF2E4;border-color:#B4AF9B}
+.detail-view .chapter-nums button.active,.chapter-nums button.active{background:#315F42;color:white;border-color:#315F42}
+.chapter-content .chapter-caption{background:#DCE8D6;border-left:4px solid #39734D;color:#2A4933}
+.species-tabs button{font-family:var(--font-round);font-weight:700;color:#344E3B}
+.species-tabs button.active{color:#1D5B38;border-color:#276B46;font-weight:900}
+.species-grid{border-top-color:#AEBAA6}
+.species-grid dt{color:#465B49;font-weight:700}
+.species-grid dd{color:#303B32}
+.fine-print,.detail-end{color:#48584A}
+.search-wrap{background:#FFFDF7;border-color:#9CA994}
+.search-label{font-family:var(--font-mono);color:#4B5C4F}
+.topic-line button{font-family:var(--font-round);font-weight:700;background:#F6F3E8;border-color:#A6B39F;color:#385342}
+.topic-line button.active{background:#315C42;color:#fff;border-color:#315C42}
+.faq-scroll summary{font-family:var(--font-round);font-weight:900;color:#2C4532}
+.faq-scroll details p{color:#334034}
+.product-options legend{font-family:var(--font-round);font-size:14px;font-weight:900;color:#294B36}
+.size-choices button,.tier-choices button{background:#FFF9EF;color:#304335;border-color:#9BAE9A}
+.size-choices button b,.tier-choices button{font-family:var(--font-round);font-weight:900}
+.size-choices button small{font-family:var(--font-mono);color:#455B49}
+.size-choices button.active,.tier-choices button.active{border-color:#315E42;background:#D8E9D5;box-shadow:inset 0 0 0 1px #315E42}
+.product-preview{background:#E1EBDD;border-color:#8FA98F;color:#2D4030}
+.product-preview h3{font-family:var(--font-round);font-weight:900;color:#294333}
+.preview-header,.preview-price{font-family:var(--font-mono)}
+.preview-header{color:#3A5B43;font-weight:500}
+.preview-price{color:#205C3A;font-weight:600}
+.spec-line dt,.spec-line dd{font-family:var(--font-body);color:#364938}
+.spec-line dt{font-weight:700}
+.spec-line{border-top-color:#A8B8A5}
+.spec-line dt,.spec-line dd{border-bottom-color:#B3C3B0}
+.preview-desc,.feature-list{color:#324A37}
+.solid-button{background:#2F6244;color:white;border-color:#2F6244;font-family:var(--font-round);font-weight:900}
+.solid-button:hover{background:#254A36}
+.status-pill{border-color:#7F9D83;color:#2F5A3C;font-family:var(--font-round);font-weight:700}
+.price-popover{background:#FFF9EC;border-color:#8FA98F}
+.price-popover table{font-family:var(--font-mono)}
+.values dt{font-family:var(--font-round);font-weight:900;color:#29563A}
+.values dd{font-family:var(--font-body);color:#354238}
+.viewport-hint,.canvas-controls,.hint-reopen{background:#F9F1E3EB;border-color:#ADA18E;color:#304938}
+.canvas-controls button{color:#2D5139}
+.canvas-controls #zoomText{font-family:var(--font-mono);font-weight:600}
+.canvas-controls button:hover{background:#DAE6D5}
+.cart-drawer{background:#FFF7EB;color:#2D3930}
+.drawer-head h2{font-family:var(--font-round);font-weight:900;color:#2B4B34}
+.drawer-head span,.drawer-head h2 small{color:#3F5C48}
+.drawer-notice{background:#DDE8D8;color:#2F5139}
+.cart-line strong{font-family:var(--font-round);font-weight:900}
+.cart-total strong{font-family:var(--font-mono)}
+.cart-empty{color:#465749}
+@media(max-width:960px){
+ .top-nav a{font-size:13px}
+}
+@media(max-width:600px){
+ .notebook-intro .home-core h1{font-size:38px}
+ .cover-content h2{font-size:25px}
+ .cover-content p{font-size:14px}
+ .detail-scroll{background:#CDC0AE}
+ .detail-view .chapter-content p,.detail-view .chapter-content li{font-size:14px}
+ .logo-text small{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){.cover-note{transition:none}}
+
 </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Noto+Sans+TC:wght@400;500;600;700;800&amp;family=Noto+Serif+TC:wght@500;600;700&amp;family=Zen+Maru+Gothic:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
 </head>
 <body>
   <a class="skip" href="#workspace">跳至主要內容</a>
@@ -477,13 +648,13 @@ body{color:var(--ink);background:var(--ground)}
 <dl class="values"><dt>精品化</dt><dd>重視產品設計、材料與製作品質。</dd><dt>方便化</dt><dd>改善餵食、清潔和日常操作的便利性。</dd><dt>專業化</dt><dd>整理物種資料、飼養知識與實際測試紀錄。</dd></dl>
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p>
 </section></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.6</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.7</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
     <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="桌面控制"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">回總覽</button></div>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.6</span></div>
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.7</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
