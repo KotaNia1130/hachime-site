@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#CDBFAC">
+  <meta name="theme-color" content="#D8CFC2">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.7</title>
+  <title>八目 HACHIME｜網站互動原型 V0.8</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -347,177 +347,192 @@ body{color:var(--ink);background:var(--ground)}
 }
 
 
-/* V0.7 — clearer ink, more distinct stationery colours, purpose-based typography.
-   Typography:
-   display/brand = Noto Serif TC; section labels = Zen Maru Gothic;
-   articles = Noto Sans TC; specs, numbers = IBM Plex Mono. */
-:root{
-  --ground:#CDBFAC;
-  --paper:#FFF8EC;
-  --ink:#282E28;
-  --muted:#455047;
-  --rule:#B5A996;
-  --olive:#31583F;
-  --sage:#C5D5BB;
-  --yellow:#E4CF91;
-  --peach:#EAB7A3;
-  --blue:#C8DAD4;
-  --font-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  --font-display:"Noto Serif TC","Songti TC","PMingLiU",serif;
-  --font-round:"Zen Maru Gothic","Noto Sans TC","PingFang TC",sans-serif;
-  --font-mono:"IBM Plex Mono","SFMono-Regular","Consolas",monospace;
+
+/* V0.8 — balanced notebook contrast + editorial homepage and handwritten notes.
+   Brand/home, navigation, articles and controls: lighter Noto Sans TC.
+   Only the clickable category notes and small stationery notes: LXGW WenKai TC. */
+:root {
+  --ground:#D8CFC2;
+  --paper:#FBF7F0;
+  --ink:#313A32;
+  --muted:#505C50;
+  --rule:#BFB3A2;
+  --olive:#456D51;
+  --sage:#C9DCC9;
+  --yellow:#E9D8A6;
+  --peach:#E7C1B2;
+  --blue:#C5DBD5;
+  --font-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --font-hand:"LXGW WenKai TC","Kaiti TC","DFKai-SB","KaiTi",serif;
+  --font-mono:"IBM Plex Mono","Consolas",monospace;
   font-family:var(--font-body);
   background:var(--ground);
   color:var(--ink);
 }
-body,button,input,select,textarea{font-family:var(--font-body)}
-body{background:var(--ground);color:var(--ink)}
-.site-header{background:#F6ECDC;border-bottom:1px solid #B2A48F;box-shadow:0 3px 15px #4E3F2B12}
-.logo-text strong{font-family:var(--font-round);font-weight:900;color:#2C4A36;letter-spacing:.035em}
-.logo-text strong span{font-family:var(--font-display);font-weight:600;color:#2C4A36}
-.logo-text small{font-family:var(--font-mono);font-size:10px;letter-spacing:.025em;color:#3E5141}
-.eyes i{background:#345A40}
-.top-nav a{font-family:var(--font-round);font-size:14px;font-weight:700;color:#344639;letter-spacing:.015em}
-.top-nav a:hover{background:#E4D8C6}
-.top-nav a.active{background:#D2DECD;color:#224E35;border-bottom-color:#2F6849}
-.cart-trigger{background:#F3E7D6;border-color:#A99A83;color:#254633;font-family:var(--font-round);font-weight:700}
-.cart-trigger:hover{background:#DCE6D7}
-.cart-count{background:#31583F;color:#fff;font-family:var(--font-mono)}
-.main-area{background:#CDBFAC}
-.workspace{background:radial-gradient(ellipse at 30% 18%,#D9CCB9 0%,#C5B8A5 100%)}
+body,button,input,select,textarea{font-family:var(--font-body);color:var(--ink)}
+body{background:var(--ground);font-weight:400}
+.site-header{background:#F6F1E8;border-bottom:1px solid #BEB3A6;box-shadow:0 2px 11px #4B3D2A0B}
+.logo-text strong{font-family:var(--font-body);font-weight:600;letter-spacing:.025em;color:#354F3C}
+.logo-text strong span{font-family:var(--font-body);font-weight:400;letter-spacing:.02em;color:#354F3C}
+.logo-text small{color:#576258;font-weight:400;font-size:9px;letter-spacing:.055em}
+.eyes i{background:#3D5A45}
+.top-nav a{font-family:var(--font-body);font-size:13px;font-weight:400;letter-spacing:.015em;color:#39463B}
+.top-nav a:hover{background:#EEE7DB}
+.top-nav a.active{font-weight:600;background:#E2E9DE;color:#31583C;border-bottom-color:#52765A}
+.cart-trigger{font-family:var(--font-body);font-weight:500;background:#F8F2E8;color:#35513C;border-color:#B8B1A4}
+.cart-trigger:hover{background:#E6EBE0}
+.cart-count{background:#476D51;color:#fff;font-family:var(--font-body);font-weight:500}
+.main-area{background:#D8CFC2}
+.workspace{background:radial-gradient(ellipse at 30% 18%,#E3D9CA 0%,#D2C6B5 100%)}
 .infinite-sheet{
-  background-color:#E4D8C8;
+  background-color:#ECE4D8;
   background-image:
-    linear-gradient(#BCAA9144 1px,transparent 1px),
-    linear-gradient(90deg,#BCAA9144 1px,transparent 1px),
-    linear-gradient(#BCAA912C 1px,transparent 1px),
-    linear-gradient(90deg,#BCAA912C 1px,transparent 1px);
-  border-color:#AFA08D;
-  box-shadow:0 8px 42px #3E302328;
+    linear-gradient(#BBAF9B43 1px,transparent 1px),
+    linear-gradient(90deg,#BBAF9B43 1px,transparent 1px),
+    linear-gradient(#C4B6A333 1px,transparent 1px),
+    linear-gradient(90deg,#C4B6A333 1px,transparent 1px);
+  border:1px solid #BEB1A0;
+  box-shadow:0 7px 33px #4C3E3023;
 }
-.board-corner,.paper-end,.bottom-mark{color:#4F5C50;font-family:var(--font-mono);font-weight:500}
-.paper{background:var(--paper);border-color:#B8AA95;box-shadow:4px 6px 0 #95846732,0 15px 28px #4C392727}
-.paper::after{border-color:#E2D2BA}
-.paper-topline{color:#425143;border-bottom-color:#B9AD9A;font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;font-weight:500}
-.paper-heading p,.main-description{color:#333F35}
-.paper-heading h2,.about-sheet h2{font-family:var(--font-round);font-weight:900;letter-spacing:.008em}
-.stamp-text{color:#405E47;border-color:#91A48D;font-family:var(--font-mono)}
-.notebook-intro{background:#FFF8EB;border:1px solid #AA9B83;box-shadow:6px 8px 0 #95846733,0 20px 34px #4C392726}
-.notebook-intro .small-kicker{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.09em;color:#345F43}
-.notebook-intro .home-core h1{font-family:var(--font-display);font-weight:700;color:#253A2D;letter-spacing:.02em}
-.notebook-intro .home-core h1 em{font-family:var(--font-display);font-weight:600}
-.notebook-intro .home-core h2{font-family:var(--font-round);font-weight:900;font-size:23px;color:#2E523A}
-.brand-phrase{color:#315C40;font-weight:600;letter-spacing:.09em}
-.home-divider{background:#AE9F8B}
-.notebook-intro .main-description{color:#364237;font-size:15px;line-height:1.9}
-.home-bottom{color:#465945;font-family:var(--font-mono);letter-spacing:.04em;font-weight:500}
-.ink-link{color:#235B3A;border-bottom-color:#276341;font-family:var(--font-round);font-weight:900}
-.ink-link.subtle{color:#3C5243;border-color:#6D8B73}
-.tape{background:#DAB58CBD}
-.tape-green{background:#AFCBA9D9}
-.tape-yellow{background:#DCC27CD9}
-.tape-peach{background:#E0AB96D9}
-.tape-blue{background:#ACCFCBD9}
-.tape-about{background:#D7B49AD9}
-.tiny-note{background:#E8D09C;border:1px solid #C4A978;color:#30382F;box-shadow:4px 7px 13px #4A38282A}
-.tiny-note strong{font-family:var(--font-round);font-weight:900;color:#2D4B34}
-.tiny-note p{font-family:var(--font-body);color:#3A4139}
-.start-note{background:#EBD4A7}
-.species-note{background:#BFD6B8}
-.notebook-note{background:#E6C7B4}
-.tiny-note>span:last-child{color:#4B5547;font-family:var(--font-mono)}
-.cover-note{border-color:#B3A48E;box-shadow:4px 6px 0 #94806136,0 15px 26px #4B38272B}
-.cover-note::after{border-color:#DDC9B0}
-.cover-note:hover,.cover-note:focus-visible{border-color:#477550;box-shadow:7px 9px 0 #947E6133,0 16px 28px #402E2238}
-.cover-note::before{border-color:#9D977E;background:var(--tab-color,#B8CCA9)}
-.cover-content h2{font-family:var(--font-round);font-weight:900;font-size:29px;color:#293D2C;letter-spacing:.008em}
-.cover-content p{font-family:var(--font-body);color:#344238;font-size:15px;line-height:1.85}
-.cover-footer{border-top-color:#BBAE99;color:#2C5B3D;font-family:var(--font-round);font-weight:700}
-.cover-footer span:last-child{font-weight:900}
-.beginner-cover{--tab-color:#D98D77;background:#F3D4C0}
-.atlas-cover{--tab-color:#8EAE83;background:#D7E5CC}
-.knowledge-cover{--tab-color:#D5AE58;background:#F1E2B4}
-.lab-cover{--tab-color:#7EACA5;background:#D2E5DD}
-.about-cover{--tab-color:#C69479;background:#E9CFC1}
-.cover-note .paper-topline{color:#435344;border-bottom-color:#BDAF9A}
-.detail-view{background:#CDC0AE}
-.detail-toolbar{background:#F5EADA;border-bottom-color:#B7A995}
-.detail-breadcrumb{font-family:var(--font-mono);color:#455647;font-size:12px}
-.back-to-board{font-family:var(--font-round);color:#245F3C;font-weight:900}
-.detail-scroll{background:#CDC0AE;scrollbar-color:#988C78 #D5C8B5}
-.detail-view .paper{background:#FFF8EC!important;border-color:#B3A48F;box-shadow:5px 7px 0 #9B8B7130,0 17px 30px #3E332B20}
-.detail-view .paper::after{border-color:#E5D5BF}
-.detail-view .paper-heading h2,.detail-view .about-sheet h2{font-family:var(--font-round);font-weight:900;color:#263F2E}
-.detail-view .chapter-content h3{font-family:var(--font-display);font-weight:700;color:#2B3D30}
-.detail-view .chapter-content p,.detail-view .chapter-content li,
-.detail-view .species-panel>p,.detail-view .about-lead{font-family:var(--font-body);color:#303B32;font-size:15px;line-height:1.95}
-.chapter-subtitle{font-family:var(--font-mono);color:#345841;font-weight:600;letter-spacing:.02em}
-.detail-view .chapter-nums button{font-family:var(--font-mono);font-weight:600;color:#344737}
-.chapter-nums button{background:#FBF2E4;border-color:#B4AF9B}
-.detail-view .chapter-nums button.active,.chapter-nums button.active{background:#315F42;color:white;border-color:#315F42}
-.chapter-content .chapter-caption{background:#DCE8D6;border-left:4px solid #39734D;color:#2A4933}
-.species-tabs button{font-family:var(--font-round);font-weight:700;color:#344E3B}
-.species-tabs button.active{color:#1D5B38;border-color:#276B46;font-weight:900}
-.species-grid{border-top-color:#AEBAA6}
-.species-grid dt{color:#465B49;font-weight:700}
-.species-grid dd{color:#303B32}
-.fine-print,.detail-end{color:#48584A}
-.search-wrap{background:#FFFDF7;border-color:#9CA994}
-.search-label{font-family:var(--font-mono);color:#4B5C4F}
-.topic-line button{font-family:var(--font-round);font-weight:700;background:#F6F3E8;border-color:#A6B39F;color:#385342}
-.topic-line button.active{background:#315C42;color:#fff;border-color:#315C42}
-.faq-scroll summary{font-family:var(--font-round);font-weight:900;color:#2C4532}
-.faq-scroll details p{color:#334034}
-.product-options legend{font-family:var(--font-round);font-size:14px;font-weight:900;color:#294B36}
-.size-choices button,.tier-choices button{background:#FFF9EF;color:#304335;border-color:#9BAE9A}
-.size-choices button b,.tier-choices button{font-family:var(--font-round);font-weight:900}
-.size-choices button small{font-family:var(--font-mono);color:#455B49}
-.size-choices button.active,.tier-choices button.active{border-color:#315E42;background:#D8E9D5;box-shadow:inset 0 0 0 1px #315E42}
-.product-preview{background:#E1EBDD;border-color:#8FA98F;color:#2D4030}
-.product-preview h3{font-family:var(--font-round);font-weight:900;color:#294333}
-.preview-header,.preview-price{font-family:var(--font-mono)}
-.preview-header{color:#3A5B43;font-weight:500}
-.preview-price{color:#205C3A;font-weight:600}
-.spec-line dt,.spec-line dd{font-family:var(--font-body);color:#364938}
-.spec-line dt{font-weight:700}
-.spec-line{border-top-color:#A8B8A5}
-.spec-line dt,.spec-line dd{border-bottom-color:#B3C3B0}
-.preview-desc,.feature-list{color:#324A37}
-.solid-button{background:#2F6244;color:white;border-color:#2F6244;font-family:var(--font-round);font-weight:900}
-.solid-button:hover{background:#254A36}
-.status-pill{border-color:#7F9D83;color:#2F5A3C;font-family:var(--font-round);font-weight:700}
-.price-popover{background:#FFF9EC;border-color:#8FA98F}
-.price-popover table{font-family:var(--font-mono)}
-.values dt{font-family:var(--font-round);font-weight:900;color:#29563A}
-.values dd{font-family:var(--font-body);color:#354238}
-.viewport-hint,.canvas-controls,.hint-reopen{background:#F9F1E3EB;border-color:#ADA18E;color:#304938}
-.canvas-controls button{color:#2D5139}
-.canvas-controls #zoomText{font-family:var(--font-mono);font-weight:600}
-.canvas-controls button:hover{background:#DAE6D5}
-.cart-drawer{background:#FFF7EB;color:#2D3930}
-.drawer-head h2{font-family:var(--font-round);font-weight:900;color:#2B4B34}
-.drawer-head span,.drawer-head h2 small{color:#3F5C48}
-.drawer-notice{background:#DDE8D8;color:#2F5139}
-.cart-line strong{font-family:var(--font-round);font-weight:900}
-.cart-total strong{font-family:var(--font-mono)}
-.cart-empty{color:#465749}
+.board-corner,.paper-end{color:#576052;font-family:var(--font-mono);letter-spacing:.045em}
+.connectors path{stroke:#ABA493}
+.paper{background:var(--paper);border-color:#C6BAA9;box-shadow:3px 5px 0 #A99B8630,0 15px 28px #3E33271C}
+.paper::after{border-color:#E7DDCF}
+.paper-topline{color:#586458;border-bottom-color:#CFC2B1;font-family:var(--font-body);font-weight:400;letter-spacing:.075em}
+.paper-heading p{color:#465248}
+.paper-heading h2,.about-sheet h2{font-family:var(--font-body);font-weight:600;letter-spacing:.01em}
+.tape{background:#E2CBACBC}
+.tape-green{background:#C2D6BDCD}
+.tape-yellow{background:#E7D8A4D5}
+.tape-peach{background:#E7C4B7D0}
+.tape-blue{background:#BFD9D6CE}
+.tape-about{background:#E3CFBACA}
+
+/* 00: text printed directly on the large notebook surface, not a pinned card */
+.notebook-intro{
+  position:absolute;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:25px 20px!important;
+  transform:none;
+  color:#2F4034;
+}
+.notebook-intro::before,.notebook-intro::after{display:none!important}
+.notebook-intro .paper-topline{border-bottom:1px solid #B6AB9B;color:#4B5B4E;font-weight:400}
+.notebook-intro .small-kicker{font-family:var(--font-body);font-size:11px;letter-spacing:.12em;color:#46634F;font-weight:400}
+.notebook-intro .home-core h1{font-family:var(--font-body);font-weight:600;letter-spacing:.012em;color:#2F4535}
+.notebook-intro .home-core h1 em{font-family:var(--font-body);font-weight:400;letter-spacing:.005em}
+.notebook-intro .home-core h2{font-family:var(--font-body);font-weight:500;font-size:21px;color:#354E3B}
+.notebook-intro .brand-phrase{color:#3B5A45;font-weight:400;letter-spacing:.1em}
+.notebook-intro .home-divider{height:1px;width:55%;background:#AFA593}
+.notebook-intro .main-description{font-family:var(--font-body);font-weight:400;color:#404F42;font-size:15px;line-height:1.9}
+.notebook-intro .home-bottom{left:20px;right:20px;bottom:30px;color:#4D604F;font-family:var(--font-body);font-weight:400;letter-spacing:.06em}
+.ink-link{font-family:var(--font-body);font-weight:500;color:#30583E;border-color:#4E7558}
+.ink-link.subtle{color:#4D5A4E;border-color:#9DAA99}
+
+/* 01–05: handwritten note labels, with controlled saturation and readable ink */
+.cover-note{
+  border:1px solid #C4B7A4;
+  box-shadow:4px 6px 0 #B4A7902E,0 13px 23px #463B2D20;
+  font-family:var(--font-hand);
+  transition:border-color .17s ease,box-shadow .17s ease;
+}
+.cover-note::after{border-color:#E2D4C2}
+.cover-note::before{border-color:#B7AB98;background:var(--tab-color,#CDDACB)}
+.cover-note:hover,.cover-note:focus-visible{border-color:#7B977B;box-shadow:6px 9px 0 #B4A79038,0 16px 26px #40342829}
+.cover-note .paper-topline{font-family:var(--font-hand);font-size:13px;letter-spacing:.025em;color:#4A5A4E;font-weight:400}
+.cover-content h2{font-family:var(--font-hand);font-size:30px;letter-spacing:.01em;font-weight:700;color:#293E30}
+.cover-content p{font-family:var(--font-hand);font-size:16px;font-weight:400;line-height:1.85;color:#3E4B41}
+.cover-footer{font-family:var(--font-hand);font-size:14px;font-weight:400;border-top-color:#C5B7A4;color:#3B6048}
+.cover-footer span:last-child{font-weight:700}
+.beginner-cover{--tab-color:#E0A695;background:#F5E2D7}
+.atlas-cover{--tab-color:#B8D0AE;background:#E3EADC}
+.knowledge-cover{--tab-color:#DAC37E;background:#F5EBD0}
+.lab-cover{--tab-color:#A6CBC1;background:#E0EEE8}
+.about-cover{--tab-color:#D8B09C;background:#F0E1D7}
+.tiny-note,.tiny-note strong,.tiny-note p{font-family:var(--font-hand)}
+.tiny-note{background:#E9DBBB;border:1px solid #D1BE9B;color:#39453B;font-size:15px}
+.tiny-note strong{font-weight:700;color:#36503D}
+.tiny-note p{font-weight:400;line-height:1.75}
+.tiny-note>span:last-child{font-family:var(--font-hand);color:#596455}
+.start-note{background:#EADBB8}
+.species-note{background:#DCE8D6}
+.notebook-note{background:#EBDBD0}
+
+/* Content remains a quiet, thin-weight sans-serif rather than handwritten. */
+.detail-view{background:#DAD0C2}
+.detail-toolbar{background:#F8F3EB;border-bottom-color:#C4B9A8}
+.detail-breadcrumb{font-family:var(--font-body);font-size:12px;color:#5A655B}
+.back-to-board{font-family:var(--font-body);font-weight:500;color:#3F6348}
+.detail-scroll{background:#DAD0C2;scrollbar-color:#BAB0A1 #DAD0C2}
+.detail-view .paper{background:#FCF8F1!important;border-color:#C3B7A6;box-shadow:4px 7px 0 #B6A89130,0 15px 27px #4C3B2A14}
+.detail-view .paper::after{border-color:#EBE1D3}
+.detail-view .paper-heading h2,.detail-view .about-sheet h2{font-family:var(--font-body);font-weight:600;color:#344839}
+.detail-view .chapter-content h3{font-family:var(--font-body);font-weight:500;color:#344738}
+.detail-view .chapter-content p,
+.detail-view .chapter-content li,
+.detail-view .species-panel>p,
+.detail-view .about-lead{font-family:var(--font-body);font-weight:400;color:#3C473E;line-height:1.95}
+.chapter-subtitle{font-family:var(--font-body);color:#4B6952;font-weight:400;letter-spacing:.04em}
+.chapter-nums button{font-family:var(--font-body);font-weight:400;color:#4C5F50;background:#F7F2EA;border-color:#C6C3B8}
+.chapter-nums button.active{background:#4A6F52;color:#fff;border-color:#4A6F52}
+.species-tabs button{font-family:var(--font-body);font-weight:400;color:#4A5A4E}
+.species-tabs button.active{font-weight:600;color:#315D42;border-color:#4B7655}
+.species-grid dt{color:#586358;font-weight:400}
+.species-grid dd{color:#3D483D}
+.fine-print,.detail-end{color:#5B655B}
+.search-wrap{background:#FFFDF7;border-color:#B4C1B0}
+.search-label{font-family:var(--font-body);color:#647064}
+.topic-line button{font-family:var(--font-body);font-weight:400;background:#F8F6EF;border-color:#C1C9BC;color:#4D5D50}
+.topic-line button.active{background:#4C7054;color:white;border-color:#4C7054}
+.faq-scroll summary{font-family:var(--font-body);font-weight:500;color:#37493C}
+.faq-scroll details p{font-family:var(--font-body);font-weight:400;color:#414C43}
+.product-options legend{font-family:var(--font-body);font-size:13px;font-weight:600;color:#425747}
+.size-choices button,.tier-choices button{background:#FCF9F3;border-color:#BAC6B8;color:#435748}
+.size-choices button b,.tier-choices button{font-family:var(--font-body);font-weight:500}
+.size-choices button small{font-family:var(--font-body);font-weight:400;color:#5A685D}
+.size-choices button.active,.tier-choices button.active{border-color:#547A5D;background:#E3EFE0;box-shadow:inset 0 0 0 1px #547A5D}
+.product-preview{background:#EBF1E9;border-color:#B4C4B3;color:#3B4E3E}
+.product-preview h3{font-family:var(--font-body);font-weight:500;color:#365440}
+.preview-header,.preview-price{font-family:var(--font-body)}
+.preview-header{color:#566A59;font-weight:400}
+.preview-price{color:#3E694C;font-weight:500}
+.spec-line dt{font-family:var(--font-body);font-weight:400;color:#5A6D5B}
+.spec-line dd{font-family:var(--font-body);font-weight:400;color:#3B4E40}
+.preview-desc,.feature-list{font-family:var(--font-body);font-weight:400;color:#475B49}
+.solid-button{font-family:var(--font-body);font-weight:500;background:#456C4E;border-color:#456C4E;color:#fff}
+.solid-button:hover{background:#35573F}
+.status-pill{font-family:var(--font-body);font-weight:400;border-color:#A2B6A2;color:#527158}
+.price-popover{background:#FDF9F2;border-color:#B4C4B2}
+.price-popover table{font-family:var(--font-body)}
+.values dt{font-family:var(--font-body);font-weight:500;color:#42654A}
+.values dd{font-family:var(--font-body);font-weight:400;color:#4C5B4D}
+.viewport-hint,.canvas-controls,.hint-reopen{background:#FBF6EDEA;border-color:#C2B7A8;color:#45614C}
+.cart-drawer{background:#FBF7EF;color:#374A3C}
+.drawer-head h2{font-family:var(--font-body);font-weight:500}
+.drawer-notice{background:#E5EFE1;color:#4C6750}
+.cart-line strong{font-family:var(--font-body);font-weight:500}
+.cart-total strong{font-family:var(--font-body);font-weight:500}
 @media(max-width:960px){
- .top-nav a{font-size:13px}
+ .notebook-intro{padding:24px 20px!important}
 }
 @media(max-width:600px){
+ .notebook-intro{padding:20px 18px!important}
+ .notebook-intro .home-bottom{left:18px;right:18px;bottom:28px}
  .notebook-intro .home-core h1{font-size:38px}
- .cover-content h2{font-size:25px}
- .cover-content p{font-size:14px}
- .detail-scroll{background:#CDC0AE}
- .detail-view .chapter-content p,.detail-view .chapter-content li{font-size:14px}
- .logo-text small{font-size:8px}
+ .notebook-intro .home-core h1 em{font-size:31px}
+ .cover-content h2{font-size:28px}
+ .cover-content p{font-size:15px}
+ .cover-footer{font-size:13px}
+ .detail-scroll{background:#DAD0C2}
 }
 @media(prefers-reduced-motion:reduce){.cover-note{transition:none}}
 
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Noto+Sans+TC:wght@400;500;600;700;800&amp;family=Noto+Serif+TC:wght@500;600;700&amp;family=Zen+Maru+Gothic:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 </head>
 <body>
   <a class="skip" href="#workspace">跳至主要內容</a>
@@ -541,8 +556,8 @@ body{background:var(--ground);color:var(--ink)}
       <div class="infinite-sheet" id="board">
         <svg class="connectors" viewBox="0 0 2070 1350" preserveAspectRatio="none" aria-hidden="true"><path d="M750 310 C845 275 875 300 938 245"/><path d="M1395 283 C1445 260 1460 280 1500 338"/><path d="M430 570 C440 645 465 656 460 704"/><path d="M800 755 C835 710 877 726 925 749"/><path d="M1320 1000 C1400 970 1430 1050 1470 1050"/></svg>
         <div class="board-corner" aria-hidden="true">HACHIME / NOTEBOOK<br>2026 — CONCEPT</div>
-        <section id="home" class="paper notebook-intro" aria-labelledby="homeTitle">
-          <span class="tape tape-home" aria-hidden="true"></span>
+        <section id="home" class="notebook-intro" aria-labelledby="homeTitle">
+          
           <div class="paper-topline"><span>00 / HACHIME</span><span>網站測試版</span></div>
           <div class="home-core">
             <span class="small-kicker">JUMPING SPIDER LAB</span>
@@ -648,13 +663,13 @@ body{background:var(--ground);color:var(--ink)}
 <dl class="values"><dt>精品化</dt><dd>重視產品設計、材料與製作品質。</dd><dt>方便化</dt><dd>改善餵食、清潔和日常操作的便利性。</dd><dt>專業化</dt><dd>整理物種資料、飼養知識與實際測試紀錄。</dd></dl>
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p>
 </section></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.7</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.8</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
     <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="桌面控制"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">回總覽</button></div>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.7</span></div>
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.8</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
