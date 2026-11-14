@@ -1,4 +1,26 @@
-# 八目 HACHIME｜網站 MVP V0.8
+# 八目 HACHIME｜網站 MVP V0.14
+
+## V0.14：清晰文字與蜘蛛活體 MVP
+
+- 修正現用八眼 LOGO 最左側眼睛的高光位置，八顆眼睛各保留一個右上高光；配色、眼睛與葉片位置不變。
+- 首頁使用 CSS `zoom` 做版面縮放，移除整張桌面的 transform scale 與 will-change；便條文字保持水平，紙張底層、膠帶和圖片保留輕微傾斜。原有拖曳與縮放座標沿用視窗像素。
+- 新增「蜘蛛活體 / LIVE SPIDERS」便條、頂部入口與 `#live` 詳細頁；佛跳、老虎狗、獅子狗每 5.6 秒輪播，提供手動切換及暫停條件。
+- 三個項目皆為「示意 / 規劃中」，沒有在售或在養個體宣稱。獅子狗學名待確認；暫用 OpenMoji 一般蜘蛛圖，不作物種鑑別。詳見 `ASSET_CREDITS.md`。
+- 詳細頁預留個體編號、性別、齡期、來源、進食／脫皮紀錄、照片與更新日期。
+
+本版規格與驗收限制見 `DESIGN_SPEC_V014.md`；下方保留歷史版本紀錄。
+
+### 本地驗證
+
+不需要建置或安裝網站套件。可直接開啟 `index.html`；自動化檢查使用靜態伺服器：
+
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1 --directory /workspace/hachime-site
+# 另一個終端；需環境已提供 Playwright 與 Chromium
+node tests/browser-smoke.cjs
+```
+
+測試預設使用 `/usr/bin/chromium`，可用 `CHROMIUM_PATH` 覆寫；`BASE_URL` 可改伺服器位址。測試刻意阻擋外部資源以驗證替代圖片與字型情境；不代表外部照片／字型連線已通過。桌面與手機截圖輸出至 `/tmp/hachime-*.png`。Windows 的 ClearType、系統縮放與實際字型仍需人工確認。
 
 這是八目 HACHIME（跳蛛研造）的網站互動原型。
 
