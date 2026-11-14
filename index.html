@@ -4,8 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#EFE9DD">
+  <link rel="icon" type="image/svg+xml" href="./assets/hachime-mark.svg">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.11</title>
+  <title>八目 HACHIME｜網站互動原型 V0.12</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -694,7 +695,7 @@ body{background:var(--ground);color:var(--ink)}
 }
 
 
-/* V0.11 — illustration and editorial annotations on the draggable notebook.
+/* V0.12 — illustration and editorial annotations on the draggable notebook.
    Body text stays readable; Q handwriting is for short curved decorative phrases. */
 :root{
  --font-rounded:"Zen Maru Gothic","Noto Sans TC","PingFang TC",sans-serif;
@@ -754,13 +755,13 @@ body{background:var(--ground);color:var(--ink)}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@300;400;500;600;700&amp;family=Zen+Maru+Gothic:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@300;400;500;600;700&amp;family=Zen+Maru+Gothic:wght@400;500;700&amp;family=Huninn&amp;display=swap" rel="stylesheet">
 </head>
 <body>
   <a class="skip" href="#workspace">跳至主要內容</a>
   <header class="site-header">
 <a aria-label="八目 HACHIME，回到總覽" class="logo" data-go="home" href="#home">
-<span aria-hidden="true" class="eyes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+<img class="brand-mark" src="./assets/hachime-mark.svg" alt="" width="44" height="44">
 <span class="logo-text"><strong>八目 <span>HACHIME</span></strong><small>跳蛛研造 ／ JUMPING SPIDER LAB</small></span>
 </a>
 <nav aria-label="網站導覽" class="top-nav">
@@ -783,11 +784,11 @@ body{background:var(--ground);color:var(--ink)}
           <div class="paper-topline"><span>00 / HACHIME</span><span>網站測試版</span></div>
           <div class="home-core">
             <span class="small-kicker">JUMPING SPIDER LAB</span>
-            <h1 id="homeTitle">八目 <em>HACHIME</em></h1>
+            <h1 id="homeTitle">八目 <em>HACHIME</em></h1><img class="home-symbol" src="./assets/hachime-mark.svg" alt="" aria-hidden="true">
             <p class="brand-phrase">微觀視野，躍動生活。</p>
             <div class="home-divider"></div>
             <h2>跳蛛飼養知識與用品</h2>
-            <p class="main-description">從新手指南、物種資料到飼養盒規格，選擇想看的分類即可閱讀完整內容。</p>
+            <p class="main-description">提供新手飼養指南、常見問題、跳蛛圖鑑與 A1 飼養盒規劃資料。從下方分類進入詳細內容。</p>
             <div class="home-actions"><button type="button" class="ink-link" data-jump="beginner">第一次養跳蛛 <span>↗</span></button><button type="button" class="ink-link subtle" data-jump="lab">查看飼養盒 <span>↗</span></button></div>
           </div>
           <div class="home-bottom"><span>精品化 ／ 方便化 ／ 專業化</span><span>INDEX / 01—05</span></div>
@@ -796,13 +797,13 @@ body{background:var(--ground);color:var(--ink)}
         <section class="paper cover-note beginner-cover" data-open="beginner" role="link" tabindex="0" aria-label="開啟第一次養跳蛛">
   <span class="tape" aria-hidden="true"></span>
   <div class="paper-topline"><span>01 / BEGINNER</span><span>點擊查看</span></div>
-  <div class="cover-content"><h2>第一次養跳蛛</h2><p>了解飼養前的準備、選擇跳蛛及日常照顧。</p></div>
+  <div class="cover-content"><h2>第一次養跳蛛</h2><p>介紹飼養環境、活餌準備、跳蛛選擇及日常照顧。第一次飼養可以依章節閱讀。</p></div>
   <div class="cover-footer"><span>7 個章節</span><span>開啟內容 ↗</span></div>
 </section>
 <section class="paper cover-note atlas-cover" data-open="atlas" role="link" tabindex="0" aria-label="開啟跳蛛圖鑑">
   <span class="tape" aria-hidden="true"></span>
   <div class="paper-topline"><span>02 / SPECIES</span><span>點擊查看</span></div>
-  <div class="cover-content"><h2>跳蛛圖鑑</h2><p>查詢常見跳蛛的學名、分布與基本資料。</p></div>
+  <div class="cover-content"><h2>跳蛛圖鑑</h2><p>認識不同跳蛛的名稱、分布與外觀。圖鑑有初步插畫，物種資料將逐步補充。</p></div>
   <div class="cover-footer"><span>3 種跳蛛</span><span>開啟內容 ↗</span></div>
 </section>
 <section class="paper cover-note knowledge-cover" data-open="knowledge" role="link" tabindex="0" aria-label="開啟飼養知識">
@@ -857,7 +858,44 @@ body{background:var(--ground);color:var(--ink)}
         <figure class="board-art art-potted" aria-label="盆栽插圖">
           <img src="./assets/openmoji-potted-plant.svg" alt="開源盆栽插圖" loading="lazy" decoding="async">
         </figure>
-        <div class="paper-end" aria-hidden="true">HACHIME — MVP 11 / NOTEBOOK INDEX</div>
+
+        <section class="board-gallery gallery-spiders" aria-label="佛羅里達跳蛛輪播">
+          <div class="gallery-top"><span>06 / SPIDER JOURNAL</span><span>插畫示意</span></div>
+          <div class="gallery-heading"><h2>跳蛛觀察</h2><span id="spidersGalleryCounter">01 / 03</span></div>
+          <div class="gallery-layout">
+            <figure class="gallery-visual"><img id="spidersGalleryImage" src="./assets/spider-regius.svg" alt="跳蛛 Q 版示意插畫，非實際個體照片" decoding="async"><figcaption>繪製示意 / 非物種鑑別圖</figcaption></figure>
+            <div class="gallery-info" aria-live="polite">
+              <h3 id="spidersGalleryName">佛羅里達跳蛛</h3>
+              <p class="gallery-subname" id="spidersGalleryLatin">Phidippus regius</p>
+              <p id="spidersGalleryDesc">常見的寵物跳蛛物種之一。</p>
+              <div class="gallery-controllers">
+                <button type="button" data-gallery="spiders" data-gallery-dir="-1" aria-label="上一項">←</button>
+                <span id="spidersGalleryDots" aria-label="輪播進度">● ○ ○</span>
+                <button type="button" data-gallery="spiders" data-gallery-dir="1" aria-label="下一項">→</button>
+              </div>
+              <button type="button" data-jump="atlas" class="gallery-link">打開跳蛛圖鑑 ↗</button>
+            </div>
+          </div>
+        </section>
+        <section class="board-gallery gallery-enclosures" aria-label="CORE 基礎輪播">
+          <div class="gallery-top"><span>07 / A1 ENCLOSURE</span><span>尚未上市</span></div>
+          <div class="gallery-heading"><h2>飼養盒設計</h2><span id="enclosuresGalleryCounter">01 / 03</span></div>
+          <div class="gallery-layout">
+            <figure class="gallery-visual"><img id="enclosuresGalleryImage" src="./assets/enclosure-core.svg" alt="A1 CORE 飼養盒概念插畫，非商品實拍" decoding="async"><figcaption>產品概念 / 尚未打樣驗證</figcaption></figure>
+            <div class="gallery-info" aria-live="polite">
+              <h3 id="enclosuresGalleryName">CORE 基礎</h3>
+              <p class="gallery-subname" id="enclosuresGalleryLatin">A1 SERIES / CORE</p>
+              <p id="enclosuresGalleryDesc">基本箱體，兼顧安全、通風與防逃設計。</p>
+              <div class="gallery-controllers">
+                <button type="button" data-gallery="enclosures" data-gallery-dir="-1" aria-label="上一項">←</button>
+                <span id="enclosuresGalleryDots" aria-label="輪播進度">● ○ ○</span>
+                <button type="button" data-gallery="enclosures" data-gallery-dir="1" aria-label="下一項">→</button>
+              </div>
+              <button type="button" data-jump="lab" class="gallery-link">查看 A1 規劃規格 ↗</button>
+            </div>
+          </div>
+        </section>
+        <div class="paper-end" aria-hidden="true">HACHIME — MVP 12 / NOTEBOOK INDEX</div>
       </div>
     </div>
     <div class="detail-view" id="detailView" hidden>
@@ -899,6 +937,7 @@ body{background:var(--ground);color:var(--ink)}
 </div>
 <div aria-live="polite" class="product-preview">
 <div class="preview-header"><span>A1 / PRODUCT NOTE</span><span>規劃中</span></div>
+<figure class="product-drawing"><img id="selectedIllustration" src="./assets/enclosure-plus.svg" alt="A1 PLUS 產品設計概念圖，非正式商品" loading="lazy" decoding="async"><figcaption>產品設計示意圖，非實物</figcaption></figure>
 <h3 id="selectedName">A1 Standard PLUS</h3>
 <div class="preview-price" id="selectedPrice">NT$849</div>
 <dl class="spec-line"><dt>外部尺寸</dt><dd id="selectedSize">12 × 12 × 20 cm</dd><dt>產品等級</dt><dd id="selectedTier">PLUS ／ 進階</dd></dl>
@@ -920,13 +959,13 @@ body{background:var(--ground);color:var(--ink)}
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p>
 <p class="fine-print asset-note">筆記插圖使用 <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">OpenMoji</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）；飼養盒為示意線稿。詳細來源見專案 <a href="https://github.com/KotaNia1130/hachime-site/blob/main/ASSET_CREDITS.md" target="_blank" rel="noopener noreferrer">素材授權</a>。</p>
 </section></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.11</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.12</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
     <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="桌面控制"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">回總覽</button></div>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.11</span></div>
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.12</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
