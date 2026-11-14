@@ -62,3 +62,23 @@ OpenMoji 相關圖片的 CC BY-SA 4.0 授權**不表示整個 HACHIME 網站程�
 
 參考 [いらすとや](https://www.irasutoya.com/) 的親切資訊插畫呈現方式，**沒有直接複製或使用它的圖檔**。該網站素材的商業使用有獨立條件與數量限制；如日後採用，須先核對[官方利用規定](https://www.irasutoya.com/p/terms.html)。
 
+
+## V0.13：Wikimedia Commons 跳蛛照片（新）
+
+從 V0.13 起，原本「跳蛛圖鑑」便條與圖鑑詳細頁顯示 **Wikimedia Commons 的實際照片**，不是從搜尋結果直接抓不明來源圖片。原圖由作者提供或經平台授權審查，逐張使用如下：
+
+| 跳蛛 | 原始檔與來源 | 攝影者 | 授權 | 使用／變更 |
+|---|---|---|---|---|
+| 佛羅里達跳蛛 (*Phidippus regius*) | [Female Phidippus regius - 51291758782.jpg](https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg) | spidereyes2020 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 網站照片框可裁切顯示，原始照片未修改 |
+| 大膽跳蛛 (*Phidippus audax*) | [Kaldari Phidippus audax 01.jpg](https://commons.wikimedia.org/wiki/File:Kaldari_Phidippus_audax_01.jpg) | Kaldari | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 網站照片框可裁切顯示，原始照片未修改 |
+| 老虎狗跳蛛 (*Hyllus diardi*) | [Hyllus diardi 281266755.jpg](https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg) | Doreen（iNaturalist 作者） | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | **須署名並提供授權連結；**網頁依圖片框裁切顯示，不改變原始照片 |
+
+照片透過 Wikimedia Commons 的 `Special:Redirect/file` 外部參照，本站現在**未儲存照片二進位副本**。此方式可展示但可能受網路、檔案轉址及外部站點變更影響。若載入失敗，會替換成先前自繪的示意 SVG。正式對外營運前，宜按各授權下載保留合法可用的自有版本，並記錄來源日期與校驗值。
+
+### 使用與授權注意
+
+- **Wikimedia Commons 並非每張圖都屬公有領域**；照片著作權與使用條件依各檔案頁決定。
+- CC BY 4.0 圖片的署名、原始檔和授權應可找到，並標示顯示時有版面裁切；不可暗示原攝影者為八目品牌背書。
+- 這些照片不是八目的實際飼養個體，不得拿來代表商品實拍或作為嚴格物種鑑別證據。
+- A1 箱體仍使用本站的原創概念 SVG，並註明規劃中／尚未上市，不用其他商家產品照片冒充八目設計。
+
