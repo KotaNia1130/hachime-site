@@ -1096,6 +1096,41 @@ body{background:var(--ground);color:var(--ink)}
   const tiers={core:{label:'CORE',zh:'基礎',desc:'基本箱體結構與可擴充接口。',features:['前開式與防逃設計目標','通風及攀爬空間','基本模組接口']},plus:{label:'PLUS',zh:'進階',desc:'增加環境監測與日常操作配件。',features:['包含 CORE 的基礎設計','微型數位溫濕度監測模組（規劃中）','餵食及攀爬配件']},pro:{label:'PRO',zh:'精品',desc:'升級外觀加工與模組配置。',features:['包含 PLUS 的功能規劃','較高規格材料與外觀處理','背景及配件升級；照明選配']}};
   const prices={mini:{core:399,plus:649,pro:990},standard:{core:499,plus:849,pro:1390},large:{core:749,plus:1190,pro:1990},xl:{core:1190,plus:1690,pro:2790}};
 
+
+  // V0.12 — curated notebook illustration previews; artwork is not product photography.
+  const showcase={
+    spiders:[
+      {name:"佛羅里達跳蛛",sub:"Phidippus regius",image:"./assets/spider-regius.svg",desc:"常見的寵物跳蛛物種之一。個體的性別、成長階段與來源應在購買前確認。這張插畫只用於版面示意，不能拿來鑑別物種。"},
+      {name:"大膽跳蛛",sub:"Phidippus audax",image:"./assets/spider-audax.svg",desc:"北美常見的跳蛛種類之一。不同個體的花紋可能不同，飼養時應依體型安排餌料和適合的活動空間。插畫不是實際個體照片。"},
+      {name:"老虎狗跳蛛",sub:"Hyllus diardi",image:"./assets/spider-hyllus.svg",desc:"台灣飼養圈使用的常見俗名。選購時應核對學名、齡期與原飼養條件。圖中僅為插畫表現，不供物種辨識。"}
+    ],
+    enclosures:[
+      {name:"CORE 基礎",sub:"A1 / CORE",image:"./assets/enclosure-core.svg",desc:"規劃最基本的前開式箱體、通風、防逃與攀爬配置，並保留模組擴充接口。外型與材料尚需實際打樣驗證。"},
+      {name:"PLUS 進階",sub:"A1 / PLUS",image:"./assets/enclosure-plus.svg",desc:"在基礎箱體上加入可替換餵食配件及微型數位溫濕度監測模組。感測器安裝、精度和維修方式仍在規劃中。"},
+      {name:"PRO 精品",sub:"A1 / PRO",image:"./assets/enclosure-pro.svg",desc:"著重材料加工品質、模組化展示配置與長期使用的便利性。概念插畫不代表已確認的商品規格或量產能力。"}
+    ]
+  };
+  const showcaseIndex={spiders:0,enclosures:0};
+  function drawShowcase(which){
+    const records=showcase[which],i=showcaseIndex[which],item=records[i];
+    const img=$('#'+which+'GalleryImage');
+    img.src=item.image;
+    img.alt=which==='spiders'?item.name+'：非物種鑑別用原創跳蛛插畫':'A1 '+item.name+' 飼養盒概念插畫，非實物';
+    $('#'+which+'GalleryName').textContent=item.name;
+    $('#'+which+'GalleryLatin').textContent=item.sub;
+    $('#'+which+'GalleryDesc').textContent=item.desc;
+    $('#'+which+'GalleryCounter').textContent=String(i+1).padStart(2,'0')+' / '+String(records.length).padStart(2,'0');
+    $('#'+which+'GalleryDots').textContent=records.map((_,n)=>n===i?'●':'○').join(' ');
+  }
+  $('[data-gallery-dir]').forEach(btn=>btn.addEventListener('click',()=>{
+    const which=btn.dataset.gallery;
+    if(!showcase[which])return;
+    showcaseIndex[which]=(showcaseIndex[which]+Number(btn.dataset.galleryDir)+showcase[which].length)%showcase[which].length;
+    drawShowcase(which);
+  }));
+  drawShowcase('spiders');
+  drawShowcase('enclosures');
+
   // Beginner guide
   let guideIndex=0;
   function drawGuide(){
@@ -1116,7 +1151,8 @@ body{background:var(--ground);color:var(--ink)}
   function drawSpecies(){
     $('#speciesTabs').innerHTML=species.map((s,i)=>`<button type="button" class="${speciesIndex===i?'active':''}" data-species="${i}" aria-pressed="${speciesIndex===i}">${s.name}</button>`).join('');
     const s=species[speciesIndex];
-    $('#speciesPanel').innerHTML=`<h3>${s.name}</h3><em>${s.latin}</em><p>${s.summary}</p><dl class="species-grid"><dt>英文名稱</dt><dd>${s.en}</dd><dt>原生分布</dt><dd>${s.origin}</dd><dt>飼養參數</dt><dd>整理中，尚未公開推薦數值</dd></dl>`;
+    const art=showcase.spiders[speciesIndex];
+    $('#speciesPanel').innerHTML=`<div class="species-profile"><figure><img src="${art.image}" alt="${s.name}示意插畫，非物種鑑別圖" loading="lazy"><figcaption>原創示意插畫，不代表實際個體</figcaption></figure><div class="species-info"><h3>${s.name}</h3><em>${s.latin}</em><p>${s.summary}</p><p>${art.desc}</p><dl class="species-grid"><dt>英文名稱</dt><dd>${s.en}</dd><dt>原生分布</dt><dd>${s.origin}</dd><dt>飼養參數</dt><dd>整理中，尚未公開推薦數值</dd></dl></div></div>`;
     $$('[data-species]').forEach(b=>b.addEventListener('click',()=>{speciesIndex=+b.dataset.species;drawSpecies();}));
   }
   drawSpecies();
@@ -1148,6 +1184,8 @@ body{background:var(--ground);color:var(--ink)}
     $('#selectedTier').textContent=`${tier.label} ／ ${tier.zh}`;
     $('#selectedDescription').textContent=tier.desc;
     $('#selectedFeatures').innerHTML=tier.features.map(x=>`<li>${x}</li>`).join('');
+    $('#selectedIllustration').src=`./assets/enclosure-${selectedTier}.svg`;
+    $('#selectedIllustration').alt=`A1 ${tier.label} 飼養盒規劃示意圖，非商品實拍`;
     $$('[data-size]').forEach(b=>b.addEventListener('click',()=>{selectedSize=b.dataset.size;drawProduct();}));
     $$('[data-tier]').forEach(b=>b.addEventListener('click',()=>{selectedTier=b.dataset.tier;drawProduct();}));
   }
