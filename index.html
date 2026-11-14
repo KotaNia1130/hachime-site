@@ -752,96 +752,99 @@ body{background:var(--ground);color:var(--ink)}
 }
 
 
-/* HACHIME V0.13 layout, gallery and typography refinement */
-:root{--font-rounded:"Huninn","Zen Maru Gothic","Noto Sans TC",sans-serif}
-.brand-mark{display:block;width:44px;height:44px;object-fit:contain;flex-shrink:0}
-.home-symbol{position:absolute;right:36px;top:53px;width:82px;height:82px;opacity:.24;pointer-events:none}
-.notebook-intro .main-description,.cover-content p,
-.detail-view .chapter-content p,.detail-view .chapter-content li,
-.detail-view .faq-scroll details p,.detail-view .species-panel>p,
-.detail-view .about-lead,.product-preview .preview-desc,.product-preview .feature-list,
-.about-sheet .values dd{
- font-family:var(--font-rounded);font-weight:500;line-height:1.85;
-}
-.cover-content h2{font-family:"HACHIME JasonHandwriting6","Huninn","Noto Sans TC",sans-serif;font-weight:400;font-size:36px;line-height:1.45;letter-spacing:0}
-.cover-content p{font-size:15px;font-weight:500;color:#394D3F}
-.board-gallery{
- position:absolute;z-index:3;width:760px;height:455px;padding:22px 26px;
- border:1px solid #C7BDAD;background:#FFFCF5;
- box-shadow:5px 6px 0 #BDB09A35,0 17px 29px #5749371C;
- color:#36453A;transform:rotate(-.4deg);
-}
-.gallery-spiders{left:180px;top:1360px;width:745px;transform:rotate(-.7deg)}
-.gallery-enclosures{left:1045px;top:1355px;width:815px;transform:rotate(.6deg)}
-.gallery-top{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid #D2C7B8;padding-bottom:10px;font-size:11px;letter-spacing:.055em;color:#506454}
-.gallery-heading{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin:12px 0 12px}
-.gallery-heading h2{font:400 29px/1.4 "HACHIME JasonHandwriting6","Huninn","Noto Sans TC",sans-serif;margin:0;color:#36543E}
-.gallery-heading>span{font:12px var(--font-body);color:#657369}
-.gallery-layout{display:grid;grid-template-columns:55% minmax(0,1fr);gap:23px;align-items:start}
-.gallery-visual{height:294px;border:1px solid #E2DACA;background:#F5F0E6;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;margin:0}
-.gallery-spiders .gallery-visual{background:#F7F0E8}
-.gallery-enclosures .gallery-visual{background:#EDF3EC}
-.gallery-visual img{display:block;width:min(100%,330px);height:245px;object-fit:contain}
-.gallery-visual figcaption{font:11px var(--font-body);color:#59675B;margin-top:4px}
-.gallery-info{min-width:0;display:flex;flex-direction:column;min-height:300px}
-.gallery-info h3{font:500 19px/1.6 var(--font-rounded);margin:7px 0 0;color:#2D4734}
-.gallery-info .gallery-subname{font-size:11px;margin:0 0 12px;color:#53705B}
-.gallery-info>p:not(.gallery-subname){font:500 13px/1.85 var(--font-rounded);margin:0;color:#3B4B3D;flex:1}
-.gallery-controllers{display:flex;align-items:center;gap:12px;margin:10px 0 10px;justify-content:flex-start}
-.gallery-controllers button{min-width:36px;height:36px;padding:0;background:#F4F1E8;color:#3E5B47;border:1px solid #B7C8B8;font:19px var(--font-body)}
-.gallery-controllers button:hover{background:#E4EDE2}
-.gallery-controllers span{letter-spacing:.16em;font-size:10px;color:#7D9682;min-width:61px;text-align:center}
-.gallery-link{margin-top:auto;align-self:flex-start;padding:6px 0;border:0;border-bottom:1px solid #568361;background:none;color:#366149;font:500 12px var(--font-rounded)}
-.gallery-link:hover{color:#264D34;border-color:#264D34}
-.infinite-sheet{height:1940px}
-.paper-end{top:1907px;left:950px;color:#718072}
-.board-gallery button:focus-visible{outline:3px solid #62896B;outline-offset:3px}
-.product-drawing{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;margin:11px 0 9px;background:#F8F8F1;border:1px solid #C8D5C8;padding:7px}
-.product-drawing img{display:block;width:min(260px,100%);height:180px;object-fit:contain}
-.product-drawing figcaption{font:11px var(--font-body);color:#5D6A5E}
-.species-profile{display:grid;grid-template-columns:minmax(180px,250px) minmax(0,1fr);gap:27px;align-items:start}
-.species-profile figure{background:#F7F1E9;border:1px solid #DDD4C6;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0;min-height:242px;padding:5px}
-.species-profile figure img{display:block;width:100%;height:188px;object-fit:contain}
-.species-profile figcaption{font:11px var(--font-body);color:#626E62;text-align:center}
-.species-profile .species-info h3{margin:0 0 5px}
-.species-profile .species-info>p{font:500 14px/1.85 var(--font-rounded)}
-.species-profile .species-grid{margin-top:14px}
-@media(max-width:600px){
- .infinite-sheet{width:420px;height:3930px}
- .brand-mark{width:39px;height:39px}
- .home-symbol{right:17px;top:53px;width:60px;height:60px;opacity:.18}
- .cover-content h2{font-size:31px}
- .cover-content p{font-size:14px;line-height:1.82}
- .board-gallery{left:23px!important;transform:none!important;width:374px!important;height:525px!important;padding:18px 18px 22px!important}
- .gallery-spiders{top:2730px!important}
- .gallery-enclosures{top:3300px!important}
- .gallery-heading h2{font-size:26px}
- .gallery-layout{display:flex;flex-direction:column;gap:9px}
- .gallery-visual{height:202px;width:100%}
- .gallery-visual img{height:158px;width:100%;max-width:278px}
- .gallery-visual figcaption{font-size:10px}
- .gallery-info{min-height:unset;width:100%}
- .gallery-info h3{font-size:17px;margin:0}
- .gallery-info .gallery-subname{margin:0 0 5px}
- .gallery-info>p:not(.gallery-subname){font-size:12px;line-height:1.65;min-height:46px}
- .gallery-controllers{margin:5px 0}
- .gallery-controllers button{min-width:34px;height:32px}
- .gallery-link{font-size:12px}
- .paper-end{top:3875px;left:42px}
- .species-profile{grid-template-columns:1fr;gap:14px}
- .species-profile figure{min-height:210px}
- .species-profile figure img{height:175px}
- .product-drawing img{height:140px}
-}
-@media(prefers-reduced-motion:reduce){
- .board-gallery,.gallery-visual,.gallery-visual img{transition:none!important;animation:none!important}
-}
-
-
 /* V0.13 — simple wordmark; cartoon icon withdrawn. */
 .site-header .logo{min-width:235px;gap:0}
 .site-header .logo-text strong{font-weight:500;letter-spacing:.025em}
 .site-header .logo-text strong span{font-weight:300}
+
+/* V0.13 — organic photo-first notes, consistent readable typography */
+:root{--font-rounded:"Huninn","Zen Maru Gothic","Noto Sans TC",sans-serif}
+.infinite-sheet{height:1390px}
+.paper-end{top:1324px;left:1020px}
+.cover-note,.cover-note *{font-family:var(--font-rounded)!important}
+.cover-note{overflow:visible;isolation:isolate;z-index:4;transition:transform .16s ease,box-shadow .16s ease}
+.cover-note::after{pointer-events:none}
+.cover-note .paper-topline{font-size:11px;letter-spacing:.05em}
+.cover-note .cover-content h2{font-size:31px;line-height:1.38;font-weight:700!important;letter-spacing:0;margin:0 0 14px;color:#304B3A}
+.cover-note .cover-content p{font-size:15px;line-height:1.83;font-weight:500!important;letter-spacing:0;color:#3D4E41}
+.cover-note .cover-footer{position:relative;z-index:5;font-size:12px;font-weight:500}
+.atlas-cover{left:1495px;top:199px;width:524px;height:360px;transform:rotate(-1.7deg)}
+.lab-cover{left:810px;top:643px;width:615px;height:419px;transform:rotate(1.1deg)}
+.atlas-cover .cover-text,.lab-cover .cover-text{position:relative;z-index:5;width:46%;padding-top:24px}
+.lab-cover .cover-text{width:47%;padding-top:15px}
+.atlas-cover .cover-text h2{font-size:37px}
+.lab-cover .cover-text h2{font-size:32px}
+.cover-note .cover-feature-name{display:inline-block;border-bottom:1px dashed #809783;padding-bottom:5px;margin:0 0 9px;font-size:16px!important;font-weight:700!important}
+.cover-note .cover-feature-desc{font-size:13px!important;line-height:1.75!important;max-width:22ch}
+.floating-cover-image{position:absolute;z-index:3;pointer-events:none;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.floating-cover-image img{display:block;width:100%;height:100%;object-fit:cover;background:#F0EADD}
+.floating-spider{top:-40px;right:-26px;width:284px;height:281px;padding:7px 7px 34px;background:#FFFCF8;box-shadow:6px 12px 23px #4A39223D;transform:rotate(6.5deg)}
+.floating-spider img{height:235px;object-position:50% 43%}
+.floating-spider::after{content:"";position:absolute;width:80px;height:21px;background:#D8CDB6B8;top:-9px;left:96px;transform:rotate(-8deg)}
+.floating-case{top:21px;right:-38px;width:315px;height:305px;transform:rotate(-6deg)}
+.floating-case img{width:100%;height:290px;object-fit:contain;background:transparent;filter:drop-shadow(11px 12px 4px #48584325)}
+.floating-cover-image figcaption{pointer-events:auto;font-size:10px;line-height:1.3;text-align:center;white-space:nowrap;color:#506356;margin-top:5px}
+.floating-cover-image figcaption a{color:#425A48;text-decoration:underline;text-underline-offset:3px}
+.cover-switch{position:absolute;right:22px;bottom:66px;z-index:6;display:flex;align-items:center;gap:9px;font-size:11px;color:#3D6349}
+.cover-switch button{border:1px solid #A6B5A2;border-radius:22px;background:#FFFBF5EB;color:#355E44;padding:3px 11px;font-size:12px;cursor:pointer;touch-action:manipulation}
+.cover-switch button:hover{background:#E6F1E5}
+.cover-note:focus-visible,.cover-switch button:focus-visible,.floating-cover-image figcaption a:focus-visible{outline:3px solid #3A7651;outline-offset:4px}
+.atlas-cover .cover-footer,.lab-cover .cover-footer{padding-top:10px}
+.atlas-cover .tape{left:38px}
+.lab-cover .tape{left:37px}
+.scribble-circle{left:1441px;top:1106px;transform:rotate(-12deg)}
+.art-spider{left:1386px;top:557px;width:89px;opacity:.61}
+.art-terrarium{left:1960px;top:698px;width:83px;opacity:.58}
+.notebook-intro .main-description,.detail-view .chapter-content p,
+.detail-view .chapter-content li,.detail-view .faq-scroll details p,
+.detail-view .species-panel p,.detail-view .about-lead,
+.product-preview .preview-desc,.product-preview .feature-list,
+.about-sheet .values dd{font-family:var(--font-rounded);font-weight:500;line-height:1.88;color:#3A4D3F}
+.product-drawing{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;margin:11px 0 9px;background:#F8F8F1;border:1px solid #C8D5C8;padding:7px}
+.product-drawing img{display:block;width:min(280px,100%);height:190px;object-fit:contain}
+.product-drawing figcaption{font:11px "Noto Sans TC",sans-serif;color:#5D6A5E}
+.species-profile{display:grid;grid-template-columns:minmax(185px,285px) minmax(0,1fr);gap:27px;align-items:start}
+.species-profile figure{background:#F7F1E9;border:1px solid #DDD4C6;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0;min-height:265px;padding:8px}
+.species-profile figure img{display:block;width:100%;height:216px;object-fit:cover}
+.species-profile figcaption{font:11px "Noto Sans TC",sans-serif;color:#626E62;text-align:center}
+.species-profile figcaption a{color:#365D41;text-decoration:underline}
+.species-profile .species-info h3{margin:0 0 5px}
+.species-profile .species-info>p{font:500 14px/1.85 var(--font-rounded)}
+.species-profile .species-grid{margin-top:14px}
+@media(max-width:600px){
+ .infinite-sheet{width:420px;height:2835px}
+ .paper-end{left:36px;top:2790px}
+ .cover-note{left:23px!important;width:374px!important;padding:22px 25px!important;transform:none!important}
+ .cover-note .cover-content h2{font-size:28px}
+ .cover-note .cover-content p{font-size:14px}
+ .atlas-cover{top:1185px!important;height:348px!important}
+ .atlas-cover .cover-text{width:49%;padding-top:24px}
+ .atlas-cover .cover-text h2{font-size:31px}
+ .lab-cover{top:1950px!important;height:396px!important}
+ .lab-cover .cover-text{width:49%;padding-top:38px}
+ .lab-cover .cover-text h2{font-size:27px}
+ .knowledge-cover{top:1607px!important}
+ .about-cover{top:2445px!important}
+ .atlas-cover .cover-feature-desc,.lab-cover .cover-feature-desc{font-size:12px!important;line-height:1.65!important;max-width:17ch}
+ .cover-note .cover-feature-name{font-size:14px!important}
+ .floating-spider{top:28px;right:-10px;width:169px;height:192px;padding:5px 5px 29px;transform:rotate(4deg)}
+ .floating-spider img{height:158px}
+ .floating-spider::after{width:54px;height:14px;top:-6px;left:54px}
+ .floating-case{top:89px;right:-18px;width:202px;height:224px;transform:rotate(-5deg)}
+ .floating-case img{height:196px}
+ .floating-cover-image figcaption{font-size:8px;white-space:normal;max-width:100%;line-height:1.25}
+ .cover-switch{bottom:55px;right:15px;font-size:9px;gap:5px}
+ .cover-switch button{padding:4px 8px;font-size:11px}
+ .art-spider,.art-terrarium{display:none}
+ .species-profile{grid-template-columns:1fr;gap:15px}
+ .species-profile figure{min-height:215px}
+ .species-profile figure img{height:192px;object-fit:contain}
+ .product-drawing img{height:150px}
+}
+@media(prefers-reduced-motion:reduce){
+ .floating-cover-image,.cover-note{transition:none!important;animation:none!important}
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
