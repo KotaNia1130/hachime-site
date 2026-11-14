@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HACHIME｜手寫字與筆記底色比較 02</title>
+<meta name="description" content="八目 HACHIME 手寫字、筆記底色和閱讀性比較，不影響正式官網。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --outer:#F7F6F2;--sheet:#F9F8F4;--grid:#DDDBD2;--ink:#303932;--soft:#526157;
+  --rose:#F5EAE4;--sage:#E9F1E8;--sun:#F6EEDB;--stroke:#CFCBC0;
+  --hand:"Noto Sans TC",sans-serif;
+  --heading-size:34px;
+  font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;
+  background:var(--outer);color:var(--ink);color-scheme:light;
+}
+:root[data-theme="warm"]{
+  --outer:#EFE9DD;--sheet:#FAF7EE;--grid:#D6CFC2;--ink:#33392E;--soft:#536254;
+  --rose:#F1E2DA;--sage:#DEEADD;--sun:#F4E9CC;--stroke:#C9C0B3;
+}
+*{box-sizing:border-box}
+body{margin:0;font-size:14px;line-height:1.75}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #73947B;outline-offset:3px}
+header{background:var(--sheet);padding:16px max(18px,calc((100vw - 1150px)/2));border-bottom:1px solid var(--stroke);display:flex;align-items:center;justify-content:space-between;gap:15px}
+header strong{letter-spacing:.05em;font-weight:600;font-size:17px}
+header a{color:#32583E;text-underline-offset:4px;text-decoration:underline;font-size:13px}
+main{max-width:1200px;padding:30px 20px 95px;margin:0 auto}
+h1{font-weight:500;font-size:25px;margin:0 0 8px}
+p.intro{color:var(--soft);margin:0 0 16px;max-width:830px}
+.controls{display:flex;flex-wrap:wrap;gap:16px;align-items:end;padding:16px 0 26px}
+label{display:block;font-size:12px;margin-bottom:5px;color:#4E5F51}
+select,.select-btn{border:1px solid #B8BFB5;background:var(--sheet);color:var(--ink);padding:9px 13px;min-height:40px}
+select{min-width:245px}
+.switches{display:flex;gap:7px}
+.select-btn[aria-pressed="true"]{background:#41664D;color:#fff;border-color:#41664D}
+.range{width:125px;accent-color:#41664D}
+.load{font-size:12px;color:#48674F;margin-bottom:15px;min-height:24px}
+.load.error{color:#AD3939}
+.board{
+ padding:43px 35px 60px;min-height:640px;border:1px solid #D5D0C7;background-color:var(--sheet);
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+ background-size:24px 24px;position:relative;overflow:hidden;
+}
+.cap{font-family:"Noto Sans TC",sans-serif;font-size:11px;color:#55665A;letter-spacing:.07em}
+.direct{font-size:15px;max-width:420px;margin:16px 0 44px}
+.direct strong{font-weight:500;font-size:25px;display:block;color:#304D38}
+.direct p{margin:8px 0 0;font-size:13px}
+.note-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;align-items:start}
+.note{border:1px solid #BFC1B6;padding:22px 20px 14px;box-shadow:3px 5px 0 #80755F21;background:var(--rose);transform:rotate(-1deg);min-height:245px}
+.note:nth-child(2){background:var(--sage);transform:rotate(1deg);margin-top:44px}
+.note:nth-child(3){background:var(--sun);transform:rotate(-.6deg);margin-top:7px}
+.note-label{font:11px/1.4 "Noto Sans TC",sans-serif;border-bottom:1px solid #777A6B52;padding-bottom:10px;color:#4C6152}
+.note h2{font:400 var(--heading-size)/1.45 var(--hand);letter-spacing:0;margin:18px 0 11px;color:#2C4333}
+.note p{font:400 21px/1.52 var(--hand);margin:0;color:#3C4D3D}
+.note .action{font:400 17px/1.6 "Noto Sans TC",sans-serif;border-top:1px solid #777A6B55;margin-top:18px;padding-top:9px;color:#476D52}
+.doodle{position:absolute;left:45%;top:195px;width:110px;height:54px;opacity:.65;pointer-events:none}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+.detail>div{background:var(--sheet);border:1px solid var(--stroke);padding:18px 22px}
+.detail h3{font-weight:500;font-size:16px;margin:0 0 10px}
+.detail p{font-size:13px;margin:0;color:var(--soft)}
+.colors{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.swatch{width:50px;height:42px;border:1px solid #A5A49B45}
+.disclaimer{font-size:12px;color:#626C62;margin-top:22px}
+@media(max-width:920px){.note-row{grid-template-columns:1fr}.note{transform:none!important;margin-top:0!important;min-height:190px}.board{padding:23px 15px;min-height:unset}.doodle{display:none}.detail{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><strong>HACHIME / 字型與底色測試 02</strong><a href="./">返回官方網站 ↗</a></header>
+<main>
+  <h1>手寫風格與閱讀性比較</h1>
+  <p class="intro">這是獨立測試頁，正式網站仍維持原版。筆記底紙先參考「ほとりで」的淺中性背景、弱格線及小面積彩色元素，不宣稱使用原站精確色碼。</p>
+  <div class="controls">
+    <div><label for="font">手寫字體</label><select id="font">
+      <option value="j3">清松手寫體 3｜呆萌</option>
+      <option value="j4">清松手寫體 4｜POP</option>
+      <option value="j6">清松手寫體 6｜Q 萌</option>
+    </select></div>
+    <div><label>底色</label><div class="switches">
+      <button class="select-btn" aria-pressed="true" id="pale" type="button">A 淺中性</button>
+      <button class="select-btn" aria-pressed="false" id="warm" type="button">B 淡暖色</button>
+    </div></div>
+    <div><label for="size">標題字級 <output id="sizeText">34px</output></label><input class="range" type="range" min="27" max="43" value="34" id="size"></div>
+  </div>
+  <div role="status" class="load" id="load">準備載入字型……</div>
+  <section class="board">
+    <div class="cap">00 / HACHIME NOTEBOOK</div>
+    <div class="direct"><strong>八目 HACHIME</strong><p>跳蛛飼養知識、物種圖鑑與飼養設備。點擊下方便條閱讀完整內容。</p></div>
+    <svg class="doodle" viewBox="0 0 110 54" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 14 C33 3 47 9 74 32 L95 40 M84 27 L96 40 L77 42" stroke="#849F83" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="note-row">
+      <article class="note"><div class="note-label">01 / BEGINNER</div><h2>第一次養跳蛛</h2><p>從準備飼養盒開始，了解餵食、脫皮與日常照顧。</p><div class="action">查看入門指南 ↗</div></article>
+      <article class="note"><div class="note-label">02 / SPECIES</div><h2>跳蛛圖鑑</h2><p>佛羅里達跳蛛、老虎狗跳蛛與常見物種資料。</p><div class="action">查看物種資料 ↗</div></article>
+      <article class="note"><div class="note-label">03 / KNOWLEDGE</div><h2>飼養知識</h2><p>環境、餵食、脫皮，以及常見飼養問題。</p><div class="action">查看飼養知識 ↗</div></article>
+    </div>
+  </section>
+  <div class="detail">
+    <div><h3>字體方向</h3><p>呆萌、POP 和 Q 萌是清松系列作者自己的分類。可用來比較哪種字形更像隨手畫出的文字，也要觀察「蛛、飼、螞、濕、脫」等常用字是否完整顯示。</p></div>
+    <div><h3>配色方向</h3><p>參考網站的重點是大面積淺底紙、低對比格線、深色可讀文字，讓少量彩色便條成為視覺重點。兩組顏色均為重新設計的候選方案，不是原站取樣。</p>
+      <div class="colors" aria-label="候選色盤"><div class="swatch" style="background:var(--sheet)"></div><div class="swatch" style="background:var(--rose)"></div><div class="swatch" style="background:var(--sage)"></div><div class="swatch" style="background:var(--sun)"></div><div class="swatch" style="background:var(--ink)"></div></div>
+    </div>
+  </div>
+  <p class="disclaimer">字型使用作者 GitHub 公開來源，測試頁只動態載入當前選取的字型。頁面會回報字型載入成功／失敗；若失敗則使用後備字型，這時不應根據顯示樣貌做選擇。正式採用之前仍需考慮字型檔大小與快取方式。</p>
+</main>
+<script>
+(function(){
+"use strict";
+const variants={
+ j3:{family:"JasonDemo3",src:"https://raw.githubusercontent.com/jasonhandwriting/JasonHandwriting/master/JasonHandwriting3.ttf"},
+ j4:{family:"JasonDemo4",src:"https://raw.githubusercontent.com/jasonhandwriting/JasonHandwriting/master/JasonHandwriting4.ttf"},
+ j6:{family:"JasonDemo6",src:"https://raw.githubusercontent.com/jasonhandwriting/JasonHandwriting/master/JasonHandwriting6.ttf"}
+};
+const status=document.getElementById("load");
+const font=document.getElementById("font");
+const loaded=new Set();
+let token=0;
+async function pick(){
+ const key=font.value,source=variants[key],id=++token;
+ if(loaded.has(key)){document.documentElement.style.setProperty("--hand",'"'+source.family+'","Noto Sans TC",sans-serif');status.textContent="字型已載入，可切換其他風格比較。";status.className="load";return;}
+ status.textContent="正在載入「"+font.options[font.selectedIndex].text+"」……";status.className="load";
+ try{
+  const face=new FontFace(source.family,'url("'+source.src+'") format("truetype")',{style:"normal",weight:"400",display:"swap"});
+  await face.load();
+  document.fonts.add(face);
+  loaded.add(key);
+  if(id!==token)return;
+  document.documentElement.style.setProperty("--hand",'"'+source.family+'","Noto Sans TC",sans-serif');
+  status.textContent="✓ 已載入「"+font.options[font.selectedIndex].text+"」。請比較標題和內文字形。";
+ }catch(e){if(id!==token)return;
+  document.documentElement.style.setProperty("--hand",'"Noto Sans TC",sans-serif');
+  status.textContent="✕ 字型載入失敗；目前顯示的是系統後備字體，不能用來評估字型。";
+  status.className="load error";
+ }
+}
+font.addEventListener("change",pick);
+document.getElementById("size").addEventListener("input",e=>{const n=+e.target.value;document.documentElement.style.setProperty("--heading-size",n+"px");document.getElementById("sizeText").textContent=n+"px";});
+for(const key of ["pale","warm"])document.getElementById(key).addEventListener("click",()=>{
+ document.documentElement.dataset.theme=key==="warm"?"warm":"pale";
+ document.getElementById("pale").setAttribute("aria-pressed",String(key==="pale"));
+ document.getElementById("warm").setAttribute("aria-pressed",String(key==="warm"));
+});
+pick();
+})();
+</script>
+</body>
+</html>
