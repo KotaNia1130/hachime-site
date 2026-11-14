@@ -845,6 +845,21 @@ body{background:var(--ground);color:var(--ink)}
  .floating-cover-image,.cover-note{transition:none!important;animation:none!important}
 }
 
+
+/* V0.13.1 — tiny finishing touches: handwritten words extend BEYOND note edges,
+   while every word printed INSIDE a note keeps the one rounded typeface. */
+.cover-note .cover-content h2{font-synthesis:weight}
+.atlas-cover .cover-text{z-index:5}
+.lab-cover .cover-text{z-index:5}
+.board-handmark{position:absolute;z-index:5;pointer-events:none;font:400 25px/1.2 "HACHIME JasonHandwriting6","Huninn","Noto Sans TC",sans-serif;color:#779580;white-space:nowrap}
+.handmark-spider{top:132px;left:1410px;transform:rotate(-10deg)}
+.handmark-case{top:1058px;left:1115px;transform:rotate(7deg)}
+@media(max-width:600px){
+ .board-handmark{font-size:18px}
+ .handmark-spider{left:225px;top:1550px;transform:rotate(-8deg)}
+ .handmark-case{left:120px;top:2365px;transform:rotate(5deg)}
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -956,6 +971,7 @@ body{background:var(--ground);color:var(--ink)}
           <img src="./assets/openmoji-potted-plant.svg" alt="開源盆栽插圖" loading="lazy" decoding="async">
         </figure>
 
+        <span class="board-handmark handmark-spider" aria-hidden="true">OBSERVATION ✦</span><span class="board-handmark handmark-case" aria-hidden="true">DESIGN NOTES ↗</span>
         <div class="paper-end" aria-hidden="true">HACHIME — MVP 13 / NOTEBOOK INDEX</div>
       </div>
     </div>
@@ -1018,7 +1034,7 @@ body{background:var(--ground);color:var(--ink)}
 <p class="about-lead">八目 HACHIME｜Jumping Spider Lab（跳蛛研造），以跳蛛飼養與相關用品為主要方向。</p>
 <dl class="values"><dt>精品化</dt><dd>重視產品設計、材料與製作品質。</dd><dt>方便化</dt><dd>改善餵食、清潔和日常操作的便利性。</dd><dt>專業化</dt><dd>整理物種資料、飼養知識與實際測試紀錄。</dd></dl>
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p>
-<p class="fine-print asset-note">筆記插圖使用 <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">OpenMoji</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）；飼養盒為示意線稿。詳細來源見專案 <a href="https://github.com/KotaNia1130/hachime-site/blob/main/ASSET_CREDITS.md" target="_blank" rel="noopener noreferrer">素材授權</a>。</p>
+<p class="fine-print asset-note">筆記插圖使用 <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">OpenMoji</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）；跳蛛照片來自 <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>，依各張照片授權使用；A1 飼養盒仍是設計示意。詳細的攝影者、來源及授權列於 <a href="https://github.com/KotaNia1130/hachime-site/blob/main/ASSET_CREDITS.md" target="_blank" rel="noopener noreferrer">素材授權</a>。</p>
 </section></div>
         <div class="detail-end">八目 HACHIME　·　網站測試版 V0.13</div>
       </div>
