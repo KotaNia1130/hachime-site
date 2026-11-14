@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="八目 HACHIME 字體與色彩比較頁。僅供設計確認，不會改動正式網站。">
+<meta name="theme-color" content="#f5f2eb">
+<title>HACHIME｜字體與配色比較</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Iansui&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@400;500&amp;display=swap">
+<style>
+@font-face {
+  font-family:"HACHIME ChenYuluoyan Test";
+  src:url("https://raw.githubusercontent.com/Chenyu-otf/chenyuluoyan_thin/main/ChenYuluoyan-2.0-Thin.ttf") format("truetype");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+:root{--desk:#f0eee7;--sheet:#faf8f2;--grid:#d7d3c8;--ink:#31382f;--muted:#60675a;--pink:#ecdcd5;--green:#dbe6d7;--yellow:#f2e6c6;--rule:#c7c4b7;--font-ui:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;color-scheme:light;font-family:var(--font-ui);background:var(--desk);color:var(--ink)}
+:root[data-palette="warm"]{--desk:#e9e1d2;--sheet:#fff8eb;--grid:#d4c6b3;--pink:#efcdbd;--green:#d7e3d2;--yellow:#efdbaf;--ink:#34352f;--muted:#5c6258;--rule:#c5b9a7}
+*{box-sizing:border-box}
+body{margin:0;font-size:15px;line-height:1.7}
+button{font:inherit;cursor:pointer}
+.top{padding:18px 5vw;background:var(--sheet);border-bottom:1px solid var(--rule);display:flex;gap:18px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.top strong{font-size:17px;font-weight:600;letter-spacing:.07em}
+.top small{font-size:12px;color:var(--muted)}
+.top a{color:var(--ink);font-size:13px;text-underline-offset:4px}
+main{max-width:1180px;margin:0 auto;padding:36px 25px 90px}
+h1{font-weight:500;font-size:26px;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 24px;max-width:720px}
+.choices{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:20px 0 30px}
+.choices button{padding:7px 14px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink)}
+.choices button[aria-pressed="true"]{background:#405a48;color:#fff;border-color:#405a48}
+.preview{padding:32px 30px 40px;background-color:var(--sheet);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;border:1px solid var(--rule)}
+.board-label{font-size:12px;letter-spacing:.08em;color:var(--muted);margin-bottom:14px;background:var(--sheet);width:max-content;padding-right:8px}
+.samples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.note{padding:22px 21px 18px;border:1px solid #b9b6ab;box-shadow:4px 6px 0 #3e302018;min-height:266px;transform:rotate(-.5deg)}
+.note:nth-child(2){transform:rotate(.8deg)}
+.note:nth-child(3){transform:rotate(-.7deg)}
+.note.a{background:var(--pink)}.note.b{background:var(--green)}.note.c{background:var(--yellow)}
+.note .topline{font:11px var(--font-ui);color:#4e5b4f;display:flex;justify-content:space-between;gap:6px;border-bottom:1px solid #82867a50;padding-bottom:8px}
+.font-title{font-size:31px;line-height:1.55;margin:20px 0 14px;letter-spacing:.025em;font-weight:400}
+.font-text{font-size:19px;line-height:1.7;margin:0 0 16px}
+.font-chen{font-family:"HACHIME ChenYuluoyan Test","Noto Sans TC",sans-serif}
+.font-iansui{font-family:"Iansui","Noto Sans TC",sans-serif}
+.font-lxgw{font-family:"LXGW WenKai TC","Noto Sans TC",serif}
+.status{font:12px var(--font-ui);color:#394638;border-top:1px solid #82867a50;padding-top:10px;margin-top:18px}
+.status.good{color:#1e5d3c}.status.bad{color:#9d322b}
+.section-label{font-size:12px;letter-spacing:.13em;color:var(--muted);margin:38px 0 8px}
+.info{background:var(--sheet);border:1px solid var(--rule);padding:22px 26px}
+.info h2{font-size:18px;font-weight:500;margin:0 0 12px}
+.info p{margin:8px 0;color:var(--muted)}
+.baseline{font:400 17px/2 "Noto Sans TC","PingFang TC",sans-serif;margin:12px 0}
+.palette{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:20px}
+.swatch{height:52px;border:1px solid #8b8a7930}
+.swatch-label{font-size:11px;color:var(--muted)}
+kbd{font:11px monospace;border:1px solid var(--rule);padding:1px 4px}
+.notice{font-size:12px;color:var(--muted);line-height:1.85;max-width:850px}
+@media(max-width:750px){main{padding:24px 14px 45px}.preview{padding:22px 16px}.samples{grid-template-columns:1fr}.note{transform:none!important;min-height:220px}.palette{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div><strong>八目 HACHIME</strong> <small>字體與配色比較 / DESIGN TEST 01</small></div>
+  <a href="./">返回目前網站 ↗</a>
+</header>
+<main>
+<h1>便條文字比較</h1>
+<p class="lead">這是獨立測試頁，不會改動目前的八目首頁。三張便條使用相同內容，方便比較真正的手寫感、繁體字形和閱讀清晰度。</p>
+<div class="choices" aria-label="切換底色">
+  <span>筆記底色</span>
+  <button type="button" data-pick="ivory" aria-pressed="true">A · 象牙白（較接近參考方向）</button>
+  <button type="button" data-pick="warm" aria-pressed="false">B · 暖奶油色</button>
+</div>
+<section class="preview" aria-label="字體實際對照">
+  <div class="board-label">HACHIME / NOTEBOOK — FONT EXPERIMENT</div>
+  <div class="samples">
+    <article class="note a">
+      <div class="topline"><span>01 / HANDWRITTEN</span><span>字體 A</span></div>
+      <h2 class="font-title font-chen">第一次養跳蛛</h2>
+      <p class="font-text font-chen">從準備飼養盒開始，了解餵食、脫皮與日常照顧。</p>
+      <div class="status" id="status-chen">檢查字型中……</div>
+    </article>
+    <article class="note b">
+      <div class="topline"><span>02 / TAIWAN TC</span><span>字體 B</span></div>
+      <h2 class="font-title font-iansui">第一次養跳蛛</h2>
+      <p class="font-text font-iansui">從準備飼養盒開始，了解餵食、脫皮與日常照顧。</p>
+      <div class="status" id="status-iansui">檢查字型中……</div>
+    </article>
+    <article class="note c">
+      <div class="topline"><span>03 / CURRENT</span><span>字體 C</span></div>
+      <h2 class="font-title font-lxgw">第一次養跳蛛</h2>
+      <p class="font-text font-lxgw">從準備飼養盒開始，了解餵食、脫皮與日常照顧。</p>
+      <div class="status" id="status-lxgw">檢查字型中……</div>
+    </article>
+  </div>
+</section>
+<div class="section-label">字體與用途</div>
+<section class="info">
+  <h2>三種字體的差別</h2>
+  <p><b>A · 辰宇落雁體：</b>由真實手寫筆跡製成，筆畫比較細、自然。僅建議用於分類便條或少量點綴。</p>
+  <p><b>B · 芫荽 Iansui：</b>繁體中文 Klee 衍生字型，較整齊、溫和，適合想要手札感但不想太隨性的方向。</p>
+  <p><b>C · 霞鶩文楷 TC：</b>目前網站使用的字體，屬於較工整的楷書筆意，未必符合真正手寫的感覺。</p>
+  <div class="section-label">內文基準／保持簡約</div>
+  <p class="baseline">飼養知識：跳蛛需要合適的通風、餵食、環境及脫皮空間。這些文字仍使用一般的 Noto Sans TC，不使用手寫字體。</p>
+</section>
+<div class="section-label">色彩方向（參考風格推定，非原站精確取色）</div>
+<section class="info">
+  <h2>降低灰棕感，保留淺紙色與柔和的彩色元素</h2>
+  <p>主張大面積淺象牙白、溫灰細格線與深墨綠文字，只有便條、標記使用低飽和杏桃／綠／黃；不必把桌面整片染成深灰棕。</p>
+  <div class="palette">
+    <div><div class="swatch" style="background:var(--desk)"></div><div class="swatch-label">底色</div></div>
+    <div><div class="swatch" style="background:var(--sheet)"></div><div class="swatch-label">紙張</div></div>
+    <div><div class="swatch" style="background:var(--ink)"></div><div class="swatch-label">文字</div></div>
+    <div><div class="swatch" style="background:var(--pink)"></div><div class="swatch-label">杏桃</div></div>
+    <div><div class="swatch" style="background:var(--green)"></div><div class="swatch-label">草綠</div></div>
+    <div><div class="swatch" style="background:var(--yellow)"></div><div class="swatch-label">奶黃</div></div>
+  </div>
+</section>
+<p class="notice">載入狀態是使用你目前瀏覽器的 FontFaceSet 直接檢查，而不是只顯示 CSS 中宣告的字體名稱。如果遠端字型無法載入，畫面會使用後備字體，請不要據此評估該字體外型。字體由 Google Fonts 或字型作者公開來源載入；正式採用前會再確認效能與穩定性。沒有在此網站提供字體檔下載。</p>
+</main>
+<script>
+document.querySelectorAll("[data-pick]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    document.documentElement.dataset.palette=button.dataset.pick;
+    document.querySelectorAll("[data-pick]").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));
+  });
+});
+const sample="第一次養跳蛛從準備飼養盒開始";
+const fonts=[
+  {name:"HACHIME ChenYuluoyan Test",id:"status-chen"},
+  {name:"Iansui",id:"status-iansui"},
+  {name:"LXGW WenKai TC",id:"status-lxgw"}
+];
+async function testFont({name,id}){
+  const el=document.getElementById(id);
+  try{
+    const faces=await document.fonts.load('400 28px "'+name+'"',sample);
+    const matching=faces.filter(face=>face.status==="loaded");
+    if(matching.length){
+      el.className="status good";
+      el.textContent="✓ 字型已載入（"+matching.length+" 個字型區塊）";
+    }else{
+      el.className="status bad";
+      el.textContent="⚠ 尚未確認字型載入，可能顯示後備字體";
+    }
+  }catch(e){
+    el.className="status bad";
+    el.textContent="✕ 字型載入失敗，顯示後備字體";
+  }
+}
+fonts.forEach(testFont);
+</script>
+</body>
+</html>
