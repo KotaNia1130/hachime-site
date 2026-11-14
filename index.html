@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#D8CFC2">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.8</title>
+  <title>八目 HACHIME｜網站互動原型 V0.9</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -529,6 +529,62 @@ body{background:var(--ground);font-weight:400}
 }
 @media(prefers-reduced-motion:reduce){.cover-note{transition:none}}
 
+
+/* V0.9 — approved ChenYuluoyan handwriting for category notes,
+   slightly brighter paper tones. 00 typography remains undecided. */
+@font-face{
+ font-family:"HACHIME ChenYuluoyan";
+ src:url("https://raw.githubusercontent.com/Chenyu-otf/chenyuluoyan_thin/main/ChenYuluoyan-2.0-Thin.ttf") format("truetype");
+ font-style:normal;
+ font-weight:400;
+ font-display:swap;
+}
+:root{
+ --font-hand:"HACHIME ChenYuluoyan","LXGW WenKai TC","Kaiti TC","DFKai-SB",serif;
+}
+.cover-note{font-family:var(--font-hand);font-weight:400}
+.cover-note .paper-topline{font-family:var(--font-body);font-size:11px;font-weight:400;letter-spacing:.07em}
+.cover-content h2{
+ font-family:var(--font-hand);
+ font-weight:400;
+ font-synthesis:none;
+ font-size:36px;
+ line-height:1.32;
+ letter-spacing:.015em
+}
+.cover-content p{
+ font-family:var(--font-hand);
+ font-weight:400;
+ font-synthesis:none;
+ font-size:20px;
+ line-height:1.65;
+ letter-spacing:.015em
+}
+.cover-footer{font-family:var(--font-body);font-weight:400;font-size:12px}
+.cover-footer span:last-child{font-weight:500}
+.tiny-note,.tiny-note strong,.tiny-note p{font-family:var(--font-hand);font-weight:400;font-synthesis:none}
+.tiny-note strong{font-size:21px}
+.tiny-note p{font-size:17px}
+.beginner-cover{background:#FAEBE2}
+.atlas-cover{background:#EEF4E9}
+.knowledge-cover{background:#FBF2DD}
+.lab-cover{background:#ECF5EF}
+.about-cover{background:#F8EAE2}
+.workspace{background:radial-gradient(ellipse at 30% 18%,#F3EFE8 0%,#E9E3D9 100%)}
+.infinite-sheet{
+ background-color:#F0ECE4;
+ background-image:
+  linear-gradient(#CEC7BB40 1px,transparent 1px),
+  linear-gradient(90deg,#CEC7BB40 1px,transparent 1px),
+  linear-gradient(#CEC7BB27 1px,transparent 1px),
+  linear-gradient(90deg,#CEC7BB27 1px,transparent 1px)
+}
+@media(max-width:600px){
+ .cover-content h2{font-size:32px}
+ .cover-content p{font-size:18px}
+ .tiny-note p{font-size:16px}
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -663,13 +719,13 @@ body{background:var(--ground);font-weight:400}
 <dl class="values"><dt>精品化</dt><dd>重視產品設計、材料與製作品質。</dd><dt>方便化</dt><dd>改善餵食、清潔和日常操作的便利性。</dd><dt>專業化</dt><dd>整理物種資料、飼養知識與實際測試紀錄。</dd></dl>
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p>
 </section></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.8</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.9</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
     <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="桌面控制"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">回總覽</button></div>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.8</span></div>
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.9</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
