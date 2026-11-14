@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" role="img" aria-labelledby="title desc">
+<title id="title">八目 HACHIME 標誌</title>
+<desc id="desc">抽象的跳蛛八眼與葉片圖案，八顆眼睛各有一個白色高光，米色弧線圍繞。</desc>
+<g fill="none" stroke="#B7AB93" stroke-width="21" stroke-linecap="round">
+<path d="M126 140 C235 23 410 0 515 45"/>
+<path d="M717 314 C635 434 521 497 353 492"/>
+</g>
+<g fill="#344F2F">
+<ellipse cx="117" cy="229" rx="37" ry="40"/>
+<ellipse cx="205" cy="180" rx="50" ry="50"/>
+<ellipse cx="193" cy="282" rx="31" ry="31"/>
+<ellipse cx="337" cy="281" rx="82" ry="87"/>
+<ellipse cx="527" cy="281" rx="82" ry="87"/>
+<ellipse cx="647" cy="180" rx="50" ry="50"/>
+<ellipse cx="670" cy="282" rx="31" ry="31"/>
+<ellipse cx="748" cy="229" rx="37" ry="40"/>
+</g>
+<g fill="#FFFDF7">
+<ellipse cx="104" cy="213" rx="13.5" ry="16" transform="rotate(-35 104 213)"/>
+<ellipse cx="221" cy="160" rx="16" ry="18" transform="rotate(-34 221 160)"/>
+<ellipse cx="203" cy="269" rx="10" ry="11" transform="rotate(-35 203 269)"/>
+<ellipse cx="360" cy="257" rx="27" ry="31" transform="rotate(-36 360 257)"/>
+<ellipse cx="548" cy="257" rx="27" ry="31" transform="rotate(-36 548 257)"/>
+<ellipse cx="662" cy="160" rx="16" ry="18" transform="rotate(-34 662 160)"/>
+<ellipse cx="681" cy="269" rx="10" ry="11" transform="rotate(-35 681 269)"/>
+<ellipse cx="760" cy="213" rx="13.5" ry="16" transform="rotate(-35 760 213)"/>
+</g>
+<g fill="#8B9C58">
+<path d="M169 485 C120 452 69 432 46 333 C104 340 143 368 160 426 C170 451 174 468 169 485Z"/>
+<path d="M181 466 C169 436 172 398 194 382 C227 403 244 437 222 469Z"/>
+<path d="M160 480 C125 455 100 456 65 472 C90 506 129 512 160 480Z"/>
+</g>
+<path d="M127 445 C159 464 205 484 297 494" fill="none" stroke="#8B9C58" stroke-width="12" stroke-linecap="round"/>
+</svg>
