@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#EFE9DD">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.10</title>
+  <title>八目 HACHIME｜網站互動原型 V0.11</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -693,10 +693,68 @@ body{background:var(--ground);color:var(--ink)}
   .detail-scroll{background:#EFE9DD}
 }
 
+
+/* V0.11 — illustration and editorial annotations on the draggable notebook.
+   Body text stays readable; Q handwriting is for short curved decorative phrases. */
+:root{
+ --font-rounded:"Zen Maru Gothic","Noto Sans TC","PingFang TC",sans-serif;
+}
+.cover-content p{font-family:var(--font-rounded);font-size:14px;font-weight:500;line-height:1.84;color:#425346}
+.notebook-intro .main-description{font-family:var(--font-rounded);font-weight:500;font-size:14px;color:#415145}
+.detail-view .chapter-content p,
+.detail-view .chapter-content li,
+.detail-view .species-panel>p,
+.detail-view .about-lead{font-family:var(--font-rounded);font-weight:400;line-height:1.95;color:#3E4C40}
+.detail-view .faq-scroll details p{font-family:var(--font-rounded);font-weight:400}
+.detail-view .cover-content p{font-family:var(--font-rounded)}
+.product-preview .preview-desc,.product-preview .feature-list,
+.about-sheet .values dd{font-family:var(--font-rounded);font-weight:400}
+.board-scribble{
+ position:absolute;pointer-events:none;user-select:none;overflow:visible;z-index:2;
+ color:#668572;
+}
+.board-scribble text{
+ font-family:"HACHIME JasonHandwriting6","Noto Sans TC",sans-serif;
+ font-size:25px;fill:#6C8C76;font-weight:400;
+}
+.board-scribble .scribble-path{
+ fill:none;stroke:#8DAA93;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;
+ stroke-dasharray:3 6;opacity:.65;
+}
+.scribble-arc{left:925px;top:467px;width:355px;height:100px;transform:rotate(-3deg)}
+.scribble-wave{left:169px;top:1085px;width:365px;height:92px;transform:rotate(4deg)}
+.scribble-circle{left:1260px;top:1079px;width:240px;height:180px;transform:rotate(-9deg)}
+.board-art{position:absolute;z-index:2;pointer-events:none;margin:0;user-select:none;filter:saturate(.72)}
+.board-art img{display:block;width:100%;height:auto;object-fit:contain}
+.board-art figcaption{
+ text-align:center;font:10px/1.25 "Noto Sans TC",sans-serif;
+ color:#657866;letter-spacing:.055em;margin-top:-2px
+}
+.art-spider{left:1363px;top:525px;width:126px;transform:rotate(-10deg);opacity:.86}
+.art-terrarium{left:1930px;top:553px;width:111px;transform:rotate(5deg);opacity:.92}
+.art-herb{left:696px;top:1045px;width:122px;transform:rotate(-11deg);opacity:.80}
+.art-blossom{left:1674px;top:1140px;width:105px;transform:rotate(18deg);opacity:.78}
+.art-potted{left:1942px;top:1060px;width:100px;transform:rotate(4deg);opacity:.77}
+.asset-note{border-top:1px solid #D7D4C7;margin-top:23px;padding-top:12px}
+.asset-note a{color:#355F46;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){
+ .cover-content p{font-size:14px}
+ .board-scribble{display:none}
+ .board-art figcaption{display:none}
+ .art-spider{left:310px;top:1850px;width:67px;transform:rotate(5deg)}
+ .art-herb{left:310px;top:1128px;width:60px;transform:rotate(8deg)}
+ .art-blossom{left:313px;top:1487px;width:57px;transform:rotate(-10deg)}
+ .art-terrarium{left:318px;top:2223px;width:64px;transform:rotate(5deg)}
+ .art-potted{left:310px;top:2598px;width:62px;transform:rotate(-4deg)}
+}
+@media(prefers-reduced-motion:reduce){
+ .board-art,.board-scribble{animation:none!important;transition:none!important}
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@300;400;500;600;700&amp;family=Zen+Maru+Gothic:wght@400;500;700&amp;display=swap" rel="stylesheet">
 </head>
 <body>
   <a class="skip" href="#workspace">跳至主要內容</a>
@@ -765,7 +823,41 @@ body{background:var(--ground);color:var(--ink)}
   <div class="cover-content"><h2>關於八目</h2><p>品牌介紹、產品定位與目前的開發進度。</p></div>
   <div class="cover-footer"><span>品牌資訊</span><span>開啟內容 ↗</span></div>
 </section>
-        <div class="paper-end" aria-hidden="true">HACHIME — MVP 04 / NOTEBOOK INDEX</div>
+
+        <!-- Decorative sketch and open-licensed illustration assets; demo sayings are temporary. -->
+        <svg class="board-scribble scribble-arc" viewBox="0 0 350 100" aria-hidden="true">
+          <defs><path id="hachime-arc-01" d="M 16 79 Q 173 -4 338 69"/></defs>
+          <text><textPath href="#hachime-arc-01" startOffset="50%" text-anchor="middle">科技始於人性</textPath></text>
+          <path class="scribble-path" d="M27 84 Q176 15 325 85" />
+          <path class="scribble-path" d="m315 75 11 10-15 3"/>
+        </svg>
+        <svg class="board-scribble scribble-wave" viewBox="0 0 360 92" aria-hidden="true">
+          <defs><path id="hachime-wave-02" d="M 10 62 Q 96 2 179 45 T 348 48"/></defs>
+          <text><textPath href="#hachime-wave-02" startOffset="50%" text-anchor="middle">千里之行，始於足下</textPath></text>
+          <path class="scribble-path" d="M18 72 Q83 29 166 63 T335 59" />
+        </svg>
+        <svg class="board-scribble scribble-circle" viewBox="0 0 240 180" aria-hidden="true">
+          <defs><path id="hachime-round-03" d="M36 99 A83 64 0 1 1 201 103"/></defs>
+          <text><textPath href="#hachime-round-03" startOffset="50%" text-anchor="middle">格物致知　・　記錄觀察</textPath></text>
+          <path class="scribble-path" d="M66 136 Q131 172 192 130"/>
+        </svg>
+        <figure class="board-art art-spider" aria-label="蜘蛛插畫，非特定物種辨識圖">
+          <img src="./assets/openmoji-spider.svg" alt="開源蜘蛛裝飾插圖" loading="lazy" decoding="async">
+          <figcaption>SPIDER / SKETCH</figcaption>
+        </figure>
+        <figure class="board-art art-terrarium" aria-label="飼養盒概念線稿，非正式商品">
+          <img src="./assets/terrarium-concept.svg" alt="透明飼養盒與攀爬枝的簡化概念線稿" loading="lazy" decoding="async">
+        </figure>
+        <figure class="board-art art-herb" aria-label="植物插圖">
+          <img src="./assets/openmoji-herb.svg" alt="開源綠葉插圖" loading="lazy" decoding="async">
+        </figure>
+        <figure class="board-art art-blossom" aria-label="花朵插圖">
+          <img src="./assets/openmoji-cherry-blossom.svg" alt="開源花朵插圖" loading="lazy" decoding="async">
+        </figure>
+        <figure class="board-art art-potted" aria-label="盆栽插圖">
+          <img src="./assets/openmoji-potted-plant.svg" alt="開源盆栽插圖" loading="lazy" decoding="async">
+        </figure>
+        <div class="paper-end" aria-hidden="true">HACHIME — MVP 11 / NOTEBOOK INDEX</div>
       </div>
     </div>
     <div class="detail-view" id="detailView" hidden>
@@ -826,14 +918,15 @@ body{background:var(--ground);color:var(--ink)}
 <p class="about-lead">八目 HACHIME｜Jumping Spider Lab（跳蛛研造），以跳蛛飼養與相關用品為主要方向。</p>
 <dl class="values"><dt>精品化</dt><dd>重視產品設計、材料與製作品質。</dd><dt>方便化</dt><dd>改善餵食、清潔和日常操作的便利性。</dd><dt>專業化</dt><dd>整理物種資料、飼養知識與實際測試紀錄。</dd></dl>
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p>
+<p class="fine-print asset-note">筆記插圖使用 <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">OpenMoji</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）；飼養盒為示意線稿。詳細來源見專案 <a href="https://github.com/KotaNia1130/hachime-site/blob/main/ASSET_CREDITS.md" target="_blank" rel="noopener noreferrer">素材授權</a>。</p>
 </section></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.10</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.11</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
     <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="桌面控制"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">回總覽</button></div>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.9</span></div>
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.11</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
