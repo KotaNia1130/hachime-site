@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#EFE9DD">
+  <link rel="icon" type="image/svg+xml" href="./assets/hachime-symbol-v2.svg">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
   <title>八目 HACHIME｜網站互動原型 V0.13</title>
   <style>
@@ -860,6 +861,14 @@ body{background:var(--ground);color:var(--ink)}
  .handmark-case{left:120px;top:2365px;transform:rotate(5deg)}
 }
 
+
+/* Selected eye/leaf mark: one highlight on each of the eight eyes. Wordmark remains unchanged. */
+.site-header .logo{gap:8px;min-width:255px}
+.logo-symbol{width:62px;height:44px;object-fit:contain;flex:0 0 auto}
+@media(max-width:600px){
+ .site-header .logo{gap:5px;min-width:unset}
+ .logo-symbol{width:46px;height:36px}
+}
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -869,7 +878,7 @@ body{background:var(--ground);color:var(--ink)}
   <a class="skip" href="#workspace">跳至主要內容</a>
   <header class="site-header">
 <a aria-label="八目 HACHIME，回到總覽" class="logo" data-go="home" href="#home">
-
+<img class="logo-symbol" src="./assets/hachime-symbol-v2.svg" width="62" height="44" alt="" aria-hidden="true">
 <span class="logo-text"><strong>八目 <span>HACHIME</span></strong><small>跳蛛研造 ／ JUMPING SPIDER LAB</small></span>
 </a>
 <nav aria-label="網站導覽" class="top-nav">
