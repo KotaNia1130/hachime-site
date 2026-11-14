@@ -35,3 +35,30 @@ OpenMoji 相關圖片的 CC BY-SA 4.0 授權**不表示整個 HACHIME 網站程�
 - 統一美術風格的原創跳蛛插畫。
 
 在正式使用第三方照片或插畫時，應逐件記錄來源、作者、授權及修改情況。
+
+## V0.12 新增：品牌與展示概念插畫
+
+以下 SVG 為此專案內新增的**原創設計草稿**，不是從 いらすとや 或其他商家圖片轉製：
+
+| 檔案 | 用途與限制 |
+|---|---|
+| `assets/hachime-mark.svg` | 八眼前臉簡化 LOGO 草案；尚未正式定稿 |
+| `assets/spider-regius.svg` | 佛羅里達跳蛛的 Q 版概念插圖，非物種鑑定圖 |
+| `assets/spider-audax.svg` | 大膽跳蛛的 Q 版概念插圖，非物種鑑定圖 |
+| `assets/spider-hyllus.svg` | 老虎狗跳蛛的 Q 版概念插圖，非物種鑑定圖 |
+| `assets/enclosure-core.svg` | CORE 規劃概念，非商品實拍 |
+| `assets/enclosure-plus.svg` | PLUS 規劃概念，非商品實拍 |
+| `assets/enclosure-pro.svg` | PRO 規劃概念，非商品實拍 |
+
+這些插畫僅用來驗證網站的版面、輪播與品牌語言。正式銷售前應替換為實物照片和經核對的飼養資訊。
+
+## 字體來源
+
+- **清松手寫體 6 號**：作者游清松，SIL Open Font License；使用遠端公開字型來源，尚未放入本站原始碼儲存庫。
+- **Huninn／jf open 粉圓**：justfont，SIL Open Font License；網站透過 Google Fonts 提供。適用繁體中文的圓潤內文字體。
+- **Noto Sans TC**：Google Fonts，SIL Open Font License，用於品牌資訊與常規內文。
+
+## いらすとや使用說明
+
+參考 [いらすとや](https://www.irasutoya.com/) 的親切資訊插畫呈現方式，**沒有直接複製或使用它的圖檔**。該網站素材的商業使用有獨立條件與數量限制；如日後採用，須先核對[官方利用規定](https://www.irasutoya.com/p/terms.html)。
+
