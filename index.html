@@ -752,6 +752,92 @@ body{background:var(--ground);color:var(--ink)}
  .board-art,.board-scribble{animation:none!important;transition:none!important}
 }
 
+
+/* HACHIME V0.12 layout, gallery and typography refinement */
+:root{--font-rounded:"Huninn","Zen Maru Gothic","Noto Sans TC",sans-serif}
+.brand-mark{display:block;width:44px;height:44px;object-fit:contain;flex-shrink:0}
+.home-symbol{position:absolute;right:36px;top:53px;width:82px;height:82px;opacity:.24;pointer-events:none}
+.notebook-intro .main-description,.cover-content p,
+.detail-view .chapter-content p,.detail-view .chapter-content li,
+.detail-view .faq-scroll details p,.detail-view .species-panel>p,
+.detail-view .about-lead,.product-preview .preview-desc,.product-preview .feature-list,
+.about-sheet .values dd{
+ font-family:var(--font-rounded);font-weight:500;line-height:1.85;
+}
+.cover-content h2{font-family:"HACHIME JasonHandwriting6","Huninn","Noto Sans TC",sans-serif;font-weight:400;font-size:36px;line-height:1.45;letter-spacing:0}
+.cover-content p{font-size:15px;font-weight:500;color:#394D3F}
+.board-gallery{
+ position:absolute;z-index:3;width:760px;height:455px;padding:22px 26px;
+ border:1px solid #C7BDAD;background:#FFFCF5;
+ box-shadow:5px 6px 0 #BDB09A35,0 17px 29px #5749371C;
+ color:#36453A;transform:rotate(-.4deg);
+}
+.gallery-spiders{left:180px;top:1360px;width:745px;transform:rotate(-.7deg)}
+.gallery-enclosures{left:1045px;top:1355px;width:815px;transform:rotate(.6deg)}
+.gallery-top{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid #D2C7B8;padding-bottom:10px;font-size:11px;letter-spacing:.055em;color:#506454}
+.gallery-heading{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin:12px 0 12px}
+.gallery-heading h2{font:400 29px/1.4 "HACHIME JasonHandwriting6","Huninn","Noto Sans TC",sans-serif;margin:0;color:#36543E}
+.gallery-heading>span{font:12px var(--font-body);color:#657369}
+.gallery-layout{display:grid;grid-template-columns:55% minmax(0,1fr);gap:23px;align-items:start}
+.gallery-visual{height:294px;border:1px solid #E2DACA;background:#F5F0E6;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;margin:0}
+.gallery-spiders .gallery-visual{background:#F7F0E8}
+.gallery-enclosures .gallery-visual{background:#EDF3EC}
+.gallery-visual img{display:block;width:min(100%,330px);height:245px;object-fit:contain}
+.gallery-visual figcaption{font:11px var(--font-body);color:#59675B;margin-top:4px}
+.gallery-info{min-width:0;display:flex;flex-direction:column;min-height:300px}
+.gallery-info h3{font:500 19px/1.6 var(--font-rounded);margin:7px 0 0;color:#2D4734}
+.gallery-info .gallery-subname{font-size:11px;margin:0 0 12px;color:#53705B}
+.gallery-info>p:not(.gallery-subname){font:500 13px/1.85 var(--font-rounded);margin:0;color:#3B4B3D;flex:1}
+.gallery-controllers{display:flex;align-items:center;gap:12px;margin:10px 0 10px;justify-content:flex-start}
+.gallery-controllers button{min-width:36px;height:36px;padding:0;background:#F4F1E8;color:#3E5B47;border:1px solid #B7C8B8;font:19px var(--font-body)}
+.gallery-controllers button:hover{background:#E4EDE2}
+.gallery-controllers span{letter-spacing:.16em;font-size:10px;color:#7D9682;min-width:61px;text-align:center}
+.gallery-link{margin-top:auto;align-self:flex-start;padding:6px 0;border:0;border-bottom:1px solid #568361;background:none;color:#366149;font:500 12px var(--font-rounded)}
+.gallery-link:hover{color:#264D34;border-color:#264D34}
+.infinite-sheet{height:1940px}
+.paper-end{top:1907px;left:950px;color:#718072}
+.board-gallery button:focus-visible{outline:3px solid #62896B;outline-offset:3px}
+.product-drawing{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;margin:11px 0 9px;background:#F8F8F1;border:1px solid #C8D5C8;padding:7px}
+.product-drawing img{display:block;width:min(260px,100%);height:180px;object-fit:contain}
+.product-drawing figcaption{font:11px var(--font-body);color:#5D6A5E}
+.species-profile{display:grid;grid-template-columns:minmax(180px,250px) minmax(0,1fr);gap:27px;align-items:start}
+.species-profile figure{background:#F7F1E9;border:1px solid #DDD4C6;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0;min-height:242px;padding:5px}
+.species-profile figure img{display:block;width:100%;height:188px;object-fit:contain}
+.species-profile figcaption{font:11px var(--font-body);color:#626E62;text-align:center}
+.species-profile .species-info h3{margin:0 0 5px}
+.species-profile .species-info>p{font:500 14px/1.85 var(--font-rounded)}
+.species-profile .species-grid{margin-top:14px}
+@media(max-width:600px){
+ .infinite-sheet{width:420px;height:3930px}
+ .brand-mark{width:39px;height:39px}
+ .home-symbol{right:17px;top:53px;width:60px;height:60px;opacity:.18}
+ .cover-content h2{font-size:31px}
+ .cover-content p{font-size:14px;line-height:1.82}
+ .board-gallery{left:23px!important;transform:none!important;width:374px!important;height:525px!important;padding:18px 18px 22px!important}
+ .gallery-spiders{top:2730px!important}
+ .gallery-enclosures{top:3300px!important}
+ .gallery-heading h2{font-size:26px}
+ .gallery-layout{display:flex;flex-direction:column;gap:9px}
+ .gallery-visual{height:202px;width:100%}
+ .gallery-visual img{height:158px;width:100%;max-width:278px}
+ .gallery-visual figcaption{font-size:10px}
+ .gallery-info{min-height:unset;width:100%}
+ .gallery-info h3{font-size:17px;margin:0}
+ .gallery-info .gallery-subname{margin:0 0 5px}
+ .gallery-info>p:not(.gallery-subname){font-size:12px;line-height:1.65;min-height:46px}
+ .gallery-controllers{margin:5px 0}
+ .gallery-controllers button{min-width:34px;height:32px}
+ .gallery-link{font-size:12px}
+ .paper-end{top:3875px;left:42px}
+ .species-profile{grid-template-columns:1fr;gap:14px}
+ .species-profile figure{min-height:210px}
+ .species-profile figure img{height:175px}
+ .product-drawing img{height:140px}
+}
+@media(prefers-reduced-motion:reduce){
+ .board-gallery,.gallery-visual,.gallery-visual img{transition:none!important;animation:none!important}
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
