@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 290" role="img" aria-labelledby="case-pro-title case-pro-desc">
+<title id="case-pro-title">A1 PRO 箱體設計示意</title>
+<desc id="case-pro-desc">簡化透明飼養盒與攀爬模組的概念插畫，非正式商品或可用規格。</desc>
+<ellipse cx="176" cy="259" rx="121" ry="12" fill="#807A6830"/>
+<path d="M76 47L126 21H290L243 47Z" fill="#D7E1D0" fill-opacity=".65" stroke="#4A6655" stroke-width="3" stroke-linejoin="round"/>
+<path d="M76 47V240L244 258V47Z" fill="#FEFFFA" fill-opacity=".43" stroke="#4A6655" stroke-width="3" stroke-linejoin="round"/>
+<path d="M244 47L290 21V226L244 258Z" fill="#D7E1D0" fill-opacity=".45" stroke="#4A6655" stroke-width="3" stroke-linejoin="round"/>
+<path d="M90 65L225 79V231L90 220Z" fill="none" stroke="#4A6655" stroke-opacity=".42" stroke-width="2.4"/>
+<path d="M251 75L280 60M251 86L280 71M251 97L280 82M251 108L280 93" stroke="#4A6655" stroke-width="2.6" stroke-linecap="round" opacity=".75"/>
+<path d="M103 209Q157 151 172 104Q182 153 223 184" fill="none" stroke="#A4B48E" stroke-width="7" stroke-linecap="round"/>
+<path d="M163 136Q145 105 117 116Q132 146 163 136Z" fill="#A4B48E" fill-opacity=".55"/>
+<path d="M172 139Q199 116 219 130Q198 153 172 139Z" fill="#A4B48E" fill-opacity=".55"/>
+<path d="M110 201Q101 179 94 171M199 160q15-7 21-21" fill="none" stroke="#4A6655" stroke-width="2"/>
+<circle cx="221" cy="160" r="4" fill="#4A6655"/>
+<path d="M232 96L272 73V218L245 234Z" fill="#90AD8C" fill-opacity=".3"/><path d="M251 192Q267 160 257 139M259 165q-17-9-14-20" stroke="#6C946D" stroke-width="4" fill="none" opacity=".7"/>
+<path d="M100 189L143 195V215L100 209Z" fill="#D7E1D0" stroke="#4A6655" stroke-width="2"/><path d="M110 187l20-12 42 6-24 13" fill="#D7E1D0" stroke="#4A6655" stroke-width="2"/>
+<rect x="104" y="66" width="56" height="25" rx="4" fill="#FFF9EC" stroke="#4A6655" stroke-width="2"/><path d="M113 79h13m6 0h15" stroke="#4A6655" stroke-width="2"/><circle cx="149" cy="79" r="3" fill="#A4B48E"/>
+<path d="M130 19h126" stroke="#7D9C79" stroke-width="5" stroke-linecap="round"/><path d="M146 25v10M238 25v10" stroke="#AABF9A" stroke-width="3" opacity=".7"/>
+<path d="M78 247L244 264 290 233" fill="none" stroke="#4A6655" stroke-width="2" opacity=".6"/>
+<g fill="#4A6655" opacity=".7"><circle cx="82" cy="119" r="2"/><circle cx="82" cy="131" r="2"/><circle cx="82" cy="143" r="2"/><circle cx="239" cy="113" r="1.8"/><circle cx="239" cy="125" r="1.8"/><circle cx="239" cy="137" r="1.8"/></g>
+</svg>
