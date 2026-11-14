@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f3f0e6">
+  <meta name="theme-color" content="#DED7CB">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.5</title>
+  <title>八目 HACHIME｜網站互動原型 V0.6</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -166,6 +166,186 @@
 .start-note.is-dismissed{opacity:.17;pointer-events:none}
 @media(max-width:960px){.hint-reopen{top:14px;left:12px}}
 @media(max-width:600px){.viewport-hint{display:flex;max-width:calc(100% - 24px);font-size:11px;padding:8px 10px}}
+
+/* V0.6 — HACHIME soft stationery: warmer paper, clearer text, calmer colour.
+   The canvas layout, event handlers and content are intentionally unchanged. */
+:root {
+  --ground:#DED7CB;
+  --paper:#F8F3E9;
+  --ink:#363830;
+  --muted:#5C6056;
+  --rule:#C9C2B4;
+  --olive:#4B6652;
+  --sage:#D6DFD1;
+  --yellow:#EADDB6;
+  --peach:#E8C7B7;
+  --blue:#DBE5E1;
+  color:var(--ink);
+  background:var(--ground);
+}
+body{color:var(--ink);background:var(--ground)}
+.site-header{background:#F7F2E9;border-bottom:1px solid #C6BCAE;box-shadow:0 2px 8px #4A44300B}
+.logo-text small{color:#555D52}
+.eyes i{background:#3D5948}
+.top-nav a{color:#44473F}
+.top-nav a:hover{background:#EEE8DD}
+.top-nav a.active{color:#375742;background:#E5E9DF;border-bottom-color:#50745B}
+.cart-trigger{background:#F7F2E9;border-color:#B8B4A6;color:#3B493D}
+.cart-trigger:hover{background:#EAEDE3}
+.cart-count{background:#4B6652}
+.main-area{background:#DED7CB}
+.workspace{background:radial-gradient(ellipse at 35% 22%,#E6DFD3 0%,#D9D1C3 100%)}
+.infinite-sheet{
+  background-color:#EAE3D8;
+  background-image:
+    linear-gradient(#C9C0B34B 1px,transparent 1px),
+    linear-gradient(90deg,#C9C0B34B 1px,transparent 1px),
+    linear-gradient(#D1C8BB37 1px,transparent 1px),
+    linear-gradient(90deg,#D1C8BB37 1px,transparent 1px);
+  border-color:#C6BBAA;
+  box-shadow:0 8px 38px #493E3027;
+}
+.board-corner,.paper-end{color:#5C6259}
+.connectors path{stroke:#ADA798}
+.paper{
+  background:#F9F5ED;
+  color:#363830;
+  border-color:#C9BFAF;
+  box-shadow:3px 5px 0 #A99C812B,0 10px 24px #4D453720;
+}
+.paper::after{border-color:#E5DCCD}
+.paper-topline{color:#50594E;border-bottom-color:#D0C7B9}
+.paper-heading p{color:#4D534B}
+.stamp-text{color:#515D51;border-color:#A4B19E}
+.tape{background:#E9D7BCBC;box-shadow:0 1px 3px #6B584320}
+.tape-green{background:#CAD7C7C7}
+.tape-yellow{background:#E8D9A8C7}
+.tape-peach{background:#E8C5B6CF}
+.tape-blue{background:#C7DBD6C9}
+.tape-about{background:#DCCBB4C9}
+.notebook-intro{
+  background:#F9F5ED;
+  border-color:#BEB5A6;
+  box-shadow:5px 7px 0 #B6A78B27,0 17px 30px #57483620;
+}
+.notebook-intro .small-kicker{color:#4A6951}
+.notebook-intro .home-core h1{color:#333C34}
+.brand-phrase{color:#3F5F4B}
+.home-divider{background:#C9BAA6}
+.notebook-intro .main-description{color:#444940}
+.home-bottom{color:#596052}
+.ink-link{color:#325B42;border-color:#547A5D}
+.ink-link.subtle{color:#50584E;border-color:#949C8B}
+.tiny-note{background:#E8D7B4;color:#343A31;box-shadow:4px 7px 14px #4C42302A}
+.tiny-note>span:last-child{color:#5F5B4D}
+.start-note{background:#E6D7B6}
+.species-note{background:#D7E1D2}
+.notebook-note{background:#E8D8CA}
+.tiny-pin{background:#AE826A}
+.cover-note{
+  border-color:#C5B8A8;
+  box-shadow:3px 5px 0 #A99C8123,0 12px 27px #4A3D3122;
+  transition:box-shadow .18s ease,border-color .18s ease;
+}
+.cover-note::before{
+  content:"";position:absolute;z-index:0;top:42px;right:-12px;
+  width:24px;height:65px;border:1px solid #BDAF9E;
+  background:var(--tab-color,#D6DFC9);
+  box-shadow:1px 2px 3px #4C42301B;
+  transform:rotate(4deg);
+  pointer-events:none;
+}
+.cover-note::after{border-color:#E0D8CA}
+.cover-note:hover,.cover-note:focus-visible{
+  border-color:#7D947A;
+  box-shadow:5px 8px 0 #A99C8130,0 16px 27px #4B48302D;
+}
+.cover-note:focus-visible{outline:3px solid #6E896F;outline-offset:4px}
+.cover-content h2{color:#303B32;letter-spacing:.015em;font-weight:750}
+.cover-content p{color:#454D44}
+.cover-footer{color:#395844;border-top-color:#CABFB2}
+.beginner-cover{--tab-color:#EBC7B4;background:#F8EFE3}
+.atlas-cover{--tab-color:#C6D5BD;background:#EDF1E8}
+.knowledge-cover{--tab-color:#E8D8A7;background:#F8F1E2}
+.lab-cover{--tab-color:#B9D3CA;background:#EEF2EC}
+.about-cover{--tab-color:#DDC6B4;background:#F5EBE4}
+.cover-note .paper-topline{color:#566154}
+.cover-note .tape{opacity:.85}
+.detail-view{background:#DCD5C9}
+.detail-toolbar{background:#F5EFE5;border-bottom-color:#C8BFB0}
+.detail-breadcrumb{color:#535B50}
+.back-to-board{color:#375A42}
+.detail-scroll{scrollbar-color:#AFA89C #DED7CB}
+.detail-view .paper{
+  background:#FAF6EF!important;
+  color:#323A33;
+  border-color:#C4B9A7;
+  box-shadow:4px 6px 0 #C1B39B35,0 14px 28px #453C301A;
+}
+.detail-view .paper::after{border-color:#E8E0D4}
+.detail-view .paper-heading h2,.detail-view .about-sheet h2{color:#303A32}
+.detail-view .chapter-content p,
+.detail-view .chapter-content li,
+.detail-view .species-panel>p,
+.detail-view .about-lead{color:#3F4840}
+.chapter-subtitle,.paper-topline,.preview-header{color:#505D4F}
+.chapter-content .chapter-caption{background:#E9EDE3;border-left-color:#709177;color:#344639}
+.chapter-nums button{background:#F5F0E7;color:#3F4E41;border-color:#C7C3B5}
+.chapter-nums button.active{background:#48654E;color:#fff;border-color:#48654E}
+.chapter-nums button:hover:not(.active){background:#E9E9DD}
+.species-tabs button{color:#515E53}
+.species-tabs button.active{color:#325C42;border-color:#4B7054}
+.species-grid dt,.fine-print{color:#596157}
+.species-grid dt,.species-grid dd{border-bottom-color:#CEC9BD}
+.search-wrap{background:#FEFBF5;border-color:#BEBCAF}
+.search-wrap input{color:#343B35}
+.search-wrap input::placeholder{color:#73766C;opacity:1}
+.search-label{color:#535B53}
+.topic-line button{border-color:#C2C6B8;color:#415446}
+.topic-line button.active{background:#4E6C55;color:#fff}
+.faq-scroll summary{color:#3C483D}
+.faq-scroll details p{color:#424C43}
+.no-results{color:#595E54}
+.product-options legend{color:#3F4A40}
+.size-choices button,.tier-choices button{background:#FBF8F1;color:#354138;border-color:#BFC3B6}
+.size-choices button small{color:#535E54}
+.size-choices button.active,.tier-choices button.active{
+  border-color:#607D65;background:#E8EDE3;box-shadow:inset 0 0 0 1px #607D65;
+}
+.product-preview{background:#F0F1E8;border-color:#AEB9A9;color:#364139}
+.preview-price{color:#365D42}
+.spec-line dt{color:#536354}
+.spec-line dt,.spec-line dd{border-bottom-color:#C2CABC}
+.preview-desc,.feature-list{color:#3E5041}
+.solid-button{background:#3D624A;border-color:#3D624A}
+.solid-button:hover{background:#2D4C38}
+.status-pill{color:#3E604A;border-color:#92AB94}
+.price-popover{background:#FAF5EB;border-color:#ADB7A6}
+.price-popover small{color:#59665B}
+.values dt{color:#365940}
+.values dt,.values dd{border-bottom-color:#C8C9BA}
+.viewport-hint,.canvas-controls,.hint-reopen{background:#F5F0E7E8;border-color:#BDB5A7;color:#37483A}
+.canvas-controls button{color:#3C5943}
+.canvas-controls button:hover{background:#E6E9DE}
+.bottom-mark{color:#585F54}
+.drawer-backdrop{background:#27292170}
+.cart-drawer{background:#F9F5EC;color:#373C35}
+.drawer-head{border-bottom-color:#CEC5B8}
+.drawer-head span,.drawer-head h2 small{color:#566456}
+.drawer-notice{background:#E8EDE3;color:#3F5742}
+.cart-line{border-bottom-color:#CEC7BA}
+.cart-empty{color:#566054}
+.cart-trigger:focus-visible,.ink-link:focus-visible{outline-color:#517A5A}
+@media(max-width:600px){
+ .cover-note::before{right:-7px;width:13px;height:51px;top:41px}
+ .cover-content p{color:#404C42}
+ .detail-scroll{background:#DDD5C9}
+ .detail-view .paper{padding:26px 20px 35px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .cover-note{transition:none}
+}
+
 </style>
 </head>
 <body>
@@ -297,13 +477,13 @@
 <dl class="values"><dt>精品化</dt><dd>重視產品設計、材料與製作品質。</dd><dt>方便化</dt><dd>改善餵食、清潔和日常操作的便利性。</dd><dt>專業化</dt><dd>整理物種資料、飼養知識與實際測試紀錄。</dd></dl>
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p>
 </section></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.5</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.6</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
     <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="桌面控制"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">回總覽</button></div>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.5</span></div>
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.6</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
