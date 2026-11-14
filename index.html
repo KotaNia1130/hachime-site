@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#D8CFC2">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.9</title>
+  <title>八目 HACHIME｜網站互動原型 V0.9.1.1</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -585,10 +585,23 @@ body{background:var(--ground);font-weight:400}
  .tiny-note p{font-size:16px}
 }
 
+
+/* V0.9.1 — 00 brand introduction: selected A (Noto Sans TC Light).
+   Only the 00 section uses the light display weight; notes keep ChenYuluoyan. */
+.notebook-intro .home-core h1,
+.notebook-intro .home-core h1 em,
+.notebook-intro .home-core h2 {
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  font-weight:300;
+}
+.notebook-intro .brand-phrase,
+.notebook-intro .small-kicker {font-weight:300}
+.notebook-intro .main-description {font-weight:400}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 </head>
 <body>
   <a class="skip" href="#workspace">跳至主要內容</a>
@@ -719,7 +732,7 @@ body{background:var(--ground);font-weight:400}
 <dl class="values"><dt>精品化</dt><dd>重視產品設計、材料與製作品質。</dd><dt>方便化</dt><dd>改善餵食、清潔和日常操作的便利性。</dd><dt>專業化</dt><dd>整理物種資料、飼養知識與實際測試紀錄。</dd></dl>
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p>
 </section></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.9</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.9.1</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
