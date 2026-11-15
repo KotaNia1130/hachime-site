@@ -78,18 +78,11 @@
 .species-heading .species-latin{margin:0;line-height:1.6}.species-latin em{font:italic 23px/1.5 Georgia,serif;overflow-wrap:anywhere}.species-latin small{display:block;font:12px/1.8 Georgia,serif;color:#64705c}
 .species-status{font-size:11px;color:#745e3d}.species-heading .species-common{font-size:14px;margin-top:8px}
 .species-profile{align-items:start}.species-photo-pending{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#efece0;border:1px dashed #b3b69e;color:#67715c;padding:20px!important}.species-photo-pending>p{font-size:20px}.species-photo-pending figcaption{font-size:12px}
-.species-sources{margin-top:22px}.species-sources h4{font-size:13px;margin:0 0 10px}.species-sources a{display:block;font-size:12px;text-decoration:underline;text-underline-offset:3px;margin:9px 0;overflow-wrap:anywhere}
+.species-sources{margin-top:22px}.species-sources summary{cursor:pointer;min-height:44px;padding:12px 0;font-size:13px;color:#36543e}.species-sources a{display:block;font-size:12px;text-decoration:underline;text-underline-offset:3px;margin:9px 0;overflow-wrap:anywhere}
 @media(max-width:960px){.is-atlas{--book-rail:0px}.is-atlas .book-menu{width:min(280px,calc(100vw - 24px));max-height:calc(100dvh - 205px)}.species-heading h3{font-size:31px!important}.species-latin em{font-size:20px}}
 
 
-/* V0.25.1: species entry taxonomy and naming provenance.
-   The large heading retains the familiar label, but labels whose origin has not
-   been verified must clearly say that they are catalog-name fallbacks. */
-.species-heading .species-display-kind{
-  display:inline-flex;max-width:100%;margin:10px 0 0;padding:3px 9px;
-  border:1px solid #c4cdb8;border-radius:3px;background:#f4f2e7;
-  color:#52644e;font-size:12px;font-weight:600;line-height:1.65;
-}
+/* Public catalog names; editorial provenance lives in docs. */
 .species-heading .species-field-label{
   display:block;color:#65705e;font:600 11px/1.9 "Noto Sans TC","PingFang TC",sans-serif;
   letter-spacing:.07em;
@@ -103,18 +96,7 @@
 .species-heading .species-common strong{
   font-size:16px;font-weight:600;color:#344a3b;line-height:1.75
 }
-.species-heading .species-common small{
-  font-size:11px;color:#667161;line-height:1.75
-}
-.species-menu-group a .species-menu-kind{
-  display:block;color:#778170;font-size:10px;line-height:1.6;margin-top:3px;
-}
-.species-menu-group a[aria-current="page"] .species-menu-kind{
-  color:#e4f0df;
-}
 @media(max-width:600px){
-  .species-heading .species-display-kind{font-size:11px}
   .species-heading .species-latin em{font-size:20px}
   .species-heading .species-common strong{font-size:15px}
-  .species-menu-group a .species-menu-kind{font-size:10px}
 }
