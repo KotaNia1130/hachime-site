@@ -8,7 +8,7 @@
   const set=(storage,key)=>{try{window[storage].setItem(key,'1');}catch{}};
   const dialog=document.createElement('dialog');
   dialog.id='welcomeDialog';dialog.className='welcome-dialog';dialog.setAttribute('aria-labelledby','welcomeTitle');
-  dialog.innerHTML='<button class="welcome-close" type="button" aria-label="關閉操作說明">×</button><div class="welcome-mini" aria-hidden="true"><span></span><span></span><img src="./assets/hachime-symbol-v2.svg" alt=""></div><h2 id="welcomeTitle">筆記桌面怎麼用？</h2><p>拖曳或縮放桌面，點擊便條就會翻頁進入詳細內容。內容往下閱讀，內頁的章節目錄可以跳到想看的段落；返回桌面時會保留剛才的位置。</p><div class="welcome-actions"><button type="button" id="welcomeExplore">開始翻閱</button><button type="button" id="welcomeStart">查看新手指南 ↗</button></div><p class="fine-print">問號按鈕可再次開啟操作說明。</p>';
+  dialog.innerHTML='<button class="welcome-close" type="button" aria-label="關閉操作說明">×</button><div class="welcome-mini" aria-hidden="true"><span></span><span></span><img src="./assets/hachime-symbol-v2.svg" alt=""></div><h2 id="welcomeTitle">筆記桌面怎麼用？</h2><p>拖曳或縮放桌面，點擊便條就會翻頁進入詳細內容。內容往下閱讀，內頁左側的章節目錄可以快速捲到想看的段落；返回桌面時會保留剛才的位置。</p><div class="welcome-actions"><button type="button" id="welcomeExplore">開始翻閱</button><button type="button" id="welcomeStart">查看新手指南 ↗</button></div><p class="fine-print">問號按鈕可再次開啟操作說明。</p>';
   document.body.append(dialog);
   function close(){set('sessionStorage','hachime-welcome-seen-v2');set('localStorage','hachime-board-hint-seen');dialog.close();}
   function open(){if(dialog.open)return;previousFocus=document.activeElement;dialog.showModal();}
