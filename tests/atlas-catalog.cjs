@@ -15,13 +15,24 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
    if(width<=960)await p.locator('#bookMenuToggle').click();
    await p.locator(`#bookMenu [data-species-id="${id}"]`).click();
    assert.equal(await p.locator('#speciesTitle').innerText(),name);
-   assert((await p.locator('#speciesPanel .species-display-kind').innerText()).length>0,'heading category must be shown');
-   assert((await p.locator('#speciesPanel .species-common strong').innerText()).length>0,'Chinese name field must not be empty');
-   assert.match(await p.locator('#speciesPanel .species-field-label').first().innerText(),/分類學名/);
-   if(id==='paykulli')assert.match(await p.locator('.species-display-kind').innerText(),/名錄中文名/);
-   if(id==='petersi'){assert.match(await p.locator('.species-common').innerText(),/彼得條斑蠅虎/);assert.match(await p.locator('.species-sources').innerText(),/溝渠蠅虎/);}
+   assert.equal(await p.locator('.species-display-kind,.species-menu-kind').count(),0,'editorial categories are not public copy');
+   assert.equal(await p.locator('.species-sources').getAttribute('open'),null,'references start collapsed');
+   assert(await p.locator('.species-sources a').count()>0,'original references remain available');
+   assert.match(await p.locator('#speciesPanel .species-field-label').first().innerText(),/學名/);
+   if(id==='paykulli')assert.equal(await p.locator('.species-common').count(),0,'do not repeat the heading as a Chinese name');
+   if(id==='petersi'){assert.match(await p.locator('.species-common').innerText(),/溝渠蠅虎/);await p.locator('.species-sources summary').click();assert.match(await p.locator('.species-sources').innerText(),/溝渠蠅虎/);await p.locator('.species-sources summary').click();}
    if(id==='scenicus')assert.equal(await p.locator('#speciesTitle').innerText(),'斑馬蜘蛛');
-   if(id==='simaetha'){assert.match(await p.locator('.species-display-kind').innerText(),/商家稱呼/);assert.match(await p.locator('.species-common').innerText(),/未定種/);}
+   if(id==='simaetha')assert.match(await p.locator('.species-status').innerText(),/尚未定種/);
+   if(id==='maratus')assert.match(await p.locator('.species-status').innerText(),/類群/);
+   if(id==='crassipes')assert.match(await p.locator('.species-common').innerText(),/粗腳條斑蠅虎/);
+   if(id==='lauta')assert.match(await p.locator('.species-common').innerText(),/優美金毛蛛/);
+   if(id==='regius'){
+    // Navigation focuses the reader in its next animation frame.
+    await p.waitForFunction(()=>document.activeElement.id==='detailScroll');
+    await p.locator('.species-sources summary').focus();await p.keyboard.press('Enter');
+    assert(await p.locator('.species-sources a').first().isVisible(),'references expand by keyboard');
+    await p.keyboard.press('Enter');assert(await p.locator('.species-sources a').first().isHidden());
+   }
 
 
    assert.equal(new URL(p.url()).hash,'#atlas/'+id);
@@ -37,7 +48,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await p.goto(base+'#atlas/hyllus');await p.waitForFunction(()=>document.querySelector('#speciesPanel img').naturalWidth>0);assert.equal(await p.locator('#speciesTitle').innerText(),'老虎狗');assert.match(await p.locator('#speciesPanel img').getAttribute('src'),/hyllus.jpg/);
   await p.goto(base+'#atlas/giganteus');assert.equal(await p.locator('#speciesTitle').innerText(),'獅子狗');assert.equal(await p.locator('#speciesPanel img').count(),0);
   await p.goBack();assert.equal(await p.locator('#speciesTitle').innerText(),'老虎狗');await p.goForward();assert.equal(await p.locator('#speciesTitle').innerText(),'獅子狗');
-  await p.screenshot({path:`/tmp/hachime-v0261-atlas-${width}.png`});
+  await p.screenshot({path:`/tmp/hachime-v0262-atlas-${width}.png`});
   await p.locator('#detailBack').click();assert(await p.locator('#bookSidebar').isHidden());
   for(const selector of ['.home-actions [data-jump]','.observation-slip [data-go]','.update-list [data-go]','.notebook-signoff>[data-go]'])assert(await p.locator(selector).first().evaluate(e=>['none','normal'].includes(getComputedStyle(e,'::before').content)),'small links have no paper backing');
   console.log(`PASS ${width}px: ${entries.length} left-side entries, names, unresolved taxa, photos, history and plain links`);
@@ -61,12 +72,12 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
  await p.locator('[data-cover-next="live"]').click();assert.equal(await p.locator('#liveCoverName').innerText(),'獅子狗');assert.match(await p.locator('#liveCoverImage').getAttribute('src'),/openmoji/);assert.match(await p.locator('#liveCoverCredit').innerText(),/非獅子狗外觀/);
  const lion=p.locator('.live-card').filter({has:p.locator('h3',{hasText:'獅子狗'})}),tiger=p.locator('.live-card').filter({has:p.locator('h3',{hasText:'老虎狗'})});
  assert.match(await lion.innerText(),/Hyllus giganteus/);assert.match(await lion.locator('img').getAttribute('src'),/openmoji/);
- assert.match(await p.locator('[data-shop="live"] .live-intro').innerText(),/佛跳與老虎狗使用第三方物種參考照片，獅子狗暫用一般蜘蛛示意圖/);
- assert.match(await p.locator('[data-shop="live"] .asset-note').innerText(),/獅子狗項目暫用/);
+ assert.match(await p.locator('[data-shop="live"] .live-intro').innerText(),/尚未開放販售或預訂/);
+ assert.match(await p.locator('[data-shop="live"] .asset-note').innerText(),/獅子狗插圖/);
  assert.match(await p.locator('.photo-sources').innerText(),/老虎狗（斑腹蠅象）/);
  assert.match(await tiger.innerText(),/Hyllus diardi/);assert.match(await tiger.locator('img').getAttribute('src'),/hyllus.jpg/);
  await tiger.locator('[data-go="atlas/hyllus"]').click();assert.equal(await p.locator('#speciesTitle').innerText(),'老虎狗');
- assert(await p.locator('.species-sources a[href*="seaharescorpion.com"]').isVisible());
- await p.goto(base+'#atlas/giganteus');assert.match(await p.locator('.species-common').innerText(),/暫用中文名/);assert(await p.locator('.species-sources a[href*="facebook.com/JumpersFever"]').isVisible());
- assert.deepEqual(errors,[]);console.log('PASS V0.26.1 naming categories, scientific names, source labels, live/atlas consistency; no JS exceptions');
+ await p.locator('.species-sources summary').click();assert(await p.locator('.species-sources a[href*="seaharescorpion.com"]').isVisible());
+ await p.goto(base+'#atlas/giganteus');assert.match(await p.locator('.species-common').innerText(),/暫稱/);await p.locator('.species-sources summary').click();assert(await p.locator('.species-sources a[href*="facebook.com/JumpersFever"]').isVisible());
+ assert.deepEqual(errors,[]);console.log('PASS V0.26.2 concise catalog, scientific names, expandable references, live/atlas consistency; no JS exceptions');
 }finally{await b.close()}})().catch(e=>{console.error(e);process.exit(1)});
