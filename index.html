@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#EFE9DD">
   <link rel="icon" type="image/svg+xml" href="./assets/hachime-symbol-v2.svg">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.25.2</title>
+  <title>八目 HACHIME｜網站互動原型 V0.25.3</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -955,6 +955,15 @@ body{background:var(--ground);color:var(--ink)}
  .shop-carousel{padding:16px;min-height:350px}.shop-carousel .live-picture{top:104px;right:5px;width:43%;height:150px}.shop-carousel .cover-content{width:54%}.shop-carousel .cover-switch{bottom:18px;right:12px}.shop-carousel #livePause{position:absolute;bottom:60px;left:10px;font-size:12px}.shop-carousel .cover-feature-desc{font-size:13px}
  .note-article{padding:18px}.cross-links{font-size:14px}.guide-check{font-size:14px}
 }
+
+/* V0.25.3: external photo atlases and Chinese naming sources (links only) */
+.atlas-reference-links{margin-top:32px;border-top:1px solid #d7d5c8;padding-top:17px}
+.atlas-reference-links h3{font-size:16px;font-weight:650;color:#36543e;margin:0 0 6px}
+.atlas-reference-links p{font-size:12px;line-height:1.8;color:#617061;margin:0 0 13px}
+.atlas-reference-list{display:flex;flex-wrap:wrap;gap:8px 14px}
+.atlas-reference-list a{display:inline-flex;align-items:center;border-bottom:1px solid #a1b19b;padding:6px 0;color:#315f44;font-size:12px;line-height:1.6}
+.atlas-reference-list a:hover{text-decoration:underline;text-underline-offset:3px}
+
 </style>
 <link rel="stylesheet" href="./assets/notebook-v016.css">
 <link rel="stylesheet" href="./assets/notebook-v017.css">
@@ -1039,6 +1048,16 @@ body{background:var(--ground);color:var(--ink)}
 <div class="paper-heading"><div><h2 id="atlasTitle">跳蛛圖鑑</h2><p>選擇想看的跳蛛，查看照片與基本資料。</p></div></div>
 
 <article aria-live="polite" class="species-panel" id="speciesPanel"></article>
+<aside class="atlas-reference-links" aria-label="外部公開跳蛛圖鑑">
+<h3>公開圖鑑與名稱來源</h3>
+<p>想對照真實照片或核對名字，可以參考以下網站。這些網站可公開查閱，但照片是否能轉載，仍須看各張圖的授權。</p>
+<div class="atlas-reference-list">
+<a href="https://gagaphoto.com/new23/cp04_63.htm" target="_blank" rel="noopener noreferrer">嘎嘎昆蟲網｜蠅虎圖鑑（台灣照片） ↗</a>
+<a href="https://spider.tbn.org.tw/" target="_blank" rel="noopener noreferrer">臺灣蛛式會社｜觀察紀錄與照片 ↗</a>
+<a href="https://www.forest.gov.tw/0010237" target="_blank" rel="noopener noreferrer">林業及自然保育署｜台灣常見蜘蛛圖鑑下載 ↗</a>
+<a href="https://jumping-spiders.com/nav_general/start.php" target="_blank" rel="noopener noreferrer">Jumping spiders of the world｜全球跳蛛照片與文獻 ↗</a>
+</div>
+</aside>
 <p class="fine-print">資料持續整理中。飼養建議需依物種及個體狀態確認。</p><p class="cross-links"><a href="#knowledge" data-go="knowledge">閱讀飼養筆記</a><a href="#shop/live" data-go="shop/live">查看活體規劃項目</a><a href="#beginner/2" data-go="beginner/2">閱讀新手指南的物種比較</a></p>
 </section></div>
 <div class="detail-page" data-page="knowledge" hidden><section aria-labelledby="knowledgeTitle" class="paper knowledge-sheet" id="knowledge">
