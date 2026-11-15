@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#EFE9DD">
   <link rel="icon" type="image/svg+xml" href="./assets/hachime-symbol-v2.svg">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.21</title>
+  <title>八目 HACHIME｜網站互動原型 V0.22</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -959,7 +959,7 @@ body{background:var(--ground);color:var(--ink)}
 <link rel="stylesheet" href="./assets/notebook-v016.css">
 <link rel="stylesheet" href="./assets/notebook-v017.css">
 <link rel="stylesheet" href="./assets/notebook-v019.css">
-<link rel="stylesheet" href="./assets/notebook-v021.css">
+<link rel="stylesheet" href="./assets/notebook-v022.css">
 <script src="./assets/welcome.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -989,7 +989,7 @@ body{background:var(--ground);color:var(--ink)}
 <button aria-controls="cartDrawer" aria-haspopup="dialog" class="cart-trigger" id="cartOpen" type="button"><span class="cart-word">購物車</span><span aria-hidden="true" class="cart-symbol">▤</span><span class="cart-count" id="cartCount">0</span></button>
 </header>
   <main id="workspace" class="main-area" tabindex="-1">
-    <div class="workspace" id="viewport" aria-label="完整筆記桌面。拖曳或縮放探索，點擊便條翻頁閱讀；右側目錄可直接開啟內容。">
+    <div class="workspace" id="viewport" aria-label="完整筆記桌面。拖曳或縮放探索，點擊便條開啟內容。">
       <div class="infinite-sheet" id="board">
         <div class="board-corner">八目觀察手帖 <span>HACHIME / FIELD NOTES</span></div>
         <div class="binding-marks" aria-hidden="true"></div>
@@ -1005,7 +1005,7 @@ body{background:var(--ground);color:var(--ink)}
           <svg class="photo-pointer" viewBox="0 0 260 410" aria-hidden="true"><path d="M240 390 C100 397 94 90 26 20 M26 20 l3 21 M26 20 l20 5"/></svg>
         </section>
         <aside class="tiny-note start-note" aria-label="操作說明">拖曳畫面探索，或使用上方標籤。</aside>
-        <section id="beginnerNote" class="paper cover-note beginner-cover" data-open="beginner" role="link" tabindex="0" aria-label="開啟新手起步"><span class="tape" aria-hidden="true"></span><div class="paper-topline"><span>新手清單</span><span>7 個步驟</span></div><div class="cover-content"><h2>第一次養跳蛛</h2><p>飼養前的準備與接回後的照顧。</p><ol class="journey-preview"><li>能不能照顧牠的日常</li><li>怎麼選物種、準備環境</li><li>接回後，要觀察什麼</li></ol></div><div class="cover-footer"><span>新手起步</span><span>翻開七步指南 ↗</span></div></section>
+        <section id="beginnerNote" class="paper cover-note beginner-cover" data-open="beginner" role="link" tabindex="0" aria-label="開啟新手起步"><span class="tape" aria-hidden="true"></span><div class="paper-topline"><span>新手清單</span><span>飼養入門</span></div><div class="cover-content"><h2>第一次養跳蛛</h2><p>飼養前的準備與接回後的照顧。</p><ol class="journey-preview"><li>能不能照顧牠的日常</li><li>怎麼選物種、準備環境</li><li>接回後，要觀察什麼</li></ol></div><div class="cover-footer"><span>新手起步</span><span>閱讀新手指南 ↗</span></div></section>
         <div class="section-mark observation-mark" aria-hidden="true">物種與飼養資料<small>SPECIES & DAILY CARE</small></div>
         <section id="atlasNote" class="paper cover-note atlas-cover" data-open="atlas" role="link" tabindex="0" aria-label="開啟跳蛛圖鑑"><div class="paper-topline"><span>物種資料</span><span>物種參考</span></div><div class="cover-content"><h2>名稱與照片</h2><p>玩家常用名、學名與物種參考照片。</p><div class="specimen-strip">
           <figure><a href="#atlas/audax" data-go="atlas/audax" aria-label="查看大膽跳蛛 Phidippus audax"><div class="specimen-mat"><img src="./assets/photos/audax.jpg" width="960" height="720" alt="大膽跳蛛的物種參考照片"></div><figcaption><span>大膽跳蛛</span><i>Phidippus audax</i><small>Kaldari · CC0 · 參考照</small></figcaption></a></figure>
@@ -1016,7 +1016,7 @@ body{background:var(--ground);color:var(--ink)}
         <div class="section-mark making-mark" aria-hidden="true">用品與開發<small>TOOLS & WORK IN PROGRESS</small></div>
         <section class="development-note" id="developmentNote" tabindex="-1" aria-labelledby="developmentHeading"><div class="paper-topline"><span>A1 / 開發札記</span><span class="concept-stamp">概念階段</span></div><h2 id="developmentHeading">A1 飼養盒開發</h2><p class="development-deck">A1 開發札記</p><div class="development-body"><figure class="blueprint"><img src="./assets/enclosure-plus.svg" width="360" height="290" alt="A1 PLUS 原創概念圖，非完成打樣"><figcaption>設計示意 · 尚未打樣驗證</figcaption></figure><div class="development-copy"><ol><li>通風孔與接縫，怎麼防逃？</li><li>開盒餵食，會不會干擾牠？</li><li>清潔時，能不能方便操作？</li></ol><p>目前整理設計需求，尚未打樣。</p><a class="ink-link" href="#development" data-go="development">查看開發札記 ↗</a></div></div></section>
         <section id="shopNote" class="paper cover-note shop-cover" data-open="shop" role="link" tabindex="0" aria-label="開啟活體與用品"><div class="paper-topline"><span>活體與用品</span><span>規劃中</span></div><div class="cover-content"><h2>活體與用品</h2><p>活體規劃、飼養盒與用品規格。</p><div class="shop-shortcuts"><a href="#shop/live" data-go="shop/live">蜘蛛活體 ↗<small>查看規劃項目</small></a><a href="#shop/equipment" data-go="shop/equipment">飼養盒與用品 ↗<small>A1 規格與測試購物車</small></a></div></div><div class="cover-footer"><span>目前尚未開放販售</span><span>查看全部 ↗</span></div></section>
-        <section class="updates-note" id="updatesNote" tabindex="-1" aria-labelledby="updatesHeading"><p class="small-kicker">RECENT NOTES</p><h2 id="updatesHeading">最近更新</h2><ol class="update-list"><li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">新手指南</span><a href="#beginner" data-go="beginner">新增七步新手指南<span>↗</span></a></li><li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">開發札記</span><a href="#development" data-go="development">A1 開發需求與待驗證項目<span>↗</span></a></li><li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">繁殖日記</span><a href="#breeding" data-go="breeding">新增繁殖日記欄位說明<span>↗</span></a></li></ol><p class="fine-print">以上為網站內容整理日期。</p></section>
+        <section class="updates-note" id="updatesNote" tabindex="-1" aria-labelledby="updatesHeading"><p class="small-kicker">RECENT NOTES</p><h2 id="updatesHeading">最近更新</h2><ol class="update-list"><li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">新手指南</span><a href="#beginner" data-go="beginner">新手指南：從準備到日常照顧<span>↗</span></a></li><li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">開發札記</span><a href="#development" data-go="development">A1 開發需求與待驗證項目<span>↗</span></a></li><li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">繁殖日記</span><a href="#breeding" data-go="breeding">新增繁殖日記欄位說明<span>↗</span></a></li></ol><p class="fine-print">以上為網站內容整理日期。</p></section>
         <section id="aboutNote" class="paper cover-note about-cover" data-open="about" role="link" tabindex="0" aria-label="開啟關於八目"><div class="paper-topline"><span>品牌資訊</span></div><div class="cover-content"><h2>關於八目</h2><p>品牌介紹、開發狀態與素材來源。</p></div><div class="cover-footer"><span>網站持續整理中</span><span>查看介紹 ↗</span></div></section>
         <div class="notebook-signoff"><img src="./assets/hachime-symbol-v2.svg" alt="" width="86" height="58"><p>社群與聯絡</p><a href="#about" data-go="about">八目 HACHIME / 關於與素材來源 ↗</a><div class="social-windows" aria-label="社群帳號尚未設定"><button type="button" disabled><b>Facebook</b><span>待設定</span></button><button type="button" disabled><b>LINE</b><span>待設定</span></button><button type="button" disabled><b>Instagram</b><span>待設定</span></button></div></div>
 <div class="paper-end" aria-hidden="true">HACHIME / FIELD NOTEBOOK</div>
@@ -1024,15 +1024,14 @@ body{background:var(--ground);color:var(--ink)}
     </div>
     <div class="detail-view" id="detailView" hidden>
       <div class="detail-toolbar"><button type="button" id="detailBack" class="back-to-board">← 返回筆記桌面</button><span class="detail-breadcrumb">HACHIME / <span id="currentPageName">內容</span></span></div>
+      <aside class="book-sidebar" id="bookSidebar" aria-label="本篇章節目錄"><button type="button" id="bookMenuToggle" aria-expanded="false" aria-controls="bookMenu">章節 <span aria-hidden="true">☰</span></button><nav id="bookMenu" class="book-menu" aria-label="本篇章節"></nav></aside>
       <div class="detail-scroll" id="detailScroll" tabindex="-1">
         <div class="detail-page" data-page="beginner" hidden><section aria-labelledby="beginnerTitle" class="paper beginner-sheet" id="beginner">
 <span aria-hidden="true" class="tape tape-green"></span>
 <div class="paper-topline"><span>BEGINNER</span><span>入門</span></div>
-<div class="paper-heading"><div><h2 id="beginnerTitle">新手起步</h2><p>從飼養前的準備，到帶回家後的日常照顧。</p></div><span class="stamp-text">01—07</span></div>
+<div class="paper-heading"><div><h2 id="beginnerTitle">新手起步</h2><p>從飼養前的準備，到帶回家後的日常照顧。</p></div></div>
 <p id="guideProgress" class="fine-print" aria-live="polite"></p><button id="resetProgress" class="text-button" type="button">重設閱讀進度</button>
-<div aria-label="新手指南章節" class="chapter-nums" id="guideTabs" role="group"></div>
-<article aria-live="polite" class="chapter-content scroll-region" id="guideContent"></article>
-<div class="bottom-actions"><span id="guideStepText">第 1 / 7 章</span><div><button class="text-button" id="guidePrev" type="button">上一步</button><button class="text-button forward" id="guideNext" type="button">下一步 →</button></div></div>
+<div class="chapter-content" id="guideContent"></div>
 </section></div>
 <div class="detail-page" data-page="atlas" hidden><section aria-labelledby="atlasTitle" class="paper atlas-sheet" id="atlas">
 <span aria-hidden="true" class="tape tape-yellow"></span>
@@ -1040,13 +1039,13 @@ body{background:var(--ground);color:var(--ink)}
 <div class="paper-heading"><div><h2 id="atlasTitle">跳蛛圖鑑</h2><p>選擇物種查看名稱與基本資料。</p></div></div>
 <div aria-label="選擇跳蛛物種" class="species-tabs" id="speciesTabs" role="group"></div>
 <article aria-live="polite" class="species-panel" id="speciesPanel"></article>
-<p class="fine-print">資料持續整理中。飼養建議需依物種及個體狀態確認。</p><p class="cross-links"><a href="#knowledge" data-go="knowledge">閱讀飼養筆記</a><a href="#shop/live" data-go="shop/live">查看活體規劃項目</a><a href="#beginner/2" data-go="beginner/2">回到新手物種比較步驟</a></p>
+<p class="fine-print">資料持續整理中。飼養建議需依物種及個體狀態確認。</p><p class="cross-links"><a href="#knowledge" data-go="knowledge">閱讀飼養筆記</a><a href="#shop/live" data-go="shop/live">查看活體規劃項目</a><a href="#beginner/2" data-go="beginner/2">閱讀新手指南的物種比較</a></p>
 </section></div>
 <div class="detail-page" data-page="knowledge" hidden><section aria-labelledby="knowledgeTitle" class="paper knowledge-sheet" id="knowledge">
 <span aria-hidden="true" class="tape tape-peach"></span>
 <div class="paper-topline"><span>KNOWLEDGE</span><span>查詢</span></div>
 <div class="paper-heading"><div><h2 id="knowledgeTitle">飼養筆記</h2><p>飼養主題與常見問題，可依分類或關鍵字查詢。</p></div></div>
-<nav id="noteTopics" class="section-tabs" aria-label="飼養筆記主題"></nav><article id="noteArticle" class="note-article"></article><h3>查找常見問題</h3>
+<article id="noteArticle" class="note-article"></article><h3 id="care-faq">查找常見問題</h3>
 <label class="search-wrap" for="faqSearch"><span aria-hidden="true">⌕</span><input autocomplete="off" id="faqSearch" placeholder="搜尋：拒食、脫皮、餵食、逃脫…" type="search"/><span class="search-label">SEARCH</span></label>
 <div aria-label="知識分類" class="topic-line" id="faqTopics" role="group"></div>
 <div aria-live="polite" class="faq-scroll scroll-region" id="faqResults"></div>
@@ -1109,14 +1108,14 @@ body{background:var(--ground);color:var(--ink)}
 <p class="cross-links"><a href="#beginner/4" data-go="beginner/4">接回個體前要確認什麼？</a><a href="#atlas" data-go="atlas">回圖鑑了解物種</a></p></div>
 <div class="detail-page" data-page="breeding" hidden><article class="paper breeding-article"><div class="paper-topline"><span>BREEDING JOURNAL</span><span>準備中</span></div><h2>繁殖日記</h2><p class="live-intro">這裡會整理配對、卵囊、孵化與幼蛛成長的紀錄。目前還沒有公開的繁殖紀錄。</p><div class="journal-empty"><span>尚無紀錄</span><h3>等有實際紀錄，再放上來。</h3><p>照片、日期和個體資料會一起標示。不以第三方照片代替八目的繁殖成果。</p></div><h3>之後每篇會記錄什麼？</h3><dl class="journal-fields"><dt>物種與個體</dt><dd>學名、玩家常用名、親代編號與來源。</dd><dt>時間與階段</dt><dd>配對、卵囊、孵化、幼蛛成長的日期與觀察。</dd><dt>照片</dt><dd>本次紀錄的實拍、拍攝日期與說明。</dd><dt>後續追蹤</dt><dd>進食、脫皮、個體狀態及更新日期。</dd></dl><p class="fine-print">目前是內容欄位預覽，尚未提供新增、上傳或儲存紀錄功能。</p><div class="cross-links"><a href="#atlas" data-go="atlas">查看跳蛛圖鑑 ↗</a><a href="#knowledge/observation" data-go="knowledge/observation">日常觀察筆記 ↗</a><a href="#home" data-go="home">返回首頁</a></div></article></div>
 <div class="detail-page" data-page="development" hidden><article class="paper development-article"><div class="paper-topline"><span>DEVELOPMENT NOTES</span><span>概念規劃</span></div><h2>A1 飼養盒：開發需求</h2><p class="live-intro">這是一份設計起點的筆記。目前仍在概念與規格規劃階段，圖片並非實物，也不代表已完成打樣或安全驗證。</p><figure class="development-figure"><img src="./assets/enclosure-plus.svg" width="360" height="290" alt="A1 PLUS 設計概念示意圖"><figcaption>專案原創概念圖 · 非產品實拍</figcaption></figure><h3>日常操作需求</h3><p>開盒、餵食、清潔與觀察，都會影響飼養盒的使用方式。我們先把這些情境列出來，作為整理設計的起點。</p><h3>目前的構想</h3><p>A1 規劃不同尺寸與 CORE、PLUS、PRO 等級，用來討論基礎結構與功能配置。現在呈現的是設計目標，不是已驗證的性能承諾。</p><h3>待驗證項目</h3><ul><li>箱門、接縫與通風孔的防逃條件。</li><li>通風、攀附及結絲空間的配置。</li><li>餵食與清潔操作是否方便、能否減少干擾。</li></ul><p>後續有實際樣品與測試紀錄，再補上照片、版本與結果。適用性仍須依物種、齡期及個體情況確認。</p><div class="cross-links"><a href="#shop/equipment" data-go="shop/equipment">查看 A1 規格規劃 ↗</a><a href="#beginner/3" data-go="beginner/3">先看環境準備清單 ↗</a><a href="#home" data-go="home">返回首頁</a></div></article></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.21</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.22</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳調整畫面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
     <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="頁面縮放"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">重置</button></div>
-    <aside class="book-sidebar" id="bookSidebar" aria-label="內容目錄"><button type="button" id="bookMenuToggle" aria-expanded="false" aria-controls="bookMenu">目錄 <span aria-hidden="true">☰</span></button><nav id="bookMenu" class="book-menu" aria-label="直接開啟內容"><p>目錄 <small>CONTENTS</small></p><a href="#home" data-go="home">筆記桌面<small>完整首頁</small></a><a href="#beginner" data-go="beginner">新手起步<small>飼養前的準備</small></a><a href="#atlas" data-go="atlas">跳蛛圖鑑<small>名稱與照片</small></a><a href="#knowledge" data-go="knowledge">飼養筆記<small>環境・餵食・觀察</small></a><a href="#breeding" data-go="breeding">繁殖日記<small>紀錄欄位與狀態</small></a><a href="#shop" data-go="shop">活體與用品<small>個體資料・用品規格</small></a><a href="#development" data-go="development">開發札記<small>A1 概念與進度</small></a><a href="#about" data-go="about">關於八目<small>品牌・素材來源</small></a><span class="book-menu-foot">八目 HACHIME</span></nav></aside>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.21</span></div>
+
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.22</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
@@ -1278,25 +1277,21 @@ body{background:var(--ground);color:var(--ink)}
   },5600);
   renderLive();
 
-  // Beginner guide
-  let guideIndex=0,completed=[];
-  try{const stored=JSON.parse(localStorage.getItem('hachime-guide-v015')||'[]');if(Array.isArray(stored))completed=stored.filter(n=>Number.isInteger(n)&&n>=0&&n<7);}catch{}
+  // All guide chapters are part of one document; progress remains per chapter.
+  let completed=[];
+  try{const stored=JSON.parse(localStorage.getItem('hachime-guide-v015')||'[]');if(Array.isArray(stored))completed=[...new Set(stored.filter(n=>Number.isInteger(n)&&n>=0&&n<guide.length))];}catch{}
   function saveProgress(){try{localStorage.setItem('hachime-guide-v015',JSON.stringify(completed));}catch{}}
-  $('#resetProgress').addEventListener('click',()=>{completed=[];saveProgress();drawGuide();});
-  function drawGuide(){
-    $('#guideTabs').innerHTML=guide.map((a,i)=>`<button type="button" class="${i===guideIndex?'active':''}" data-chapter="${i}" aria-pressed="${i===guideIndex}" title="${a.title}">${String(i+1).padStart(2,'0')}</button>`).join('');
-    const a=guide[guideIndex];
-    $('#guideContent').innerHTML=`<div class="chapter-subtitle">${String(guideIndex+1).padStart(2,'0')} / ${a.label}</div><h3>${a.title}</h3><p>${a.desc}</p><ul>${a.bullets.map(t=>`<li>${t}</li>`).join('')}</ul><label class="guide-check"><input id="guideRead" type="checkbox" ${completed.includes(guideIndex)?'checked':''}> ${a.check}</label><p class="cross-links"><a data-go="${a.route}" href="#${a.route}">${a.link} ↗</a></p><p class="chapter-caption">閱讀進度只儲存在此瀏覽器，不代表飼養能力或安全認證。照顧細節需依物種及個體核對。</p>`;
-    $('#guideStepText').textContent=`第 ${guideIndex+1} / ${guide.length} 步`;
-    $('#guidePrev').disabled=guideIndex===0; $('#guideNext').disabled=guideIndex===guide.length-1;
-    $$('[data-chapter]').forEach(b=>b.addEventListener('click',()=>{navigate('beginner/'+(+b.dataset.chapter+1));}));
-    $('#guideContent').scrollTop=0;
-    $('#guideProgress').textContent=`已讀 ${completed.length} / 7 步`;
-    $('#guideRead').addEventListener('change',e=>{completed=completed.filter(n=>n!==guideIndex);if(e.target.checked)completed.push(guideIndex);saveProgress();$('#guideProgress').textContent=`已讀 ${completed.length} / 7 步`;});
+  function updateProgress(){
+    $('#guideProgress').textContent=`已讀 ${completed.length} / ${guide.length} 章`;
+    $$('[data-guide-read]').forEach(input=>input.checked=completed.includes(+input.dataset.guideRead));
   }
-  $('#guidePrev').addEventListener('click',()=>{if(guideIndex){navigate('beginner/'+guideIndex);}});
-  $('#guideNext').addEventListener('click',()=>{if(guideIndex<guide.length-1){navigate('beginner/'+(guideIndex+2));}});
-  drawGuide();
+  $('#guideContent').innerHTML=guide.map((a,i)=>`<section class="guide-chapter" aria-labelledby="guide-chapter-${i+1}"><h3 id="guide-chapter-${i+1}">${a.title}</h3><p>${a.desc}</p><ul>${a.bullets.map(t=>`<li>${t}</li>`).join('')}</ul><label class="guide-check"><input data-guide-read="${i}" type="checkbox"> ${a.check}</label><p class="cross-links"><a data-go="${a.route}" href="#${a.route}">${a.link} ↗</a></p></section>`).join('')+'<p class="chapter-caption">閱讀進度只儲存在此瀏覽器，不代表飼養能力或安全認證。照顧細節需依物種及個體核對。</p>';
+  $('#guideContent').addEventListener('change',e=>{
+    const input=e.target.closest('[data-guide-read]');if(!input)return;
+    const index=+input.dataset.guideRead;completed=completed.filter(n=>n!==index);if(input.checked)completed.push(index);saveProgress();updateProgress();
+  });
+  $('#resetProgress').addEventListener('click',()=>{completed=[];saveProgress();updateProgress();});
+  updateProgress();
 
   // Species
   let speciesIndex=0;
@@ -1312,12 +1307,7 @@ body{background:var(--ground);color:var(--ink)}
   drawSpecies();
 
   const notes=[{"id": "environment", "title": "環境準備", "body": "先確認通風、防逃、攀附與清潔方式。溫濕度需求因物種與階段不同，沒有通用的單一數值。", "topic": "環境", "step": 3}, {"id": "feeding", "title": "餵食與供水", "body": "依個體與原照顧方式準備合適的餌料及供水。記錄最近進食情況，拒食時先觀察，不強迫餵食。", "topic": "餵食", "step": 6}, {"id": "molting", "title": "脫皮與成長", "body": "留意絲巢與近期活動變化，減少干擾。不要任意拆除絲巢，也不要把可能傷害個體的活餌留在箱內。", "topic": "脫皮", "step": 6}, {"id": "observation", "title": "日常觀察", "body": "記錄活動、進食、絲巢與環境變化，比單次觀察更容易發現和平常不同的地方。", "topic": "行為", "step": 5}, {"id": "help", "title": "異常與求助", "body": "先降低干擾，整理近期紀錄。明顯外傷、無法正常行走或攀附時，尋求有相關照護經驗的專業協助，避免自行用藥。", "topic": "緊急", "step": 7}];
-  function drawNote(id){
-    const note=notes.find(n=>n.id===id)||notes[0];
-    $('#noteTopics').innerHTML=notes.map(n=>`<a href="#knowledge/${n.id}" data-go="knowledge/${n.id}" ${n.id===note.id?'aria-current="page"':''}>${n.title}</a>`).join('');
-    $('#noteArticle').innerHTML=`<p class="small-kicker">CARE NOTE / 入門摘要</p><h3>${note.title}</h3><p>${note.body}</p><p class="cross-links"><a href="#beginner/${note.step}" data-go="beginner/${note.step}">回到新手第 ${note.step} 步 →</a></p><p class="fine-print">簡要內容持續整理中，詳細資料與來源將逐步補充。</p>`;
-    activeTopic=id?note.topic:'全部';drawTopics();drawFaq();
-  }
+  $('#noteArticle').innerHTML=notes.map(note=>`<section class="care-chapter" aria-labelledby="care-${note.id}"><h3 id="care-${note.id}">${note.title}</h3><p>${note.body}</p><p class="cross-links"><a href="#beginner/${note.step}" data-go="beginner/${note.step}">閱讀相關的新手指南 →</a></p></section>`).join('')+'<p class="fine-print">簡要內容持續整理中，詳細資料與來源將逐步補充。</p>';
   // FAQ filtering
   let activeTopic='全部';
   const topics=['全部','餵食','脫皮','環境','行為','緊急'];
@@ -1422,14 +1412,43 @@ body{background:var(--ground);color:var(--ink)}
     apply();
   }
   function resolveRoute(value){
+    const [path,query='']=value.split('?');value=path;
+    const section=new URLSearchParams(query).get('section')||'';
     value=({'home/cover':'home','home/species':'atlas','home/care':'knowledge','home/studio':'shop','home/about':'about'})[value]||value;
     if(value==='lab')value='shop/equipment';if(value==='live')value='shop/live';
     const [page,sub,...extra]=value.split('/');
     if(!Object.hasOwn(names,page)||extra.length)return {page:'home',sub:'',id:'home'};
     const valid=!sub||(page==='shop'&&['live','equipment'].includes(sub))||(page==='beginner'&&/^[1-7]$/.test(sub))||(page==='knowledge'&&notes.some(n=>n.id===sub))||(page==='atlas'&&species.some(n=>n.id===sub));
-    return {page,sub:valid?(sub||''):'',id:valid?value:page};
+    return {page,sub:valid?(sub||''):'',section,id:(valid?value:page)+(section?'?section='+encodeURIComponent(section):'')};
   }
   function currentRoute(){try{return decodeURIComponent((location.hash||'#home').slice(1));}catch{return 'home';}}
+  let chapterHeadings=[],chapterFrame=0,navigationFrame=0;
+  function updateChapterMarker(){
+    if(detailView.hidden)return;
+    const edge=detailScroll.getBoundingClientRect().top+65;
+    let active=chapterHeadings[0];
+    for(const heading of chapterHeadings){if(heading.getBoundingClientRect().top<=edge)active=heading;}
+    if(detailScroll.scrollHeight>detailScroll.clientHeight+2&&detailScroll.scrollTop+detailScroll.clientHeight>=detailScroll.scrollHeight-2)active=chapterHeadings.at(-1);
+    $$('#bookMenu [data-section]').forEach(link=>{
+      if(link.dataset.section===active?.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');
+    });
+  }
+  function buildChapterMenu(route){
+    const page=$(`.detail-page[data-page="${route.page}"]`);
+    const selector=route.page==='beginner'?'.guide-chapter h3':route.page==='knowledge'?'.care-chapter h3,#care-faq':'h2,h3';
+    chapterHeadings=$$(selector,page).filter(h=>h.getClientRects().length);
+    const allHeadings=$$('h2,h3',page);
+    chapterHeadings.forEach(heading=>{heading.id ||= `${route.page}-section-${allHeadings.indexOf(heading)+1}`;heading.tabIndex=-1;});
+    const title=document.createElement('p');title.textContent='本篇章節';
+    $('#bookMenu').replaceChildren(title);
+    for(const heading of chapterHeadings){
+      const link=document.createElement('a');link.textContent=heading.textContent;link.dataset.section=heading.id;
+      const target=route.page==='beginner'?'beginner/'+heading.id.replace('guide-chapter-',''):route.page==='knowledge'&&heading.id!=='care-faq'?'knowledge/'+heading.id.replace('care-',''):route.page+(route.sub?'/'+route.sub:'')+'?section='+encodeURIComponent(heading.id);
+      link.href='#'+target;link.dataset.go=target;$('#bookMenu').append(link);
+    }
+    $('#bookSidebar').hidden=!chapterHeadings.length;
+  }
+  detailScroll.addEventListener('scroll',()=>{if(chapterFrame)return;chapterFrame=requestAnimationFrame(()=>{chapterFrame=0;updateChapterMarker();});},{passive:true});
   function navigate(value,updateUrl=true){
     const route=resolveRoute(value),id=route.page;
     if(updateUrl)collapseHint();
@@ -1439,15 +1458,23 @@ body{background:var(--ground);color:var(--ink)}
     viewport.hidden=showing;$('#canvasControls').hidden=showing;$('#bottomMark').hidden=showing;closeBookMenu();updateHint();
     $$('.detail-page').forEach(el=>el.hidden=el.dataset.page!==id);
     $$('.shop-panel').forEach(el=>el.hidden=el.dataset.shop!==(route.sub||'overview'));
-    if(id==='beginner'){guideIndex=route.sub?+route.sub-1:0;drawGuide();}
-    if(id==='knowledge')drawNote(route.sub);
+
     if(id==='atlas'){speciesIndex=Math.max(0,species.findIndex(n=>n.id===route.sub));drawSpecies();}
-    if(showing){$('#currentPageName').textContent=names[id];detailScroll.scrollTop=0;requestAnimationFrame(()=>detailScroll.focus({preventScroll:true}));}
+    cancelAnimationFrame(navigationFrame);
+    if(showing){
+      $('#currentPageName').textContent=names[id];buildChapterMenu(route);
+      const targetId=route.section||(id==='beginner'&&route.sub?'guide-chapter-'+route.sub:id==='knowledge'&&route.sub?'care-'+route.sub:'');
+      navigationFrame=requestAnimationFrame(()=>{
+        const target=chapterHeadings.find(h=>h.id===targetId);
+        detailScroll.scrollTop=target?detailScroll.scrollTop+target.getBoundingClientRect().top-detailScroll.getBoundingClientRect().top-28:0;
+        (target||detailScroll).focus({preventScroll:true});updateChapterMarker();
+      });
+    }
     else requestAnimationFrame(()=>{apply();if(wasDetail&&overviewFocus?.isConnected)overviewFocus.focus({preventScroll:true});});
-    $$('[data-go]').forEach(el=>{const active=el.closest('.top-nav')?el.dataset.go===(id==='development'?'shop':id):el.closest('.book-menu')?el.dataset.go===id:el.dataset.go===(id==='knowledge'&&!route.sub?'knowledge/environment':route.id);el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
+    $$('[data-go]:not([data-section])').forEach(el=>{const active=el.closest('.top-nav')?el.dataset.go===(id==='development'?'shop':id):el.dataset.go===route.id;el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     if(updateUrl&&location.hash!==`#${route.id}`)history.pushState(null,'',`#${route.id}`);
     $('#pricePopover').hidden=true;
-    if(updateUrl&&lastRoute!==route.id)animateTurn(!showing);lastRoute=route.id;
+    if(updateUrl&&resolveRoute(lastRoute).page!==id)animateTurn(!showing);lastRoute=route.id;
   }
   document.addEventListener('click',e=>{
     const link=e.target.closest('[data-go],[data-jump]');if(!link||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;

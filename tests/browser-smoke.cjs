@@ -16,17 +16,17 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   assert.equal(await page.locator('#board .cover-note').count(),6);
   const first=await page.locator('.beginner-cover').boundingBox();assert(first.x>=0&&first.y>=78&&first.x+first.width<=1440);
   await page.locator('.beginner-cover h2').click();await visible('[data-page="beginner"]');
-  for(let i=1;i<=7;i++){
-   assert.match(await page.locator('#guideStepText').innerText(),new RegExp(`第 ${i} / 7`));
-   await page.locator('#guideRead').check();
-   if(i<7)await page.locator('#guideNext').click();
-  }
-  assert(await page.locator('#guideNext').isDisabled());assert.match(await page.locator('#guideProgress').innerText(),/7 \/ 7/);
+  assert.equal(await page.locator('.guide-chapter').count(),7);
+  assert.equal(await page.locator('#guideTabs,#guidePrev,#guideNext').count(),0);
+  for(let i=0;i<7;i++)await page.locator(`[data-guide-read="${i}"]`).check();
+  assert.match(await page.locator('#guideProgress').innerText(),/7 \/ 7/);
   await page.reload();await page.clock.runFor(50);assert.match(await page.locator('#guideProgress').innerText(),/7 \/ 7/);
   await page.locator('#resetProgress').click();assert.match(await page.locator('#guideProgress').innerText(),/0 \/ 7/);
-  await go('beginner/3');await page.locator('#guideContent [data-go="shop/equipment"]').click();await visible('[data-shop="equipment"]');
-  await page.goBack();await visible('[data-page="beginner"]');assert.match(await page.locator('#guideStepText').innerText(),/第 3/);
-  console.log('PASS seven-step journey, persistence/reset, contextual link and browser back');
+  await go('beginner/3');await page.locator('.guide-chapter').nth(2).locator('[data-go="shop/equipment"]').click();await visible('[data-shop="equipment"]');
+  await page.goBack();await page.clock.runFor(50);await visible('[data-page="beginner"]');
+  assert.equal(new URL(page.url()).hash,'#beginner/3');
+  assert.equal(await page.locator('#bookMenu [aria-current]').getAttribute('data-section'),'guide-chapter-3');
+  console.log('PASS continuous seven chapters, persistence/reset, contextual link and browser back');
   await go('atlas');
   for(let i=0;i<3;i++){
    await page.locator(`[data-species="${i}"]`).click();assert.equal(await page.locator(`[data-species="${i}"]`).getAttribute('aria-pressed'),'true');
@@ -36,8 +36,8 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await page.reload();await page.clock.runFor(50);assert.match(await page.locator('#speciesPanel h3').innerText(),/老虎狗/);
   await go('knowledge');
   for(const id of ['environment','feeding','molting','observation','help']){
-   await page.locator(`#noteTopics [data-go="knowledge/${id}"]`).click();await visible('#noteArticle h3');
-   assert.equal(await page.locator(`#noteTopics [data-go="knowledge/${id}"]`).getAttribute('aria-current'),'page');
+   await page.locator(`#bookMenu [data-go="knowledge/${id}"]`).click();await visible('#care-'+id);await page.clock.runFor(50);
+   assert.equal(await page.locator(`#bookMenu [data-go="knowledge/${id}"]`).getAttribute('aria-current'),'location');
   }
   await page.locator('[data-topic="全部"]').click();await page.locator('#faqSearch').fill('zzzz');assert.match(await page.locator('#faqResults').innerText(),/找不到/);
   await page.locator('#faqSearch').fill('');assert.equal(await page.locator('#faqResults details').count(),8);
