@@ -1,4 +1,11 @@
-# HACHIME｜素材來源與授權（更新至 V0.24）
+# HACHIME｜素材來源與授權（更新至 V0.24.1）
+
+## V0.24.1：名稱交叉核對更正
+
+`assets/photos/hyllus.jpg` 是 **Hyllus diardi** 的第三方參考照，依核對結果標為老虎狗／斑腹蠅象。獅子狗對應 **H. giganteus**，圖鑑照片待補、活體區使用既有 OpenMoji 一般蜘蛛示意。Doreen 的 CC BY 4.0 與原始檔、署名均不變；沒有新增或挪用店家照片。
+
+[名稱核對與來源](docs/HYLLUS_NAME_VERIFICATION.md)。下方 V0.24 的反向暱稱對照撤回，其餘授權紀錄保持。
+
 
 ## V0.24：圖鑑名稱修正與效能調整
 

@@ -30,10 +30,10 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await go('atlas');
   for(const id of ['regius','audax','hyllus']){
    await page.locator(`[data-species-id="${id}"]`).click();assert.equal(await page.locator(`[data-species-id="${id}"]`).getAttribute('aria-current'),'page');
-   assert.match(await page.locator('#speciesPanel h3').innerText(),/佛跳|大膽跳蛛|獅子狗/);
+   assert.match(await page.locator('#speciesPanel h3').innerText(),/佛跳|大膽跳蛛|老虎狗/);
    await page.waitForFunction(()=>document.querySelector('#speciesPanel img').src.includes('/assets/')&&document.querySelector('#speciesPanel img').naturalWidth>0);
   }
-  await page.reload();await page.clock.runFor(50);assert.match(await page.locator('#speciesPanel h3').innerText(),/獅子狗/);
+  await page.reload();await page.clock.runFor(50);assert.match(await page.locator('#speciesPanel h3').innerText(),/老虎狗/);
   await go('knowledge');
   for(const id of ['environment','feeding','molting','observation','help']){
    await page.locator(`#bookMenu [data-go="knowledge/${id}"]`).click();await visible('#care-'+id);await page.clock.runFor(650);
