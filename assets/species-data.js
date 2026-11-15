@@ -1,4 +1,4 @@
-/* HACHIME V0.25.1: heading source and taxonomic Chinese names are separate assertions. */
+/* HACHIME V0.25.2: one player-facing index card per familiar name; genus details within the card. */
 window.HACHIME_SPECIES = [
   {
     "id": "adansoni",
@@ -284,13 +284,13 @@ window.HACHIME_SPECIES = [
   {
     "id": "simaetha",
     "common": "西邁塔",
-    "name": "Simaetha 屬未定種",
+    "name": "正式中文名稱未確認",
     "latin": "Simaetha sp.",
     "authority": "屬 Simaetha Thorell, 1881；未指定種",
     "group": "其他物種",
-    "status": "未定種（屬級）",
+    "status": "種類待確認",
     "origin": "香港商家以 Simaetha sp. 'Hong Kong' 銷售；物種分布無法據此推定",
-    "summary": "香港森流以「西邁塔跳蛛」販售 Simaetha sp. ‘Hong Kong’，因此這個稱呼確有原始商家對照，但只確認到 Simaetha 屬、未確定種。不可與 Simaetha thoracica（澳洲的模式種）畫上等號。",
+    "summary": "「西邁塔」為飼養圈使用的名稱，目前可查到商家以 Simaetha sp. 標示；尚未鑑定到確切種。不同 Simaetha 物種不能只因外觀或稱呼相似就視為同一種。",
     "sources": [
       {
         "label": "森流：西邁塔跳蛛 Simaetha sp. ‘Hong Kong’（商家用名）",
@@ -299,14 +299,10 @@ window.HACHIME_SPECIES = [
       {
         "label": "WSC：Simaetha 屬有效種類與分類",
         "url": "https://wsc.nmbe.ch/species-list/3141/Simaetha"
-      },
-      {
-        "label": "WSC：Simaetha thoracica 是模式種",
-        "url": "https://wsc.nmbe.ch/spec-data/39305"
       }
     ],
-    "displayKind": "商家稱呼（未定種）",
-    "nameKind": "屬級辨識；沒有確定種的中文名"
+    "displayKind": "玩家／商家稱呼",
+    "nameKind": "屬級未定種"
   },
   {
     "id": "johnsoni",
@@ -347,69 +343,27 @@ window.HACHIME_SPECIES = [
     "nameKind": "未確認中文名；大標為譯稱"
   },
   {
-    "id": "maratus-volans",
-    "common": "孔雀蜘蛛 M. volans",
-    "name": "孔雀蜘蛛（中文資料亦用於本種）",
-    "latin": "Maratus volans",
-    "authority": "(O. Pickard-Cambridge, 1874)",
-    "group": "其他物種",
-    "status": "物種條目",
-    "origin": "澳洲昆士蘭、新南威爾斯及維多利亞",
-    "summary": "Maratus volans 是孔雀跳蛛屬的具體物種；中文資料有使用「孔雀蜘蛛」指此物種，但同一名稱也常泛指整個 Maratus 類群。本站以學名區分兩個入口。",
-    "sources": [
-      {
-        "label": "World Spider Catalog：M. volans",
-        "url": "https://www.wsc.nmbe.ch/spec-data/37203"
-      }
-    ],
-    "displayKind": "物種通稱（非玩家暱稱）",
-    "nameKind": "中文通稱；須與 Maratus 屬區分"
-  },
-  {
-    "id": "simaetha-thoracica",
-    "common": "S. thoracica",
-    "name": "中文名尚未核對",
-    "latin": "Simaetha thoracica",
-    "authority": "Thorell, 1881",
-    "group": "其他物種",
-    "status": "物種條目",
-    "origin": "澳洲西澳與昆士蘭",
-    "summary": "Simaetha thoracica 是世界蜘蛛名錄確認的 Simaetha 屬模式種，分布於澳洲西澳及昆士蘭，並非香港商家所稱的西邁塔未定種。不應把模式種名稱轉成未經查證的玩家暱稱。",
-    "sources": [
-      {
-        "label": "World Spider Catalog：S. thoracica",
-        "url": "https://wsc.nmbe.ch/spec-data/39305"
-      },
-      {
-        "label": "World Spider Catalog：Simaetha 屬",
-        "url": "https://wsc.nmbe.ch/species-list/3141/Simaetha"
-      }
-    ],
-    "displayKind": "學名簡寫（非玩家暱稱）",
-    "nameKind": "未核對的中文名"
-  },
-  {
     "id": "maratus",
-    "common": "澳洲孔雀蜘蛛",
-    "name": "孔雀跳蛛屬的多個物種",
+    "common": "孔雀蜘蛛",
+    "name": "孔雀蜘蛛類群",
     "latin": "Maratus spp.",
     "authority": "Maratus Karsch, 1878",
     "group": "其他物種",
-    "status": "屬級整理",
+    "status": "類群介紹",
     "origin": "以澳洲為主；分布依物種而異",
-    "summary": "澳洲孔雀蜘蛛是涵蓋 Maratus 屬多種蜘蛛的通俗說法，而不是一個單獨的種；其中 Maratus volans 另設獨立條目。",
+    "summary": "「孔雀蜘蛛」泛指一群以求偶展示聞名的 Maratus 跳蛛，並非單一種。Maratus volans 是其中一個具體物種；不同種的顏色、求偶動作與分布不同，須個別辨識。",
     "sources": [
       {
-        "label": "Maratus 屬與物種列表",
-        "url": "https://en.wikipedia.org/wiki/Maratus"
+        "label": "World Spider Catalog：Maratus 屬名錄",
+        "url": "https://wsc.nmbe.ch/species-list/2946/Maratus"
       },
       {
-        "label": "Maratus volans 物種資料",
-        "url": "https://en.wikipedia.org/wiki/Maratus_volans"
+        "label": "World Spider Catalog：Maratus volans 物種",
+        "url": "https://www.wsc.nmbe.ch/spec-data/37203"
       }
     ],
-    "displayKind": "中文類群通稱（非單一物種）",
-    "nameKind": "屬級整理（非正式種名）"
+    "displayKind": "常見類群稱呼",
+    "nameKind": "非單一物種名稱"
   },
   {
     "id": "audax",
