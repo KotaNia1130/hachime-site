@@ -9,7 +9,9 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await page.goto(base);await page.evaluate(()=>document.fonts.ready);
   assert(await page.evaluate(()=>[...document.fonts].some(f=>f.family==='HachimeFieldHand'&&f.status==='loaded')),'local handwriting loads without external fonts');
   await page.waitForFunction(()=>[...document.querySelectorAll('.brand-collage img,.specimen-strip img')].every(i=>i.complete&&i.naturalWidth>0));
+  async function leaf(key){if(width<=960)await page.locator('#bookMenuToggle').click();await page.locator(`[data-leaf-link="${key}"]`).click();}
   async function panTo(selector){
+   const key=await page.locator(selector).evaluate(e=>e.closest('[data-leaf]').dataset.leaf);if(await page.locator('#board').getAttribute('data-active-leaf')!==key)await leaf(key);
    const target=await page.locator(selector).boundingBox(),v=await page.locator('#viewport').boundingBox();
    await page.mouse.move(v.x+v.width/2,v.y+v.height/2);await page.mouse.wheel(target.x+target.width/2-v.x-v.width/2,target.y+target.height/2-v.y-v.height/2);
    await page.waitForTimeout(100);
@@ -22,7 +24,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
    await panTo(selector);await page.locator(selector).click({trial:true});
   }
   await panTo('.specimen-strip a[data-go="atlas/hyllus"]');await page.locator('.specimen-strip a[data-go="atlas/hyllus"]').click();assert.match(await page.locator('#speciesPanel em').innerText(),/Hyllus diardi/);
-  await page.locator('.top-nav [data-go="home"]').click();const before=await page.locator('#board').getAttribute('style');
+  await page.locator('.top-nav [data-go="home"]').click();await page.locator('#zoomIn').click();const before=await page.locator('#board').getAttribute('style');
   const cdp=await context.newCDPSession(page);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:200,y:220}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:170,y:140}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(100);
   assert.notEqual(await page.locator('#board').getAttribute('style'),before,'touch pans board');assert(await page.locator('#viewport').isVisible());assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await context.close();
   console.log(`PASS ${width}px note entrances, unobstructed credits, specimen link, local assets/font and touch drag`);

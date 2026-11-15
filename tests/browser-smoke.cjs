@@ -67,7 +67,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   assert.notEqual(await page.locator('#board').evaluate(e=>[e.style.left,e.style.top].join(',')),before);await visible('#viewport');assert.equal(await page.evaluate(()=>getSelection().toString()),'');
   for(let i=0;i<5;i++)await page.locator('#zoomIn').click();assert.equal(await page.locator('#zoomText').innerText(),'140%');assert.equal(await page.locator('#board').evaluate(e=>getComputedStyle(e).transform),'none');
   await page.locator('#fitBoard').click();await page.screenshot({path:'/tmp/hachime-v015-overview.png'});
-  await page.locator('.shop-cover [data-go="shop/equipment"]').click();await visible('[data-shop="equipment"]');
+  await page.locator('[data-leaf-link="studio"]').click();await page.locator('.shop-cover [data-go="shop/equipment"]').click();await visible('[data-shop="equipment"]');
   await go('%E0%A4%A');await visible('#viewport');await go('shop/unknown');await visible('[data-shop="overview"]');
   console.log('PASS drag, zoom, six-card layout, direct shop entry and invalid routes');
   for(const width of [320,390,600,768,1024,1440]){
