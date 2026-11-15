@@ -1,4 +1,5 @@
-/* HACHIME V0.25.3: public Chinese names only; do not invent translations or attach uncertain species IDs. */
+/* HACHIME V0.26: documented Taiwan observations, market-listed pets and unusual species.
+   Each record separates Chinese display name, taxonomic name and evidence. Photos are not substituted from other taxa. */
 window.HACHIME_SPECIES = [
   {
     "id": "adansoni",
@@ -166,13 +167,209 @@ window.HACHIME_SPECIES = [
     "nameKind": "臺灣蛛式會社用名；臺灣生命大百科另收錄中文俗名"
   },
   {
+    "id": "cupreus",
+    "common": "藍翠蛛",
+    "name": "藍翠蛛",
+    "latin": "Siler cupreus",
+    "authority": "Simon, 1889",
+    "group": "台灣觀察",
+    "status": "已核對學名",
+    "displayKind": "臺灣名錄中文名",
+    "nameKind": "臺灣物種名錄中文名",
+    "origin": "臺灣有原生紀錄；亦見於東亞多地",
+    "summary": "具有金屬光澤的跳蛛。臺灣蛛式會社與 WSC 均收錄本種，香港飼養店也以藍翠蛛名稱販售；不要和未確認的「綠翠」混為一談。",
+    "sources": [
+      {
+        "label": "TBN：藍翠蛛",
+        "url": "https://www.tbn.org.tw/taxa/15f8f1df-a652-421b-8b0e-24a0443ae0e1"
+      },
+      {
+        "label": "WSC：有效學名",
+        "url": "https://wsc.nmbe.ch/spec-data/39271"
+      },
+      {
+        "label": "森流：飼養市場用名",
+        "url": "https://www.greenflow.hk/collections/jumping-spider"
+      }
+    ]
+  },
+  {
+    "id": "fulvus",
+    "common": "白鬚扁蠅虎",
+    "name": "白鬚扁蠅虎",
+    "latin": "Menemerus fulvus",
+    "authority": "(L. Koch, 1878)",
+    "group": "台灣觀察",
+    "status": "已核對學名",
+    "displayKind": "臺灣名錄中文名",
+    "nameKind": "臺灣物種名錄中文名",
+    "origin": "臺灣名錄列為原生；東亞多地有分布",
+    "summary": "臺灣可觀察到的扁蠅虎之一。名錄另列「白鬚蠅虎」「短頜扁蠅虎」等別名；不要只看背部色澤辨認。",
+    "sources": [
+      {
+        "label": "TBN：中文名稱與別名",
+        "url": "https://www.tbn.org.tw/taxa/07d65714-755a-43a2-8dfc-cdb0d780ab71"
+      },
+      {
+        "label": "WSC：有效學名",
+        "url": "https://wsc.nmbe.ch/spec-data/37347"
+      }
+    ]
+  },
+  {
+    "id": "suboppressa",
+    "common": "細齒方胸蛛",
+    "name": "細齒方胸蛛（方胸蛛也俗稱金絲貓、豹虎）",
+    "latin": "Thiania suboppressa",
+    "authority": "Strand, 1907",
+    "group": "台灣觀察",
+    "status": "學名已核對；兩資料源分布摘要有差異",
+    "displayKind": "臺灣名錄中文名",
+    "nameKind": "臺灣物種名錄中文名",
+    "origin": "臺灣有正式觀察紀錄；WSC 全球分布摘要未列臺灣",
+    "summary": "飼養圈常說的「金絲貓」「豹虎」通常指方胸蛛屬的多種蜘蛛，不是這一種的專屬名字。現用拼法是 suboppressa；舊資料、商家亦見 subopressa。近似物種不宜只看體色鑑定。",
+    "sources": [
+      {
+        "label": "臺灣蛛式會社：細齒方胸蛛",
+        "url": "https://spider.tbn.org.tw/taxa/637ac675-8547-4c1b-a0fe-2d07d5bf8a78"
+      },
+      {
+        "label": "WSC：現用拼法",
+        "url": "https://wsc.nmbe.ch/spec-data/39758"
+      },
+      {
+        "label": "綠色力量：金絲貓為方胸蛛的俗名",
+        "url": "https://www.greenpower.org.hk/chi-hong-kongs-wild-stars/the-golden-cat-fighting-spider"
+      }
+    ]
+  },
+  {
+    "id": "strupifer",
+    "common": "毛垛兜蠅虎",
+    "name": "毛垛兜蠅虎（亦有毛垛兜跳蛛用名）",
+    "latin": "Ptocasius strupifer",
+    "authority": "Simon, 1901",
+    "group": "台灣觀察",
+    "status": "學名已核對；臺灣分布紀錄需交叉確認",
+    "displayKind": "臺灣觀察與文獻中文用名",
+    "nameKind": "公開中文用名（非臺灣名錄標準名）",
+    "origin": "臺灣蛛式會社有多筆紀錄；WSC 分布摘要未列臺灣",
+    "summary": "臺灣蛛式會社有多筆已鑑定觀察。不同來源對臺灣分布摘要不一致；圖鑑如實列出兩種資料，不以單一紀錄推論全島常見。",
+    "sources": [
+      {
+        "label": "臺灣蛛式會社：物種鑑定紀錄",
+        "url": "https://spider.tbn.org.tw/occurrence/f404b4cd-7b7f-4ef8-a3f7-1883d3d70848"
+      },
+      {
+        "label": "WSC：學名與分布摘要",
+        "url": "https://wsc.nmbe.ch/spec-data/38941"
+      }
+    ]
+  },
+  {
+    "id": "albopunctatus",
+    "common": "波氏緬蛛",
+    "name": "波氏緬蛛",
+    "latin": "Burmattus albopunctatus",
+    "authority": "(Thorell, 1895)",
+    "group": "台灣觀察",
+    "status": "學名已核對；臺灣分布紀錄需交叉確認",
+    "displayKind": "臺灣名錄中文名",
+    "nameKind": "臺灣物種名錄中文名",
+    "origin": "TBN 有臺灣原生紀錄；WSC 摘要未列臺灣",
+    "summary": "臺灣生物多樣性網絡收錄的跳蛛。WSC 接受相同學名，但全球分布摘要未列臺灣；網站保留兩個來源間的差異。",
+    "sources": [
+      {
+        "label": "TBN：波氏緬蛛",
+        "url": "https://www.tbn.org.tw/taxa/acd3f9fc-df02-494d-9965-8907d0142ae7"
+      },
+      {
+        "label": "WSC：有效學名",
+        "url": "https://www.wsc.nmbe.ch/spec-data/35072"
+      }
+    ]
+  },
+  {
+    "id": "bulbus",
+    "common": "球斑馬蛛",
+    "name": "球斑馬蛛",
+    "latin": "Zebraplatys bulbus",
+    "authority": "Peng, Tso & Li, 2002",
+    "group": "台灣觀察",
+    "status": "已核對學名",
+    "displayKind": "臺灣蛛式會社中文用名",
+    "nameKind": "公開中文用名（非臺灣名錄標準名）",
+    "origin": "臺灣有正式鑑定紀錄；WSC 列臺灣分布",
+    "summary": "在臺灣有實際觀察與鑑定資料的斑馬蛛屬物種。屬名 Zebraplatys 不同於國外常見「斑馬蜘蛛」Salticus scenicus，兩者不可混用照片。",
+    "sources": [
+      {
+        "label": "臺灣蛛式會社：觀察紀錄",
+        "url": "https://spider.tbn.org.tw/data/query?page=1"
+      },
+      {
+        "label": "WSC：球斑馬蛛",
+        "url": "https://wsc.nmbe.ch/spec-data/40187"
+      }
+    ]
+  },
+  {
+    "id": "japonica",
+    "common": "日本蟻蛛",
+    "name": "日本蟻蛛",
+    "latin": "Myrmarachne japonica",
+    "authority": "(Karsch, 1879)",
+    "group": "台灣觀察",
+    "status": "已核對學名",
+    "displayKind": "臺灣名錄中文名",
+    "nameKind": "臺灣物種名錄中文名",
+    "origin": "臺灣、日本、韓國、中國等地有分布",
+    "summary": "具有擬螞蟻外型與行為的跳蛛；外觀像螞蟻不代表是真螞蟻。TaiCOL/TBN 與 WSC 都有本物種紀錄。",
+    "sources": [
+      {
+        "label": "TBN：蟻蛛屬與日本蟻蛛",
+        "url": "https://www.tbn.org.tw/taxa/3b063ca7-83db-4fd7-be0b-19885dfa8cec"
+      },
+      {
+        "label": "WSC：現用學名與分布",
+        "url": "https://www.wsc.nmbe.ch/spec-data/37654"
+      }
+    ]
+  },
+  {
+    "id": "lauta",
+    "common": "華美麗跳蛛",
+    "name": "華美麗跳蛛（GBIF 亦列優美金毛蛛）",
+    "latin": "Chrysilla lauta",
+    "authority": "Thorell, 1887",
+    "group": "台灣觀察",
+    "status": "已核對學名",
+    "displayKind": "中文文獻／資料庫用名",
+    "nameKind": "公開中文用名（非臺灣名錄標準名）",
+    "origin": "WSC 列臺灣及東南亞部分地區",
+    "summary": "虹彩般的體色讓這類跳蛛很有辨識度。中文名見於農業部研究附件及 GBIF，分類學名與臺灣分布可由 WSC 核對。",
+    "sources": [
+      {
+        "label": "林業及自然保育署：研究附件中文名",
+        "url": "https://www.forest.gov.tw/file/74499"
+      },
+      {
+        "label": "GBIF：華美麗跳蛛／優美金毛蛛",
+        "url": "https://www.gbif.org/zh-tw/taxon/5YKJJ"
+      },
+      {
+        "label": "WSC：學名及臺灣分布",
+        "url": "https://wsc.nmbe.ch/spec-data/35262"
+      }
+    ]
+  },
+  {
     "id": "regius",
     "common": "佛跳",
     "name": "佛羅里達跳蛛",
     "latin": "Phidippus regius",
     "authority": "C. L. Koch, 1846",
     "photo": "regius",
-    "group": "其他物種",
+    "group": "寵物與飼養圈",
     "status": "物種條目",
     "origin": "美國東南部及加勒比海部分地區",
     "summary": "常見於寵物跳蛛飼養。個體的性別、齡期和來源，仍要另外確認。",
@@ -196,7 +393,7 @@ window.HACHIME_SPECIES = [
     "latin": "Hyllus diardi",
     "authority": "(Walckenaer, 1837)",
     "photo": "diardi",
-    "group": "其他物種",
+    "group": "寵物與飼養圈",
     "status": "物種條目",
     "origin": "東南亞及中國西南部部分地區",
     "summary": "台灣商家以「老虎狗／斑腹蠅象」對應 Hyllus diardi；學名已核對，但玩家稱呼可能因社群或地區而不同，不能用於個體鑑定。",
@@ -227,7 +424,7 @@ window.HACHIME_SPECIES = [
     "name": "巨蠅象（中文名稱待進一步核對）",
     "latin": "Hyllus giganteus",
     "authority": "C. L. Koch, 1846",
-    "group": "其他物種",
+    "group": "寵物與飼養圈",
     "status": "物種條目",
     "origin": "東南亞部分地區",
     "summary": "玩家原始貼文將「獅子狗」對應 Hyllus giganteus。學名有效，但「巨蠅象」尚未得到足夠中文分類文獻支持，僅為待核對中文名稱。",
@@ -249,35 +446,12 @@ window.HACHIME_SPECIES = [
     "nameKind": "暫用中文名（未獲名錄確認）"
   },
   {
-    "id": "portia",
-    "common": "唇形孔蛛",
-    "name": "唇形孔蛛",
-    "latin": "Portia labiata",
-    "authority": "(Thorell, 1887)",
-    "group": "其他物種",
-    "status": "物種條目",
-    "origin": "南亞、東南亞及中國南部部分地區",
-    "summary": "唇形孔蛛是中文資料對 Portia labiata 的稱呼，學名經 WSC 核對；尚無足夠來源表明它也是玩家的特定暱稱。本種以捕食其他蜘蛛的行為受到研究關注。",
-    "sources": [
-      {
-        "label": "WSC：Portia labiata 有效學名",
-        "url": "https://www.wsc.nmbe.ch/spec-data/38763"
-      },
-      {
-        "label": "中文文獻用名：唇形孔蛛",
-        "url": "https://zh.wikipedia.org/wiki/%E5%94%87%E5%BD%A2%E5%AD%94%E8%9B%9B"
-      }
-    ],
-    "displayKind": "中文文獻名（非玩家暱稱）",
-    "nameKind": "中文文獻名"
-  },
-  {
     "id": "simaetha",
     "common": "西邁塔",
     "name": "正式中文名稱未確認",
     "latin": "Simaetha sp.",
     "authority": "屬 Simaetha Thorell, 1881；未指定種",
-    "group": "其他物種",
+    "group": "寵物與飼養圈",
     "status": "種類待確認",
     "origin": "香港商家以 Simaetha sp. 'Hong Kong' 銷售；物種分布無法據此推定",
     "summary": "「西邁塔」為飼養圈使用的名稱，目前可查到商家以 Simaetha sp. 標示；尚未鑑定到確切種。不同 Simaetha 物種不能只因外觀或稱呼相似就視為同一種。",
@@ -295,12 +469,132 @@ window.HACHIME_SPECIES = [
     "nameKind": "屬級未定種"
   },
   {
+    "id": "audax",
+    "common": "大膽跳蛛",
+    "name": "大膽跳蛛（英文 Bold jumping spider 的譯稱）",
+    "latin": "Phidippus audax",
+    "authority": "(Hentz, 1845)",
+    "photo": "audax",
+    "group": "寵物與飼養圈",
+    "status": "物種條目",
+    "origin": "北美地區",
+    "summary": "Phidippus audax 是有效種，英文常稱 Bold jumping spider；「大膽跳蛛」是中文譯稱，不代表已確認有獨立玩家圈暱稱。",
+    "sources": [
+      {
+        "label": "Pexels 繁體中文攝影頁：大膽跳蛛",
+        "url": "https://www.pexels.com/zh-tw/photo/39933147/"
+      },
+      {
+        "label": "GBIF：Phidippus audax 及其英文俗名",
+        "url": "https://www.gbif.org/zh-tw/taxon/4G4CD"
+      }
+    ],
+    "displayKind": "公開中文譯稱",
+    "nameKind": "中文攝影與圖文頁使用的譯稱，非臺灣正式名錄"
+  },
+  {
+    "id": "otiosus",
+    "common": "大黃蜂跳蛛",
+    "name": "大黃蜂跳蛛（商家用名）",
+    "latin": "Phidippus otiosus",
+    "authority": "(Hentz, 1846)",
+    "group": "寵物與飼養圈",
+    "status": "已核對學名",
+    "displayKind": "商家／寵物市場中文用名",
+    "nameKind": "公開中文用名（非臺灣名錄標準名）",
+    "origin": "美國，非臺灣原生種",
+    "summary": "飼養店以「大黃蜂跳蛛」販售的 Phidippus 物種，與佛跳 Phidippus regius 是不同種。部分商品標題將學名拼為「Otiosusb」，本頁採 WSC 的有效拼法 otiosus。",
+    "sources": [
+      {
+        "label": "森流：大黃蜂跳蛛原始商品名稱",
+        "url": "https://www.greenflow.hk/products/jumping-spiderphidippus-otiosusb"
+      },
+      {
+        "label": "WSC：P. otiosus 有效學名",
+        "url": "https://wsc.nmbe.ch/spec-data/38472"
+      }
+    ]
+  },
+  {
+    "id": "pius",
+    "common": "教皇跳蛛",
+    "name": "教皇跳蛛（商家原標題寫「教皇跳珠」）",
+    "latin": "Phidippus pius",
+    "authority": "Scheffer, 1905",
+    "group": "寵物與飼養圈",
+    "status": "已核對學名",
+    "displayKind": "商家／寵物市場中文用名",
+    "nameKind": "公開中文用名（非臺灣名錄標準名）",
+    "origin": "美國至哥斯大黎加",
+    "summary": "飼養店以「教皇跳珠」作中文商品名，本站將「跳珠」修成「跳蛛」以符合一般寫法。這是有商家使用的中文名稱，不是分類學正式中文名。",
+    "sources": [
+      {
+        "label": "森流：教皇跳珠原始商品頁",
+        "url": "https://www.greenflow.hk/zh-eng/products/jumping-spider-phidippus-pius"
+      },
+      {
+        "label": "WSC：Phidippus pius 有效學名",
+        "url": "https://www.wsc.nmbe.ch/spec-data/38474"
+      }
+    ]
+  },
+  {
+    "id": "flavigera",
+    "common": "黃毛寬胸蠅虎",
+    "name": "黃毛寬胸蠅虎（另見黃寬胸蠅虎）",
+    "latin": "Rhene flavigera",
+    "authority": "(C. L. Koch, 1846)",
+    "group": "寵物與飼養圈",
+    "status": "已核對學名",
+    "displayKind": "商家／地方圖鑑中文用名",
+    "nameKind": "公開中文用名（非臺灣名錄標準名）",
+    "origin": "南亞至東南亞及中國部分地區；臺灣未確認",
+    "summary": "香港商家使用「黃毛寬胸蠅虎」，公開香港蜘蛛圖鑑另有「黃寬胸蠅虎」。WSC 接受 Rhene flavigera，並已將歷史上的 Rhene danieli 等名稱列入同物異名。",
+    "sources": [
+      {
+        "label": "森流：Rhene flavigera 中文商品名稱",
+        "url": "https://www.greenflow.hk/collections/jumping-spider"
+      },
+      {
+        "label": "香港常見蜘蛛網：黃寬胸蠅虎",
+        "url": "https://hkspider.owlhk.org/family/salticidae"
+      },
+      {
+        "label": "WSC：有效學名與同物異名",
+        "url": "https://wsc.nmbe.ch/spec-data/38983"
+      }
+    ]
+  },
+  {
+    "id": "portia",
+    "common": "唇形孔蛛",
+    "name": "唇形孔蛛",
+    "latin": "Portia labiata",
+    "authority": "(Thorell, 1887)",
+    "group": "特色與國際物種",
+    "status": "物種條目",
+    "origin": "南亞、東南亞及中國南部部分地區",
+    "summary": "唇形孔蛛是中文資料對 Portia labiata 的稱呼，學名經 WSC 核對；尚無足夠來源表明它也是玩家的特定暱稱。本種以捕食其他蜘蛛的行為受到研究關注。",
+    "sources": [
+      {
+        "label": "WSC：Portia labiata 有效學名",
+        "url": "https://www.wsc.nmbe.ch/spec-data/38763"
+      },
+      {
+        "label": "中文文獻用名：唇形孔蛛",
+        "url": "https://zh.wikipedia.org/wiki/%E5%94%87%E5%BD%A2%E5%AD%94%E8%9B%9B"
+      }
+    ],
+    "displayKind": "中文文獻名（非玩家暱稱）",
+    "nameKind": "中文文獻名"
+  },
+  {
     "id": "scenicus",
     "common": "斑馬蜘蛛",
     "name": "斑馬蜘蛛（亦見斑馬紋跳蛛）",
     "latin": "Salticus scenicus",
     "authority": "(Clerck, 1757)",
-    "group": "其他物種",
+    "group": "特色與國際物種",
     "status": "物種條目",
     "origin": "歐洲、北美及亞洲北部部分地區",
     "summary": "Salticus scenicus 在公開中文微距攝影文章及自然觀察整理中使用「斑馬蜘蛛」，另見「斑馬紋跳蛛」的譯稱。這些是實際中文用語，尚不能稱為臺灣分類名錄正式中文名。",
@@ -327,7 +621,7 @@ window.HACHIME_SPECIES = [
     "name": "孔雀蜘蛛類群",
     "latin": "Maratus spp.",
     "authority": "Maratus Karsch, 1878",
-    "group": "其他物種",
+    "group": "特色與國際物種",
     "status": "類群介紹",
     "origin": "以澳洲為主；分布依物種而異",
     "summary": "「孔雀蜘蛛」泛指一群以求偶展示聞名的 Maratus 跳蛛，並非單一種。Maratus volans 是其中一個具體物種；不同種的顏色、求偶動作與分布不同，須個別辨識。",
@@ -345,27 +639,130 @@ window.HACHIME_SPECIES = [
     "nameKind": "非單一物種名稱"
   },
   {
-    "id": "audax",
-    "common": "大膽跳蛛",
-    "name": "大膽跳蛛（英文 Bold jumping spider 的譯稱）",
-    "latin": "Phidippus audax",
-    "authority": "(Hentz, 1845)",
-    "photo": "audax",
-    "group": "其他物種",
-    "status": "物種條目",
-    "origin": "北美地區",
-    "summary": "Phidippus audax 是有效種，英文常稱 Bold jumping spider；「大膽跳蛛」是中文譯稱，不代表已確認有獨立玩家圈暱稱。",
+    "id": "magnus",
+    "common": "大蟻蛛",
+    "name": "大蟻蛛",
+    "latin": "Toxeus magnus",
+    "authority": "(Saito, 1933)",
+    "group": "特色與國際物種",
+    "status": "已核對學名",
+    "displayKind": "臺灣名錄中文名／特殊育幼研究",
+    "nameKind": "臺灣名錄中文名；特殊行為有研究報導",
+    "origin": "WSC 列臺灣分布",
+    "summary": "具有螞蟻擬態外型。相關研究報導母蛛會分泌供幼蛛攝取的營養液，屬特別的育幼行為；不代表一般跳蛛都有這種能力。",
     "sources": [
       {
-        "label": "Pexels 繁體中文攝影頁：大膽跳蛛",
-        "url": "https://www.pexels.com/zh-tw/photo/39933147/"
+        "label": "TBN：大蟻蛛",
+        "url": "https://www.tbn.org.tw/taxa/f0bc52a7-36e2-46a9-be03-0f03596fcced"
       },
       {
-        "label": "GBIF：Phidippus audax 及其英文俗名",
-        "url": "https://www.gbif.org/zh-tw/taxon/4G4CD"
+        "label": "WSC：Toxeus magnus",
+        "url": "https://wsc.nmbe.ch/spec-data/37684"
+      },
+      {
+        "label": "科技大觀園：研究介紹",
+        "url": "https://scitechvista.nat.gov.tw/Article/C000008/detail?ID=7c943796-9e4b-49c0-b7f6-8b8ab3c9d8eb"
       }
-    ],
-    "displayKind": "公開中文譯稱",
-    "nameKind": "中文攝影與圖文頁使用的譯稱，非臺灣正式名錄"
+    ]
+  },
+  {
+    "id": "fimbriata",
+    "common": "纓孔蛛",
+    "name": "纓孔蛛",
+    "latin": "Portia fimbriata",
+    "authority": "(Doleschall, 1859)",
+    "group": "特色與國際物種",
+    "status": "已核對學名",
+    "displayKind": "公開中文圖鑑用名",
+    "nameKind": "公開中文用名（非臺灣名錄標準名）",
+    "origin": "WSC 列臺灣至澳洲等亞洲與大洋洲地區",
+    "summary": "孔蛛屬中以追捕、伏擊及模擬獵物振動著稱的物種，常捕食其他蜘蛛。研究有助理解跳蛛行為；不代表容易飼養。",
+    "sources": [
+      {
+        "label": "澳門生態網：纓孔蛛",
+        "url": "https://minimacau.com/bird/category/%E8%9C%98%E8%9B%9B-spider/%E8%B7%B3%E8%9B%9B%E7%A7%91-salticoidea/"
+      },
+      {
+        "label": "WSC：有效學名與分布",
+        "url": "https://wsc.nmbe.ch/spec-data/38759"
+      },
+      {
+        "label": "Australian Museum：孔蛛捕獵行為",
+        "url": "https://australian.museum/learn/animals/spiders/jumping-spiders/"
+      }
+    ]
+  },
+  {
+    "id": "bhamoensis",
+    "common": "巴莫方胸蛛",
+    "name": "巴莫方胸蛛（金絲貓／豹虎為方胸蛛類群俗稱）",
+    "latin": "Thiania bhamoensis",
+    "authority": "Thorell, 1887",
+    "group": "特色與國際物種",
+    "status": "已核對學名",
+    "displayKind": "中文圖鑑用名／特殊行為",
+    "nameKind": "公開中文用名（非臺灣名錄標準名）",
+    "origin": "中國及南、東南亞部分地區；臺灣未確認",
+    "summary": "香港公開蜘蛛圖鑑與 WSC 都收錄本種。外觀與細齒方胸蛛相近，金絲貓或豹虎一類俗稱不可直接當作唯一種名，可靠辨識仍需更多特徵。",
+    "sources": [
+      {
+        "label": "香港常見蜘蛛網：巴莫方胸蛛",
+        "url": "https://hkspider.owlhk.org/spider/thiania-bhamoensis"
+      },
+      {
+        "label": "WSC：有效學名",
+        "url": "https://wsc.nmbe.ch/spec-data/39742"
+      },
+      {
+        "label": "綠色力量：方胸蛛別名與辨識難度",
+        "url": "https://www.greenpower.org.hk/chi-hong-kongs-wild-stars/the-golden-cat-fighting-spider"
+      }
+    ]
+  },
+  {
+    "id": "acerosa",
+    "common": "針狀麗跳蛛",
+    "name": "針狀麗跳蛛",
+    "latin": "Chrysilla acerosa",
+    "authority": "Wang & Zhang, 2012",
+    "group": "特色與國際物種",
+    "status": "已核對學名",
+    "displayKind": "澳門公開圖鑑中文用名",
+    "nameKind": "公開中文用名（非臺灣名錄標準名）",
+    "origin": "WSC 記錄印度、中國、越南；臺灣未確認",
+    "summary": "外觀帶有金屬虹彩感的跳蛛。澳門生態網使用「針狀麗跳蛛」的中文名，WSC 確認有效學名；不將澳門觀察直接寫成臺灣分布。",
+    "sources": [
+      {
+        "label": "澳門生態網：針狀麗跳蛛",
+        "url": "https://minimacau.com/bird/category/%E8%9C%98%E8%9B%9B-spider/%E8%B7%B3%E8%9B%9B%E7%A7%91-salticoidea/"
+      },
+      {
+        "label": "WSC：Chrysilla acerosa",
+        "url": "https://wsc.nmbe.ch/spec-data/35256"
+      }
+    ]
+  },
+  {
+    "id": "crassipes",
+    "common": "粗腳盤蛛",
+    "name": "粗腳盤蛛",
+    "latin": "Pancorius crassipes",
+    "authority": "(Karsch, 1881)",
+    "group": "特色與國際物種",
+    "status": "已核對學名",
+    "displayKind": "澳門公開圖鑑中文用名",
+    "nameKind": "公開中文用名（非臺灣名錄標準名）",
+    "origin": "WSC 列東亞、東南亞；臺灣未確認",
+    "summary": "澳門公開圖鑑收錄的盤蛛屬種類，外觀與比例有特色；以有效學名與觀察紀錄辨識，不能拿外形相似的其他跳蛛照片替代。",
+    "sources": [
+      {
+        "label": "澳門生態網：粗腳盤蛛",
+        "url": "https://minimacau.com/bird/category/%E8%9C%98%E8%9B%9B-spider/%E8%B7%B3%E8%9B%9B%E7%A7%91-salticoidea/"
+      },
+      {
+        "label": "WSC：Pancorius crassipes",
+        "url": "https://wsc.nmbe.ch/spec-data/38087"
+      }
+    ]
   }
 ];
