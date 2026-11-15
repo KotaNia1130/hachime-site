@@ -1,4 +1,18 @@
-# 八目 HACHIME｜網站 MVP V0.15
+# 八目 HACHIME｜網站 MVP V0.16
+
+## V0.16：品牌拼貼、開發札記與進站體驗
+
+- 首頁品牌短文搭配跳蛛／A1 原創示意拼貼；新增 OpenMoji 幼苗、放大鏡裝飾，全部本地載入。
+- 新增 A1 開發札記摘要與 `#development` 詳細頁，明示概念階段；最近更新列出三項已完成的 V0.15 架構更新。
+- 桌面位置索引可直達品牌、新手、札記與更新；五個主要分類、知識流程及測試購物車保留。
+- 首次首頁進站有可略過的短版品牌動畫及操作說明；回訪不反覆顯示，問號可重新開啟。減少動態模式不播放進場動畫，深層網址直接進內容。
+- 新增 1200×630 OG 分享圖 `assets/hachime-share.png`。可用 `node scripts/render-share.cjs` 由本地素材重新產生。
+
+規格見 `DESIGN_SPEC_V016.md`。補充測試：`node tests/brand-experience.cjs`，使用與既有測試相同的 `BASE_URL`／`CHROMIUM_PATH`。預設伺服器 8000；若使用其他連接埠，兩套測試均以 `BASE_URL=http://127.0.0.1:8001/` 等設定覆寫。
+
+新增 SVG 的官方來源、授權與 SHA-256 記錄在 `assets/new-materials.json`，完整授權在 `assets/OPENMOJI-LICENSE.txt`。未採用ほとりで的圖片、動效檔或字標。
+
+下方保留歷史版本紀錄。
 
 ## V0.15：新手路線與五入口架構
 

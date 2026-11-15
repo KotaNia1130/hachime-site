@@ -6,6 +6,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
  try {
   const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:Number(process.env.DEVICE_SCALE_FACTOR||1)});
+  await page.addInitScript(()=>localStorage.setItem('hachime-welcome-seen-v1','1'));
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.route('https://**/*',r=>r.abort());await page.clock.install();
   const go=async route=>{await page.goto(base+'#'+route,{waitUntil:'load'});await page.clock.runFor(50);};

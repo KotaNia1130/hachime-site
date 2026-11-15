@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#EFE9DD">
   <link rel="icon" type="image/svg+xml" href="./assets/hachime-symbol-v2.svg">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.15</title>
+  <title>八目 HACHIME｜網站互動原型 V0.16</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -870,7 +870,7 @@ body{background:var(--ground);color:var(--ink)}
  .logo-symbol{width:46px;height:36px}
 }
 
-/* V0.15: layout zoom repaints text at its target size; only paper skins tilt. */
+/* V0.16: layout zoom repaints text at its target size; only paper skins tilt. */
 .infinite-sheet{height:1660px;will-change:auto;transform:none}
 .paper-end{top:1605px}
 .workspace .paper,.workspace .tiny-note{transform:none!important}
@@ -920,7 +920,7 @@ body{background:var(--ground);color:var(--ink)}
  .workspace .cover-note::after{transform:rotate(.4deg)}
 }
 
-/* V0.15 — five notebook entrances, one beginner journey, one shop. */
+/* V0.16 — five notebook entrances, one beginner journey, one shop. */
 .infinite-sheet{width:1500px;height:1570px}.paper-end{left:580px;top:1505px}
 .notebook-intro{left:75px;top:85px;width:650px;height:460px}
 .beginner-cover{left:800px;top:85px;width:590px;height:440px}
@@ -956,9 +956,16 @@ body{background:var(--ground);color:var(--ink)}
  .note-article{padding:18px}.cross-links{font-size:14px}.guide-check{font-size:14px}
 }
 </style>
+<link rel="stylesheet" href="./assets/notebook-v016.css">
+<script src="./assets/welcome.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@300;400;500;600;700&amp;family=Zen+Maru+Gothic:wght@400;500;700&amp;family=Huninn&amp;display=swap" rel="stylesheet">
+<meta property="og:title" content="八目 HACHIME｜從認識，到一起生活。">
+<meta property="og:description" content="跳蛛觀察、新手筆記與 A1 飼養盒開發札記。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kotania1130.github.io/hachime-site/assets/hachime-share.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
   <a class="skip" href="#workspace">跳至主要內容</a>
@@ -991,13 +998,21 @@ body{background:var(--ground);color:var(--ink)}
             <p class="brand-phrase">微觀視野，躍動生活。</p>
             <div class="home-divider"></div>
             <h2>從認識，到一起生活。</h2>
-            <p class="main-description">用一份筆記，認識跳蛛、準備環境，再慢慢學會照顧。</p>
-            <div class="home-actions"><button type="button" class="ink-link" data-jump="beginner">第一次養？從這裡開始 <span>↗</span></button><button type="button" class="ink-link subtle" data-jump="knowledge">我想查資料 <span>↗</span></button></div>
+            <p class="main-description">從小小的觀察開始，記下跳蛛的日常，<br>也慢慢整理照顧牠們的方法。<br>認識一個物種，準備一處環境，<br>讓每一步，都有一份可以翻閱的筆記。</p>
+            <div class="home-actions"><button type="button" class="ink-link" data-jump="beginner">開始第一份飼養筆記 <span>↗</span></button><button type="button" class="ink-link subtle" data-focus-note="beginnerNote">自由翻閱 <span>↗</span></button></div>
           </div>
           <div class="home-bottom"><span>精品化 ／ 方便化 ／ 專業化</span><span>INDEX / 01—05</span></div>
         </section>
+<section class="brand-collage" aria-label="八目觀察與設計示意拼貼">
+ <span class="collage-kicker">FIELD NOTES / 觀察的起點</span>
+ <figure class="photo-note spider-photo"><div class="photo-mat"><img src="./assets/spider-regius.svg" width="340" height="260" alt="佛羅里達跳蛛原創概念插圖，非個體實拍"></div><figcaption><b>小小的世界，慢慢認識。</b><span>跳蛛概念插圖 · 非個體實拍</span></figcaption></figure>
+ <figure class="photo-note enclosure-photo"><div class="photo-mat"><img src="./assets/enclosure-core.svg" width="360" height="290" alt="A1 CORE 飼養盒設計示意，非產品實拍"></div><figcaption>A1 / 設計從日常開始<br><small>概念規劃 · 尚未上市</small></figcaption></figure>
+ <img class="collage-seedling" src="./assets/openmoji-seedling.svg" alt="" width="72" height="72">
+ <img class="collage-magnifier" src="./assets/openmoji-magnifier.svg" alt="" width="72" height="72">
+ <span class="pencil-caption">先觀察，再靠近。</span><span class="collage-credit">裝飾：OpenMoji · CC BY-SA 4.0</span>
+</section>
         <aside class="tiny-note start-note" aria-label="操作說明"><span class="tiny-pin" aria-hidden="true"></span><strong>操作方式</strong><p>拖曳桌面探索，點擊便條查看內容。也可以使用上方標籤。</p><span>GUIDE / 01</span></aside>
-        <section class="paper cover-note beginner-cover" data-open="beginner" role="link" tabindex="0" aria-label="開啟新手起步">
+        <section id="beginnerNote" class="paper cover-note beginner-cover" data-open="beginner" role="link" tabindex="0" aria-label="開啟新手起步">
   <span class="tape" aria-hidden="true"></span>
   <div class="paper-topline"><span>01 / BEGINNER</span><span>點擊查看</span></div>
   <div class="cover-content"><h2>新手起步</h2><p>先認識，再準備，學會日常照顧。<br>七個小步驟，陪你從零開始。</p><ol class="journey-preview"><li>了解飼養責任</li><li>準備環境與個體交接</li><li>觀察、照顧與查問題</li></ol></div>
@@ -1026,21 +1041,36 @@ body{background:var(--ground);color:var(--ink)}
 
 
 
+<section class="development-note" id="developmentNote" aria-labelledby="developmentHeading">
+ <div class="paper-topline"><span>HACHIME LAB / DEVELOPMENT NOTE 001</span><span class="concept-stamp">概念規劃</span></div>
+ <h2 id="developmentHeading">A1，從照顧的日常開始。</h2>
+ <p class="development-deck">先把問題記下來，再把設計慢慢做好。</p>
+ <div class="development-body"><figure class="blueprint"><img src="./assets/enclosure-plus.svg" width="360" height="290" alt="A1 PLUS 原創概念圖，非完成打樣"><figcaption>設計示意 / 尚未完成打樣與驗證</figcaption><span class="design-callout callout-one">通風 →</span><span class="design-callout callout-two">↖ 日常操作</span></figure>
+ <div class="development-copy"><p>從通風、防逃到餵食與清潔，整理一只飼養盒需要面對的日常。</p><ul><li>目前：概念與規格規劃</li><li>下一步：核對設計、準備驗證</li></ul><a class="ink-link" href="#development" data-go="development">翻開第 001 篇札記 ↗</a></div></div>
+</section>
+<section class="updates-note" id="updatesNote" aria-labelledby="updatesHeading"><p class="small-kicker">LATEST NOTES / 筆記更新</p><h2 id="updatesHeading">最近，記下了這些。</h2>
+ <ol class="update-list">
+ <li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">網站更新</span><a href="#beginner" data-go="beginner">新手七步，從認識到照顧。<span>↗</span></a></li>
+ <li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">網站更新</span><a href="#shop" data-go="shop">活體與用品，現在有共同入口。<span>↗</span></a></li>
+ <li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">知識架構</span><a href="#knowledge" data-go="knowledge">五個飼養主題，問題慢慢整理。<span>↗</span></a></li>
+ </ol><p class="fine-print">網站內容持續整理中。日期為本次架構更新紀錄。</p>
+</section>
+<div class="notebook-signoff"><img src="./assets/hachime-symbol-v2.svg" alt="" width="86" height="58"><p>觀察，是每一份筆記的開始。</p><a href="#about" data-go="about">關於八目與素材來源 ↗</a></div>
         <!-- Decorative sketch and open-licensed illustration assets; demo sayings are temporary. -->
         <svg class="board-scribble scribble-arc" viewBox="0 0 350 100" aria-hidden="true">
           <defs><path id="hachime-arc-01" d="M 16 79 Q 173 -4 338 69"/></defs>
-          <text><textPath href="#hachime-arc-01" startOffset="50%" text-anchor="middle">科技始於人性</textPath></text>
+          <text><textPath href="#hachime-arc-01" startOffset="50%" text-anchor="middle">從這裡，開始觀察</textPath></text>
           <path class="scribble-path" d="M27 84 Q176 15 325 85" />
           <path class="scribble-path" d="m315 75 11 10-15 3"/>
         </svg>
         <svg class="board-scribble scribble-wave" viewBox="0 0 360 92" aria-hidden="true">
           <defs><path id="hachime-wave-02" d="M 10 62 Q 96 2 179 45 T 348 48"/></defs>
-          <text><textPath href="#hachime-wave-02" startOffset="50%" text-anchor="middle">千里之行，始於足下</textPath></text>
+          <text><textPath href="#hachime-wave-02" startOffset="50%" text-anchor="middle">一張筆記，記下一個發現</textPath></text>
           <path class="scribble-path" d="M18 72 Q83 29 166 63 T335 59" />
         </svg>
         <svg class="board-scribble scribble-circle" viewBox="0 0 240 180" aria-hidden="true">
           <defs><path id="hachime-round-03" d="M36 99 A83 64 0 1 1 201 103"/></defs>
-          <text><textPath href="#hachime-round-03" startOffset="50%" text-anchor="middle">格物致知　・　記錄觀察</textPath></text>
+          <text><textPath href="#hachime-round-03" startOffset="50%" text-anchor="middle">慢慢設計　・　持續觀察</textPath></text>
           <path class="scribble-path" d="M66 136 Q131 172 192 130"/>
         </svg>
         <figure class="board-art art-spider" aria-label="蜘蛛插畫，非特定物種辨識圖">
@@ -1061,7 +1091,7 @@ body{background:var(--ground);color:var(--ink)}
         </figure>
 
         <span class="board-handmark handmark-spider" aria-hidden="true">OBSERVATION ✦</span><span class="board-handmark handmark-case" aria-hidden="true">DESIGN NOTES ↗</span>
-        <div class="paper-end" aria-hidden="true">HACHIME — MVP 15 / NOTEBOOK INDEX</div>
+        <div class="paper-end" aria-hidden="true">HACHIME — MVP 16 / NOTEBOOK INDEX</div>
       </div>
     </div>
     <div class="detail-view" id="detailView" hidden>
@@ -1147,13 +1177,15 @@ body{background:var(--ground);color:var(--ink)}
 <div class="price-popover" hidden="" id="pricePopover"><div class="price-popover-head"><strong>全部規劃售價</strong><button aria-label="關閉完整價目表" id="closePrices" type="button">×</button></div><div id="priceTable"></div></div>
 </section></div>
 <p class="cross-links"><a href="#beginner/4" data-go="beginner/4">接回個體前要確認什麼？</a><a href="#atlas" data-go="atlas">回圖鑑了解物種</a></p></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.15</div>
+<div class="detail-page" data-page="development" hidden><article class="paper development-article"><div class="paper-topline"><span>DEVELOPMENT NOTE 001</span><span>概念規劃</span></div><h2>A1：先把照顧的日常想清楚。</h2><p class="live-intro">這是一份設計起點的筆記。目前仍在概念與規格規劃階段，圖片並非實物，也不代表已完成打樣或安全驗證。</p><figure class="development-figure"><img src="./assets/enclosure-plus.svg" width="360" height="290" alt="A1 PLUS 設計概念示意圖"><figcaption>專案原創概念圖 · 非產品實拍</figcaption></figure><h3>01 / 先記下日常問題</h3><p>開盒、餵食、清潔與觀察，都會影響飼養盒的使用方式。我們先把這些情境列出來，作為整理設計的起點。</p><h3>02 / 目前的構想</h3><p>A1 規劃不同尺寸與 CORE、PLUS、PRO 等級，用來討論基礎結構與功能配置。現在呈現的是設計目標，不是已驗證的性能承諾。</p><h3>03 / 下一步要驗證的事</h3><ul><li>箱門、接縫與通風孔的防逃條件。</li><li>通風、攀附及結絲空間的配置。</li><li>餵食與清潔操作是否方便、能否減少干擾。</li></ul><p>後續有實際樣品與測試紀錄，再補上照片、版本與結果。適用性仍須依物種、齡期及個體情況確認。</p><div class="cross-links"><a href="#shop/equipment" data-go="shop/equipment">查看 A1 規格規劃 ↗</a><a href="#beginner/3" data-go="beginner/3">先看環境準備清單 ↗</a><a href="#home" data-go="home">返回筆記桌面</a></div></article></div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.16</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
     <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="桌面控制"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">回總覽</button></div>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.15</span></div>
+    <nav class="board-index" aria-label="筆記桌面位置索引"><button type="button" data-focus-note="home">品牌</button><button type="button" data-focus-note="beginnerNote">新手</button><button type="button" data-focus-note="developmentNote">札記</button><button type="button" data-focus-note="updatesNote">更新</button></nav>
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.16</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
@@ -1408,7 +1440,7 @@ body{background:var(--ground);color:var(--ink)}
 
   // V0.3: overview is a draggable canvas; each category is a readable document.
   const viewport=$('#viewport'), board=$('#board'), detailView=$('#detailView'), detailScroll=$('#detailScroll');
-  const names={home:'總覽',beginner:'新手起步',atlas:'跳蛛圖鑑',knowledge:'飼養筆記',shop:'活體與用品',about:'關於八目'};
+  const names={home:'總覽',beginner:'新手起步',atlas:'跳蛛圖鑑',knowledge:'飼養筆記',shop:'活體與用品',about:'關於八目',development:'開發札記'};
   let scale=1,panX=0,panY=0,drag=null,raf=0;
   let hintDismissed=false;
   try { hintDismissed=localStorage.getItem('hachime-board-hint-seen')==='1'; } catch(e) {}
@@ -1417,7 +1449,7 @@ body{background:var(--ground);color:var(--ink)}
     const showing=!detailView.hidden;
     $('#viewportHint').hidden=showing;
     $('#viewportHint').classList.toggle('is-dismissed',hintDismissed);
-    $('#hintReopen').hidden=showing||!hintDismissed;
+    $('#hintReopen').hidden=showing;
     $('.start-note').classList.toggle('is-dismissed',hintDismissed);
   }
   function collapseHint(){
@@ -1426,7 +1458,7 @@ body{background:var(--ground);color:var(--ink)}
     try { localStorage.setItem('hachime-board-hint-seen','1'); } catch(e) {}
     updateHint();
   }
-  function reopenHint(){hintDismissed=false;updateHint();}
+  function reopenHint(){if(window.hachimeWelcome){window.hachimeWelcome.open();return;}hintDismissed=false;updateHint();}
   const boardSize=()=>({w:board.offsetWidth,h:board.offsetHeight});
   const bounds=()=>({w:viewport.clientWidth,h:viewport.clientHeight});
   const mobile=()=>window.matchMedia('(max-width:600px)').matches;
@@ -1443,7 +1475,7 @@ body{background:var(--ground);color:var(--ink)}
   function focusHome(){
     const {w,h}=bounds();
     if(mobile()){scale=Math.min(1,(w-12)/374);panX=(w-420*scale)/2;panY=12;}
-    else{scale=Math.min(1,(w-64)/1360,(h-60)/560);scale=Math.max(.32,scale);panX=(w-1360*scale)/2-60*scale;panY=20-65*scale;}
+    else{scale=Math.min(1,(w-64)/1360,(h-60)/700);scale=Math.max(.32,scale);panX=(w-1360*scale)/2-60*scale;panY=20-65*scale;}
     apply();
   }
   function resolveRoute(value){
@@ -1458,7 +1490,7 @@ body{background:var(--ground);color:var(--ink)}
     const route=resolveRoute(value),id=route.page;
     if(updateUrl)collapseHint();
     const showing=id!=='home';detailView.hidden=!showing;
-    viewport.hidden=showing;$('#canvasControls').hidden=showing;$('#bottomMark').hidden=showing;updateHint();
+    viewport.hidden=showing;$('#canvasControls').hidden=showing;$('#bottomMark').hidden=showing;$('.board-index').hidden=showing;updateHint();
     $$('.detail-page').forEach(el=>el.hidden=el.dataset.page!==id);
     $$('.shop-panel').forEach(el=>el.hidden=el.dataset.shop!==(route.sub||'overview'));
     if(id==='beginner'){guideIndex=route.sub?+route.sub-1:0;drawGuide();}
@@ -1466,11 +1498,17 @@ body{background:var(--ground);color:var(--ink)}
     if(id==='atlas'){speciesIndex=Math.max(0,species.findIndex(n=>n.id===route.sub));drawSpecies();}
     if(showing){$('#currentPageName').textContent=names[id];detailScroll.scrollTop=0;requestAnimationFrame(()=>detailScroll.focus({preventScroll:true}));}
     else requestAnimationFrame(()=>apply());
-    $$('[data-go]').forEach(el=>{const active=el.closest('.top-nav')?el.dataset.go===id:el.dataset.go===(id==='knowledge'&&!route.sub?'knowledge/environment':route.id);el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
+    $$('[data-go]').forEach(el=>{const active=el.closest('.top-nav')?el.dataset.go===(id==='development'?'shop':id):el.dataset.go===(id==='knowledge'&&!route.sub?'knowledge/environment':route.id);el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     if(updateUrl&&location.hash!==`#${route.id}`)history.pushState(null,'',`#${route.id}`);
     $('#pricePopover').hidden=true;
   }
+  function focusNote(id){
+    const target=document.getElementById(id);if(!target)return;
+    const {w,h}=bounds();scale=Math.min(1,(w-40)/target.offsetWidth,(h-80)/target.offsetHeight);scale=Math.max(.32,scale);
+    panX=w/2-(target.offsetLeft+target.offsetWidth/2)*scale;panY=h/2-(target.offsetTop+target.offsetHeight/2)*scale;apply();
+  }
   document.addEventListener('click',e=>{
+    const focus=e.target.closest('[data-focus-note]');if(focus){collapseHint();focusNote(focus.dataset.focusNote);return;}
     const link=e.target.closest('[data-go],[data-jump]');if(!link||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
     e.preventDefault();const id=link.dataset.go||link.dataset.jump;navigate(id);if(id==='home')focusHome();
   });
@@ -1515,6 +1553,7 @@ body{background:var(--ground);color:var(--ink)}
   $$('.cover-note').forEach(n=>n.addEventListener('keydown',e=>{if(e.target!==n)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();navigate(n.dataset.open);}}));
   viewport.addEventListener('wheel',e=>{e.preventDefault();collapseHint();const r=viewport.getBoundingClientRect();if(e.ctrlKey||e.metaKey)zoom(scale*(e.deltaY>0?.93:1.07),e.clientX-r.left,e.clientY-r.top);else{panX-=e.deltaX;panY-=e.deltaY;apply();}},{passive:false});
   document.addEventListener('keydown',e=>{
+    if(document.querySelector('#welcomeDialog[open]'))return;
     if(e.key==='Escape'){$('#pricePopover').hidden=true;if(drawer.classList.contains('open')){closeCart();return;}if(!detailView.hidden){navigate('home');return;}}
     if(!detailView.hidden||drawer.classList.contains('open')||e.target.closest('input,button,a,textarea,select'))return;
     const step=e.shiftKey?130:70;

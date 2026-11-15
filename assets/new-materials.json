@@ -1,0 +1,18 @@
+[
+  {
+    "file": "openmoji-seedling.svg",
+    "source": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F331.svg",
+    "sha256": "5f7b280dd0435ea429e6086f18f11a4e02ce46b2497c2231a115feca40634513",
+    "license": "CC BY-SA 4.0",
+    "author": "OpenMoji",
+    "retrieved": "2026-11-15"
+  },
+  {
+    "file": "openmoji-magnifier.svg",
+    "source": "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/svg/1F50D.svg",
+    "sha256": "2acd94760e04fe08acfa605545881915cce8d77b54eb77de1561e6f5f773cffa",
+    "license": "CC BY-SA 4.0",
+    "author": "OpenMoji",
+    "retrieved": "2026-11-15"
+  }
+]

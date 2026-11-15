@@ -1,5 +1,18 @@
 # HACHIME｜素材來源與授權（V0.11）
 
+## V0.16：品牌拼貼與新增裝飾
+
+於 2026-11-15 自 OpenMoji 官方儲存庫取得以下未修改的 SVG；作者為 OpenMoji，授權 CC BY-SA 4.0。僅在網頁中縮放／旋轉顯示。授權全文隨附於 `assets/OPENMOJI-LICENSE.txt`，取得日期、來源及 SHA-256 見 `assets/new-materials.json`。
+
+| 本地檔案 | 官方來源 | 用途 |
+|---|---|---|
+| `assets/openmoji-seedling.svg` | https://github.com/hfg-gmuend/openmoji/blob/master/color/svg/1F331.svg | 品牌觀察拼貼的幼苗裝飾 |
+| `assets/openmoji-magnifier.svg` | https://github.com/hfg-gmuend/openmoji/blob/master/color/svg/1F50D.svg | 品牌觀察拼貼的放大鏡裝飾 |
+
+主圖採本站既有 `spider-regius.svg` 與 `enclosure-core.svg`，開發札記採 `enclosure-plus.svg`。全部為概念插圖，不代表八目在養個體、完成打樣或實際商品。新紙張、膠帶、引導縮圖與線條使用本站 CSS 排版，未複製參考站的圖檔。分享圖 `hachime-share.png` 由 `scripts/render-share.cjs` 排版本站標誌及原創跳蛛圖產生，不包含上述 OpenMoji 裝飾。
+
+本次重新查詢 Wikimedia API／檔案來源頁遇到 HTTP 403，因此未下載新的來源不明照片。既有圖鑑照片引用及本地後備插圖維持原行為。
+
 ## V0.14：蜘蛛活體示意素材與 LOGO 修正
 
 - 佛跳項目使用專案既有 `assets/spider-regius.svg`；老虎狗使用 `assets/spider-hyllus.svg`。均為原創概念插圖，不代表現有個體或商品實拍。
