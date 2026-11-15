@@ -1,4 +1,4 @@
-/* HACHIME V0.25.2: one player-facing index card per familiar name; genus details within the card. */
+/* HACHIME V0.25.3: public Chinese names only; do not invent translations or attach uncertain species IDs. */
 window.HACHIME_SPECIES = [
   {
     "id": "adansoni",
@@ -45,20 +45,6 @@ window.HACHIME_SPECIES = [
     ],
     "displayKind": "玩家縮稱（來源待補）",
     "nameKind": "臺灣名錄中文名"
-  },
-  {
-    "id": "green",
-    "common": "綠翠",
-    "name": "中文名稱待確認",
-    "latin": null,
-    "authority": "",
-    "group": "台灣觀察",
-    "status": "學名待確認",
-    "origin": "台灣觀察項目；物種分布待核對",
-    "summary": "「綠翠」仍只保留為待核對稱呼，沒有可靠證據能對應唯一的跳蛛物種。臺灣名錄的「藍翠蛛 Siler cupreus」不能因名字相近就直接填入本條目。",
-    "sources": [],
-    "displayKind": "玩家暫稱（物種待核對）",
-    "nameKind": "尚未鑑定"
   },
   {
     "id": "paykulli",
@@ -154,26 +140,30 @@ window.HACHIME_SPECIES = [
   },
   {
     "id": "petersi",
-    "common": "P. petersi",
-    "name": "中文名稱尚未核對",
+    "common": "彼得條斑蠅虎",
+    "name": "彼得條斑蠅虎（又稱溝渠蠅虎／溝渠跳蛛）",
     "latin": "Plexippus petersi",
     "authority": "(Karsch, 1878)",
     "group": "台灣觀察",
-    "status": "中文名待確認",
+    "status": "物種條目",
     "origin": "亞洲；臺灣有觀察紀錄",
-    "summary": "臺灣生物多樣性網絡與 WSC 收錄本物種，但尚未找到可靠的正式中文名或玩家稱呼。大標暫採學名縮寫，而非杜撰中文俗名。",
+    "summary": "「彼得條斑蠅虎」見於臺灣蛛式會社的物種紀錄；臺灣生命大百科的 iNaturalist 資料則採「溝渠蠅虎」（溝渠跳蛛）。兩者同指 Plexippus petersi，這些都是有公開使用記錄的中文名稱；不必自創暱稱。",
     "sources": [
       {
-        "label": "臺灣生物多樣性網絡：P. petersi",
-        "url": "https://www.tbn.org.tw/taxa/c0cbc02a-93b4-4925-8a8a-1b6e81d0743c"
+        "label": "臺灣蛛式會社：彼得條斑蠅虎物種紀錄",
+        "url": "https://spider.tbn.org.tw/occurrence/66c9f892-2201-45eb-ada5-4515888aa264"
       },
       {
-        "label": "World Spider Catalog：有效學名",
-        "url": "https://www.wsc.nmbe.ch/spec-data/38716/Plexippus_petersi"
+        "label": "臺灣生命大百科：溝渠蠅虎（溝渠跳蛛）",
+        "url": "https://taieol.tw/muse/digi_object/e0c96826633a3868609445ca1a3f4da5"
+      },
+      {
+        "label": "World Spider Catalog：Plexippus petersi",
+        "url": "https://wsc.nmbe.ch/spec-data/38716"
       }
     ],
-    "displayKind": "學名簡寫（尚無玩家稱呼）",
-    "nameKind": "臺灣名錄未列中文名"
+    "displayKind": "公開中文用名",
+    "nameKind": "臺灣蛛式會社用名；臺灣生命大百科另收錄中文俗名"
   },
   {
     "id": "regius",
@@ -305,42 +295,31 @@ window.HACHIME_SPECIES = [
     "nameKind": "屬級未定種"
   },
   {
-    "id": "johnsoni",
-    "common": "紅背跳蛛",
-    "name": "中文名錄名稱待核對",
-    "latin": "Phidippus johnsoni",
-    "authority": "(G. W. Peckham & E. G. Peckham, 1883)",
-    "group": "其他物種",
-    "status": "物種條目",
-    "origin": "加拿大、美國、墨西哥",
-    "summary": "英文常用名 Red-backed jumping spider 可直譯為「紅背跳蛛」，但未找到臺灣名錄正式中文名或明確玩家暱稱來源。學名 Phidippus johnsoni 為有效種。",
-    "sources": [
-      {
-        "label": "World Spider Catalog：P. johnsoni",
-        "url": "https://www.wsc.nmbe.ch/spec-data/38460"
-      }
-    ],
-    "displayKind": "英文俗名直譯（非玩家暱稱）",
-    "nameKind": "未確認中文名；大標為譯稱"
-  },
-  {
     "id": "scenicus",
-    "common": "斑馬跳蛛",
-    "name": "中文名錄名稱待核對",
+    "common": "斑馬蜘蛛",
+    "name": "斑馬蜘蛛（亦見斑馬紋跳蛛）",
     "latin": "Salticus scenicus",
     "authority": "(Clerck, 1757)",
     "group": "其他物種",
     "status": "物種條目",
     "origin": "歐洲、北美及亞洲北部部分地區",
-    "summary": "英文 Zebra jumping spider 的直譯「斑馬跳蛛」用於幫助理解，並不是已核對的臺灣名錄正式中文名或特定玩家暱稱。",
+    "summary": "Salticus scenicus 在公開中文微距攝影文章及自然觀察整理中使用「斑馬蜘蛛」，另見「斑馬紋跳蛛」的譯稱。這些是實際中文用語，尚不能稱為臺灣分類名錄正式中文名。",
     "sources": [
       {
-        "label": "WSC：Salticus scenicus 有效學名",
-        "url": "https://wsc.nmbe.ch/spec-data/39135"
+        "label": "Shutterstock 中文微距攝影專欄：斑馬蜘蛛",
+        "url": "https://www.shutterstock.com/zh-Hant/blog/macro-photos-surprising-tips"
+      },
+      {
+        "label": "ResearchGate 自然觀察整理：Salticus scenicus 斑馬蜘蛛",
+        "url": "https://www.researchgate.net/publication/361318522_Salticus_scenicus_banmazhizhu_iN"
+      },
+      {
+        "label": "ITIS：Salticus scenicus 有效學名",
+        "url": "https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=888389"
       }
     ],
-    "displayKind": "英文俗名直譯（非玩家暱稱）",
-    "nameKind": "未確認中文名；大標為譯稱"
+    "displayKind": "公開中文用名（非臺灣名錄）",
+    "nameKind": "中文攝影、觀察與文章中的名稱；非臺灣正式物種名錄"
   },
   {
     "id": "maratus",
@@ -368,7 +347,7 @@ window.HACHIME_SPECIES = [
   {
     "id": "audax",
     "common": "大膽跳蛛",
-    "name": "大膽跳蛛（英語 Bold jumping spider 譯稱）",
+    "name": "大膽跳蛛（英文 Bold jumping spider 的譯稱）",
     "latin": "Phidippus audax",
     "authority": "(Hentz, 1845)",
     "photo": "audax",
@@ -378,11 +357,15 @@ window.HACHIME_SPECIES = [
     "summary": "Phidippus audax 是有效種，英文常稱 Bold jumping spider；「大膽跳蛛」是中文譯稱，不代表已確認有獨立玩家圈暱稱。",
     "sources": [
       {
-        "label": "WSC：Phidippus audax 有效學名",
-        "url": "https://www.wsc.nmbe.ch/spec-data/38434"
+        "label": "Pexels 繁體中文攝影頁：大膽跳蛛",
+        "url": "https://www.pexels.com/zh-tw/photo/39933147/"
+      },
+      {
+        "label": "GBIF：Phidippus audax 及其英文俗名",
+        "url": "https://www.gbif.org/zh-tw/taxon/4G4CD"
       }
     ],
-    "displayKind": "英文俗名直譯（非玩家暱稱）",
-    "nameKind": "中文譯稱（非名錄正式中文名）"
+    "displayKind": "公開中文譯稱",
+    "nameKind": "中文攝影與圖文頁使用的譯稱，非臺灣正式名錄"
   }
 ];
