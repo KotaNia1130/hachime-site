@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#EFE9DD">
   <link rel="icon" type="image/svg+xml" href="./assets/hachime-symbol-v2.svg">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.25.1</title>
+  <title>八目 HACHIME｜網站互動原型 V0.25.2</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -1404,7 +1404,7 @@ body{background:var(--ground);color:var(--ink)}
   function resolveRoute(value){
     const [path,query='']=value.split('?');value=path;
     const section=new URLSearchParams(query).get('section')||'';
-    value=({'home/cover':'home','home/species':'atlas','home/care':'knowledge','home/studio':'shop','home/about':'about'})[value]||value;
+    value=({'home/cover':'home','home/species':'atlas','home/care':'knowledge','home/studio':'shop','home/about':'about','atlas/maratus-volans':'atlas/maratus','atlas/simaetha-thoracica':'atlas/simaetha'})[value]||value;
     if(value==='lab')value='shop/equipment';if(value==='live')value='shop/live';
     const [page,sub,...extra]=value.split('/');
     if(!Object.hasOwn(names,page)||extra.length)return {page:'home',sub:'',id:'home'};
