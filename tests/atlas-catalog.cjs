@@ -2,10 +2,10 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict');
 const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
 (async()=>{const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});try{
  const p=await b.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.route('https://**/*',r=>r.abort());await p.addInitScript(()=>sessionStorage.setItem('hachime-welcome-seen-v2','1'));
- const entries=[["adansoni","安德遜","Hasarius adansoni"],["bivittatus","雙帶扁","Menemerus bivittatus"],["green","綠翠",null],["paykulli","褐條斑蠅虎","Plexippus paykulli"],["xanthogramma","橙黃蠅虎","Carrhotus xanthogramma"],["versicolor","眼鏡黑條蠅虎","Phintelloides versicolor"],["incognitus","淡色條斑蠅虎","Plexippus incognitus"],["petersi","P. petersi","Plexippus petersi"],["regius","佛跳","Phidippus regius"],["hyllus","老虎狗","Hyllus diardi"],["giganteus","獅子狗","Hyllus giganteus"],["portia","唇形孔蛛","Portia labiata"],["simaetha","西邁塔","Simaetha sp."],["johnsoni","紅背跳蛛","Phidippus johnsoni"],["scenicus","斑馬跳蛛","Salticus scenicus"],["maratus","孔雀蜘蛛","Maratus spp."],["audax","大膽跳蛛","Phidippus audax"]];
+ const entries=[["adansoni","安德遜","Hasarius adansoni"],["bivittatus","雙帶扁","Menemerus bivittatus"],["paykulli","褐條斑蠅虎","Plexippus paykulli"],["xanthogramma","橙黃蠅虎","Carrhotus xanthogramma"],["versicolor","眼鏡黑條蠅虎","Phintelloides versicolor"],["incognitus","淡色條斑蠅虎","Plexippus incognitus"],["petersi","彼得條斑蠅虎","Plexippus petersi"],["regius","佛跳","Phidippus regius"],["hyllus","老虎狗","Hyllus diardi"],["giganteus","獅子狗","Hyllus giganteus"],["portia","唇形孔蛛","Portia labiata"],["simaetha","西邁塔","Simaetha sp."],["scenicus","斑馬蜘蛛","Salticus scenicus"],["maratus","孔雀蜘蛛","Maratus spp."],["audax","大膽跳蛛","Phidippus audax"]];
  for(const width of [320,390,768,1024,1440]){
   await p.setViewportSize({width,height:900});await p.goto(base+'#atlas');
-  assert.equal(await p.locator('#speciesTabs').count(),0);assert.equal(await p.locator('#bookMenu [data-species-id]').count(),17);
+  assert.equal(await p.locator('#speciesTabs').count(),0);assert.equal(await p.locator('#bookMenu [data-species-id]').count(),15);
   assert.equal(await p.locator('#speciesTitle').innerText(),'佛跳');
   for(const [id,name,latin]of entries){
    if(width<=960)await p.locator('#bookMenuToggle').click();
@@ -15,8 +15,10 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
    assert((await p.locator('#speciesPanel .species-common strong').innerText()).length>0,'Chinese name field must not be empty');
    assert.match(await p.locator('#speciesPanel .species-field-label').first().innerText(),/分類學名/);
    if(id==='paykulli')assert.match(await p.locator('.species-display-kind').innerText(),/名錄中文名/);
+   if(id==='petersi'){assert.match(await p.locator('.species-common').innerText(),/彼得條斑蠅虎/);assert.match(await p.locator('.species-sources').innerText(),/溝渠蠅虎/);}
+   if(id==='scenicus')assert.equal(await p.locator('#speciesTitle').innerText(),'斑馬蜘蛛');
    if(id==='simaetha'){assert.match(await p.locator('.species-display-kind').innerText(),/商家稱呼/);assert.match(await p.locator('.species-common').innerText(),/未定種/);}
-   if(id==='green'){assert.match(await p.locator('.species-display-kind').innerText(),/待核對/);}
+
 
    assert.equal(new URL(p.url()).hash,'#atlas/'+id);
    assert.equal(await p.locator(`#bookMenu [data-species-id="${id}"]`).getAttribute('aria-current'),'page');
@@ -43,6 +45,10 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
  assert.equal(await p.locator('#speciesTitle').innerText(),'孔雀蜘蛛');
  await p.goto(base+'#atlas/simaetha');
  assert.equal(await p.locator('#speciesTitle').innerText(),'西邁塔');
+
+ await p.goto(base+'#atlas');
+ assert(await p.locator('.atlas-reference-links a').count()>=4);
+ assert.match(await p.locator('.atlas-reference-links').innerText(),/臺灣蛛式會社/);
  await p.goto(base+'#shop/live');
  await p.locator('#livePause').click();
  assert.equal(await p.locator('#liveCoverName').innerText(),'佛跳');
