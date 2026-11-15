@@ -1,0 +1,82 @@
+/* One continuous overview. Turning paper is reserved for opening/closing content. */
+:root{--book-rail:184px}
+#viewport,.detail-view{right:0}
+.detail-scroll{margin-left:var(--book-rail);margin-right:0;min-height:0}
+.guide-chapter,.care-chapter{padding:28px 0 34px;border-top:1px solid #c8c4ae;margin-top:25px}
+.guide-chapter h3,.care-chapter h3{margin:0 0 18px;color:#35513b}
+.guide-chapter:focus-within{outline-offset:5px}
+.chapter-content h3:focus,.care-chapter h3:focus{outline:none}
+#guideContent{overflow:visible;height:auto;max-height:none}
+#noteArticle{border:0;padding:0;background:none}
+#bookSidebar[hidden]{display:none}
+.book-menu a[aria-current="location"]{background:#34563f;color:#fff8e4}
+.infinite-sheet{background-image:linear-gradient(#9aab9417 1px,transparent 1px),linear-gradient(90deg,#9aab9417 1px,transparent 1px),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.06' filter='url(%23n)'/%3E%3C/svg%3E");background-size:28px 28px,28px 28px,160px 160px}
+.section-mark small{margin-left:0}
+/* Retain the requested stationery types without changing the overview into chapters. */
+.beginner-cover::after{background:repeating-linear-gradient(0deg,transparent 0 31px,#89764215 31px 32px),#eed584!important;clip-path:polygon(0 0,100% 0,100% 98%,95% 99%,90% 97%,85% 99%,80% 97%,75% 99%,70% 97%,65% 99%,60% 97%,55% 99%,50% 97%,45% 99%,40% 97%,35% 99%,30% 97%,25% 99%,20% 97%,15% 99%,10% 97%,5% 99%,0 98%)}
+.knowledge-cover::after{background:linear-gradient(90deg,transparent 24px,#b76b5e55 24px 25px,transparent 25px),repeating-linear-gradient(0deg,transparent 0 31px,#91a59030 31px 32px),#faf6e5!important}
+.knowledge-cover .paper-topline,.knowledge-cover .cover-content p,.knowledge-cover .cover-footer{color:#3a4e3b}
+.knowledge-cover .cover-content h2{color:#fffbed;background:#34573f;display:inline-block;padding:2px 12px}
+.care-jottings li{border-color:#9da68c66}.care-jottings a{color:#34513c}.knowledge-cover .tape{background:#adbd9f99}
+.breeding-cover::after{background:repeating-linear-gradient(0deg,transparent 0 34px,#c4b9a22b 34px 35px),#fbf5e8!important;border:1px solid #c4b29a!important;border-top:7px solid #b87952!important}
+.workspace .shop-cover::before{display:block;content:'選購資料';position:absolute;left:20px;top:-30px;width:125px;height:38px;padding:8px 15px;background:#c7ad82;color:#3e533d;font-size:12px;transform:rotate(-3deg);border:0;z-index:-2}
+.about-cover::after{border:1px solid #aeb59e!important;background:linear-gradient(90deg,transparent 96%,#83987555 96%),#f1eedc!important}
+/* Contents belongs to the open article and only links to its visible headings. */
+.book-sidebar{position:absolute;z-index:35;left:0;right:auto;top:63px;bottom:0;width:var(--book-rail);padding:20px 12px;background:#e5e4d7;border-right:1px solid #c9ceb9}
+.book-menu{max-height:100%;overflow:auto;padding:0 5px 12px}
+.book-menu>p{font-size:20px;color:#3c553c;margin:12px 0 20px}.book-menu>p small{display:block;font:9px monospace;letter-spacing:.15em;margin-top:9px}
+.book-menu>a{display:block;position:relative;margin:0 0 10px;padding:11px;border-left:4px solid #9ba786;background:#f7f3e6;box-shadow:2px 3px 0 #b6bea145;color:#35513b;font-size:14px;line-height:1.5}
+.book-menu>a:nth-of-type(3){border-color:#8a9e7d}.book-menu>a:nth-of-type(4){border-color:#b89c68}.book-menu>a:nth-of-type(6){border-color:#819c92}.book-menu>a:nth-of-type(7){border-color:#b67c61}
+.book-menu>a small{display:block;font-size:10px;color:#657055;margin-top:4px}.book-menu>a[aria-current]{background:#34563f;color:#fff8e4;border-color:#d6be81}.book-menu>a[aria-current] small{color:#eee4c9}.book-menu>a:hover{outline:1px solid #829779}
+.book-menu-foot{display:block;font:10px Georgia,serif;letter-spacing:.12em;color:#6b765c;margin-top:20px}#bookMenuToggle{display:none}
+.book-menu a:focus-visible,#bookMenuToggle:focus-visible{outline:3px solid #a56d41;outline-offset:3px}
+.hint-reopen{left:13px;right:auto;top:13px}
+/* The soft-paper geometry lives in an inert, disposable StPageFlip overlay. */
+.paper-turn{position:absolute;inset:0;z-index:34;pointer-events:none;overflow:hidden;contain:layout paint}
+.main-area.is-turning::after{content:none}
+@media(max-width:960px){
+ :root{--book-rail:0px}.book-sidebar{width:auto;left:12px;top:12px;right:auto;bottom:auto;background:none;border:0;padding:0}
+ #bookMenuToggle{display:block;border:1px solid #aab79c;background:#34563f;color:#fff9e9;padding:10px 15px;font-size:13px}#bookMenuToggle span{margin-left:13px}
+ .book-menu{display:none;position:absolute;left:0;right:auto;top:46px;width:240px;padding:20px;background:#e9e5d3;border:1px solid #aab79c;max-height:max(110px,calc(100dvh - 240px));box-shadow:0 8px 30px #35452c33}.book-sidebar.is-open .book-menu{display:block}.book-menu>p{margin:0 0 20px}.book-menu>a{padding:12px;margin-bottom:12px}.main-area.is-turning::after{right:0}
+ .detail-toolbar{padding-left:118px;padding-right:16px}
+}
+@media(max-width:600px){.infinite-sheet{background-size:24px 24px,24px 24px,160px 160px}.detail-toolbar{padding-left:118px;gap:8px}.detail-breadcrumb{display:none}}
+@media(prefers-reduced-motion:reduce){.paper-turn{display:none}}
+
+/* Paper means an entrance. Plain notebook ink is descriptive content. */
+.workspace .atlas-cover::after{background:#faf3de!important;border:1px solid #c4b897;box-shadow:4px 7px 13px #4d493426;--paper-tilt:-1deg}
+.workspace .atlas-cover::before{display:block;content:'';position:absolute;right:50px;top:-13px;width:82px;height:27px;background:#9eaf8b99;transform:rotate(5deg);border:0;z-index:2}
+.workspace .atlas-cover .cover-footer{bottom:14px}
+.workspace [data-open]{cursor:pointer}
+.workspace [data-open]:hover::after{box-shadow:5px 9px 15px #4d49343d}
+.workspace [data-open]:focus-visible{outline:3px solid #8a633d;outline-offset:7px}
+.development-note{background:transparent;border:0;box-shadow:none;isolation:isolate}
+.development-note::before{inset:0;z-index:-1;background-color:#e4eae4;border:1px solid #98aaa0;box-shadow:4px 7px 12px #4b5b452a;transform:rotate(-1deg)}
+.development-note::after{content:'';position:absolute;top:-12px;left:60%;width:88px;height:27px;background:#c9bd94aa;transform:rotate(5deg);pointer-events:none}
+/* Small descriptions and shortcuts remain ordinary text links. */
+#board .home-actions [data-jump],#board .home-actions [data-go]{background:none;color:#36533f;border:0;padding:0;text-decoration:underline;text-underline-offset:4px;border-radius:0}
+.notebook-intro,.observation-slip,.updates-note,.notebook-signoff{background:transparent;box-shadow:none}
+.observation-slip{border:0}.observation-slip::before,.observation-slip::after{display:none}
+.start-note{background:none;border:0;box-shadow:none;transform:none}
+.social-windows button:disabled{border:0;opacity:.65;cursor:default}
+@media(max-width:600px){
+ .workspace .atlas-cover .cover-footer{bottom:14px;left:18px;right:18px}.workspace .atlas-cover{padding:20px!important}
+ .specimen-strip figure:nth-child(2){left:132px}.atlas-cover .specimen-strip{margin-top:18px}
+ #board .home-actions [data-jump],#board .home-actions [data-go]{font-size:12px;padding:0}
+
+}
+
+.detail-scroll:focus{outline:none}
+
+/* The atlas reuses the left rail for species selection instead of article headings. */
+.is-atlas{--book-rail:226px}
+.species-menu-group{margin-bottom:22px}.species-menu-group h4{font-size:11px;color:#66725d;letter-spacing:.08em;margin:0 0 9px}
+.species-menu-group a{display:block;border-left:3px solid transparent;padding:10px 8px;margin:0 0 3px;color:#36513c;line-height:1.5}
+.species-menu-group a strong{font-size:14px;font-weight:600;display:block}.species-menu-group a small{display:block;font:italic 11px/1.6 Georgia,serif;overflow-wrap:anywhere;color:#61725b}
+.species-menu-group a:hover{background:#f5f3e5}.species-menu-group a[aria-current]{background:#34563f;color:#fff9e9;border-color:#d6be81}.species-menu-group a[aria-current] small{color:#eee5ce}
+#speciesPanel{padding-top:10px}.species-heading{margin:0 0 25px}.species-heading h3{font-size:38px!important;line-height:1.3;margin:10px 0 8px!important;color:#2e5139}
+.species-heading .species-latin{margin:0;line-height:1.6}.species-latin em{font:italic 23px/1.5 Georgia,serif;overflow-wrap:anywhere}.species-latin small{display:block;font:12px/1.8 Georgia,serif;color:#64705c}
+.species-status{font-size:11px;color:#745e3d}.species-heading .species-common{font-size:14px;margin-top:8px}
+.species-profile{align-items:start}.species-photo-pending{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#efece0;border:1px dashed #b3b69e;color:#67715c;padding:20px!important}.species-photo-pending>p{font-size:20px}.species-photo-pending figcaption{font-size:12px}
+.species-sources{margin-top:22px}.species-sources h4{font-size:13px;margin:0 0 10px}.species-sources a{display:block;font-size:12px;text-decoration:underline;text-underline-offset:3px;margin:9px 0;overflow-wrap:anywhere}
+@media(max-width:960px){.is-atlas{--book-rail:0px}.is-atlas .book-menu{width:min(280px,calc(100vw - 24px));max-height:calc(100dvh - 205px)}.species-heading h3{font-size:31px!important}.species-latin em{font-size:20px}}
