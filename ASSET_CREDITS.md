@@ -1,4 +1,17 @@
-# HACHIME｜素材來源與授權（更新至 V0.17）
+# HACHIME｜素材來源與授權（更新至 V0.18）
+
+## V0.18：植物圖版與本地手寫旁註
+
+| 檔案 | 來源／署名 | 授權 | 使用方式 |
+|---|---|---|---|
+| `assets/photos/fern-plate.jpg` | [A fern frond, possibly Polystichum aculeatum — Wellcome V0043910](https://commons.wikimedia.org/wiki/File:A_fern_frond,_possibly_Polystichum_aculeatum_Wellcome_V0043910.jpg)；Wellcome Collection。來源描述為約 1860 年的自然印刷圖版，植物名稱保留原來源的不確定性。 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | 官方 300px 寬縮圖；圖檔未編輯，CSS 裁切、旋轉、multiply 疊色。首頁圖注及關於頁皆署名、連結來源與授權。 |
+| `assets/field-handwriting.ttf` | [LXGW WenKai TC](https://github.com/google/fonts/tree/main/ofl/lxgwwenkaitc)，Copyright 2024 The LXGW WenKai Project Authors；Google Fonts 提供文字子集 | SIL Open Font License 1.1 | 本地載入的手寫旁註片段；未自行改名或修改字型。授權全文：`assets/FIELD-FONT-OFL.txt`。 |
+
+取得日期：2026-11-15。下載網址、用途、SHA-256 見 `assets/field-materials.json`；植物圖版 API 中繼資料保存於 `assets/photos/fern-metadata.json`。
+
+植物圖版用於裝飾，不表示八目採集／飼養此植物，也不把它當成跳蛛棲地紀錄。物種名稱沿用來源描述，不將「possibly」省略為確定鑑定。
+
+首頁圓形局部圖沿用 V0.17 的佛跳照片（spidereyes2020，CC0），只在 CSS 中放大裁切，並明示是同一張照片。紙張、撕邊、迴紋針、指示線、裝訂孔與紙面噪點為本站 CSS／內嵌 SVG 裝飾，未取用參考網站圖檔。照片、正文與出處連結的文字層不旋轉。
 
 ## V0.17：本地照片與相框
 

@@ -1,0 +1,25 @@
+{
+  "fern": {
+    "file": "assets/photos/fern-plate.jpg",
+    "title": "File:A fern frond, possibly Polystichum aculeatum Wellcome V0043910.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:A_fern_frond,_possibly_Polystichum_aculeatum_Wellcome_V0043910.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/A_fern_frond%2C_possibly_Polystichum_aculeatum_Wellcome_V0043910.jpg/330px-A_fern_frond%2C_possibly_Polystichum_aculeatum_Wellcome_V0043910.jpg",
+    "credit": "Wellcome Collection",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "retrieved": "2026-11-15",
+    "modifications": "No file edits; CSS cropping and multiply compositing in the notebook. Decorative historical botanical plate, not a HACHIME specimen or spider habitat record.",
+    "sha256": "52311967b9acb2a50ac758d049e68f7bf8ec33d253f0e6abe1debdc686d98df6"
+  },
+  "font": {
+    "file": "assets/field-handwriting.ttf",
+    "family": "LXGW WenKai TC",
+    "source": "https://github.com/google/fonts/tree/main/ofl/lxgwwenkaitc",
+    "download": "https://fonts.gstatic.com/l/font?kit=w8gDH20td8wNsI3f40DmtXZb48uKNUUogpXA77suxSSZOJ2lv8-6f8QYjXOynckh3PthqFLbkil_xezqrB4TwBSweOSE4HMAk_xSHmFXdolfwDvuIihbbk-CatI3w_-Xh6JEwYDwJRTuaSEuOocrI22IyHm6Zg8DtqCnwplUKQnLwXouUdl5J4DiJ8iQBMeZJ8IbvCKB4CMIWt9IRMUGBrhem_PVjng031OOIwvZMqtUvR4G&skey=48fda7aef9028035&v=v11",
+    "license": "SIL Open Font License 1.1",
+    "license_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/lxgwwenkaitc/OFL.txt",
+    "retrieved": "2026-11-15",
+    "sha256": "62e6943a89f2cf4c657f32f2f20d731756c77ee27f49ad56b84764dd05a5c882",
+    "modifications": "Google Fonts text subset; no local font edits; limited to handwritten annotations."
+  }
+}

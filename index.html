@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#EFE9DD">
   <link rel="icon" type="image/svg+xml" href="./assets/hachime-symbol-v2.svg">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.17</title>
+  <title>八目 HACHIME｜網站互動原型 V0.18</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -958,6 +958,7 @@ body{background:var(--ground);color:var(--ink)}
 </style>
 <link rel="stylesheet" href="./assets/notebook-v016.css">
 <link rel="stylesheet" href="./assets/notebook-v017.css">
+<link rel="stylesheet" href="./assets/notebook-v018.css">
 <script src="./assets/welcome.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -990,7 +991,7 @@ body{background:var(--ground);color:var(--ink)}
     <div class="workspace" id="viewport" aria-label="可拖曳的筆記總覽。拖曳畫面探索分類，點擊便條開啟完整內容。">
       <div class="infinite-sheet" id="board">
         <svg class="connectors" viewBox="0 0 2070 1390" preserveAspectRatio="none" aria-hidden="true"><path d="M750 310 C845 275 875 300 938 245"/><path d="M1395 283 C1445 260 1460 280 1500 338"/><path d="M430 570 C440 645 465 656 460 704"/><path d="M800 755 C835 710 877 726 925 749"/><path d="M1320 1000 C1400 970 1430 1050 1470 1050"/></svg>
-        <div class="board-corner" aria-hidden="true">HACHIME / NOTEBOOK<br>2026 — CONCEPT</div>
+        <div class="board-corner" aria-hidden="true">HACHIME / FIELD NOTEBOOK<br>跳蛛・飼養・觀察</div><div class="binding-marks" aria-hidden="true"></div><div class="page-number page-one" aria-hidden="true">01 — 觀察</div><div class="page-number page-two" aria-hidden="true">02 — 記錄</div>
         <section id="home" class="notebook-intro" aria-labelledby="homeTitle">
           
           <div class="paper-topline"><span>00 / HACHIME</span><span>網站測試版</span></div>
@@ -1006,35 +1007,39 @@ body{background:var(--ground);color:var(--ink)}
           <div class="home-bottom"><span>精品化 ／ 方便化 ／ 專業化</span><span>INDEX / 01—06</span></div>
         </section>
 <section class="brand-collage" aria-label="跳蛛參考照片與飼養盒設計拼貼">
- <span class="collage-kicker">FIELD NOTES / 觀察的起點</span>
+ <span class="collage-kicker">PHOTO 01 / <i>Phidippus regius</i></span>
  <figure class="photo-note spider-photo"><div class="photo-mat"><img src="./assets/photos/regius.jpg" width="960" height="720" alt="佛羅里達跳蛛的第三方物種參考照片"></div><figcaption><b>佛跳 / <i>Phidippus regius</i></b><span>物種參考照 · 非八目個體</span><span><a href="https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg" target="_blank" rel="noopener noreferrer">spidereyes2020</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener noreferrer">CC0</a> · 裁切顯示</span></figcaption></figure>
  <figure class="photo-note enclosure-photo"><div class="photo-mat"><img src="./assets/enclosure-core.svg" width="360" height="290" alt="A1 CORE 飼養盒設計示意，非產品實拍"></div><figcaption>A1 / 設計從日常開始<br><small>概念規劃 · 尚未上市</small></figcaption></figure>
  <img class="collage-seedling" src="./assets/openmoji-seedling.svg" alt="" width="72" height="72">
  <img class="collage-magnifier" src="./assets/openmoji-magnifier.svg" alt="" width="72" height="72">
- <span class="pencil-caption">先觀察，再靠近。</span><span class="collage-credit">裝飾：OpenMoji · CC BY-SA 4.0</span>
+ <span class="pencil-caption field-hand" aria-hidden="true">照片裡的細節</span>
+ <svg class="photo-pointer" viewBox="0 0 180 110" aria-hidden="true"><path d="M8 94 Q32 35 117 42 Q145 44 152 8 M140 18 L152 8 L163 23"/></svg>
+ <figure class="photo-detail"><div class="detail-lens"><img src="./assets/photos/regius.jpg" alt="同一張佛跳參考照片的局部放大" width="960" height="720"></div><figcaption><span class="field-hand">同一張照片，放大看看</span><small>spidereyes2020 · CC0 · 局部裁切</small></figcaption></figure>
+ <span class="reference-slip">物種參考照<br><b>非八目飼養個體</b><small>素材整理 / 2026.11</small></span>
 </section>
         <aside class="tiny-note start-note" aria-label="操作說明"><span class="tiny-pin" aria-hidden="true"></span><strong>操作方式</strong><p>拖曳桌面探索，點擊便條查看內容。也可以使用上方標籤。</p><span>GUIDE / 01</span></aside>
-        <section id="beginnerNote" class="paper cover-note beginner-cover" data-open="beginner" role="link" tabindex="0" aria-label="開啟新手起步">
+        <span class="field-hand starter-caption" aria-hidden="true">先看這一頁</span>
+<section id="beginnerNote" class="paper cover-note beginner-cover" data-open="beginner" role="link" tabindex="0" aria-label="開啟新手起步">
   <span class="tape" aria-hidden="true"></span>
   <div class="paper-topline"><span>01 / BEGINNER</span><span>點擊查看</span></div>
   <div class="cover-content"><h2>新手起步</h2><p>先認識，再準備，學會日常照顧。<br>七個小步驟，陪你從零開始。</p><ol class="journey-preview"><li>了解飼養責任</li><li>準備環境與個體交接</li><li>觀察、照顧與查問題</li></ol></div>
   <div class="cover-footer"><span>你的第一份飼養筆記</span><span>開啟內容 ↗</span></div>
 </section>
-<section class="paper cover-note atlas-cover" data-open="atlas" role="link" tabindex="0" aria-label="開啟跳蛛圖鑑">
+<section id="atlasNote" class="paper cover-note atlas-cover" data-open="atlas" role="link" tabindex="0" aria-label="開啟跳蛛圖鑑">
 <span class="tape" aria-hidden="true"></span><div class="paper-topline"><span>02 / SPECIES</span><span>認識物種</span></div>
 <div class="cover-content"><h2>跳蛛圖鑑</h2><p>牠是誰？不同物種有哪些差異？<br>從名稱、特徵與來源開始認識。</p><div class="specimen-strip"><figure><img src="./assets/photos/regius.jpg" alt="佛跳物種參考照" width="960" height="720"><figcaption>佛跳<i>Phidippus regius</i></figcaption></figure><figure><img src="./assets/photos/audax.jpg" alt="大膽跳蛛物種參考照" width="960" height="720"><figcaption>大膽跳蛛<i>Phidippus audax</i></figcaption></figure><figure><img src="./assets/photos/hyllus.jpg" alt="老虎狗物種參考照" width="960" height="720"><figcaption>老虎狗<i>Hyllus diardi</i></figcaption></figure></div></div>
 <div class="cover-footer"><span>參考照片 · <a href="#about" data-go="about">來源與授權</a></span><span>翻開圖鑑 ↗</span></div></section>
-<section class="paper cover-note knowledge-cover" data-open="knowledge" role="link" tabindex="0" aria-label="開啟飼養筆記">
+<section id="careNote" class="paper cover-note knowledge-cover" data-open="knowledge" role="link" tabindex="0" aria-label="開啟飼養筆記">
   <span class="tape" aria-hidden="true"></span>
   <div class="paper-topline"><span>03 / KNOWLEDGE</span><span>點擊查看</span></div>
-  <div class="cover-content"><h2>飼養筆記</h2><p>環境、餵食、脫皮與日常觀察。<br>有疑問時，回來找一張筆記。</p><div class="note-keywords">環境準備 ／ 脫皮成長 ／ 異常求助</div></div>
+  <div class="cover-content"><h2>飼養筆記</h2><p>環境、餵食、脫皮與日常觀察。<br>有疑問時，回來找一張筆記。</p><ul class="care-jottings"><li>環境準備</li><li>餵食與供水</li><li>進食、脫皮紀錄</li></ul></div>
   <div class="cover-footer"><span>8 個常見問題</span><span>開啟內容 ↗</span></div>
 </section>
-<section class="paper cover-note shop-cover" data-open="shop" role="link" tabindex="0" aria-label="開啟活體與用品">
+<section id="shopNote" class="paper cover-note shop-cover" data-open="shop" role="link" tabindex="0" aria-label="開啟活體與用品">
 <span class="tape tape-blue" aria-hidden="true"></span><div class="paper-topline"><span>04 / HACHIME SHOP</span><span>規劃中</span></div>
 <div class="cover-content"><h2>活體與用品</h2><p>先理解需求，再選擇適合的夥伴與用品。</p><div class="shop-shortcuts"><a href="#shop/live" data-go="shop/live">蜘蛛活體 ↗<small>認識個體與紀錄</small></a><a href="#shop/equipment" data-go="shop/equipment">飼養盒與用品 ↗<small>A1 規格與概念</small></a></div></div>
 <div class="cover-footer"><span>示意展示 · 尚未開放販售</span><span>查看選購筆記 ↗</span></div></section>
-<section class="paper cover-note about-cover" data-open="about" role="link" tabindex="0" aria-label="開啟關於八目">
+<section id="aboutNote" class="paper cover-note about-cover" data-open="about" role="link" tabindex="0" aria-label="開啟關於八目">
   <span class="tape" aria-hidden="true"></span>
   <div class="paper-topline"><span>05 / ABOUT</span><span>點擊查看</span></div>
   <div class="cover-content"><h2>關於八目</h2><p>品牌介紹、產品定位與目前的開發進度。</p></div>
@@ -1045,8 +1050,9 @@ body{background:var(--ground);color:var(--ink)}
 
 <section class="paper cover-note breeding-cover" id="breedingNote" data-open="breeding" role="link" tabindex="0" aria-label="開啟繁殖日記">
 <span class="tape" aria-hidden="true"></span><div class="paper-topline"><span>06 / BREEDING JOURNAL</span><span>準備中</span></div>
-<div class="cover-content"><h2>繁殖日記</h2><p>配對、卵囊、孵化，到幼蛛成長。<br>之後的紀錄會整理在這裡。</p><div class="journal-trail" aria-hidden="true"><span>配對</span><b>—</b><span>卵囊</span><b>—</b><span>幼蛛</span></div></div>
+<div class="cover-content"><h2>繁殖日記</h2><p>配對、卵囊、孵化，到幼蛛成長。<br>之後的紀錄會整理在這裡。</p><div class="journal-register" aria-hidden="true"><span>日期 <i></i></span><span>個體 <i></i></span><span>階段 <i></i></span></div><span class="journal-pencil field-hand" aria-hidden="true">還沒有繁殖紀錄</span></div>
 <div class="cover-footer"><span>目前尚無公開紀錄</span><span>查看日記 ↗</span></div></section>
+<span class="field-hand care-caption" aria-hidden="true">進食、脫皮，記在這裡</span>
 <section class="development-note" id="developmentNote" aria-labelledby="developmentHeading">
  <div class="paper-topline"><span>HACHIME LAB / DEVELOPMENT NOTE 001</span><span class="concept-stamp">概念規劃</span></div>
  <h2 id="developmentHeading">A1，從照顧的日常開始。</h2>
@@ -1055,6 +1061,9 @@ body{background:var(--ground);color:var(--ink)}
  <div class="development-copy"><p>從通風、防逃到餵食與清潔，整理一只飼養盒需要面對的日常。</p><ul><li>目前：概念與規格規劃</li><li>下一步：核對設計、準備驗證</li></ul><a class="ink-link" href="#development" data-go="development">翻開第 001 篇札記 ↗</a></div></div>
 </section>
 <figure class="photo-note field-photo" id="referencePhoto"><div class="photo-mat"><img src="./assets/photos/hyllus.jpg" width="960" height="720" alt="老虎狗 Hyllus diardi 物種參考照片"></div><figcaption><b>老虎狗 / <i>Hyllus diardi</i></b><span>物種參考照 · 非八目個體或繁殖紀錄</span><span><a href="https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg" target="_blank" rel="noopener noreferrer">Doreen</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0</a> · 裁切顯示</span></figcaption></figure>
+<figure class="botanical-plate"><img src="./assets/photos/fern-plate.jpg" alt="歷史蕨類自然印刷圖版，作為筆記裝飾" width="960" height="2169"><figcaption>植物圖版 / 裝飾參考<br><a href="https://commons.wikimedia.org/wiki/File:A_fern_frond,_possibly_Polystichum_aculeatum_Wellcome_V0043910.jpg" target="_blank" rel="noopener noreferrer">Wellcome Collection</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a><br>裁切、疊色顯示</figcaption></figure>
+<aside class="specimen-label"><span>PHOTO REFERENCE / 02</span><i>Hyllus diardi</i><b>老虎狗</b><small><a href="#atlas/hyllus" data-go="atlas/hyllus">名稱對照見圖鑑 →</a></small></aside>
+<svg class="field-arrows" viewBox="0 0 1500 3350" aria-hidden="true"><path d="M400 610 Q466 609 443 649 M432 638 L443 649 L452 633"/><path d="M716 1360 Q755 1425 794 1394 M781 1391 L794 1394 L790 1410"/><path d="M483 1828 Q550 1850 605 1787 M593 1791 L605 1787 L604 1801"/><path d="M811 2440 Q832 2503 748 2520 M762 2509 L748 2520 L766 2528"/></svg>
 <section class="updates-note" id="updatesNote" aria-labelledby="updatesHeading"><p class="small-kicker">LATEST NOTES / 筆記更新</p><h2 id="updatesHeading">最近，記下了這些。</h2>
  <ol class="update-list">
  <li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">網站更新</span><a href="#beginner" data-go="beginner">新手七步，從認識到照顧。<span>↗</span></a></li>
@@ -1098,7 +1107,7 @@ body{background:var(--ground);color:var(--ink)}
         </figure>
 
         <span class="board-handmark handmark-spider" aria-hidden="true">OBSERVATION ✦</span><span class="board-handmark handmark-case" aria-hidden="true">DESIGN NOTES ↗</span>
-        <div class="paper-end" aria-hidden="true">HACHIME — MVP 17 / NOTEBOOK INDEX</div>
+        <div class="paper-end" aria-hidden="true">HACHIME — MVP 18 / FIELD NOTEBOOK</div>
       </div>
     </div>
     <div class="detail-view" id="detailView" hidden>
@@ -1139,7 +1148,7 @@ body{background:var(--ground);color:var(--ink)}
 <dl class="values"><dt>精品化</dt><dd>重視產品設計、材料與製作品質。</dd><dt>方便化</dt><dd>改善餵食、清潔和日常操作的便利性。</dd><dt>專業化</dt><dd>整理物種資料、飼養知識與實際測試紀錄。</dd></dl>
 <p class="fine-print">網站與 A1 產品都仍在開發階段，目前不販售商品。</p><h3>一邊觀察，一邊整理</h3><p class="live-intro">知識、個體紀錄與商品規劃分開標示。尚未確認的資料保留待補，示意圖不當作個體或產品實拍。</p><p class="cross-links"><a href="#beginner" data-go="beginner">開始第一份飼養筆記</a><a href="#shop/equipment" data-go="shop/equipment">查看 A1 研發規劃</a></p><p class="fine-print">聯絡方式與正式服務資訊將於準備完成後補上。</p>
 <h3>社群與聯絡</h3><p class="fine-print">帳號連結確認後會放在這裡，目前尚未開放。</p><div class="social-windows" aria-label="社群帳號尚未設定"><button type="button" disabled><b>Facebook</b><span>尚未設定</span></button><button type="button" disabled><b>LINE</b><span>尚未設定</span></button><button type="button" disabled><b>Instagram</b><span>尚未設定</span></button></div>
-<h3>照片來源</h3><ul class="photo-sources"><li>佛跳：<a href="https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg" target="_blank" rel="noopener noreferrer">spidereyes2020</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener noreferrer">CC0</a>。物種參考照，依版面裁切，非八目個體。</li><li>大膽跳蛛：<a href="https://commons.wikimedia.org/wiki/File:Kaldari_Phidippus_audax_01.jpg" target="_blank" rel="noopener noreferrer">Kaldari</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener noreferrer">CC0</a>。物種參考照，依版面裁切，非八目個體。</li><li>老虎狗：<a href="https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg" target="_blank" rel="noopener noreferrer">Doreen</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>。物種參考照，依版面裁切，非八目個體。</li></ul>
+<h3>植物圖版與字體</h3><p class="fine-print">首頁蕨類圖版來自 <a href="https://commons.wikimedia.org/wiki/File:A_fern_frond,_possibly_Polystichum_aculeatum_Wellcome_V0043910.jpg" target="_blank" rel="noopener noreferrer">Wellcome Collection</a>（<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>），裁切與疊色顯示，僅作筆記裝飾。手寫旁註使用 <a href="https://github.com/google/fonts/tree/main/ofl/lxgwwenkaitc" target="_blank" rel="noopener noreferrer">LXGW WenKai TC</a>（SIL OFL 1.1）。</p><h3>照片來源</h3><ul class="photo-sources"><li>佛跳：<a href="https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg" target="_blank" rel="noopener noreferrer">spidereyes2020</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener noreferrer">CC0</a>。物種參考照，依版面裁切，非八目個體。</li><li>大膽跳蛛：<a href="https://commons.wikimedia.org/wiki/File:Kaldari_Phidippus_audax_01.jpg" target="_blank" rel="noopener noreferrer">Kaldari</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener noreferrer">CC0</a>。物種參考照，依版面裁切，非八目個體。</li><li>老虎狗：<a href="https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg" target="_blank" rel="noopener noreferrer">Doreen</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>。物種參考照，依版面裁切，非八目個體。</li></ul>
 <p class="fine-print asset-note">筆記插圖使用 <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">OpenMoji</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）；跳蛛照片來自 <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>，依各張照片授權使用；A1 飼養盒仍是設計示意。詳細的攝影者、來源及授權列於 <a href="https://github.com/KotaNia1130/hachime-site/blob/main/ASSET_CREDITS.md" target="_blank" rel="noopener noreferrer">素材授權</a>。</p>
 </section></div>
 <div class="detail-page" data-page="shop" hidden>
@@ -1188,14 +1197,14 @@ body{background:var(--ground);color:var(--ink)}
 <p class="cross-links"><a href="#beginner/4" data-go="beginner/4">接回個體前要確認什麼？</a><a href="#atlas" data-go="atlas">回圖鑑了解物種</a></p></div>
 <div class="detail-page" data-page="breeding" hidden><article class="paper breeding-article"><div class="paper-topline"><span>06 / BREEDING JOURNAL</span><span>準備中</span></div><h2>繁殖日記</h2><p class="live-intro">這裡會整理配對、卵囊、孵化與幼蛛成長的紀錄。目前還沒有公開的繁殖紀錄。</p><div class="journal-empty"><span>尚無紀錄</span><h3>等有實際紀錄，再放上來。</h3><p>照片、日期和個體資料會一起標示。不以第三方照片代替八目的繁殖成果。</p></div><h3>之後每篇會記錄什麼？</h3><dl class="journal-fields"><dt>物種與個體</dt><dd>學名、玩家常用名、親代編號與來源。</dd><dt>時間與階段</dt><dd>配對、卵囊、孵化、幼蛛成長的日期與觀察。</dd><dt>照片</dt><dd>本次紀錄的實拍、拍攝日期與說明。</dd><dt>後續追蹤</dt><dd>進食、脫皮、個體狀態及更新日期。</dd></dl><p class="fine-print">目前是內容欄位預覽，尚未提供新增、上傳或儲存紀錄功能。</p><div class="cross-links"><a href="#atlas" data-go="atlas">查看跳蛛圖鑑 ↗</a><a href="#knowledge/observation" data-go="knowledge/observation">日常觀察筆記 ↗</a><a href="#home" data-go="home">返回首頁</a></div></article></div>
 <div class="detail-page" data-page="development" hidden><article class="paper development-article"><div class="paper-topline"><span>DEVELOPMENT NOTE 001</span><span>概念規劃</span></div><h2>A1：先把照顧的日常想清楚。</h2><p class="live-intro">這是一份設計起點的筆記。目前仍在概念與規格規劃階段，圖片並非實物，也不代表已完成打樣或安全驗證。</p><figure class="development-figure"><img src="./assets/enclosure-plus.svg" width="360" height="290" alt="A1 PLUS 設計概念示意圖"><figcaption>專案原創概念圖 · 非產品實拍</figcaption></figure><h3>01 / 先記下日常問題</h3><p>開盒、餵食、清潔與觀察，都會影響飼養盒的使用方式。我們先把這些情境列出來，作為整理設計的起點。</p><h3>02 / 目前的構想</h3><p>A1 規劃不同尺寸與 CORE、PLUS、PRO 等級，用來討論基礎結構與功能配置。現在呈現的是設計目標，不是已驗證的性能承諾。</p><h3>03 / 下一步要驗證的事</h3><ul><li>箱門、接縫與通風孔的防逃條件。</li><li>通風、攀附及結絲空間的配置。</li><li>餵食與清潔操作是否方便、能否減少干擾。</li></ul><p>後續有實際樣品與測試紀錄，再補上照片、版本與結果。適用性仍須依物種、齡期及個體情況確認。</p><div class="cross-links"><a href="#shop/equipment" data-go="shop/equipment">查看 A1 規格規劃 ↗</a><a href="#beginner/3" data-go="beginner/3">先看環境準備清單 ↗</a><a href="#home" data-go="home">返回筆記桌面</a></div></article></div>
-        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.17</div>
+        <div class="detail-end">八目 HACHIME　·　網站測試版 V0.18</div>
       </div>
     </div>
     <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳筆記桌面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
     <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
     <div class="canvas-controls" id="canvasControls" aria-label="桌面控制"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">回總覽</button></div>
     <nav class="board-index" aria-label="筆記桌面位置索引"><button type="button" data-focus-note="home">品牌</button><button type="button" data-focus-note="beginnerNote">新手</button><button type="button" data-focus-note="breedingNote">繁殖</button><button type="button" data-focus-note="developmentNote">札記</button><button type="button" data-focus-note="updatesNote">更新</button></nav>
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.17</span></div>
+    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>互動原型 V0.18</span></div>
   </main>
   <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
