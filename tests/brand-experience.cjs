@@ -15,15 +15,15 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
  for(const width of [320,390,600,768,1024,1440]){
   await p.setViewportSize({width,height:900});
   for(const id of ['home','beginnerNote','breedingNote','developmentNote','updatesNote']){
-   await p.locator(`.board-index [data-focus-note="${id}"]`).click();
+   await p.locator('#notebookDirectory summary').click();await p.locator(`.board-index [data-focus-note="${id}"]`).click();
    const box=await p.locator('#'+id).boundingBox();assert(box&&box.x>=-1&&box.x+box.width<=width+1,`note bounds ${width} ${id}`);
   }
   assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  }
- await p.locator('[data-focus-note="developmentNote"]').click();await p.locator('.development-copy a').click();assert(await p.locator('[data-page="development"]').isVisible());
+ await p.locator('#notebookDirectory summary').click();await p.locator('.board-index [data-focus-note="developmentNote"]').click();await p.locator('.development-copy a').click();assert(await p.locator('[data-page="development"]').isVisible());
  assert(await p.locator('#detailScroll').evaluate(e=>e.scrollWidth<=e.clientWidth));await p.reload();assert(await p.locator('[data-page="development"]').isVisible());await p.locator('.development-article [data-go="shop/equipment"]').click();assert(await p.locator('[data-shop="equipment"]').isVisible());
- await p.locator('.top-nav [data-go="home"]').click();await p.locator('[data-focus-note="updatesNote"]').click();await p.locator('.update-list a').first().click();assert(await p.locator('[data-page="beginner"]').isVisible());
- await p.locator('.top-nav [data-go="home"]').click();await p.locator('[data-focus-note="breedingNote"]').click();await p.locator('#breedingNote').focus();await p.keyboard.press('Enter');assert(await p.locator('[data-page="breeding"]').isVisible());assert.match(await p.locator('.journal-empty').innerText(),/尚無紀錄/);await p.reload();assert(await p.locator('[data-page="breeding"]').isVisible());await p.locator('.breeding-article [data-go="knowledge/observation"]').click();assert(await p.locator('#noteArticle').isVisible());
+ await p.locator('.top-nav [data-go="home"]').click();await p.locator('#notebookDirectory summary').click();await p.locator('.board-index [data-focus-note="updatesNote"]').click();await p.locator('.update-list a').first().click();assert(await p.locator('[data-page="beginner"]').isVisible());
+ await p.locator('.top-nav [data-go="home"]').click();await p.locator('#notebookDirectory summary').click();await p.locator('.board-index [data-focus-note="breedingNote"]').click();await p.locator('#breedingNote').focus();await p.keyboard.press('Enter');assert(await p.locator('[data-page="breeding"]').isVisible());assert.match(await p.locator('.journal-empty').innerText(),/尚無紀錄/);await p.reload();assert(await p.locator('[data-page="breeding"]').isVisible());await p.locator('.breeding-article [data-go="knowledge/observation"]').click();assert(await p.locator('#noteArticle').isVisible());
  await p.locator('.top-nav [data-go="about"]').click();assert.equal(await p.locator('[data-page="about"] .social-windows button:disabled').count(),3);assert.equal(await p.locator('.photo-sources a').count(),6);
  await p.goto(base+'#atlas/regius');assert.match(await p.locator('.species-common').innerText(),/佛跳/);assert.match(await p.locator('#speciesPanel em').innerText(),/Phidippus regius/);await p.waitForFunction(()=>document.querySelector('#speciesPanel img').naturalWidth>0);assert.match(await p.locator('#speciesPanel img').getAttribute('src'),/photos\/regius.jpg/);
  await c.close();console.log('PASS first visit, revisit, guide reopening/Escape/start, new content routes and responsive note bounds');
