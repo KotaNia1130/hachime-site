@@ -1,6 +1,6 @@
 # HACHIME V0.19｜依內容組成的觀察筆記
 
-日期：2026-11-15。依據 [V0.18 畫面檢視](docs/HACHIME_V018_VISUAL_REVIEW.md) 與 [ほとりで分析](docs/HOTORIDE_VISUAL_ANALYSIS.md)，本版把照片、短註解與閱讀入口組成相關內容群組；資料頁繼續採水平正文。
+日期：2026-11-15。依據 [V0.18 畫面檢視](../../HACHIME_V018_VISUAL_REVIEW.md) 與 [ほとりで分析](../../HOTORIDE_VISUAL_ANALYSIS.md)，本版把照片、短註解與閱讀入口組成相關內容群組；資料頁繼續採水平正文。
 
 ## 需求與設計對照
 

@@ -1,4 +1,67 @@
 // Read-only local profiling; timings are observational, not CI thresholds.
-const{chromium}=require('playwright');
-const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
-(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});const p=await b.newPage({viewport:{width:1440,height:1000}});await p.route('https://**/*',r=>r.abort());await p.addInitScript(()=>{sessionStorage.setItem('hachime-welcome-seen-v2','1');sessionStorage.setItem('hachime-entry-seen-v1','1')});await p.goto(base);await p.evaluate(()=>document.fonts.ready);const c=await p.context().newCDPSession(p);await c.send('Emulation.setCPUThrottlingRate',{rate:4});await p.evaluate(()=>{window.samples=[];new PerformanceObserver(list=>samples.push(...list.getEntries().map(e=>({type:e.entryType,duration:e.duration})))).observe({type:'longtask',buffered:false});window.turnFrames=[];let last,frame;function sample(t){if(last)turnFrames.push(t-last);last=t;if(window.track)frame=requestAnimationFrame(sample)}window.startTrack=()=>{cancelAnimationFrame(frame);turnFrames=[];last=null;window.track=true;frame=requestAnimationFrame(sample)};for(const name of ['capture','play']){const old=hachimePaperTurn[name];hachimePaperTurn[name]=function(...x){const t=performance.now();const result=old(...x);samples.push({type:name,duration:performance.now()-t});return result}}});for(const target of ['.beginner-cover h2','#detailBack','.beginner-cover h2','#detailBack']){await p.evaluate(()=>startTrack());await p.locator(target).click();await p.waitForTimeout(1100);console.log(JSON.stringify(await p.evaluate(()=>{track=false;const a=[...turnFrames].sort((a,b)=>a-b);return{samples:samples.splice(0),frames:a.length,max:a.at(-1),p95:a[Math.floor(a.length*.95)],over33:a.filter(x=>x>33.4).length,overlay:!!document.querySelector('.paper-turn')}})));}await b.close()})();
+const { chromium } = require('playwright');
+const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
+(async () => {
+  const b = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--no-sandbox'] });
+  const p = await b.newPage({ viewport: { width: 1440, height: 1000 } });
+  await p.route('https://**/*', (r) => r.abort());
+  await p.addInitScript(() => {
+    sessionStorage.setItem('hachime-welcome-seen-v2', '1');
+    sessionStorage.setItem('hachime-entry-seen-v1', '1');
+  });
+  await p.goto(base);
+  await p.evaluate(() => document.fonts.ready);
+  const c = await p.context().newCDPSession(p);
+  await c.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+  await p.evaluate(() => {
+    window.samples = [];
+    new PerformanceObserver((list) =>
+      samples.push(...list.getEntries().map((e) => ({ type: e.entryType, duration: e.duration }))),
+    ).observe({ type: 'longtask', buffered: false });
+    window.turnFrames = [];
+    let last, frame;
+    function sample(t) {
+      if (last) turnFrames.push(t - last);
+      last = t;
+      if (window.track) frame = requestAnimationFrame(sample);
+    }
+    window.startTrack = () => {
+      cancelAnimationFrame(frame);
+      turnFrames = [];
+      last = null;
+      window.track = true;
+      frame = requestAnimationFrame(sample);
+    };
+    for (const name of ['capture', 'play']) {
+      const old = hachimePaperTurn[name];
+      hachimePaperTurn[name] = function (...x) {
+        const t = performance.now();
+        const result = old(...x);
+        samples.push({ type: name, duration: performance.now() - t });
+        return result;
+      };
+    }
+  });
+  for (const target of ['.beginner-cover h2', '#detailBack', '.beginner-cover h2', '#detailBack']) {
+    await p.evaluate(() => startTrack());
+    await p.locator(target).click();
+    await p.waitForTimeout(1100);
+    console.log(
+      JSON.stringify(
+        await p.evaluate(() => {
+          track = false;
+          const a = [...turnFrames].sort((a, b) => a - b);
+          return {
+            samples: samples.splice(0),
+            frames: a.length,
+            max: a.at(-1),
+            p95: a[Math.floor(a.length * 0.95)],
+            over33: a.filter((x) => x > 33.4).length,
+            overlay: !!document.querySelector('.paper-turn'),
+          };
+        }),
+      ),
+    );
+  }
+  await b.close();
+})();

@@ -1,3 +1,28 @@
 // Regenerate the share card from local, credited project artwork (no remote requests).
-const {chromium}=require('playwright');const fs=require('node:fs');const path=require('node:path');
-(async()=>{const root=path.resolve(__dirname,'..');const img=name=>'data:image/svg+xml;base64,'+fs.readFileSync(path.join(root,'assets',name)).toString('base64');const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});try{const p=await b.newPage({viewport:{width:1200,height:630},deviceScaleFactor:1});await p.setContent(`<!doctype html><meta charset="utf-8"><style>*{box-sizing:border-box}body{margin:0;background:#F4EFE4;color:#344F3C;font-family:Arial,'Noto Sans CJK TC',sans-serif;background-image:linear-gradient(#C9C0B333 1px,transparent 1px),linear-gradient(90deg,#C9C0B333 1px,transparent 1px);background-size:24px 24px}.copy{position:absolute;left:65px;top:65px;width:580px}.logo{height:67px;vertical-align:middle;margin-right:16px}.brand{font-size:29px;letter-spacing:3px}h1{font-size:48px;font-weight:500;line-height:1.55;margin:52px 0 25px}p{font-size:23px;line-height:1.8}.kicker{font-size:15px;letter-spacing:3px;margin-top:40px}.picture{position:absolute;left:740px;top:87px;width:365px;background:#FFFCF5;padding:20px;box-shadow:5px 12px 0 #C7BDA544;border:1px solid #D4C9B4;transform:rotate(3deg)}.picture img{width:100%;height:305px;background:#E7E7D8}.picture p{font-size:16px;margin:12px 0;color:#5C6C50}.tape{position:absolute;left:860px;top:72px;width:115px;height:35px;background:#DAC49BC9;transform:rotate(-4deg)}footer{position:absolute;bottom:35px;left:65px;right:65px;border-top:1px solid #BDB7A2;padding-top:15px;font-size:15px;letter-spacing:2px}</style><div class="copy"><div class="brand"><img class="logo" src="${img('hachime-symbol-v2.svg')}">八目 HACHIME</div><h1>跳蛛飼養<br>與物種資料</h1><p>新手指南・繁殖日記<br>A1 飼養盒開發紀錄</p><div class="kicker">HACHIME FIELD NOTEBOOK</div></div><div class="picture"><img src="${img('spider-regius.svg')}"><p>原創概念插圖 / 非個體實拍</p></div><div class="tape"></div><footer>JUMPING SPIDER LAB　／　八目 HACHIME</footer>`);await p.evaluate(()=>document.fonts.ready);await p.screenshot({path:path.join(root,'assets/hachime-share.png')});console.log('Rendered assets/hachime-share.png (1200×630)');}finally{await b.close()}})().catch(e=>{console.error(e);process.exit(1)});
+const { chromium } = require('playwright');
+const fs = require('node:fs');
+const path = require('node:path');
+(async () => {
+  const root = path.resolve(__dirname, '..');
+  const img = (name) =>
+    'data:image/svg+xml;base64,' +
+    fs.readFileSync(path.join(root, 'assets', name)).toString('base64');
+  const b = await chromium.launch({
+    executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium',
+    args: ['--no-sandbox'],
+  });
+  try {
+    const p = await b.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
+    await p.setContent(
+      `<!doctype html><meta charset="utf-8"><style>*{box-sizing:border-box}body{margin:0;background:#F4EFE4;color:#344F3C;font-family:Arial,'Noto Sans CJK TC',sans-serif;background-image:linear-gradient(#C9C0B333 1px,transparent 1px),linear-gradient(90deg,#C9C0B333 1px,transparent 1px);background-size:24px 24px}.copy{position:absolute;left:65px;top:65px;width:580px}.logo{height:67px;vertical-align:middle;margin-right:16px}.brand{font-size:29px;letter-spacing:3px}h1{font-size:48px;font-weight:500;line-height:1.55;margin:52px 0 25px}p{font-size:23px;line-height:1.8}.kicker{font-size:15px;letter-spacing:3px;margin-top:40px}.picture{position:absolute;left:740px;top:87px;width:365px;background:#FFFCF5;padding:20px;box-shadow:5px 12px 0 #C7BDA544;border:1px solid #D4C9B4;transform:rotate(3deg)}.picture img{width:100%;height:305px;background:#E7E7D8}.picture p{font-size:16px;margin:12px 0;color:#5C6C50}.tape{position:absolute;left:860px;top:72px;width:115px;height:35px;background:#DAC49BC9;transform:rotate(-4deg)}footer{position:absolute;bottom:35px;left:65px;right:65px;border-top:1px solid #BDB7A2;padding-top:15px;font-size:15px;letter-spacing:2px}</style><div class="copy"><div class="brand"><img class="logo" src="${img('hachime-symbol-v2.svg')}">八目 HACHIME</div><h1>跳蛛飼養<br>與物種資料</h1><p>新手指南・繁殖日記<br>A1 飼養盒開發紀錄</p><div class="kicker">HACHIME FIELD NOTEBOOK</div></div><div class="picture"><img src="${img('spider-regius.svg')}"><p>原創概念插圖 / 非個體實拍</p></div><div class="tape"></div><footer>JUMPING SPIDER LAB　／　八目 HACHIME</footer>`,
+    );
+    await p.evaluate(() => document.fonts.ready);
+    await p.screenshot({ path: path.join(root, 'assets/hachime-share.png') });
+    console.log('Rendered assets/hachime-share.png (1200×630)');
+  } finally {
+    await b.close();
+  }
+})().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

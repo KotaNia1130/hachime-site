@@ -1,0 +1,16 @@
+{
+  "name": "hachime-site",
+  "version": "0.27.0",
+  "private": true,
+  "description": "八目 HACHIME 靜態網站",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node scripts/serve.cjs",
+    "check": "node scripts/check.cjs",
+    "test": "node scripts/test.cjs",
+    "test:smoke": "node scripts/test.cjs browser-smoke",
+    "format": "prettier --write index.html assets/app.js assets/site-content.js assets/species-data.js assets/welcome.js assets/styles/*.css scripts/*.cjs",
+    "share": "node scripts/render-share.cjs"
+  },
+  "devDependencies": { "playwright": "1.62.1", "prettier": "3.10.1" }
+}

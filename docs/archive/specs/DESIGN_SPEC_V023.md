@@ -30,4 +30,4 @@
 
 仍待人工：Windows 字體、實際手機的動畫流暢度；正式照片、繁殖紀錄、社群網址與商品資料沿用原待補狀態。
 
-參考整理見 [翻頁參考](docs/PAGE_TURN_REFERENCES_V023.md)。
+參考整理見 [翻頁參考](../../PAGE_TURN_REFERENCES_V023.md)。

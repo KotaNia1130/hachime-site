@@ -1,1586 +1,828 @@
 <!doctype html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#EFE9DD">
-  <link rel="icon" type="image/svg+xml" href="./assets/hachime-symbol-v2.svg">
-  <meta name="description" content="八目 HACHIME｜跳蛛圖鑑、飼養筆記與 A1 飼養盒。">
-  <title>八目 HACHIME｜跳蛛圖鑑與飼養筆記</title>
-  <style>
-:root{
- --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
- --nav-h:78px;--board-width:2540;--board-height:1860;
- font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
- color:var(--ink);background:var(--ground);font-size:15px;-webkit-font-smoothing:antialiased
-}
-*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden}button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #5c8973;outline-offset:3px}
-[hidden]{display:none!important}.skip{position:absolute;top:-100px;left:8px;background:white;padding:10px;z-index:40}.skip:focus{top:10px}
-.site-header{position:fixed;z-index:100;top:0;inset-inline:0;height:var(--nav-h);display:flex;align-items:center;gap:28px;background:#fbfaf5;border-bottom:1px solid #bcb7aa;padding:0 clamp(20px,3.3vw,58px)}
-.logo{display:flex;align-items:center;gap:12px;min-width:255px;flex-shrink:0}.logo-text{display:flex;flex-direction:column;gap:2px}.logo-text strong{font-weight:800;font-size:21px;letter-spacing:.025em;white-space:nowrap}.logo-text strong span{font-family:Georgia,serif;font-size:20px;font-weight:600;letter-spacing:.05em}.logo-text small{font-size:8.7px;letter-spacing:.1em;color:#666b64;white-space:nowrap}.eyes{width:40px;height:37px;position:relative;display:inline-block}.eyes i{position:absolute;display:block;background:#31473a;border-radius:50%}.eyes i:nth-child(1){width:11px;height:11px;left:8px;top:11px}.eyes i:nth-child(2){width:11px;height:11px;left:21px;top:11px}.eyes i:nth-child(3){width:7px;height:7px;left:2px;top:14px}.eyes i:nth-child(4){width:7px;height:7px;left:34px;top:14px}.eyes i:nth-child(5){width:4px;height:4px;left:7px;top:4px}.eyes i:nth-child(6){width:4px;height:4px;left:17px;top:3px}.eyes i:nth-child(7){width:4px;height:4px;left:27px;top:4px}.eyes i:nth-child(8){width:4px;height:4px;left:17px;top:27px}
-.top-nav{display:flex;align-items:center;gap:0;flex:1;height:100%;justify-content:center;min-width:0}.top-nav a{display:flex;align-items:center;height:100%;font-size:13px;letter-spacing:.02em;padding:0 clamp(10px,1.25vw,22px);border-bottom:2px solid transparent;white-space:nowrap;transition:background .15s,color .15s}.top-nav a:hover{background:#f0f0e9}.top-nav a.active{border-bottom-color:#3e6450;color:#365640;font-weight:750;background:#f3f5ef}.cart-trigger{border:1px solid #b9b8ae;background:transparent;min-height:38px;padding:0 13px;display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:12px;letter-spacing:.02em}.cart-trigger:hover{background:#edf0e9}.cart-count{display:grid;place-items:center;font-size:11px;border-radius:50%;width:20px;height:20px;background:#3d5948;color:white}.cart-symbol{font-size:19px}
-.main-area{position:absolute;top:var(--nav-h);left:0;right:0;bottom:0;background:#eae6da}.workspace{position:absolute;inset:0;overflow:hidden;cursor:grab;touch-action:none;overscroll-behavior:none;background:radial-gradient(circle at 5% 10%,#f8f5ea,#ece8dc 80%)}.workspace.dragging{cursor:grabbing}.infinite-sheet{position:absolute;left:0;top:0;width:2540px;height:1860px;transform-origin:top left;will-change:transform;background-color:#f6f3e9;background-image:linear-gradient(#e8e3d7 1px,transparent 1px),linear-gradient(90deg,#e8e3d7 1px,transparent 1px),linear-gradient(#f1ede3 1px,transparent 1px),linear-gradient(90deg,#f1ede3 1px,transparent 1px);background-size:80px 80px,80px 80px,16px 16px,16px 16px;border:1px solid #d9d4c7;box-shadow:0 0 24px #6a635127}.connectors{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.connectors path{stroke:#beb9a9;stroke-width:2.1;stroke-dasharray:4 8;fill:none}.board-corner{position:absolute;left:58px;top:28px;font-size:10px;line-height:1.7;font-family:Georgia,serif;letter-spacing:.16em;color:#868578}.paper-end{position:absolute;left:1040px;top:1769px;font-family:Georgia,serif;font-size:11px;color:#98978a;letter-spacing:.11em}
-.paper{position:absolute;background:var(--paper);border:1px solid #c8c5b9;box-shadow:4px 9px 0 #d9d3c43d,0 18px 32px #2e302c14;padding:29px 36px 32px;cursor:grab}.workspace.dragging .paper{cursor:grabbing}.paper::after{content:"";position:absolute;pointer-events:none;inset:8px;border:1px solid #ebe9e0}.paper>*{position:relative;z-index:1}.tape{position:absolute;z-index:3;top:-14px;left:47%;width:104px;height:29px;background:#e7d0b3ac;transform:rotate(-6deg);box-shadow:0 1px 1px #b6a8872a}.tape-green{background:#cdd8c7cb;left:40%;transform:rotate(5deg)}.tape-yellow{background:#eee0add6;left:60%}.tape-peach{background:#ead3c4d9;transform:rotate(7deg)}.tape-blue{background:#cfdddecf;left:38%;transform:rotate(-7deg)}.tape-about{background:#e9dbc9d9;left:60%;transform:rotate(4deg)}
-.paper-topline{display:flex;align-items:center;justify-content:space-between;gap:20px;font-family:Georgia,"Noto Sans TC",serif;font-size:11px;letter-spacing:.13em;color:#777b6f;padding-bottom:12px;border-bottom:1px solid #d4d2c7}.paper-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin:19px 0 23px}.paper-heading h2,.about-sheet h2{font-size:28px;font-weight:800;letter-spacing:.015em;margin:0 0 8px}.paper-heading p{color:#686c65;font-size:13px;line-height:1.7;margin:0}.stamp-text{border:1px solid #b4b6a7;color:#808474;padding:9px 11px;letter-spacing:.12em;font-size:12px;transform:rotate(8deg);white-space:nowrap}
-.home-sheet{left:89px;top:116px;width:702px;height:590px;transform:rotate(-.5deg);padding:34px 45px}.home-sheet .paper-topline{font-size:11px}.home-core{padding-top:43px}.small-kicker{font-size:11px;color:#647a67;letter-spacing:.18em;font-family:Georgia,serif}.home-core h1{font-size:61px;letter-spacing:.04em;margin:6px 0 2px;font-weight:830}.home-core h1 em{font-family:Georgia,serif;font-weight:500;font-size:53px;letter-spacing:-.02em;font-style:normal}.brand-phrase{margin:0;color:#445d4e;font-size:16px;letter-spacing:.16em}.home-divider{height:1px;background:#c6c6b8;margin:36px 0 24px;width:58%}.home-core h2{font-size:22px;letter-spacing:.04em;margin:0 0 13px}.main-description{font-size:15px;line-height:2;max-width:530px;margin:0}.home-actions{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap}.ink-link{padding:0 0 5px;border:0;border-bottom:1px solid #3f624e;font-size:15px;font-weight:700;background:transparent;color:#31523f}.ink-link span{padding-left:8px}.ink-link:hover,.plain-link:hover,.text-button:hover{text-decoration:underline;text-underline-offset:4px}.ink-link.subtle{color:#666b61;border-color:#b4bbad}.home-bottom{position:absolute;left:45px;right:45px;bottom:34px;display:flex;justify-content:space-between;color:#8a8b7d;font-size:11px;letter-spacing:.15em}
-.tiny-note{position:absolute;z-index:2;max-width:230px;background:#e9debc;box-shadow:3px 5px 10px #46423322;padding:20px 24px 19px;line-height:1.7;transform:rotate(4deg);font-size:13px;cursor:grab}.tiny-note strong{font-size:16px}.tiny-note p{margin:7px 0 12px}.tiny-note>span:last-child{font-size:10px;color:#7e765d}.tiny-pin{position:absolute;width:12px;height:12px;top:9px;right:11px;background:#ad7e66;border:2px solid #f2ecdc;border-radius:50%}.start-note{left:630px;top:735px;width:235px;background:#e8e0c0;transform:rotate(5deg)}.species-note{left:2120px;top:730px;width:242px;background:#dce7da;transform:rotate(-7deg)}.notebook-note{left:115px;top:1645px;width:245px;background:#e6ded6;transform:rotate(-4deg)}
-.beginner-sheet{left:915px;top:128px;width:747px;height:746px;transform:rotate(.35deg)}.chapter-nums{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:19px}.chapter-nums button{width:45px;height:39px;border:1px solid #c9cac0;background:#f4f3ec;color:#73766e;font:600 14px Georgia,serif}.chapter-nums button.active{background:#4d6654;color:#fff;border-color:#4d6654}.chapter-nums button:hover:not(.active){background:#e6ebdf}.chapter-content{height:430px;overflow:auto;padding:4px 12px 6px 0;touch-action:pan-y;overscroll-behavior:contain;scrollbar-color:#c7c9bf transparent;scrollbar-width:thin}.chapter-content h3{font-size:21px;line-height:1.5;margin:4px 0 14px}.chapter-content p{font-size:14px;line-height:1.9;margin:0 0 15px}.chapter-content ul{margin:14px 0;padding-left:21px}.chapter-content li{font-size:14px;line-height:1.8;margin-bottom:9px}.chapter-subtitle{color:#849082;font-size:11px;letter-spacing:.1em;font-family:Georgia,serif}.chapter-content .chapter-caption{background:#eef1ea;border-left:3px solid #79927e;padding:10px 12px;font-size:13px;margin:15px 0}.bottom-actions{border-top:1px solid #d9d9d0;padding-top:15px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#6c7166}.bottom-actions>div{display:flex;gap:12px}.text-button{border:0;background:none;font-size:13px;color:#576d5c;padding:6px}.text-button:disabled{opacity:.34;cursor:default}.text-button.forward{font-weight:700}
-.atlas-sheet{left:1774px;top:133px;width:611px;height:571px;transform:rotate(-.7deg)}.species-tabs{display:flex;gap:0;border-bottom:1px solid #c9cac0;overflow-x:auto}.species-tabs button{border:0;background:transparent;font-size:12px;padding:11px 10px;white-space:nowrap;border-bottom:2px solid transparent;color:#6b736a}.species-tabs button.active{font-weight:800;color:#375640;border-color:#375640}.species-panel{padding:16px 0}.species-panel h3{font-size:22px;margin:0 0 3px}.species-panel em{color:#707b6e}.species-panel>p{font-size:13px;line-height:1.75}.species-grid{display:grid;grid-template-columns:100px 1fr;gap:0;margin:10px 0;font-size:13px;border-top:1px solid #dedcd0}.species-grid dt,.species-grid dd{padding:9px 0;border-bottom:1px solid #dedcd0;line-height:1.5}.species-grid dt{color:#7c8178}.species-grid dd{margin:0}.fine-print{color:#7d827b;font-size:11px;line-height:1.7;margin:13px 0 0}
-.knowledge-sheet{left:105px;top:959px;width:756px;height:664px;transform:rotate(.3deg)}.search-wrap{border:1px solid #c3c8bf;background:#fdfcf8;height:47px;display:flex;align-items:center;padding:0 12px;gap:9px}.search-wrap>span:first-child{font-size:30px;line-height:1;color:#758274}.search-wrap input{border:0;outline:none;min-width:0;flex:1;background:transparent;font-size:14px;color:var(--ink)}.search-label{font:10px Georgia,serif;color:#9d9f92}.topic-line{display:flex;gap:7px;margin:17px 0 15px;flex-wrap:wrap}.topic-line button{font-size:12px;border:1px solid #d2d3c9;background:transparent;padding:6px 12px;color:#777b70}.topic-line button.active{background:#526b5a;border-color:#526b5a;color:#fff}.faq-scroll{height:345px;overflow:auto;touch-action:pan-y;overscroll-behavior:contain;padding-right:10px;scrollbar-width:thin;scrollbar-color:#c7c9bf transparent}.faq-scroll details{border-bottom:1px solid #d6d7cd}.faq-scroll summary{cursor:pointer;padding:15px 4px;font-weight:680;font-size:14px;list-style:none;display:flex;justify-content:space-between;gap:16px}.faq-scroll summary::-webkit-details-marker{display:none}.faq-scroll summary::after{content:"＋";font-weight:400;color:#707d70}.faq-scroll details[open] summary::after{content:"−"}.faq-scroll details p{font-size:13px;line-height:1.9;color:#535a52;margin:0 0 15px;padding:0 25px 0 4px}.no-results{padding:20px 0;font-size:13px;color:#8b8a7d}
-.lab-sheet{left:961px;top:1017px;width:812px;height:733px;transform:rotate(-.3deg)}.lab-head{margin-bottom:14px}.status-pill{border:1px solid #b6bfaa;color:#5a6d59;padding:7px 11px;font-size:11px;white-space:nowrap}.product-body{display:grid;grid-template-columns:290px 1fr;gap:24px}.product-options{min-width:0}.product-options fieldset{border:0;padding:0;margin:0 0 23px;min-width:0}.product-options legend{font-size:12px;font-weight:700;letter-spacing:.08em;margin-bottom:10px}.size-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}.size-choices button{background:#fdfcf9;border:1px solid #d2d2c9;text-align:left;min-height:58px;padding:10px}.size-choices button b{display:block;font-size:14px;font-family:Georgia,serif}.size-choices button small{color:#727970;font-size:11px;display:block;margin-top:5px}.size-choices button.active,.tier-choices button.active{border-color:#405d49;background:#e6ede3;box-shadow:inset 0 0 0 1px #405d49}.tier-choices{display:flex;gap:7px}.tier-choices button{flex:1;min-width:0;border:1px solid #d2d2c9;background:#fdfcf9;padding:11px 3px;font:700 13px Georgia,serif}.product-preview{border:1px solid #bfc4b8;padding:18px 21px;background:#f4f5ee}.preview-header{display:flex;justify-content:space-between;color:#7a8377;font:10px Georgia,serif;letter-spacing:.08em}.product-preview h3{font-size:23px;margin:17px 0 4px}.preview-price{font:26px Georgia,serif;color:#405f49;margin-bottom:14px}.spec-line{display:grid;grid-template-columns:74px 1fr;font-size:12px;margin:0;border-top:1px solid #c9d0c5}.spec-line dt,.spec-line dd{margin:0;padding:7px 0;border-bottom:1px solid #c9d0c5}.spec-line dt{color:#7d877c}.preview-desc{font-size:12px;line-height:1.6;color:#58655a;margin:12px 0 7px}.feature-list{font-size:12px;padding-left:18px;line-height:1.55;margin:8px 0 13px}.feature-list li{margin:2px 0}.solid-button{display:flex;justify-content:space-between;align-items:center;background:#3d604b;color:#fff;border:1px solid #3d604b;min-height:42px;width:100%;padding:0 15px;font-size:13px;font-weight:600}.solid-button:hover{background:#2e4c39}.solid-button span{font-size:18px}.product-bottom{border-top:1px solid #d3d6cd;margin-top:15px;padding-top:12px;display:flex;justify-content:space-between;align-items:center;color:#808578;font-size:11px}.plain-link{border:0;padding:0;background:none;color:#355944;font-size:12px;text-decoration:underline;text-underline-offset:4px}.price-popover{z-index:4;position:absolute;inset:115px 35px 26px;background:#faf9f3;border:1px solid #9baf9e;box-shadow:0 14px 36px #1c29271c;padding:22px 26px;overflow:auto;touch-action:pan-y}.price-popover-head{display:flex;justify-content:space-between;margin-bottom:15px}.price-popover-head button{background:transparent;border:0;font-size:22px}.price-popover table{border-collapse:collapse;width:100%;font-size:13px}.price-popover th,.price-popover td{padding:14px 9px;border-bottom:1px solid #d3d5ce;text-align:left}.price-popover small{display:block;color:#8e9186;font-size:11px}
-.about-sheet{left:1863px;top:1027px;width:546px;min-height:523px;transform:rotate(.8deg)}.about-sheet h2{margin-top:23px}.about-lead{font-size:14px;line-height:1.9;margin:15px 0 23px}.values{display:grid;grid-template-columns:83px 1fr;margin:0;border-top:1px solid #d9d9cf}.values dt,.values dd{padding:13px 0;border-bottom:1px solid #d9d9cf;font-size:13px;line-height:1.6}.values dt{font-weight:750;color:#405a45}.values dd{margin:0}
-.viewport-hint{position:absolute;left:24px;top:24px;background:#fbfaf3ef;border:1px solid #d8d6cb;padding:10px 13px;font-size:12px;display:flex;align-items:center;gap:9px;box-shadow:0 3px 12px #0000000c;z-index:30}.viewport-hint>span{font-size:19px;color:#6c8470}.viewport-hint button{border:0;background:transparent;font-size:20px;line-height:1;padding-left:12px;color:#6d756b}.canvas-controls{position:absolute;z-index:30;bottom:25px;left:24px;display:flex;align-items:center;height:43px;padding:0 5px;background:#fbfaf5;border:1px solid #c4c5b9;box-shadow:0 3px 14px #0000000a}.canvas-controls button{background:none;border:0;min-width:38px;height:35px;color:#4e5d51;font-size:19px}.canvas-controls button:hover{background:#e9ede6}.canvas-controls button#fitBoard,.canvas-controls button#resetBoard{font-size:12px;min-width:55px}.canvas-controls #zoomText{font:12px Georgia,serif;min-width:48px;text-align:center}.control-rule{height:19px;width:1px;background:#d2d5ca;margin:0 4px}.bottom-mark{position:absolute;z-index:20;bottom:31px;right:25px;color:#929388;font-size:11px;letter-spacing:.05em}.bottom-mark span{font-family:Georgia,serif}
-.drawer-backdrop{position:fixed;inset:0;background:#1d241d54;z-index:110}.cart-drawer{position:fixed;right:0;top:0;bottom:0;width:min(440px,100%);background:#faf9f3;z-index:120;box-shadow:-15px 0 50px #131a1330;transform:translateX(105%);transition:transform .24s ease;display:flex;flex-direction:column;visibility:hidden}.cart-drawer.open{transform:translateX(0);visibility:visible}.drawer-head{display:flex;align-items:flex-start;justify-content:space-between;padding:30px 30px 18px;border-bottom:1px solid #d5d7cb}.drawer-head span{font:11px Georgia,serif;letter-spacing:.14em;color:#657568}.drawer-head h2{font-size:26px;margin:8px 0 0}.drawer-head h2 small{font-size:12px;color:#8d968a;font-weight:500}.close-cart{background:none;border:0;font-size:33px;line-height:1}.drawer-notice{background:#edf0e9;color:#687b6a;margin:18px 27px;padding:13px 15px;font-size:12px;line-height:1.7}.cart-items{padding:0 27px;overflow-y:auto;flex:1;overscroll-behavior:contain}.cart-empty{padding:55px 10px;text-align:center;color:#8a8e80;font-size:14px}.cart-line{padding:19px 0;border-bottom:1px solid #d6d8cf;display:grid;grid-template-columns:1fr auto;gap:10px}.cart-line strong{display:block;font-size:15px;margin-bottom:5px}.cart-line small{font-size:12px;color:#818578}.cart-line>span{font-family:Georgia,serif;font-size:16px;white-space:nowrap}.qty-controls{grid-column:1/-1;display:flex;align-items:center;justify-content:flex-start;gap:12px}.qty-controls button{background:transparent;border:1px solid #c6cabf;min-width:26px;height:26px}.qty-controls .remove-line{border:0;text-decoration:underline;color:#8e7772;font-size:12px;margin-left:10px}.drawer-foot{padding:18px 27px 28px;border-top:1px solid #d5d8ce}.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.cart-total strong{font:23px Georgia,serif}.clear-cart{border:0;background:none;text-decoration:underline;color:#687c6b;font-size:12px;margin-bottom:16px;padding:0}.checkout-disabled{display:block;width:100%;border:0;background:#d3d7cd;color:#687367;padding:15px;cursor:not-allowed;font-size:13px}
-@media(max-width:1270px){.site-header{gap:15px;padding:0 22px}.logo{min-width:213px}.logo-text strong{font-size:18px}.logo-text strong span{font-size:17px}.logo-text small{font-size:7.5px}.top-nav a{padding:0 10px;font-size:12px}.cart-trigger{padding:0 9px}}
-@media(max-width:960px){:root{--nav-h:111px}.site-header{flex-wrap:wrap;justify-content:space-between;align-content:center;gap:0;padding:9px 15px 0}.logo{height:45px}.cart-trigger{height:35px}.top-nav{height:50px;flex:0 0 calc(100% + 30px);order:3;overflow-x:auto;justify-content:flex-start;margin:0 -15px;padding:0 15px;scrollbar-width:none}.top-nav::-webkit-scrollbar{display:none}.top-nav a{font-size:12px;padding:0 15px}.viewport-hint{top:14px;left:12px;font-size:11px;padding:8px}.canvas-controls{left:12px;bottom:15px}.bottom-mark{bottom:23px;right:12px}}
-@media(max-width:600px){.cart-word{display:none}.cart-trigger{gap:6px}.logo-text strong{font-size:18px}.logo-text small{font-size:7px}.viewport-hint{max-width:calc(100% - 24px);font-size:10px}.bottom-mark{display:none}.canvas-controls #fitBoard{display:none}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
-/* A narrow single-column notebook retains pan/drag on small screens, without miniaturising text. */
-@media(max-width:600px){
- .infinite-sheet{width:420px;height:4980px}
- .connectors{display:none}.board-corner{left:27px;top:19px;font-size:9px}.paper-end{top:4925px;left:40px;font-size:8px}
- .paper{width:374px!important;left:23px!important;padding:22px 24px!important;transform:rotate(0deg)!important}
- .paper::after{inset:6px}
- .home-sheet{top:78px!important;height:580px!important}.home-core{padding-top:42px}.home-core h1{font-size:38px;white-space:nowrap}.home-core h1 em{font-size:31px}.brand-phrase{font-size:13px}.home-divider{margin:32px 0 20px}.home-core h2{font-size:19px;line-height:1.6}.main-description{font-size:14px}.home-bottom{left:24px;right:24px;font-size:9px;bottom:23px}.home-actions{gap:17px}.ink-link{font-size:13px}
- .start-note{left:88px;top:704px;width:225px}.beginner-sheet{top:910px!important;height:735px!important}.chapter-nums{gap:5px}.chapter-nums button{width:36px;height:36px;font-size:12px}.chapter-content{height:430px}.chapter-content h3{font-size:19px}.chapter-content p,.chapter-content li{font-size:13px}.bottom-actions{font-size:11px}
- .atlas-sheet{top:1710px!important;height:575px!important}.atlas-sheet .paper-heading{margin-bottom:13px}.species-tabs button{font-size:11px;padding:10px 7px}.species-panel>p{font-size:12px}.species-grid{grid-template-columns:78px 1fr;font-size:12px}.species-note{left:99px;top:2328px;max-width:260px}
- .knowledge-sheet{top:2520px!important;height:676px!important}.knowledge-sheet .paper-heading{margin-bottom:13px}.search-wrap{height:43px}.search-wrap input{font-size:12px}.topic-line{gap:5px;margin:12px 0}.topic-line button{font-size:11px;padding:6px 10px}.faq-scroll{height:345px}.faq-scroll summary{font-size:13px}.notebook-note{left:72px;top:3230px;width:280px}
- .lab-sheet{top:3385px!important;height:968px!important}.lab-head{gap:6px}.lab-head h2{font-size:22px}.lab-head p{font-size:11px}.status-pill{font-size:9px;padding:4px 7px}.product-body{display:block}.product-options fieldset{margin-bottom:14px}.product-options legend{margin-bottom:7px}.size-choices button{min-height:44px;padding:7px}.size-choices button b{font-size:12px}.size-choices button small{font-size:9px}.tier-choices button{padding:8px 3px}.product-preview{padding:15px}.product-preview h3{margin-top:12px;font-size:21px}.preview-price{font-size:22px;margin-bottom:9px}.product-preview .fine-print{font-size:10px}.preview-desc{margin:8px 0 4px}.feature-list{margin:4px 0 9px}.product-bottom{margin-top:12px}.price-popover{inset:88px 12px 18px;padding:14px}.price-popover table{font-size:10px}.price-popover th,.price-popover td{padding:11px 4px}
- .about-sheet{top:4410px!important;min-height:488px!important}.about-sheet h2{font-size:24px}.about-lead{font-size:13px}.values{grid-template-columns:73px 1fr}.values dt,.values dd{font-size:12px}
- .tiny-note{font-size:12px}
-}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="theme-color" content="#EFE9DD" />
+    <link rel="icon" type="image/svg+xml" href="./assets/hachime-symbol-v2.svg" />
+    <meta name="description" content="八目 HACHIME｜跳蛛圖鑑、飼養筆記與 A1 飼養盒。" />
+    <title>八目 HACHIME｜跳蛛圖鑑與飼養筆記</title>
+    <link rel="stylesheet" href="./assets/styles/base.css" />
+    <link rel="stylesheet" href="./assets/styles/notebook.css" />
+    <script src="./assets/welcome.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@300;400;500;600;700&amp;family=Zen+Maru+Gothic:wght@400;500;700&amp;family=Huninn&amp;display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:title" content="八目 HACHIME｜跳蛛觀察與飼養筆記" />
+    <meta property="og:description" content="跳蛛觀察、新手筆記與 A1 飼養盒開發札記。" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://kotania1130.github.io/hachime-site/assets/hachime-share.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip" href="#workspace">跳至主要內容</a>
+    <header class="site-header">
+      <a aria-label="八目 HACHIME，回到首頁" class="logo" data-go="home" href="#home">
+        <img
+          class="logo-symbol"
+          src="./assets/hachime-symbol-v2.svg"
+          width="62"
+          height="44"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="logo-text"
+          ><strong>八目 <span>HACHIME</span></strong
+          ><small>跳蛛研造 ／ JUMPING SPIDER LAB</small></span
+        >
+      </a>
+      <nav aria-label="網站導覽" class="top-nav">
+        <a data-go="home" href="#home">首頁</a>
+        <a data-go="beginner" href="#beginner">新手起步</a>
+        <a data-go="atlas" href="#atlas">跳蛛圖鑑</a>
+        <a data-go="knowledge" href="#knowledge">飼養筆記</a>
+        <a data-go="breeding" href="#breeding">繁殖日記</a>
+        <a data-go="shop" href="#shop">活體與用品</a>
+        <a data-go="about" href="#about">關於八目</a>
+      </nav>
+      <button
+        aria-controls="cartDrawer"
+        aria-haspopup="dialog"
+        class="cart-trigger"
+        id="cartOpen"
+        type="button"
+      >
+        <span class="cart-word">購物車</span><span aria-hidden="true" class="cart-symbol">▤</span
+        ><span class="cart-count" id="cartCount">0</span>
+      </button>
+    </header>
+    <main id="workspace" class="main-area" tabindex="-1">
+      <div
+        class="workspace"
+        id="viewport"
+        aria-label="完整筆記桌面。拖曳或縮放探索，點擊便條開啟內容。"
+      >
+        <div class="infinite-sheet" id="board">
+          <div class="board-corner">八目觀察手帖 <span>HACHIME / FIELD NOTES</span></div>
+          <div class="binding-marks" aria-hidden="true"></div>
+          <section id="home" tabindex="-1" class="notebook-intro" aria-labelledby="homeTitle">
+            <div class="home-core">
+              <span class="small-kicker">跳蛛・飼養・日常觀察</span>
+              <h1 id="homeTitle">八目 <em>HACHIME</em></h1>
+              <p class="main-description">跳蛛圖鑑、日常飼養，<br />還有 A1 飼養盒的開發筆記。</p>
+              <div class="home-actions">
+                <button type="button" class="ink-link" data-jump="beginner">查看新手指南 ↗</button
+                ><a class="ink-link subtle" href="#atlas" data-go="atlas">跳蛛圖鑑 →</a>
+              </div>
+            </div>
+          </section>
+          <section class="brand-collage" aria-label="佛跳物種參考照片與觀察註記">
+            <span class="collage-kicker">佛跳 / 物種參考</span>
+            <figure class="photo-note spider-photo">
+              <div class="photo-mat">
+                <img
+                  src="./assets/photos/regius.jpg"
+                  width="960"
+                  height="720"
+                  alt="佛跳正面近照，前方一對大眼清楚可見"
+                />
+              </div>
+              <figcaption>
+                <b>佛跳 <i>Phidippus regius</i></b
+                ><span>物種參考照，非八目個體</span
+                ><span
+                  ><a
+                    href="https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >spidereyes2020</a
+                  >
+                  ·
+                  <a
+                    href="https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >CC0</a
+                  >
+                  · 裁切顯示</span
+                >
+              </figcaption>
+            </figure>
+            <aside class="observation-slip">
+              <span class="field-hand">前方的一對大眼</span>
+              <p>仔細看，大眼旁邊<br />還有一對小眼睛。</p>
+              <a href="#atlas/regius" data-go="atlas/regius">認識佛跳 ↗</a>
+            </aside>
+            <svg class="photo-pointer" viewBox="0 0 260 410" aria-hidden="true">
+              <path d="M240 390 C100 397 94 90 26 20 M26 20 l3 21 M26 20 l20 5" />
+            </svg>
+          </section>
+          <aside class="tiny-note start-note" aria-label="操作說明">
+            拖曳畫面探索，或使用上方標籤。
+          </aside>
+          <section
+            id="beginnerNote"
+            class="paper cover-note beginner-cover"
+            data-open="beginner"
+            role="link"
+            tabindex="0"
+            aria-label="開啟新手起步"
+          >
+            <span class="tape" aria-hidden="true"></span>
+            <div class="paper-topline"><span>新手清單</span><span>飼養入門</span></div>
+            <div class="cover-content">
+              <h2>第一次養跳蛛</h2>
+              <p>飼養前的準備與接回後的照顧。</p>
+              <ol class="journey-preview">
+                <li>日常照顧怎麼安排</li>
+                <li>怎麼選物種、準備環境</li>
+                <li>接回後，要觀察什麼</li>
+              </ol>
+            </div>
+            <div class="cover-footer"><span>新手起步</span><span>閱讀新手指南 ↗</span></div>
+          </section>
+          <div class="section-mark observation-mark" aria-hidden="true">
+            物種與飼養資料<small>SPECIES & DAILY CARE</small>
+          </div>
+          <section
+            id="atlasNote"
+            class="paper cover-note atlas-cover"
+            data-open="atlas"
+            role="link"
+            tabindex="0"
+            aria-label="開啟跳蛛圖鑑"
+          >
+            <div class="paper-topline"><span>SPECIES</span></div>
+            <div class="cover-content">
+              <h2>跳蛛圖鑑</h2>
+              <p>認識不同種類的跳蛛。</p>
+              <div class="specimen-strip">
+                <figure>
+                  <a
+                    href="#atlas/audax"
+                    data-go="atlas/audax"
+                    aria-label="查看大膽跳蛛 Phidippus audax"
+                    ><div class="specimen-mat">
+                      <img
+                        src="./assets/photos/audax.jpg"
+                        width="960"
+                        height="720"
+                        alt="大膽跳蛛的物種參考照片"
+                      />
+                    </div>
+                    <figcaption>
+                      <span>大膽跳蛛</span><i>Phidippus audax</i
+                      ><small>Kaldari · CC0 · 參考照</small>
+                    </figcaption></a
+                  >
+                </figure>
+                <figure>
+                  <a
+                    href="#atlas/hyllus"
+                    data-go="atlas/hyllus"
+                    aria-label="查看老虎狗 Hyllus diardi"
+                    ><div class="specimen-mat">
+                      <img
+                        src="./assets/photos/hyllus.jpg"
+                        width="960"
+                        height="720"
+                        alt="斑腹蠅象（老虎狗）的物種參考照片"
+                      />
+                    </div>
+                    <figcaption>
+                      <span>老虎狗</span><i>Hyllus diardi</i
+                      ><small>Doreen · CC BY 4.0 · 參考照</small>
+                    </figcaption></a
+                  >
+                </figure>
+              </div>
+            </div>
+            <div class="cover-footer">
+              <span><a href="#about" data-go="about">照片來源與授權</a></span
+              ><span>翻開跳蛛圖鑑 ↗</span>
+            </div>
+          </section>
+          <section
+            id="careNote"
+            class="paper cover-note knowledge-cover"
+            data-open="knowledge"
+            role="link"
+            tabindex="0"
+            aria-label="開啟飼養筆記"
+          >
+            <span class="tape" aria-hidden="true"></span>
+            <div class="paper-topline"><span>CARE NOTES</span><span>有問題時翻這裡</span></div>
+            <div class="cover-content">
+              <h2>飼養筆記</h2>
+              <p>環境、餵食、脫皮與常見問題。</p>
+              <ul class="care-jottings">
+                <li>
+                  <a href="#knowledge/environment" data-go="knowledge/environment"
+                    >環境怎麼準備 <b>↗</b></a
+                  >
+                </li>
+                <li>
+                  <a href="#knowledge/feeding" data-go="knowledge/feeding">餵食與供水 <b>↗</b></a>
+                </li>
+                <li>
+                  <a href="#knowledge/observation" data-go="knowledge/observation"
+                    >進食、脫皮與日常觀察 <b>↗</b></a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="cover-footer"><span>飼養筆記 / 常見問題</span><span>查找問題 ↗</span></div>
+          </section>
+          <section
+            id="breedingNote"
+            class="paper cover-note breeding-cover"
+            data-open="breeding"
+            role="link"
+            tabindex="0"
+            aria-label="開啟繁殖日記"
+          >
+            <span class="tape" aria-hidden="true"></span>
+            <div class="paper-topline"><span>繁殖紀錄</span><span>準備中</span></div>
+            <div class="cover-content">
+              <h2>繁殖日記</h2>
+              <p>配對、卵囊、孵化與幼蛛成長的紀錄。</p>
+            </div>
+            <div class="cover-footer"><span>第一篇準備中</span><span>翻開繁殖日記 ↗</span></div>
+          </section>
+          <div class="section-mark making-mark" aria-hidden="true">
+            用品與開發<small>TOOLS & WORK IN PROGRESS</small>
+          </div>
+          <section
+            class="development-note"
+            id="developmentNote"
+            data-open="development"
+            role="link"
+            tabindex="0"
+            aria-labelledby="developmentHeading"
+          >
+            <div class="paper-topline">
+              <span>A1 / 開發札記</span><span class="concept-stamp">概念階段</span>
+            </div>
+            <h2 id="developmentHeading">A1 飼養盒開發</h2>
 
-
-
-/* V0.3 — Notebook overview with dedicated content pages */
-.infinite-sheet{width:2070px;height:1350px}
-.notebook-intro{left:105px;top:125px;width:685px;height:465px;transform:rotate(-.55deg);padding:31px 42px}
-.notebook-intro .home-core{padding-top:21px}
-.notebook-intro .home-core h1{font-size:51px}
-.notebook-intro .home-core h1 em{font-size:43px}
-.notebook-intro .home-divider{margin:22px 0 16px}
-.notebook-intro .home-core h2{font-size:21px}
-.notebook-intro .main-description{line-height:1.85;font-size:14px}
-.notebook-intro .home-actions{margin-top:17px}
-.notebook-intro .home-bottom{bottom:23px}
-.cover-note{display:flex;flex-direction:column;min-height:254px;padding:27px 31px 26px;cursor:pointer;transition:box-shadow .15s ease,border-color .15s ease;touch-action:none}
-.cover-note::after{inset:7px}
-.cover-note:hover,.cover-note:focus-visible{border-color:#748c79;box-shadow:8px 15px 26px #273b2a24}
-.cover-note .paper-topline{flex-shrink:0}
-.cover-content{flex:1;padding-top:18px}
-.cover-content h2{font-size:27px;line-height:1.3;margin:0 0 14px;letter-spacing:.015em}
-.cover-content p{font-size:14px;line-height:1.85;color:#5d665e;max-width:35ch;margin:0}
-.cover-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #dedcd1;padding-top:13px;font-size:12px;color:#53695c}
-.cover-footer span:last-child{font-weight:700}
-.beginner-cover{top:95px;left:935px;width:475px;height:332px;transform:rotate(.7deg)}
-.atlas-cover{top:218px;left:1510px;width:424px;height:296px;transform:rotate(-1.1deg);background:#f9f7ee}
-.knowledge-cover{top:714px;left:175px;width:510px;height:315px;transform:rotate(.7deg)}
-.lab-cover{top:648px;left:842px;width:505px;height:342px;transform:rotate(-.8deg);background:#f7faf7}
-.about-cover{top:825px;left:1490px;width:440px;height:282px;transform:rotate(.8deg)}
-.start-note{left:525px;top:598px;width:220px;transform:rotate(6deg)}
-.paper-end{left:995px;top:1250px}
-.detail-view{position:absolute;inset:0;z-index:21;background:#efede4;overflow:hidden;display:flex;flex-direction:column;touch-action:auto}
-.detail-toolbar{height:63px;flex-shrink:0;background:#f8f7f1;border-bottom:1px solid #d7d5c9;padding:0 clamp(22px,5vw,70px);display:flex;align-items:center;justify-content:space-between;gap:16px}
-.back-to-board{border:0;background:transparent;color:#3e604a;font-size:14px;padding:12px 2px;font-weight:650;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
-.back-to-board:hover{color:#233c2b}
-.detail-breadcrumb{font-family:Georgia,'Noto Sans TC',serif;font-size:12px;color:#8a8b7b;letter-spacing:.035em}
-.detail-scroll{overflow:auto;overscroll-behavior:contain;touch-action:pan-y;flex:1;padding:46px 24px 110px;scrollbar-color:#c8c9bc #efede4}
-.detail-page{width:min(1080px,100%);margin:auto}
-.detail-view .paper{position:relative!important;left:auto!important;top:auto!important;transform:none!important;width:100%!important;height:auto!important;max-width:none!important;min-height:unset!important;cursor:default!important;padding:44px clamp(24px,5vw,68px)!important;box-shadow:5px 9px 0 #ded9cd65,0 18px 30px #252a2410}
-.detail-view .paper::after{inset:10px}
-.detail-view .paper .tape{display:none}
-.detail-view .paper-heading{margin:22px 0 25px}
-.detail-view .paper-heading h2,.detail-view .about-sheet h2{font-size:33px}
-.detail-view .chapter-content{height:auto;min-height:300px;max-height:none;overflow:visible;touch-action:auto;padding:0}
-.detail-view .chapter-content h3{font-size:25px}
-.detail-view .chapter-content p,.detail-view .chapter-content li{font-size:15px;line-height:2}
-.detail-view .chapter-nums{margin:23px 0}
-.detail-view .bottom-actions{margin-top:22px}
-.detail-view .species-panel{padding:26px 0 10px}
-.detail-view .species-panel>p{font-size:15px}
-.detail-view .species-grid{font-size:14px}
-.detail-view .faq-scroll{height:auto;max-height:none;min-height:320px;overflow:visible;touch-action:auto}
-.detail-view .knowledge-sheet .search-wrap{max-width:800px}
-.detail-view .lab-sheet{max-width:1100px}
-.detail-view .product-body{gap:30px}
-.detail-view .about-sheet{max-width:850px;margin:auto}
-.detail-view .about-lead{font-size:16px}
-.detail-end{text-align:center;margin:34px auto;color:#8e9285;font-size:11px}
-@media(max-width:600px){
- .infinite-sheet{width:420px;height:2690px}
- .connectors{display:none}
- .board-corner{left:24px;top:18px}
- .paper-end{left:34px;top:2588px}
- .notebook-intro{left:23px!important;top:76px!important;width:374px!important;height:510px!important;padding:26px!important;transform:rotate(0deg)!important}
- .notebook-intro .home-core{padding-top:28px}
- .notebook-intro .home-core h1{font-size:38px}
- .notebook-intro .home-core h1 em{font-size:31px}
- .notebook-intro .main-description{font-size:13px;line-height:1.8}
- .notebook-intro .home-bottom{left:24px;right:24px;bottom:24px}
- .start-note{left:91px;top:617px;width:235px}
- .cover-note{left:23px!important;width:374px!important;transform:rotate(0deg)!important;padding:24px 27px!important;min-height:260px}
- .beginner-cover{top:835px!important;height:286px!important}
- .atlas-cover{top:1200px!important;height:282px!important}
- .knowledge-cover{top:1570px!important;height:276px!important}
- .lab-cover{top:1915px!important;height:300px!important}
- .about-cover{top:2300px!important;height:280px!important}
- .cover-content h2{font-size:23px}
- .cover-content p{font-size:13px;line-height:1.75}
- .cover-footer{font-size:11px}
- .detail-toolbar{height:54px;padding:0 16px}
- .back-to-board{font-size:13px}
- .detail-breadcrumb{font-size:10px;white-space:nowrap}
- .detail-scroll{padding:18px 13px 65px}
- .detail-view .paper{padding:24px 19px 35px!important}
- .detail-view .paper::after{inset:6px}
- .detail-view .paper-heading h2,.detail-view .about-sheet h2{font-size:24px}
- .detail-view .chapter-content h3{font-size:20px}
- .detail-view .chapter-content p,.detail-view .chapter-content li{font-size:13px;line-height:1.85}
- .detail-view .chapter-nums button{width:36px;height:36px}
- .detail-view .chapter-content{min-height:340px}
- .detail-view .product-body{display:block}
- .detail-view .product-preview{padding:15px}
- .detail-view .price-popover{position:absolute;inset:95px 12px 14px;max-height:calc(100% - 105px)}
- .detail-end{font-size:10px}
-}
-
-@media(max-width:600px){.viewport-hint{display:none}}
-
-/* V0.4 — never select note text while panning the overview.
-   Only the canvas is affected; detail article text stays selectable. */
-.workspace, .workspace * {
-  -webkit-user-select: none !important;
-  user-select: none !important;
-  -webkit-touch-callout: none;
-}
-.workspace { -webkit-tap-highlight-color: transparent; }
-.workspace.dragging, .workspace.dragging * { cursor: grabbing !important; }
-
-
-/* V0.5 — contextual onboarding: fade the hint after meaningful interaction,
-   keep a discreet restore control; fade the duplicate note on the board. */
-.viewport-hint{transition:opacity .24s ease,transform .24s ease}
-.viewport-hint.is-dismissed{opacity:0;transform:translateY(-6px);pointer-events:none}
-.hint-reopen{position:absolute;top:24px;left:24px;z-index:30;width:36px;height:36px;border:1px solid #d8d6cb;border-radius:5px;background:#fbfaf3e6;color:#617566;font-size:17px;font-weight:650;cursor:pointer;opacity:.62;box-shadow:0 3px 12px #0000000c;transition:opacity .2s ease,background .2s ease}
-.hint-reopen:hover,.hint-reopen:focus-visible{opacity:1;background:#fbfaf3}
-.start-note{transition:opacity .24s ease}
-.start-note.is-dismissed{opacity:.17;pointer-events:none}
-@media(max-width:960px){.hint-reopen{top:14px;left:12px}}
-@media(max-width:600px){.viewport-hint{display:flex;max-width:calc(100% - 24px);font-size:11px;padding:8px 10px}}
-
-/* V0.6 — HACHIME soft stationery: warmer paper, clearer text, calmer colour.
-   The canvas layout, event handlers and content are intentionally unchanged. */
-:root {
-  --ground:#DED7CB;
-  --paper:#F8F3E9;
-  --ink:#363830;
-  --muted:#5C6056;
-  --rule:#C9C2B4;
-  --olive:#4B6652;
-  --sage:#D6DFD1;
-  --yellow:#EADDB6;
-  --peach:#E8C7B7;
-  --blue:#DBE5E1;
-  color:var(--ink);
-  background:var(--ground);
-}
-body{color:var(--ink);background:var(--ground)}
-.site-header{background:#F7F2E9;border-bottom:1px solid #C6BCAE;box-shadow:0 2px 8px #4A44300B}
-.logo-text small{color:#555D52}
-.eyes i{background:#3D5948}
-.top-nav a{color:#44473F}
-.top-nav a:hover{background:#EEE8DD}
-.top-nav a.active{color:#375742;background:#E5E9DF;border-bottom-color:#50745B}
-.cart-trigger{background:#F7F2E9;border-color:#B8B4A6;color:#3B493D}
-.cart-trigger:hover{background:#EAEDE3}
-.cart-count{background:#4B6652}
-.main-area{background:#DED7CB}
-.workspace{background:radial-gradient(ellipse at 35% 22%,#E6DFD3 0%,#D9D1C3 100%)}
-.infinite-sheet{
-  background-color:#EAE3D8;
-  background-image:
-    linear-gradient(#C9C0B34B 1px,transparent 1px),
-    linear-gradient(90deg,#C9C0B34B 1px,transparent 1px),
-    linear-gradient(#D1C8BB37 1px,transparent 1px),
-    linear-gradient(90deg,#D1C8BB37 1px,transparent 1px);
-  border-color:#C6BBAA;
-  box-shadow:0 8px 38px #493E3027;
-}
-.board-corner,.paper-end{color:#5C6259}
-.connectors path{stroke:#ADA798}
-.paper{
-  background:#F9F5ED;
-  color:#363830;
-  border-color:#C9BFAF;
-  box-shadow:3px 5px 0 #A99C812B,0 10px 24px #4D453720;
-}
-.paper::after{border-color:#E5DCCD}
-.paper-topline{color:#50594E;border-bottom-color:#D0C7B9}
-.paper-heading p{color:#4D534B}
-.stamp-text{color:#515D51;border-color:#A4B19E}
-.tape{background:#E9D7BCBC;box-shadow:0 1px 3px #6B584320}
-.tape-green{background:#CAD7C7C7}
-.tape-yellow{background:#E8D9A8C7}
-.tape-peach{background:#E8C5B6CF}
-.tape-blue{background:#C7DBD6C9}
-.tape-about{background:#DCCBB4C9}
-.notebook-intro{
-  background:#F9F5ED;
-  border-color:#BEB5A6;
-  box-shadow:5px 7px 0 #B6A78B27,0 17px 30px #57483620;
-}
-.notebook-intro .small-kicker{color:#4A6951}
-.notebook-intro .home-core h1{color:#333C34}
-.brand-phrase{color:#3F5F4B}
-.home-divider{background:#C9BAA6}
-.notebook-intro .main-description{color:#444940}
-.home-bottom{color:#596052}
-.ink-link{color:#325B42;border-color:#547A5D}
-.ink-link.subtle{color:#50584E;border-color:#949C8B}
-.tiny-note{background:#E8D7B4;color:#343A31;box-shadow:4px 7px 14px #4C42302A}
-.tiny-note>span:last-child{color:#5F5B4D}
-.start-note{background:#E6D7B6}
-.species-note{background:#D7E1D2}
-.notebook-note{background:#E8D8CA}
-.tiny-pin{background:#AE826A}
-.cover-note{
-  border-color:#C5B8A8;
-  box-shadow:3px 5px 0 #A99C8123,0 12px 27px #4A3D3122;
-  transition:box-shadow .18s ease,border-color .18s ease;
-}
-.cover-note::before{
-  content:"";position:absolute;z-index:0;top:42px;right:-12px;
-  width:24px;height:65px;border:1px solid #BDAF9E;
-  background:var(--tab-color,#D6DFC9);
-  box-shadow:1px 2px 3px #4C42301B;
-  transform:rotate(4deg);
-  pointer-events:none;
-}
-.cover-note::after{border-color:#E0D8CA}
-.cover-note:hover,.cover-note:focus-visible{
-  border-color:#7D947A;
-  box-shadow:5px 8px 0 #A99C8130,0 16px 27px #4B48302D;
-}
-.cover-note:focus-visible{outline:3px solid #6E896F;outline-offset:4px}
-.cover-content h2{color:#303B32;letter-spacing:.015em;font-weight:750}
-.cover-content p{color:#454D44}
-.cover-footer{color:#395844;border-top-color:#CABFB2}
-.beginner-cover{--tab-color:#EBC7B4;background:#F8EFE3}
-.atlas-cover{--tab-color:#C6D5BD;background:#EDF1E8}
-.knowledge-cover{--tab-color:#E8D8A7;background:#F8F1E2}
-.lab-cover{--tab-color:#B9D3CA;background:#EEF2EC}
-.about-cover{--tab-color:#DDC6B4;background:#F5EBE4}
-.cover-note .paper-topline{color:#566154}
-.cover-note .tape{opacity:.85}
-.detail-view{background:#DCD5C9}
-.detail-toolbar{background:#F5EFE5;border-bottom-color:#C8BFB0}
-.detail-breadcrumb{color:#535B50}
-.back-to-board{color:#375A42}
-.detail-scroll{scrollbar-color:#AFA89C #DED7CB}
-.detail-view .paper{
-  background:#FAF6EF!important;
-  color:#323A33;
-  border-color:#C4B9A7;
-  box-shadow:4px 6px 0 #C1B39B35,0 14px 28px #453C301A;
-}
-.detail-view .paper::after{border-color:#E8E0D4}
-.detail-view .paper-heading h2,.detail-view .about-sheet h2{color:#303A32}
-.detail-view .chapter-content p,
-.detail-view .chapter-content li,
-.detail-view .species-panel>p,
-.detail-view .about-lead{color:#3F4840}
-.chapter-subtitle,.paper-topline,.preview-header{color:#505D4F}
-.chapter-content .chapter-caption{background:#E9EDE3;border-left-color:#709177;color:#344639}
-.chapter-nums button{background:#F5F0E7;color:#3F4E41;border-color:#C7C3B5}
-.chapter-nums button.active{background:#48654E;color:#fff;border-color:#48654E}
-.chapter-nums button:hover:not(.active){background:#E9E9DD}
-.species-tabs button{color:#515E53}
-.species-tabs button.active{color:#325C42;border-color:#4B7054}
-.species-grid dt,.fine-print{color:#596157}
-.species-grid dt,.species-grid dd{border-bottom-color:#CEC9BD}
-.search-wrap{background:#FEFBF5;border-color:#BEBCAF}
-.search-wrap input{color:#343B35}
-.search-wrap input::placeholder{color:#73766C;opacity:1}
-.search-label{color:#535B53}
-.topic-line button{border-color:#C2C6B8;color:#415446}
-.topic-line button.active{background:#4E6C55;color:#fff}
-.faq-scroll summary{color:#3C483D}
-.faq-scroll details p{color:#424C43}
-.no-results{color:#595E54}
-.product-options legend{color:#3F4A40}
-.size-choices button,.tier-choices button{background:#FBF8F1;color:#354138;border-color:#BFC3B6}
-.size-choices button small{color:#535E54}
-.size-choices button.active,.tier-choices button.active{
-  border-color:#607D65;background:#E8EDE3;box-shadow:inset 0 0 0 1px #607D65;
-}
-.product-preview{background:#F0F1E8;border-color:#AEB9A9;color:#364139}
-.preview-price{color:#365D42}
-.spec-line dt{color:#536354}
-.spec-line dt,.spec-line dd{border-bottom-color:#C2CABC}
-.preview-desc,.feature-list{color:#3E5041}
-.solid-button{background:#3D624A;border-color:#3D624A}
-.solid-button:hover{background:#2D4C38}
-.status-pill{color:#3E604A;border-color:#92AB94}
-.price-popover{background:#FAF5EB;border-color:#ADB7A6}
-.price-popover small{color:#59665B}
-.values dt{color:#365940}
-.values dt,.values dd{border-bottom-color:#C8C9BA}
-.viewport-hint,.canvas-controls,.hint-reopen{background:#F5F0E7E8;border-color:#BDB5A7;color:#37483A}
-.canvas-controls button{color:#3C5943}
-.canvas-controls button:hover{background:#E6E9DE}
-.bottom-mark{color:#585F54}
-.drawer-backdrop{background:#27292170}
-.cart-drawer{background:#F9F5EC;color:#373C35}
-.drawer-head{border-bottom-color:#CEC5B8}
-.drawer-head span,.drawer-head h2 small{color:#566456}
-.drawer-notice{background:#E8EDE3;color:#3F5742}
-.cart-line{border-bottom-color:#CEC7BA}
-.cart-empty{color:#566054}
-.cart-trigger:focus-visible,.ink-link:focus-visible{outline-color:#517A5A}
-@media(max-width:600px){
- .cover-note::before{right:-7px;width:13px;height:51px;top:41px}
- .cover-content p{color:#404C42}
- .detail-scroll{background:#DDD5C9}
- .detail-view .paper{padding:26px 20px 35px!important}
-}
-@media(prefers-reduced-motion:reduce){
- .cover-note{transition:none}
-}
-
-
-
-/* V0.8 — balanced notebook contrast + editorial homepage and handwritten notes.
-   Brand/home, navigation, articles and controls: lighter Noto Sans TC.
-   Only the clickable category notes and small stationery notes: LXGW WenKai TC. */
-:root {
-  --ground:#D8CFC2;
-  --paper:#FBF7F0;
-  --ink:#313A32;
-  --muted:#505C50;
-  --rule:#BFB3A2;
-  --olive:#456D51;
-  --sage:#C9DCC9;
-  --yellow:#E9D8A6;
-  --peach:#E7C1B2;
-  --blue:#C5DBD5;
-  --font-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
-  --font-hand:"LXGW WenKai TC","Kaiti TC","DFKai-SB","KaiTi",serif;
-  --font-mono:"IBM Plex Mono","Consolas",monospace;
-  font-family:var(--font-body);
-  background:var(--ground);
-  color:var(--ink);
-}
-body,button,input,select,textarea{font-family:var(--font-body);color:var(--ink)}
-body{background:var(--ground);font-weight:400}
-.site-header{background:#F6F1E8;border-bottom:1px solid #BEB3A6;box-shadow:0 2px 11px #4B3D2A0B}
-.logo-text strong{font-family:var(--font-body);font-weight:600;letter-spacing:.025em;color:#354F3C}
-.logo-text strong span{font-family:var(--font-body);font-weight:400;letter-spacing:.02em;color:#354F3C}
-.logo-text small{color:#576258;font-weight:400;font-size:9px;letter-spacing:.055em}
-.eyes i{background:#3D5A45}
-.top-nav a{font-family:var(--font-body);font-size:13px;font-weight:400;letter-spacing:.015em;color:#39463B}
-.top-nav a:hover{background:#EEE7DB}
-.top-nav a.active{font-weight:600;background:#E2E9DE;color:#31583C;border-bottom-color:#52765A}
-.cart-trigger{font-family:var(--font-body);font-weight:500;background:#F8F2E8;color:#35513C;border-color:#B8B1A4}
-.cart-trigger:hover{background:#E6EBE0}
-.cart-count{background:#476D51;color:#fff;font-family:var(--font-body);font-weight:500}
-.main-area{background:#D8CFC2}
-.workspace{background:radial-gradient(ellipse at 30% 18%,#E3D9CA 0%,#D2C6B5 100%)}
-.infinite-sheet{
-  background-color:#ECE4D8;
-  background-image:
-    linear-gradient(#BBAF9B43 1px,transparent 1px),
-    linear-gradient(90deg,#BBAF9B43 1px,transparent 1px),
-    linear-gradient(#C4B6A333 1px,transparent 1px),
-    linear-gradient(90deg,#C4B6A333 1px,transparent 1px);
-  border:1px solid #BEB1A0;
-  box-shadow:0 7px 33px #4C3E3023;
-}
-.board-corner,.paper-end{color:#576052;font-family:var(--font-mono);letter-spacing:.045em}
-.connectors path{stroke:#ABA493}
-.paper{background:var(--paper);border-color:#C6BAA9;box-shadow:3px 5px 0 #A99B8630,0 15px 28px #3E33271C}
-.paper::after{border-color:#E7DDCF}
-.paper-topline{color:#586458;border-bottom-color:#CFC2B1;font-family:var(--font-body);font-weight:400;letter-spacing:.075em}
-.paper-heading p{color:#465248}
-.paper-heading h2,.about-sheet h2{font-family:var(--font-body);font-weight:600;letter-spacing:.01em}
-.tape{background:#E2CBACBC}
-.tape-green{background:#C2D6BDCD}
-.tape-yellow{background:#E7D8A4D5}
-.tape-peach{background:#E7C4B7D0}
-.tape-blue{background:#BFD9D6CE}
-.tape-about{background:#E3CFBACA}
-
-/* 00: text printed directly on the large notebook surface, not a pinned card */
-.notebook-intro{
-  position:absolute;
-  background:transparent!important;
-  border:0!important;
-  box-shadow:none!important;
-  padding:25px 20px!important;
-  transform:none;
-  color:#2F4034;
-}
-.notebook-intro::before,.notebook-intro::after{display:none!important}
-.notebook-intro .paper-topline{border-bottom:1px solid #B6AB9B;color:#4B5B4E;font-weight:400}
-.notebook-intro .small-kicker{font-family:var(--font-body);font-size:11px;letter-spacing:.12em;color:#46634F;font-weight:400}
-.notebook-intro .home-core h1{font-family:var(--font-body);font-weight:600;letter-spacing:.012em;color:#2F4535}
-.notebook-intro .home-core h1 em{font-family:var(--font-body);font-weight:400;letter-spacing:.005em}
-.notebook-intro .home-core h2{font-family:var(--font-body);font-weight:500;font-size:21px;color:#354E3B}
-.notebook-intro .brand-phrase{color:#3B5A45;font-weight:400;letter-spacing:.1em}
-.notebook-intro .home-divider{height:1px;width:55%;background:#AFA593}
-.notebook-intro .main-description{font-family:var(--font-body);font-weight:400;color:#404F42;font-size:15px;line-height:1.9}
-.notebook-intro .home-bottom{left:20px;right:20px;bottom:30px;color:#4D604F;font-family:var(--font-body);font-weight:400;letter-spacing:.06em}
-.ink-link{font-family:var(--font-body);font-weight:500;color:#30583E;border-color:#4E7558}
-.ink-link.subtle{color:#4D5A4E;border-color:#9DAA99}
-
-/* 01–05: handwritten note labels, with controlled saturation and readable ink */
-.cover-note{
-  border:1px solid #C4B7A4;
-  box-shadow:4px 6px 0 #B4A7902E,0 13px 23px #463B2D20;
-  font-family:var(--font-hand);
-  transition:border-color .17s ease,box-shadow .17s ease;
-}
-.cover-note::after{border-color:#E2D4C2}
-.cover-note::before{border-color:#B7AB98;background:var(--tab-color,#CDDACB)}
-.cover-note:hover,.cover-note:focus-visible{border-color:#7B977B;box-shadow:6px 9px 0 #B4A79038,0 16px 26px #40342829}
-.cover-note .paper-topline{font-family:var(--font-hand);font-size:13px;letter-spacing:.025em;color:#4A5A4E;font-weight:400}
-.cover-content h2{font-family:var(--font-hand);font-size:30px;letter-spacing:.01em;font-weight:700;color:#293E30}
-.cover-content p{font-family:var(--font-hand);font-size:16px;font-weight:400;line-height:1.85;color:#3E4B41}
-.cover-footer{font-family:var(--font-hand);font-size:14px;font-weight:400;border-top-color:#C5B7A4;color:#3B6048}
-.cover-footer span:last-child{font-weight:700}
-.beginner-cover{--tab-color:#E0A695;background:#F5E2D7}
-.atlas-cover{--tab-color:#B8D0AE;background:#E3EADC}
-.knowledge-cover{--tab-color:#DAC37E;background:#F5EBD0}
-.lab-cover{--tab-color:#A6CBC1;background:#E0EEE8}
-.about-cover{--tab-color:#D8B09C;background:#F0E1D7}
-.tiny-note,.tiny-note strong,.tiny-note p{font-family:var(--font-hand)}
-.tiny-note{background:#E9DBBB;border:1px solid #D1BE9B;color:#39453B;font-size:15px}
-.tiny-note strong{font-weight:700;color:#36503D}
-.tiny-note p{font-weight:400;line-height:1.75}
-.tiny-note>span:last-child{font-family:var(--font-hand);color:#596455}
-.start-note{background:#EADBB8}
-.species-note{background:#DCE8D6}
-.notebook-note{background:#EBDBD0}
-
-/* Content remains a quiet, thin-weight sans-serif rather than handwritten. */
-.detail-view{background:#DAD0C2}
-.detail-toolbar{background:#F8F3EB;border-bottom-color:#C4B9A8}
-.detail-breadcrumb{font-family:var(--font-body);font-size:12px;color:#5A655B}
-.back-to-board{font-family:var(--font-body);font-weight:500;color:#3F6348}
-.detail-scroll{background:#DAD0C2;scrollbar-color:#BAB0A1 #DAD0C2}
-.detail-view .paper{background:#FCF8F1!important;border-color:#C3B7A6;box-shadow:4px 7px 0 #B6A89130,0 15px 27px #4C3B2A14}
-.detail-view .paper::after{border-color:#EBE1D3}
-.detail-view .paper-heading h2,.detail-view .about-sheet h2{font-family:var(--font-body);font-weight:600;color:#344839}
-.detail-view .chapter-content h3{font-family:var(--font-body);font-weight:500;color:#344738}
-.detail-view .chapter-content p,
-.detail-view .chapter-content li,
-.detail-view .species-panel>p,
-.detail-view .about-lead{font-family:var(--font-body);font-weight:400;color:#3C473E;line-height:1.95}
-.chapter-subtitle{font-family:var(--font-body);color:#4B6952;font-weight:400;letter-spacing:.04em}
-.chapter-nums button{font-family:var(--font-body);font-weight:400;color:#4C5F50;background:#F7F2EA;border-color:#C6C3B8}
-.chapter-nums button.active{background:#4A6F52;color:#fff;border-color:#4A6F52}
-.species-tabs button{font-family:var(--font-body);font-weight:400;color:#4A5A4E}
-.species-tabs button.active{font-weight:600;color:#315D42;border-color:#4B7655}
-.species-grid dt{color:#586358;font-weight:400}
-.species-grid dd{color:#3D483D}
-.fine-print,.detail-end{color:#5B655B}
-.search-wrap{background:#FFFDF7;border-color:#B4C1B0}
-.search-label{font-family:var(--font-body);color:#647064}
-.topic-line button{font-family:var(--font-body);font-weight:400;background:#F8F6EF;border-color:#C1C9BC;color:#4D5D50}
-.topic-line button.active{background:#4C7054;color:white;border-color:#4C7054}
-.faq-scroll summary{font-family:var(--font-body);font-weight:500;color:#37493C}
-.faq-scroll details p{font-family:var(--font-body);font-weight:400;color:#414C43}
-.product-options legend{font-family:var(--font-body);font-size:13px;font-weight:600;color:#425747}
-.size-choices button,.tier-choices button{background:#FCF9F3;border-color:#BAC6B8;color:#435748}
-.size-choices button b,.tier-choices button{font-family:var(--font-body);font-weight:500}
-.size-choices button small{font-family:var(--font-body);font-weight:400;color:#5A685D}
-.size-choices button.active,.tier-choices button.active{border-color:#547A5D;background:#E3EFE0;box-shadow:inset 0 0 0 1px #547A5D}
-.product-preview{background:#EBF1E9;border-color:#B4C4B3;color:#3B4E3E}
-.product-preview h3{font-family:var(--font-body);font-weight:500;color:#365440}
-.preview-header,.preview-price{font-family:var(--font-body)}
-.preview-header{color:#566A59;font-weight:400}
-.preview-price{color:#3E694C;font-weight:500}
-.spec-line dt{font-family:var(--font-body);font-weight:400;color:#5A6D5B}
-.spec-line dd{font-family:var(--font-body);font-weight:400;color:#3B4E40}
-.preview-desc,.feature-list{font-family:var(--font-body);font-weight:400;color:#475B49}
-.solid-button{font-family:var(--font-body);font-weight:500;background:#456C4E;border-color:#456C4E;color:#fff}
-.solid-button:hover{background:#35573F}
-.status-pill{font-family:var(--font-body);font-weight:400;border-color:#A2B6A2;color:#527158}
-.price-popover{background:#FDF9F2;border-color:#B4C4B2}
-.price-popover table{font-family:var(--font-body)}
-.values dt{font-family:var(--font-body);font-weight:500;color:#42654A}
-.values dd{font-family:var(--font-body);font-weight:400;color:#4C5B4D}
-.viewport-hint,.canvas-controls,.hint-reopen{background:#FBF6EDEA;border-color:#C2B7A8;color:#45614C}
-.cart-drawer{background:#FBF7EF;color:#374A3C}
-.drawer-head h2{font-family:var(--font-body);font-weight:500}
-.drawer-notice{background:#E5EFE1;color:#4C6750}
-.cart-line strong{font-family:var(--font-body);font-weight:500}
-.cart-total strong{font-family:var(--font-body);font-weight:500}
-@media(max-width:960px){
- .notebook-intro{padding:24px 20px!important}
-}
-@media(max-width:600px){
- .notebook-intro{padding:20px 18px!important}
- .notebook-intro .home-bottom{left:18px;right:18px;bottom:28px}
- .notebook-intro .home-core h1{font-size:38px}
- .notebook-intro .home-core h1 em{font-size:31px}
- .cover-content h2{font-size:28px}
- .cover-content p{font-size:15px}
- .cover-footer{font-size:13px}
- .detail-scroll{background:#DAD0C2}
-}
-@media(prefers-reduced-motion:reduce){.cover-note{transition:none}}
-
-
-/* V0.9 — approved ChenYuluoyan handwriting for category notes,
-   slightly brighter paper tones. 00 typography remains undecided. */
-@font-face{
- font-family:"HACHIME ChenYuluoyan";
- src:url("https://raw.githubusercontent.com/Chenyu-otf/chenyuluoyan_thin/main/ChenYuluoyan-2.0-Thin.ttf") format("truetype");
- font-style:normal;
- font-weight:400;
- font-display:swap;
-}
-:root{
- --font-hand:"HACHIME ChenYuluoyan","LXGW WenKai TC","Kaiti TC","DFKai-SB",serif;
-}
-.cover-note{font-family:var(--font-hand);font-weight:400}
-.cover-note .paper-topline{font-family:var(--font-body);font-size:11px;font-weight:400;letter-spacing:.07em}
-.cover-content h2{
- font-family:var(--font-hand);
- font-weight:400;
- font-synthesis:none;
- font-size:36px;
- line-height:1.32;
- letter-spacing:.015em
-}
-.cover-content p{
- font-family:var(--font-hand);
- font-weight:400;
- font-synthesis:none;
- font-size:20px;
- line-height:1.65;
- letter-spacing:.015em
-}
-.cover-footer{font-family:var(--font-body);font-weight:400;font-size:12px}
-.cover-footer span:last-child{font-weight:500}
-.tiny-note,.tiny-note strong,.tiny-note p{font-family:var(--font-hand);font-weight:400;font-synthesis:none}
-.tiny-note strong{font-size:21px}
-.tiny-note p{font-size:17px}
-.beginner-cover{background:#FAEBE2}
-.atlas-cover{background:#EEF4E9}
-.knowledge-cover{background:#FBF2DD}
-.lab-cover{background:#ECF5EF}
-.about-cover{background:#F8EAE2}
-.workspace{background:radial-gradient(ellipse at 30% 18%,#F3EFE8 0%,#E9E3D9 100%)}
-.infinite-sheet{
- background-color:#F0ECE4;
- background-image:
-  linear-gradient(#CEC7BB40 1px,transparent 1px),
-  linear-gradient(90deg,#CEC7BB40 1px,transparent 1px),
-  linear-gradient(#CEC7BB27 1px,transparent 1px),
-  linear-gradient(90deg,#CEC7BB27 1px,transparent 1px)
-}
-@media(max-width:600px){
- .cover-content h2{font-size:32px}
- .cover-content p{font-size:18px}
- .tiny-note p{font-size:16px}
-}
-
-
-/* V0.9.1 — 00 brand introduction: selected A (Noto Sans TC Light).
-   Only the 00 section uses the light display weight; notes keep ChenYuluoyan. */
-.notebook-intro .home-core h1,
-.notebook-intro .home-core h1 em,
-.notebook-intro .home-core h2 {
-  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  font-weight:300;
-}
-.notebook-intro .brand-phrase,
-.notebook-intro .small-kicker {font-weight:300}
-.notebook-intro .main-description {font-weight:400}
-
-
-/* V0.10 — user-selected pale warm B and JasonHandwriting 6 for note headings only.
-   00 stays Noto Sans TC Light; notes' descriptions and all content retain sans serif. */
-@font-face{
-  font-family:"HACHIME JasonHandwriting6";
-  src:url("https://raw.githubusercontent.com/jasonhandwriting/JasonHandwriting/master/JasonHandwriting6.ttf") format("truetype");
-  font-style:normal;
-  font-weight:400;
-  font-display:swap;
-}
-:root{
-  --ground:#EFE9DD;
-  --paper:#FAF7EE;
-  --ink:#33392E;
-  --muted:#536254;
-  --rule:#C9C0B3;
-  --olive:#456A4D;
-  --sage:#DEEADD;
-  --yellow:#F4E9CC;
-  --peach:#F1E2DA;
-  --blue:#E1ECE7;
-  --font-hand:"HACHIME JasonHandwriting6","Noto Sans TC","PingFang TC",sans-serif;
-  background:var(--ground);
-  color:var(--ink);
-}
-body{background:var(--ground);color:var(--ink)}
-.main-area{background:var(--ground)}
-.workspace{background:#EFE9DD}
-.infinite-sheet{
-  background-color:#FAF7EE;
-  background-image:
-    linear-gradient(#D6CFC288 1px,transparent 1px),
-    linear-gradient(90deg,#D6CFC288 1px,transparent 1px),
-    linear-gradient(#D6CFC23F 1px,transparent 1px),
-    linear-gradient(90deg,#D6CFC23F 1px,transparent 1px);
-  border-color:#D3CBBE;
-  box-shadow:0 6px 25px #51433118;
-}
-.site-header{background:#FAF7EE;border-bottom-color:#D3C9BA;box-shadow:0 2px 8px #5143310B}
-.paper{background:#FFFCF7;border-color:#C8BFB0}
-.paper::after{border-color:#EEE7DD}
-.paper-topline{border-bottom-color:#CEC7B9;color:#556054}
-.board-corner,.paper-end{color:#58665A}
-.notebook-intro{color:#33392E}
-.notebook-intro .home-core h1,
-.notebook-intro .home-core h1 em,
-.notebook-intro .home-core h2{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:300}
-.notebook-intro .main-description{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:400;color:#455248}
-.notebook-intro .home-bottom{color:#58665A}
-.cover-note{border-color:#CDC4B6;box-shadow:3px 5px 0 #827A6420,0 11px 22px #453D3018}
-.cover-note::after{border-color:#E8DFD3}
-.cover-note .paper-topline{font-family:"Noto Sans TC","PingFang TC",sans-serif;font-size:11px;font-weight:400}
-.cover-content h2{
-  font-family:var(--font-hand);
-  font-size:35px;
-  line-height:1.4;
-  font-weight:400;
-  font-synthesis:none;
-  letter-spacing:0;
-  color:#33483A;
-}
-.cover-content p{
-  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  font-size:14px;
-  font-weight:400;
-  font-synthesis:auto;
-  line-height:1.88;
-  letter-spacing:0;
-  color:#435248;
-}
-.cover-footer{font-family:"Noto Sans TC","PingFang TC",sans-serif;font-size:12px;font-weight:400}
-.cover-footer span:last-child{font-weight:500}
-.tiny-note strong{font-family:var(--font-hand);font-weight:400;font-size:22px;font-synthesis:none}
-.tiny-note p{font-family:"Noto Sans TC","PingFang TC",sans-serif;font-size:13px;font-weight:400;line-height:1.8}
-.tiny-note>span:last-child{font-family:"Noto Sans TC","PingFang TC",sans-serif;font-size:10px}
-.beginner-cover{background:#F7EAE4;--tab-color:#E6C7B6}
-.atlas-cover{background:#EDF2E9;--tab-color:#C8D7C0}
-.knowledge-cover{background:#F8EFD9;--tab-color:#E9DAA9}
-.lab-cover{background:#EAF3EE;--tab-color:#C3D9CC}
-.about-cover{background:#F5ECE5;--tab-color:#E2CDBA}
-.tiny-note,.start-note{background:#F4E9CC}
-.species-note{background:#DEEADD}
-.notebook-note{background:#F1E2DA}
-.detail-view{background:#EFE9DD}
-.detail-scroll{background:#EFE9DD}
-.detail-toolbar{background:#FAF7EE;border-bottom-color:#D1C9BC}
-.detail-view .paper{background:#FFFCF7!important;border-color:#D3C9BA}
-.cart-drawer{background:#FAF7EE}
-.viewport-hint,.canvas-controls,.hint-reopen{background:#FAF7EEF0}
-@media(max-width:600px){
-  .cover-content h2{font-size:32px}
-  .cover-content p{font-size:14px}
-  .detail-scroll{background:#EFE9DD}
-}
-
-
-/* V0.13 — illustration and editorial annotations on the draggable notebook.
-   Body text stays readable; Q handwriting is for short curved decorative phrases. */
-:root{
- --font-rounded:"Zen Maru Gothic","Noto Sans TC","PingFang TC",sans-serif;
-}
-.cover-content p{font-family:var(--font-rounded);font-size:14px;font-weight:500;line-height:1.84;color:#425346}
-.notebook-intro .main-description{font-family:var(--font-rounded);font-weight:500;font-size:14px;color:#415145}
-.detail-view .chapter-content p,
-.detail-view .chapter-content li,
-.detail-view .species-panel>p,
-.detail-view .about-lead{font-family:var(--font-rounded);font-weight:400;line-height:1.95;color:#3E4C40}
-.detail-view .faq-scroll details p{font-family:var(--font-rounded);font-weight:400}
-.detail-view .cover-content p{font-family:var(--font-rounded)}
-.product-preview .preview-desc,.product-preview .feature-list,
-.about-sheet .values dd{font-family:var(--font-rounded);font-weight:400}
-.board-scribble{
- position:absolute;pointer-events:none;user-select:none;overflow:visible;z-index:2;
- color:#668572;
-}
-.board-scribble text{
- font-family:"HACHIME JasonHandwriting6","Noto Sans TC",sans-serif;
- font-size:25px;fill:#6C8C76;font-weight:400;
-}
-.board-scribble .scribble-path{
- fill:none;stroke:#8DAA93;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;
- stroke-dasharray:3 6;opacity:.65;
-}
-.scribble-arc{left:925px;top:467px;width:355px;height:100px;transform:rotate(-3deg)}
-.scribble-wave{left:169px;top:1085px;width:365px;height:92px;transform:rotate(4deg)}
-.scribble-circle{left:1260px;top:1079px;width:240px;height:180px;transform:rotate(-9deg)}
-.board-art{position:absolute;z-index:2;pointer-events:none;margin:0;user-select:none;filter:saturate(.72)}
-.board-art img{display:block;width:100%;height:auto;object-fit:contain}
-.board-art figcaption{
- text-align:center;font:10px/1.25 "Noto Sans TC",sans-serif;
- color:#657866;letter-spacing:.055em;margin-top:-2px
-}
-.art-spider{left:1363px;top:525px;width:126px;transform:rotate(-10deg);opacity:.86}
-.art-terrarium{left:1930px;top:553px;width:111px;transform:rotate(5deg);opacity:.92}
-.art-herb{left:696px;top:1045px;width:122px;transform:rotate(-11deg);opacity:.80}
-.art-blossom{left:1674px;top:1140px;width:105px;transform:rotate(18deg);opacity:.78}
-.art-potted{left:1942px;top:1060px;width:100px;transform:rotate(4deg);opacity:.77}
-.asset-note{border-top:1px solid #D7D4C7;margin-top:23px;padding-top:12px}
-.asset-note a{color:#355F46;text-decoration:underline;text-underline-offset:3px}
-@media(max-width:600px){
- .cover-content p{font-size:14px}
- .board-scribble{display:none}
- .board-art figcaption{display:none}
- .art-spider{left:310px;top:1850px;width:67px;transform:rotate(5deg)}
- .art-herb{left:310px;top:1128px;width:60px;transform:rotate(8deg)}
- .art-blossom{left:313px;top:1487px;width:57px;transform:rotate(-10deg)}
- .art-terrarium{left:318px;top:2223px;width:64px;transform:rotate(5deg)}
- .art-potted{left:310px;top:2598px;width:62px;transform:rotate(-4deg)}
-}
-@media(prefers-reduced-motion:reduce){
- .board-art,.board-scribble{animation:none!important;transition:none!important}
-}
-
-
-/* V0.13 — simple wordmark; cartoon icon withdrawn. */
-.site-header .logo{min-width:235px;gap:0}
-.site-header .logo-text strong{font-weight:500;letter-spacing:.025em}
-.site-header .logo-text strong span{font-weight:300}
-
-/* V0.13 — organic photo-first notes, consistent readable typography */
-:root{--font-rounded:"Huninn","Zen Maru Gothic","Noto Sans TC",sans-serif}
-.infinite-sheet{height:1390px}
-.paper-end{top:1324px;left:1020px}
-.cover-note,.cover-note *{font-family:var(--font-rounded)!important}
-.cover-note{overflow:visible;isolation:isolate;z-index:4;transition:transform .16s ease,box-shadow .16s ease}
-.cover-note::after{pointer-events:none}
-.cover-note .paper-topline{font-size:11px;letter-spacing:.05em}
-.cover-note .cover-content h2{font-size:31px;line-height:1.38;font-weight:700!important;letter-spacing:0;margin:0 0 14px;color:#304B3A}
-.cover-note .cover-content p{font-size:15px;line-height:1.83;font-weight:500!important;letter-spacing:0;color:#3D4E41}
-.cover-note .cover-footer{position:relative;z-index:5;font-size:12px;font-weight:500}
-.atlas-cover{left:1495px;top:199px;width:524px;height:360px;transform:rotate(-1.7deg)}
-.lab-cover{left:810px;top:643px;width:615px;height:419px;transform:rotate(1.1deg)}
-.atlas-cover .cover-text,.lab-cover .cover-text{position:relative;z-index:5;width:46%;padding-top:24px}
-.lab-cover .cover-text{width:47%;padding-top:15px}
-.atlas-cover .cover-text h2{font-size:37px}
-.lab-cover .cover-text h2{font-size:32px}
-.cover-note .cover-feature-name{display:inline-block;border-bottom:1px dashed #809783;padding-bottom:5px;margin:0 0 9px;font-size:16px!important;font-weight:700!important}
-.cover-note .cover-feature-desc{font-size:13px!important;line-height:1.75!important;max-width:22ch}
-.floating-cover-image{position:absolute;z-index:3;pointer-events:none;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
-.floating-cover-image img{display:block;width:100%;height:100%;object-fit:cover;background:#F0EADD}
-.floating-spider{top:-40px;right:-26px;width:284px;height:281px;padding:7px 7px 34px;background:#FFFCF8;box-shadow:6px 12px 23px #4A39223D;transform:rotate(6.5deg)}
-.floating-spider img{height:235px;object-position:50% 43%}
-.floating-spider::after{content:"";position:absolute;width:80px;height:21px;background:#D8CDB6B8;top:-9px;left:96px;transform:rotate(-8deg)}
-.floating-case{top:21px;right:-38px;width:315px;height:305px;transform:rotate(-6deg)}
-.floating-case img{width:100%;height:290px;object-fit:contain;background:transparent;filter:drop-shadow(11px 12px 4px #48584325)}
-.floating-cover-image figcaption{pointer-events:auto;font-size:10px;line-height:1.3;text-align:center;white-space:nowrap;color:#506356;margin-top:5px}
-.floating-cover-image figcaption a{color:#425A48;text-decoration:underline;text-underline-offset:3px}
-.cover-switch{position:absolute;right:22px;bottom:66px;z-index:6;display:flex;align-items:center;gap:9px;font-size:11px;color:#3D6349}
-.cover-switch button{border:1px solid #A6B5A2;border-radius:22px;background:#FFFBF5EB;color:#355E44;padding:3px 11px;font-size:12px;cursor:pointer;touch-action:manipulation}
-.cover-switch button:hover{background:#E6F1E5}
-.cover-note:focus-visible,.cover-switch button:focus-visible,.floating-cover-image figcaption a:focus-visible{outline:3px solid #3A7651;outline-offset:4px}
-.atlas-cover .cover-footer,.lab-cover .cover-footer{padding-top:10px}
-.atlas-cover .tape{left:38px}
-.lab-cover .tape{left:37px}
-.scribble-circle{left:1441px;top:1106px;transform:rotate(-12deg)}
-.art-spider{left:1386px;top:557px;width:89px;opacity:.61}
-.art-terrarium{left:1960px;top:698px;width:83px;opacity:.58}
-.notebook-intro .main-description,.detail-view .chapter-content p,
-.detail-view .chapter-content li,.detail-view .faq-scroll details p,
-.detail-view .species-panel p,.detail-view .about-lead,
-.product-preview .preview-desc,.product-preview .feature-list,
-.about-sheet .values dd{font-family:var(--font-rounded);font-weight:500;line-height:1.88;color:#3A4D3F}
-.product-drawing{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;margin:11px 0 9px;background:#F8F8F1;border:1px solid #C8D5C8;padding:7px}
-.product-drawing img{display:block;width:min(280px,100%);height:190px;object-fit:contain}
-.product-drawing figcaption{font:11px "Noto Sans TC",sans-serif;color:#5D6A5E}
-.species-profile{display:grid;grid-template-columns:minmax(185px,285px) minmax(0,1fr);gap:27px;align-items:start}
-.species-profile figure{background:#F7F1E9;border:1px solid #DDD4C6;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0;min-height:265px;padding:8px}
-.species-profile figure img{display:block;width:100%;height:216px;object-fit:cover}
-.species-profile figcaption{font:11px "Noto Sans TC",sans-serif;color:#626E62;text-align:center}
-.species-profile figcaption a{color:#365D41;text-decoration:underline}
-.species-profile .species-info h3{margin:0 0 5px}
-.species-profile .species-info>p{font:500 14px/1.85 var(--font-rounded)}
-.species-profile .species-grid{margin-top:14px}
-@media(max-width:600px){
- .infinite-sheet{width:420px;height:2835px}
- .paper-end{left:36px;top:2790px}
- .cover-note{left:23px!important;width:374px!important;padding:22px 25px!important;transform:none!important}
- .cover-note .cover-content h2{font-size:28px}
- .cover-note .cover-content p{font-size:14px}
- .atlas-cover{top:1185px!important;height:348px!important}
- .atlas-cover .cover-text{width:49%;padding-top:24px}
- .atlas-cover .cover-text h2{font-size:31px}
- .lab-cover{top:1950px!important;height:396px!important}
- .lab-cover .cover-text{width:49%;padding-top:38px}
- .lab-cover .cover-text h2{font-size:27px}
- .knowledge-cover{top:1607px!important}
- .about-cover{top:2445px!important}
- .atlas-cover .cover-feature-desc,.lab-cover .cover-feature-desc{font-size:12px!important;line-height:1.65!important;max-width:17ch}
- .cover-note .cover-feature-name{font-size:14px!important}
- .floating-spider{top:28px;right:-10px;width:169px;height:192px;padding:5px 5px 29px;transform:rotate(4deg)}
- .floating-spider img{height:158px}
- .floating-spider::after{width:54px;height:14px;top:-6px;left:54px}
- .floating-case{top:89px;right:-18px;width:202px;height:224px;transform:rotate(-5deg)}
- .floating-case img{height:196px}
- .floating-cover-image figcaption{font-size:8px;white-space:normal;max-width:100%;line-height:1.25}
- .cover-switch{bottom:55px;right:15px;font-size:9px;gap:5px}
- .cover-switch button{padding:4px 8px;font-size:11px}
- .art-spider,.art-terrarium{display:none}
- .species-profile{grid-template-columns:1fr;gap:15px}
- .species-profile figure{min-height:215px}
- .species-profile figure img{height:192px;object-fit:contain}
- .product-drawing img{height:150px}
-}
-@media(prefers-reduced-motion:reduce){
- .floating-cover-image,.cover-note{transition:none!important;animation:none!important}
-}
-
-
-/* V0.13.1 — tiny finishing touches: handwritten words extend BEYOND note edges,
-   while every word printed INSIDE a note keeps the one rounded typeface. */
-.cover-note .cover-content h2{font-synthesis:weight}
-.atlas-cover .cover-text{z-index:5}
-.lab-cover .cover-text{z-index:5}
-.board-handmark{position:absolute;z-index:5;pointer-events:none;font:400 25px/1.2 "HACHIME JasonHandwriting6","Huninn","Noto Sans TC",sans-serif;color:#779580;white-space:nowrap}
-.handmark-spider{top:132px;left:1410px;transform:rotate(-10deg)}
-.handmark-case{top:1058px;left:1115px;transform:rotate(7deg)}
-@media(max-width:600px){
- .board-handmark{font-size:18px}
- .handmark-spider{left:225px;top:1550px;transform:rotate(-8deg)}
- .handmark-case{left:120px;top:2365px;transform:rotate(5deg)}
-}
-
-
-/* Selected eye/leaf mark: one highlight on each of the eight eyes. Wordmark remains unchanged. */
-.site-header .logo{gap:8px;min-width:255px}
-.logo-symbol{width:62px;height:44px;object-fit:contain;flex:0 0 auto}
-@media(max-width:600px){
- .site-header .logo{gap:5px;min-width:unset}
- .logo-symbol{width:46px;height:36px}
-}
-
-/* V0.16: layout zoom repaints text at its target size; only paper skins tilt. */
-.infinite-sheet{height:1660px;will-change:auto;transform:none}
-.paper-end{top:1605px}
-.workspace .paper,.workspace .tiny-note{transform:none!important}
-.workspace .cover-note,.workspace .tiny-note{background:transparent;border-color:transparent;box-shadow:none;isolation:isolate}
-.workspace .cover-note::after,.workspace .tiny-note::before{
- content:"";display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;
- background:var(--note-paper,#FFFCF2);border:1px solid #C9BFAF;
- box-shadow:3px 5px 0 #A99C812B,0 10px 24px #4D453720;
- transform:rotate(var(--paper-tilt,.7deg));
-}
-.beginner-cover{--note-paper:#F7EAE4;--paper-tilt:.7deg}
-.atlas-cover{--note-paper:#EDF2E9;--paper-tilt:-1.7deg}
-.knowledge-cover{--note-paper:#F8EFD9;--paper-tilt:.7deg}
-.lab-cover{--note-paper:#EAF3EE;--paper-tilt:1.1deg}
-.about-cover{--note-paper:#F5ECE5;--paper-tilt:.8deg}
-.tiny-note{--note-paper:#F4E9CC;--paper-tilt:4deg}
-.workspace .cover-note:hover::after,.workspace .cover-note:focus-visible::after{border-color:#748C79;box-shadow:8px 15px 26px #273B2A24}
-.cover-note{transition:none}
-.cover-note .paper-topline,.cover-note .cover-footer{color:#3D5142;line-height:1.6;font-weight:500}
-.workspace .floating-cover-image{transform:none}
-.workspace .floating-cover-image img{transform:rotate(-3deg)}
-.workspace .floating-spider{box-shadow:none;background:transparent}
-.workspace .floating-spider img{border:6px solid #FFFCF8;box-shadow:4px 7px 14px #4A39222A}
-.live-cover{left:810px;top:1170px;width:615px;height:360px;--note-paper:#F5E6C9;--paper-tilt:-1.2deg;--tab-color:#DCC394}
-.live-cover .cover-text{width:53%;padding-top:20px}
-.live-cover .cover-content h2{font-size:32px}
-.live-cover .live-picture{top:65px;right:12px;width:245px;height:205px}
-.live-picture img{object-fit:contain;background:transparent}
-.live-cover .cover-feature-desc{max-width:22ch}
-.live-cover .cover-switch{bottom:64px}
-.live-intro{line-height:1.9;color:#3A4D3F}
-.live-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:25px}
-.live-card{min-width:0;padding:18px;border:1px solid #D3C9BA;background:#FAF6EB;border-radius:12px}
-.live-card figure{margin:0 0 18px}.live-card img{width:100%;height:175px;object-fit:contain}
-.live-card figcaption{font-size:12px;color:#53624F;line-height:1.6}
-.live-card h3{margin:12px 0 6px;font-size:24px}.live-card p{line-height:1.85}
-.live-card dl{font-size:13px;line-height:1.8}.live-card dt{font-weight:700;margin-top:10px}.live-card dd{margin:0;overflow-wrap:anywhere}
-.live-status{display:inline-block;background:#E5EBD9;padding:5px 10px;border-radius:16px;font-size:12px}
-@media(min-width:961px) and (max-width:1200px){.site-header{gap:12px;padding-inline:16px}.top-nav a{padding-inline:8px}.site-header .logo{min-width:230px}}
-@media(max-width:900px){.live-grid{grid-template-columns:1fr}.live-card img{height:200px}}
-@media(max-width:600px){
- .infinite-sheet{height:3310px}.paper-end{top:3260px}
- .live-cover{top:2820px!important;height:365px!important}
- .live-cover .cover-text{width:52%}.live-cover .cover-content h2{font-size:27px}
- .live-cover .live-picture{top:95px;right:0;width:160px;height:175px}
- .live-cover .cover-feature-desc{font-size:12px!important}
- .workspace .cover-note::after{transform:rotate(.4deg)}
-}
-
-/* V0.16 — five notebook entrances, one beginner journey, one shop. */
-.infinite-sheet{width:1500px;height:1570px}.paper-end{left:580px;top:1505px}
-.notebook-intro{left:75px;top:85px;width:650px;height:460px}
-.beginner-cover{left:800px;top:85px;width:590px;height:440px}
-.atlas-cover{left:100px;top:650px;width:590px;height:360px}
-.knowledge-cover{left:800px;top:650px;width:590px;height:360px}
-.shop-cover{left:100px;top:1100px;width:690px;height:320px;--note-paper:#EAF3EE;--tab-color:#C3D9CC;--paper-tilt:-.8deg}
-.about-cover{left:920px;top:1120px;width:470px;height:280px}
-.start-note{left:460px;top:530px;width:280px;padding:12px 20px}.start-note p{margin:3px 0}.start-note strong{font-size:16px}
-.journey-preview{padding-left:23px;font-size:17px;line-height:2;margin:18px 0;color:#3D5142}
-.specimen-strip{display:flex;gap:10px;margin-top:10px}.specimen-strip img{width:29%;height:115px;object-fit:contain}
-.atlas-cover .cover-content h2{font-size:31px}.note-keywords{margin-top:30px;font-size:14px;line-height:2;color:#526752}
-.shop-shortcuts{display:flex;gap:14px;margin-top:20px}.shop-shortcuts a{flex:1;border:1px dashed #95A58F;padding:12px;color:#35583F;font-size:17px;touch-action:manipulation}.shop-shortcuts small{display:block;font-size:12px;margin-top:6px}
-.scribble-arc{left:950px;top:525px}.scribble-wave{left:110px;top:1010px}.scribble-circle{display:none}
-.art-spider{left:1420px;top:650px;width:65px}.art-herb{left:700px;top:930px;width:65px}.art-blossom{left:1400px;top:1100px;width:65px}.art-potted{left:820px;top:1260px;width:65px}.art-terrarium,.board-handmark{display:none}
-.section-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.section-tabs a{padding:10px 15px;border:1px solid #BFCBB9;background:#FAF7EE;font-size:14px;border-radius:3px}.section-tabs a[aria-current]{background:#3D5B46;color:#FFF}
-.shop-heading h2{font-size:34px;margin:12px 0}.shop-heading p{line-height:1.8}
-.entry-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.entry-card{display:block;background:#FFFCF7;border:1px solid #D3C9BA;padding:26px;line-height:1.8;box-shadow:4px 7px 0 #D4CBB533}.entry-card img{width:100%;height:170px;object-fit:contain}.entry-card h3{font-size:24px}.entry-card span{color:#355E44;text-decoration:underline}
-.cross-links{display:flex;flex-wrap:wrap;gap:16px;margin:24px 0;line-height:1.8}.cross-links a{color:#355E44;text-decoration:underline;text-underline-offset:4px}
-.guide-check{display:flex;align-items:flex-start;gap:12px;padding:17px;background:#EDF1E5;line-height:1.8;font-size:15px}.guide-check input{width:20px;height:20px;margin-top:3px;flex-shrink:0;accent-color:#46674C}
-.note-article{padding:24px;background:#F4EFDF;border-left:3px solid #8EA083;line-height:1.9;margin-bottom:32px}.note-article h3{font-size:24px;margin:8px 0}
-.shop-carousel{position:relative;margin:28px 0;padding:24px;background:#F5E6C9;border:1px solid #D3C3A6;min-height:300px}
-.shop-carousel .paper-topline{margin-bottom:12px}.shop-carousel .cover-content{width:55%;padding-top:0}.shop-carousel .cover-content h2{font-size:23px}.shop-carousel .live-picture{top:65px;right:20px;width:35%;height:170px}.shop-carousel .cover-switch{bottom:22px;right:20px}.shop-carousel #livePause{margin-top:20px}.shop-carousel .cover-feature-name{font-size:23px;color:#35583F;font-weight:700}.shop-carousel .cover-feature-desc{line-height:1.85}
-@media(max-width:600px){
- .infinite-sheet{width:420px;height:2400px}.paper-end{left:30px;top:2350px}
- .notebook-intro{top:55px!important;height:420px!important}.notebook-intro .home-core{padding-top:20px}.notebook-intro .home-core h1{font-size:34px}.notebook-intro .home-actions{gap:14px}.notebook-intro .home-bottom{bottom:14px}
- .beginner-cover{top:520px!important;height:370px!important}.journey-preview{font-size:15px;margin:10px 0;line-height:1.9}
- .atlas-cover{top:970px!important;height:320px!important}.specimen-strip img{height:90px}
- .knowledge-cover{top:1360px!important;height:280px!important}.note-keywords{margin-top:18px;font-size:12px}
- .shop-cover{top:1720px!important;height:300px!important}.shop-shortcuts{gap:9px;margin-top:12px}.shop-shortcuts a{font-size:14px;padding:10px}.shop-shortcuts small{font-size:11px}
- .about-cover{top:2090px!important;height:230px!important}.start-note,.board-art,.board-scribble{display:none}
- .entry-grid{grid-template-columns:1fr}.entry-card{padding:20px}.shop-heading h2{font-size:28px}.shop-heading p{font-size:14px}.section-tabs a{font-size:13px;padding:9px 11px}
- .shop-carousel{padding:16px;min-height:350px}.shop-carousel .live-picture{top:104px;right:5px;width:43%;height:150px}.shop-carousel .cover-content{width:54%}.shop-carousel .cover-switch{bottom:18px;right:12px}.shop-carousel #livePause{position:absolute;bottom:60px;left:10px;font-size:12px}.shop-carousel .cover-feature-desc{font-size:13px}
- .note-article{padding:18px}.cross-links{font-size:14px}.guide-check{font-size:14px}
-}
-
-/* V0.25.3: external photo atlases and Chinese naming sources (links only) */
-.atlas-reference-links{margin-top:32px;border-top:1px solid #d7d5c8;padding-top:17px}
-.atlas-reference-links h3{font-size:16px;font-weight:650;color:#36543e;margin:0 0 6px}
-.atlas-reference-links p{font-size:12px;line-height:1.8;color:#617061;margin:0 0 13px}
-.atlas-reference-list{display:flex;flex-wrap:wrap;gap:8px 14px}
-.atlas-reference-list a{display:inline-flex;align-items:center;border-bottom:1px solid #a1b19b;padding:6px 0;color:#315f44;font-size:12px;line-height:1.6}
-.atlas-reference-list a:hover{text-decoration:underline;text-underline-offset:3px}
-
-</style>
-<link rel="stylesheet" href="./assets/notebook-v016.css">
-<link rel="stylesheet" href="./assets/notebook-v017.css">
-<link rel="stylesheet" href="./assets/notebook-v019.css">
-<link rel="stylesheet" href="./assets/notebook-v024.css">
-<script src="./assets/welcome.js" defer></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=LXGW+WenKai+TC:wght@400;700&amp;family=Noto+Sans+TC:wght@300;400;500;600;700&amp;family=Zen+Maru+Gothic:wght@400;500;700&amp;family=Huninn&amp;display=swap" rel="stylesheet">
-<meta property="og:title" content="八目 HACHIME｜跳蛛觀察與飼養筆記">
-<meta property="og:description" content="跳蛛觀察、新手筆記與 A1 飼養盒開發札記。">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://kotania1130.github.io/hachime-site/assets/hachime-share.png">
-<meta name="twitter:card" content="summary_large_image">
-</head>
-<body>
-  <a class="skip" href="#workspace">跳至主要內容</a>
-  <header class="site-header">
-<a aria-label="八目 HACHIME，回到首頁" class="logo" data-go="home" href="#home">
-<img class="logo-symbol" src="./assets/hachime-symbol-v2.svg" width="62" height="44" alt="" aria-hidden="true">
-<span class="logo-text"><strong>八目 <span>HACHIME</span></strong><small>跳蛛研造 ／ JUMPING SPIDER LAB</small></span>
-</a>
-<nav aria-label="網站導覽" class="top-nav">
-<a data-go="home" href="#home">首頁</a>
-<a data-go="beginner" href="#beginner">新手起步</a>
-<a data-go="atlas" href="#atlas">跳蛛圖鑑</a>
-<a data-go="knowledge" href="#knowledge">飼養筆記</a>
-<a data-go="breeding" href="#breeding">繁殖日記</a>
-<a data-go="shop" href="#shop">活體與用品</a>
-<a data-go="about" href="#about">關於八目</a>
-</nav>
-<button aria-controls="cartDrawer" aria-haspopup="dialog" class="cart-trigger" id="cartOpen" type="button"><span class="cart-word">購物車</span><span aria-hidden="true" class="cart-symbol">▤</span><span class="cart-count" id="cartCount">0</span></button>
-</header>
-  <main id="workspace" class="main-area" tabindex="-1">
-    <div class="workspace" id="viewport" aria-label="完整筆記桌面。拖曳或縮放探索，點擊便條開啟內容。">
-      <div class="infinite-sheet" id="board">
-        <div class="board-corner">八目觀察手帖 <span>HACHIME / FIELD NOTES</span></div>
-        <div class="binding-marks" aria-hidden="true"></div>
-        <section id="home" tabindex="-1" class="notebook-intro" aria-labelledby="homeTitle">
-          <div class="home-core"><span class="small-kicker">跳蛛・飼養・日常觀察</span><h1 id="homeTitle">八目 <em>HACHIME</em></h1>
-          <p class="main-description">跳蛛的物種資料、飼養筆記，<br>還有八目飼養盒的開發紀錄。</p>
-          <div class="home-actions"><button type="button" class="ink-link" data-jump="beginner">查看新手指南 ↗</button><a class="ink-link subtle" href="#atlas" data-go="atlas">跳蛛圖鑑 →</a></div></div>
-        </section>
-        <section class="brand-collage" aria-label="佛跳物種參考照片與觀察註記">
-          <span class="collage-kicker">佛跳 / 物種參考</span>
-          <figure class="photo-note spider-photo"><div class="photo-mat"><img src="./assets/photos/regius.jpg" width="960" height="720" alt="佛跳正面近照，前方一對大眼清楚可見"></div><figcaption><b>佛跳 <i>Phidippus regius</i></b><span>物種參考照，非八目個體</span><span><a href="https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg" target="_blank" rel="noopener noreferrer">spidereyes2020</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener noreferrer">CC0</a> · 裁切顯示</span></figcaption></figure>
-          <aside class="observation-slip"><span class="field-hand">前方的一對大眼</span><p>照片裡能看到前方的大眼，<br>旁邊還有較小的眼睛。</p><a href="#atlas/regius" data-go="atlas/regius">認識佛跳 ↗</a></aside>
-          <svg class="photo-pointer" viewBox="0 0 260 410" aria-hidden="true"><path d="M240 390 C100 397 94 90 26 20 M26 20 l3 21 M26 20 l20 5"/></svg>
-        </section>
-        <aside class="tiny-note start-note" aria-label="操作說明">拖曳畫面探索，或使用上方標籤。</aside>
-        <section id="beginnerNote" class="paper cover-note beginner-cover" data-open="beginner" role="link" tabindex="0" aria-label="開啟新手起步"><span class="tape" aria-hidden="true"></span><div class="paper-topline"><span>新手清單</span><span>飼養入門</span></div><div class="cover-content"><h2>第一次養跳蛛</h2><p>飼養前的準備與接回後的照顧。</p><ol class="journey-preview"><li>能不能照顧牠的日常</li><li>怎麼選物種、準備環境</li><li>接回後，要觀察什麼</li></ol></div><div class="cover-footer"><span>新手起步</span><span>閱讀新手指南 ↗</span></div></section>
-        <div class="section-mark observation-mark" aria-hidden="true">物種與飼養資料<small>SPECIES & DAILY CARE</small></div>
-        <section id="atlasNote" class="paper cover-note atlas-cover" data-open="atlas" role="link" tabindex="0" aria-label="開啟跳蛛圖鑑"><div class="paper-topline"><span>物種資料</span><span>物種參考</span></div><div class="cover-content"><h2>跳蛛圖鑑</h2><p>認識不同種類的跳蛛。</p><div class="specimen-strip">
-          <figure><a href="#atlas/audax" data-go="atlas/audax" aria-label="查看大膽跳蛛 Phidippus audax"><div class="specimen-mat"><img src="./assets/photos/audax.jpg" width="960" height="720" alt="大膽跳蛛的物種參考照片"></div><figcaption><span>大膽跳蛛</span><i>Phidippus audax</i><small>Kaldari · CC0 · 參考照</small></figcaption></a></figure>
-          <figure><a href="#atlas/hyllus" data-go="atlas/hyllus" aria-label="查看老虎狗 Hyllus diardi"><div class="specimen-mat"><img src="./assets/photos/hyllus.jpg" width="960" height="720" alt="斑腹蠅象（老虎狗）的物種參考照片"></div><figcaption><span>老虎狗</span><i>Hyllus diardi</i><small>Doreen · CC BY 4.0 · 參考照</small></figcaption></a></figure>
-        </div></div><div class="cover-footer"><span><a href="#about" data-go="about">照片來源與授權</a></span><span>翻開跳蛛圖鑑 ↗</span></div></section>
-        <section id="careNote" class="paper cover-note knowledge-cover" data-open="knowledge" role="link" tabindex="0" aria-label="開啟飼養筆記"><span class="tape" aria-hidden="true"></span><div class="paper-topline"><span>飼養筆記</span><span>有問題時翻這裡</span></div><div class="cover-content"><h2>飼養筆記</h2><p>環境、餵食、脫皮與常見問題。</p><ul class="care-jottings"><li><a href="#knowledge/environment" data-go="knowledge/environment">環境怎麼準備 <b>↗</b></a></li><li><a href="#knowledge/feeding" data-go="knowledge/feeding">餵食與供水 <b>↗</b></a></li><li><a href="#knowledge/observation" data-go="knowledge/observation">進食、脫皮與日常觀察 <b>↗</b></a></li></ul></div><div class="cover-footer"><span>飼養筆記 / 常見問題</span><span>查找問題 ↗</span></div></section>
-        <section id="breedingNote" class="paper cover-note breeding-cover" data-open="breeding" role="link" tabindex="0" aria-label="開啟繁殖日記"><span class="tape" aria-hidden="true"></span><div class="paper-topline"><span>繁殖紀錄</span><span>準備中</span></div><div class="cover-content"><h2>繁殖日記</h2><p>配對、卵囊、孵化與幼蛛成長的紀錄。</p></div><div class="cover-footer"><span>目前尚無公開紀錄</span><span>翻開繁殖日記 ↗</span></div></section>
-        <div class="section-mark making-mark" aria-hidden="true">用品與開發<small>TOOLS & WORK IN PROGRESS</small></div>
-        <section class="development-note" id="developmentNote" data-open="development" role="link" tabindex="0" aria-labelledby="developmentHeading"><div class="paper-topline"><span>A1 / 開發札記</span><span class="concept-stamp">概念階段</span></div><h2 id="developmentHeading">A1 飼養盒開發</h2><p class="development-deck">A1 開發札記</p><div class="development-body"><figure class="blueprint"><img src="./assets/enclosure-plus.svg" width="360" height="290" alt="A1 PLUS 原創概念圖，非完成打樣"><figcaption>設計草圖</figcaption></figure><div class="development-copy"><ol><li>通風孔與接縫，怎麼防逃？</li><li>開盒餵食，會不會干擾牠？</li><li>清潔時，能不能方便操作？</li></ol><p>目前整理設計需求，尚未打樣。</p><a class="ink-link" href="#development" data-go="development">查看開發札記 ↗</a></div></div></section>
-        <section id="shopNote" class="paper cover-note shop-cover" data-open="shop" role="link" tabindex="0" aria-label="開啟活體與用品"><div class="paper-topline"><span>活體與用品</span><span>規劃中</span></div><div class="cover-content"><h2>活體與用品</h2><p>蜘蛛活體與飼養用品。</p><div class="shop-shortcuts"><a href="#shop/live" data-go="shop/live">蜘蛛活體 ↗<small>認識這些跳蛛</small></a><a href="#shop/equipment" data-go="shop/equipment">飼養盒與用品 ↗<small>A1 尺寸與款式</small></a></div></div><div class="cover-footer"><span>目前尚未開放販售</span><span>查看全部 ↗</span></div></section>
-        <section class="updates-note" id="updatesNote" tabindex="-1" aria-labelledby="updatesHeading"><p class="small-kicker">RECENT NOTES</p><h2 id="updatesHeading">最近更新</h2><ol class="update-list"><li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">新手指南</span><a href="#beginner" data-go="beginner">新手指南：從準備到日常照顧<span>↗</span></a></li><li><time datetime="2026-11-15">2026.11.15</time><span class="update-kind">開發札記</span><a href="#development" data-go="development">A1 飼養盒：餵食、通風與防逃<span>↗</span></a></li><li><time datetime="2026-11-16">2026.11.16</time><span class="update-kind">跳蛛圖鑑</span><a href="#atlas" data-go="atlas">31 筆跳蛛介紹與學名<span>↗</span></a></li></ol></section>
-        <section id="aboutNote" class="paper cover-note about-cover" data-open="about" role="link" tabindex="0" aria-label="開啟關於八目"><div class="paper-topline"><span>品牌資訊</span></div><div class="cover-content"><h2>關於八目</h2><p>關於八目和正在做的事。</p></div><div class="cover-footer"><span>八目 HACHIME</span><span>查看介紹 ↗</span></div></section>
-        <div class="notebook-signoff"><img src="./assets/hachime-symbol-v2.svg" alt="" width="86" height="58"><p>社群與聯絡</p><a href="#about" data-go="about">關於八目 ↗</a><div class="social-windows" aria-label="社群帳號準備中"><button type="button" disabled><b>Facebook</b><span>準備中</span></button><button type="button" disabled><b>LINE</b><span>準備中</span></button><button type="button" disabled><b>Instagram</b><span>準備中</span></button></div></div>
-<div class="paper-end" aria-hidden="true">HACHIME / FIELD NOTEBOOK</div>
+            <div class="development-body">
+              <figure class="blueprint">
+                <img
+                  src="./assets/enclosure-plus.svg"
+                  width="360"
+                  height="290"
+                  alt="A1 PLUS 原創概念圖，非完成打樣"
+                />
+                <figcaption>設計草圖</figcaption>
+              </figure>
+              <div class="development-copy">
+                <ol>
+                  <li>通風孔與接縫，怎麼防逃？</li>
+                  <li>開盒餵食，會不會干擾牠？</li>
+                  <li>清潔時，能不能方便操作？</li>
+                </ol>
+                <p>還在畫設計圖，尚未製作樣品。</p>
+                <a class="ink-link" href="#development" data-go="development">查看開發札記 ↗</a>
+              </div>
+            </div>
+          </section>
+          <section
+            id="shopNote"
+            class="paper cover-note shop-cover"
+            data-open="shop"
+            role="link"
+            tabindex="0"
+            aria-label="開啟活體與用品"
+          >
+            <div class="paper-topline"><span>SHOP</span><span>準備中</span></div>
+            <div class="cover-content">
+              <h2>活體與用品</h2>
+              <p>蜘蛛活體與飼養用品。</p>
+              <div class="shop-shortcuts">
+                <a href="#shop/live" data-go="shop/live">蜘蛛活體 ↗<small>認識這些跳蛛</small></a
+                ><a href="#shop/equipment" data-go="shop/equipment"
+                  >飼養盒與用品 ↗<small>A1 尺寸與款式</small></a
+                >
+              </div>
+            </div>
+            <div class="cover-footer"><span>目前尚未開放販售</span><span>查看全部 ↗</span></div>
+          </section>
+          <section
+            class="updates-note"
+            id="updatesNote"
+            tabindex="-1"
+            aria-labelledby="updatesHeading"
+          >
+            <p class="small-kicker">RECENT NOTES</p>
+            <h2 id="updatesHeading">最近更新</h2>
+            <ol class="update-list">
+              <li>
+                <time datetime="2026-11-16">2026.11.16</time
+                ><span class="update-kind">跳蛛圖鑑</span
+                ><a href="#atlas" data-go="atlas">跳蛛圖鑑：名稱與分布<span>↗</span></a>
+              </li>
+              <li>
+                <time datetime="2026-11-15">2026.11.15</time
+                ><span class="update-kind">新手指南</span
+                ><a href="#beginner" data-go="beginner">新手指南：從準備到日常照顧<span>↗</span></a>
+              </li>
+              <li>
+                <time datetime="2026-11-15">2026.11.15</time
+                ><span class="update-kind">開發札記</span
+                ><a href="#development" data-go="development"
+                  >A1 飼養盒：餵食、通風與防逃<span>↗</span></a
+                >
+              </li>
+            </ol>
+          </section>
+          <section
+            id="aboutNote"
+            class="paper cover-note about-cover"
+            data-open="about"
+            role="link"
+            tabindex="0"
+            aria-label="開啟關於八目"
+          >
+            <div class="paper-topline"><span>品牌資訊</span></div>
+            <div class="cover-content">
+              <h2>關於八目</h2>
+              <p>關於八目和正在做的事。</p>
+            </div>
+            <div class="cover-footer"><span>八目 HACHIME</span><span>查看介紹 ↗</span></div>
+          </section>
+          <div class="notebook-signoff">
+            <img src="./assets/hachime-symbol-v2.svg" alt="" width="86" height="58" />
+            <p>社群與聯絡</p>
+            <a href="#about" data-go="about">關於八目 ↗</a>
+            <div class="social-windows" aria-label="社群帳號準備中">
+              <button type="button" disabled><b>Facebook</b><span>準備中</span></button
+              ><button type="button" disabled><b>LINE</b><span>準備中</span></button
+              ><button type="button" disabled><b>Instagram</b><span>準備中</span></button>
+            </div>
+          </div>
+          <div class="paper-end" aria-hidden="true">HACHIME / FIELD NOTEBOOK</div>
+        </div>
       </div>
-    </div>
-    <div class="detail-view" id="detailView" hidden>
-      <div class="detail-toolbar"><button type="button" id="detailBack" class="back-to-board">← 返回筆記桌面</button><span class="detail-breadcrumb">HACHIME / <span id="currentPageName">內容</span></span></div>
-      <aside class="book-sidebar" id="bookSidebar" aria-label="本篇章節目錄"><button type="button" id="bookMenuToggle" aria-expanded="false" aria-controls="bookMenu">章節 <span aria-hidden="true">☰</span></button><nav id="bookMenu" class="book-menu" aria-label="本篇章節"></nav></aside>
-      <div class="detail-scroll" id="detailScroll" tabindex="-1">
-        <div class="detail-page" data-page="beginner" hidden><section aria-labelledby="beginnerTitle" class="paper beginner-sheet" id="beginner">
-<span aria-hidden="true" class="tape tape-green"></span>
-<div class="paper-topline"><span>BEGINNER</span><span>入門</span></div>
-<div class="paper-heading"><div><h2 id="beginnerTitle">新手起步</h2><p>從飼養前的準備，到帶回家後的日常照顧。</p></div></div>
-<p id="guideProgress" class="fine-print" aria-live="polite"></p><button id="resetProgress" class="text-button" type="button">重設閱讀進度</button>
-<div class="chapter-content" id="guideContent"></div>
-</section></div>
-<div class="detail-page" data-page="atlas" hidden><section aria-labelledby="atlasTitle" class="paper atlas-sheet" id="atlas">
-<span aria-hidden="true" class="tape tape-yellow"></span>
-<div class="paper-topline"><span>SPECIES</span><span>物種資料</span></div>
-<div class="paper-heading"><div><h2 id="atlasTitle">跳蛛圖鑑</h2><p>認識臺灣與世界各地的跳蛛。</p></div></div>
+      <div class="detail-view" id="detailView" hidden>
+        <div class="detail-toolbar">
+          <button type="button" id="detailBack" class="back-to-board">← 返回筆記桌面</button
+          ><span class="detail-breadcrumb">HACHIME / <span id="currentPageName">內容</span></span>
+        </div>
+        <aside class="book-sidebar" id="bookSidebar" aria-label="本篇章節目錄">
+          <button type="button" id="bookMenuToggle" aria-expanded="false" aria-controls="bookMenu">
+            章節 <span aria-hidden="true">☰</span>
+          </button>
+          <nav id="bookMenu" class="book-menu" aria-label="本篇章節"></nav>
+        </aside>
+        <div class="detail-scroll" id="detailScroll" tabindex="-1">
+          <div class="detail-page" data-page="beginner" hidden>
+            <section aria-labelledby="beginnerTitle" class="paper beginner-sheet" id="beginner">
+              <span aria-hidden="true" class="tape tape-green"></span>
+              <div class="paper-topline"><span>BEGINNER</span><span>入門</span></div>
+              <div class="paper-heading">
+                <div>
+                  <h2 id="beginnerTitle">新手起步</h2>
+                  <p>從飼養前的準備，到帶回家後的日常照顧。</p>
+                </div>
+              </div>
+              <p id="guideProgress" class="fine-print" aria-live="polite"></p>
+              <button id="resetProgress" class="text-button" type="button">重設閱讀進度</button>
+              <div class="chapter-content" id="guideContent"></div>
+            </section>
+          </div>
+          <div class="detail-page" data-page="atlas" hidden>
+            <section aria-labelledby="atlasTitle" class="paper atlas-sheet" id="atlas">
+              <span aria-hidden="true" class="tape tape-yellow"></span>
+              <div class="paper-topline"><span>SPECIES</span><span>物種資料</span></div>
+              <div class="paper-heading">
+                <div>
+                  <h2 id="atlasTitle">跳蛛圖鑑</h2>
+                  <p>認識臺灣與世界各地的跳蛛。</p>
+                </div>
+              </div>
 
-<article aria-live="polite" class="species-panel" id="speciesPanel"></article>
-<aside class="atlas-reference-links" aria-label="外部公開跳蛛圖鑑">
-<h3>更多跳蛛圖鑑</h3>
-<div class="atlas-reference-list">
-<a href="https://gagaphoto.com/new23/cp04_63.htm" target="_blank" rel="noopener noreferrer">嘎嘎昆蟲網｜蠅虎圖鑑（台灣照片） ↗</a>
-<a href="https://spider.tbn.org.tw/" target="_blank" rel="noopener noreferrer">臺灣蛛式會社｜觀察紀錄與照片 ↗</a>
-<a href="https://www.forest.gov.tw/0010237" target="_blank" rel="noopener noreferrer">林業及自然保育署｜台灣常見蜘蛛圖鑑下載 ↗</a>
-<a href="https://jumping-spiders.com/nav_general/start.php" target="_blank" rel="noopener noreferrer">Jumping spiders of the world｜全球跳蛛照片與文獻 ↗</a>
-</div>
-</aside>
-<p class="cross-links"><a href="#knowledge" data-go="knowledge">閱讀飼養筆記</a><a href="#shop/live" data-go="shop/live">查看蜘蛛活體</a><a href="#beginner/2" data-go="beginner/2">怎麼選擇跳蛛</a></p>
-</section></div>
-<div class="detail-page" data-page="knowledge" hidden><section aria-labelledby="knowledgeTitle" class="paper knowledge-sheet" id="knowledge">
-<span aria-hidden="true" class="tape tape-peach"></span>
-<div class="paper-topline"><span>KNOWLEDGE</span><span>查詢</span></div>
-<div class="paper-heading"><div><h2 id="knowledgeTitle">飼養筆記</h2><p>環境、餵食、脫皮，以及照顧跳蛛時會遇到的問題。</p></div></div>
-<article id="noteArticle" class="note-article"></article><h3 id="care-faq">查找常見問題</h3>
-<label class="search-wrap" for="faqSearch"><span aria-hidden="true">⌕</span><input autocomplete="off" id="faqSearch" placeholder="搜尋：拒食、脫皮、餵食、逃脫…" type="search"/><span class="search-label">SEARCH</span></label>
-<div aria-label="知識分類" class="topic-line" id="faqTopics" role="group"></div>
-<div aria-live="polite" class="faq-scroll scroll-region" id="faqResults"></div>
+              <article aria-live="polite" class="species-panel" id="speciesPanel"></article>
+              <aside class="atlas-reference-links" aria-label="外部公開跳蛛圖鑑">
+                <h3>更多跳蛛圖鑑</h3>
+                <div class="atlas-reference-list">
+                  <a
+                    href="https://gagaphoto.com/new23/cp04_63.htm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >嘎嘎昆蟲網｜蠅虎圖鑑（台灣照片） ↗</a
+                  >
+                  <a href="https://spider.tbn.org.tw/" target="_blank" rel="noopener noreferrer"
+                    >臺灣蛛式會社｜觀察紀錄與照片 ↗</a
+                  >
+                  <a
+                    href="https://www.forest.gov.tw/0010237"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >林業及自然保育署｜台灣常見蜘蛛圖鑑下載 ↗</a
+                  >
+                  <a
+                    href="https://jumping-spiders.com/nav_general/start.php"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Jumping spiders of the world｜全球跳蛛照片與文獻 ↗</a
+                  >
+                </div>
+              </aside>
+              <p class="cross-links">
+                <a href="#knowledge" data-go="knowledge">閱讀飼養筆記</a
+                ><a href="#shop/live" data-go="shop/live">查看蜘蛛活體</a
+                ><a href="#beginner/2" data-go="beginner/2">怎麼選擇跳蛛</a>
+              </p>
+            </section>
+          </div>
+          <div class="detail-page" data-page="knowledge" hidden>
+            <section aria-labelledby="knowledgeTitle" class="paper knowledge-sheet" id="knowledge">
+              <span aria-hidden="true" class="tape tape-peach"></span>
+              <div class="paper-topline"><span>KNOWLEDGE</span><span>查詢</span></div>
+              <div class="paper-heading">
+                <div>
+                  <h2 id="knowledgeTitle">飼養筆記</h2>
+                  <p>環境、餵食、脫皮，以及照顧跳蛛時會遇到的問題。</p>
+                </div>
+              </div>
+              <article id="noteArticle" class="note-article"></article>
+              <h3 id="care-faq">查找常見問題</h3>
+              <label class="search-wrap" for="faqSearch"
+                ><span aria-hidden="true">⌕</span
+                ><input
+                  autocomplete="off"
+                  id="faqSearch"
+                  placeholder="搜尋：拒食、脫皮、餵食、逃脫…"
+                  type="search"
+                /><span class="search-label">SEARCH</span></label
+              >
+              <div aria-label="知識分類" class="topic-line" id="faqTopics" role="group"></div>
+              <div aria-live="polite" class="faq-scroll scroll-region" id="faqResults"></div>
+            </section>
+          </div>
+          <div class="detail-page" data-page="about" hidden>
+            <section aria-labelledby="aboutTitle" class="paper about-sheet" id="about">
+              <span aria-hidden="true" class="tape tape-about"></span>
+              <div class="paper-topline"><span>ABOUT</span><span>品牌資訊</span></div>
+              <h2 id="aboutTitle">關於八目</h2>
+              <p class="about-lead">
+                八目 HACHIME，記錄跳蛛的飼養與日常觀察，也正在設計自己的飼養盒。
+              </p>
 
-</section></div>
-<div class="detail-page" data-page="about" hidden><section aria-labelledby="aboutTitle" class="paper about-sheet" id="about">
-<span aria-hidden="true" class="tape tape-about"></span>
-<div class="paper-topline"><span>ABOUT</span><span>品牌資訊</span></div>
-<h2 id="aboutTitle">關於八目</h2>
-<p class="about-lead">八目 HACHIME，記錄跳蛛的飼養與日常觀察，也正在設計自己的飼養盒。</p>
-
-<p>A1 飼養盒還在設計中，尚未開放販售。</p><p class="cross-links"><a href="#beginner" data-go="beginner">閱讀新手指南</a><a href="#shop/equipment" data-go="shop/equipment">看看 A1 飼養盒</a></p>
-<h3>社群與聯絡</h3><div class="social-windows" aria-label="社群帳號準備中"><button type="button" disabled><b>Facebook</b><span>準備中</span></button><button type="button" disabled><b>LINE</b><span>準備中</span></button><button type="button" disabled><b>Instagram</b><span>準備中</span></button></div>
-<h3>字體與插圖</h3><p class="fine-print">手寫字體：<a href="https://github.com/google/fonts/tree/main/ofl/lxgwwenkaitc" target="_blank" rel="noopener noreferrer">LXGW WenKai TC</a>（SIL OFL 1.1）。</p><h3>照片來源</h3><ul class="photo-sources"><li>佛跳：<a href="https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg" target="_blank" rel="noopener noreferrer">spidereyes2020</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener noreferrer">CC0</a>。物種參考照，依版面裁切，非八目個體。</li><li>大膽跳蛛：<a href="https://commons.wikimedia.org/wiki/File:Kaldari_Phidippus_audax_01.jpg" target="_blank" rel="noopener noreferrer">Kaldari</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener noreferrer">CC0</a>。物種參考照，依版面裁切，非八目個體。</li><li>老虎狗（斑腹蠅象）：<a href="https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg" target="_blank" rel="noopener noreferrer">Doreen</a> · <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>。物種參考照，依版面裁切，非八目個體。</li></ul>
-<p class="fine-print asset-note">筆記插圖使用 <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">OpenMoji</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>）；跳蛛照片來自 <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>，依各張照片授權使用；A1 飼養盒仍是設計示意。詳細的攝影者、來源及授權列於 <a href="https://github.com/KotaNia1130/hachime-site/blob/main/ASSET_CREDITS.md" target="_blank" rel="noopener noreferrer">素材授權</a>。</p>
-</section></div>
-<div class="detail-page" data-page="shop" hidden>
-<header class="shop-heading"><p class="small-kicker">HACHIME SHOP</p><h2>活體與用品</h2><p>活體與用品準備中，尚未開放販售。</p></header>
-<nav class="section-tabs" aria-label="選購分類"><a href="#shop" data-go="shop">選購總覽</a><a href="#shop/live" data-go="shop/live">蜘蛛活體</a><a href="#shop/equipment" data-go="shop/equipment">飼養盒與用品</a></nav>
-<section class="shop-panel shop-overview" data-shop="overview"><div class="entry-grid"><a class="entry-card" href="#shop/live" data-go="shop/live"><img src="./assets/photos/regius.jpg" alt="佛跳第三方物種參考照，非八目個體"><small class="entry-photo-caption">物種參考照 · spidereyes2020 · CC0</small><h3>蜘蛛活體</h3><p>佛跳、老虎狗與獅子狗。</p><span>查看活體筆記 ↗</span></a><a class="entry-card" href="#shop/equipment" data-go="shop/equipment"><img src="./assets/enclosure-core.svg" alt="A1 飼養盒概念圖"><h3>飼養盒與用品</h3><p>A1 四種尺寸、三種等級，先看看規劃中的設計。</p><span>查看用品筆記 ↗</span></a></div><p class="cross-links">還在準備？<a href="#beginner/3" data-go="beginner/3">先看環境準備清單 →</a></p></section>
-<div class="shop-panel" data-shop="live" hidden><section class="paper live-sheet" aria-labelledby="liveTitle">
- <div class="paper-topline"><span>LIVE SPIDERS</span><span>觀察與記錄</span></div>
- <div class="paper-heading"><div><h2 id="liveTitle">蜘蛛活體</h2><p>佛跳、老虎狗與獅子狗。</p></div></div>
- <p class="live-intro">目前尚未開放販售或預訂。照片與插圖僅供參考，並非在售個體。</p>
- <section class="shop-carousel" aria-label="跳蛛介紹輪播">
- <span class="tape tape-yellow" aria-hidden="true"></span>
- <div class="paper-topline"><span>LIVE SPIDERS</span><span>準備中</span></div>
- <div class="cover-content cover-text"><h2>蜘蛛活體</h2><p id="liveCoverName" class="cover-feature-name"></p><p id="liveCoverDesc" class="cover-feature-desc"></p></div>
- <figure class="floating-cover-image live-picture"><img id="liveCoverImage" src="./assets/spider-regius.svg" alt="跳蛛暫用示意插圖"><figcaption id="liveCoverCredit">示意插圖 · 規劃中</figcaption></figure>
- <div class="cover-switch"><span id="liveCoverCount">01 — 03</span><button type="button" data-cover-next="live" aria-label="切換下一個蜘蛛活體項目">↻ 下一個項目</button></div>
- <button type="button" id="livePause" class="text-button" aria-pressed="false">暫停自動輪播</button>
-</section><div class="live-grid" id="liveCards"></div>
- <p class="fine-print asset-note">獅子狗插圖： <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">OpenMoji</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a> · 原圖未修改，非物種外觀。</p>
-
-</section></div>
-<div class="shop-panel" data-shop="equipment" hidden><section aria-labelledby="labTitle" class="paper lab-sheet" id="lab">
-<span aria-hidden="true" class="tape tape-blue"></span>
-<div class="paper-topline"><span>HACHIME LAB</span><span>產品規劃</span></div>
-<div class="paper-heading lab-head"><div><h2 id="labTitle">A1 系列飼養盒</h2><p>選擇尺寸及等級，查看規劃中的規格與價格。</p></div><span class="status-pill">尚未上市</span></div>
-<div class="product-body">
-<div class="product-options">
-<fieldset><legend>01　尺寸</legend><div class="size-choices" id="sizeChoices"></div></fieldset>
-<fieldset><legend>02　等級</legend><div class="tier-choices" id="tierChoices"></div></fieldset>
-</div>
-<div aria-live="polite" class="product-preview">
-<div class="preview-header"><span>A1 / PRODUCT NOTE</span><span>規劃中</span></div>
-<figure class="product-drawing"><img id="selectedIllustration" src="./assets/enclosure-plus.svg" alt="A1 PLUS 產品設計概念圖，非正式商品" loading="lazy" decoding="async"><figcaption>產品設計示意圖，非實物</figcaption></figure>
-<h3 id="selectedName">A1 Standard PLUS</h3>
-<div class="preview-price" id="selectedPrice">NT$849</div>
-<dl class="spec-line"><dt>外部尺寸</dt><dd id="selectedSize">12 × 12 × 20 cm</dd><dt>產品等級</dt><dd id="selectedTier">PLUS ／ 進階</dd></dl>
-<p class="preview-desc" id="selectedDescription"></p>
-<ul class="feature-list" id="selectedFeatures"></ul>
-<button class="solid-button" id="addToCart" type="button">加入測試購物車 <span>＋</span></button>
-<p class="fine-print">這是規劃價格與模擬購物車，不會產生訂單或付款。</p>
-</div>
-</div>
-<div class="product-bottom"><span>12 種尺寸／等級組合</span><button class="plain-link" id="showAllPrices" type="button">查看全部價格 ↗</button></div>
-<div class="price-popover" hidden="" id="pricePopover"><div class="price-popover-head"><strong>全部規劃售價</strong><button aria-label="關閉完整價目表" id="closePrices" type="button">×</button></div><div id="priceTable"></div></div>
-</section></div>
-<p class="cross-links"><a href="#beginner/4" data-go="beginner/4">接回個體前要確認什麼？</a><a href="#atlas" data-go="atlas">回圖鑑了解物種</a></p></div>
-<div class="detail-page" data-page="breeding" hidden><article class="paper breeding-article"><div class="paper-topline"><span>BREEDING JOURNAL</span><span>準備中</span></div><h2>繁殖日記</h2><p class="live-intro">配對、卵囊、孵化，到幼蛛一天天長大。</p><div class="journal-empty"><h3>尚無紀錄</h3><p>第一篇日記準備中。</p></div><div class="cross-links"><a href="#atlas" data-go="atlas">查看跳蛛圖鑑 ↗</a><a href="#knowledge/observation" data-go="knowledge/observation">日常觀察筆記 ↗</a><a href="#home" data-go="home">返回首頁</a></div></article></div>
-<div class="detail-page" data-page="development" hidden><article class="paper development-article"><div class="paper-topline"><span>DEVELOPMENT NOTES</span><span>概念規劃</span></div><h2>A1 飼養盒開發札記</h2><p class="live-intro">A1 還在設計階段，尚未製作樣品。這裡記下目前的構想。</p><figure class="development-figure"><img src="./assets/enclosure-plus.svg" width="360" height="290" alt="A1 PLUS 設計概念示意圖"><figcaption>A1 PLUS 設計草圖</figcaption></figure><h3>日常操作需求</h3><p>開盒餵食時少一些干擾，清潔時更好操作，是我們想解決的問題。</p><h3>目前的構想</h3><p>目前規劃四種尺寸，以及 CORE、PLUS、PRO 三種款式。</p><h3>接下來要試的事</h3><ul><li>箱門、接縫與通風孔的防逃條件。</li><li>通風、攀附及結絲空間的配置。</li><li>餵食與清潔操作是否方便、能否減少干擾。</li></ul><p>有了樣品，會在這裡分享照片和試用紀錄。</p><div class="cross-links"><a href="#shop/equipment" data-go="shop/equipment">查看 A1 尺寸與款式 ↗</a><a href="#beginner/3" data-go="beginner/3">先看環境準備清單 ↗</a><a href="#home" data-go="home">返回首頁</a></div></article></div>
-        <div class="detail-end">八目 HACHIME　·　跳蛛觀察手帖</div>
+              <p>A1 飼養盒還在設計中，尚未開放販售。</p>
+              <p class="cross-links">
+                <a href="#beginner" data-go="beginner">閱讀新手指南</a
+                ><a href="#shop/equipment" data-go="shop/equipment">看看 A1 飼養盒</a>
+              </p>
+              <h3>社群與聯絡</h3>
+              <div class="social-windows" aria-label="社群帳號準備中">
+                <button type="button" disabled><b>Facebook</b><span>準備中</span></button
+                ><button type="button" disabled><b>LINE</b><span>準備中</span></button
+                ><button type="button" disabled><b>Instagram</b><span>準備中</span></button>
+              </div>
+              <h3>字體</h3>
+              <p class="fine-print">
+                手寫字體：<a
+                  href="https://github.com/google/fonts/tree/main/ofl/lxgwwenkaitc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >LXGW WenKai TC</a
+                >（SIL OFL 1.1）。
+              </p>
+              <h3>照片來源</h3>
+              <ul class="photo-sources">
+                <li>
+                  佛跳：<a
+                    href="https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >spidereyes2020</a
+                  >
+                  ·
+                  <a
+                    href="https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >CC0</a
+                  >。物種參考照，依版面裁切，非八目個體。
+                </li>
+                <li>
+                  大膽跳蛛：<a
+                    href="https://commons.wikimedia.org/wiki/File:Kaldari_Phidippus_audax_01.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Kaldari</a
+                  >
+                  ·
+                  <a
+                    href="https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >CC0</a
+                  >。物種參考照，依版面裁切，非八目個體。
+                </li>
+                <li>
+                  老虎狗（斑腹蠅象）：<a
+                    href="https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Doreen</a
+                  >
+                  ·
+                  <a
+                    href="https://creativecommons.org/licenses/by/4.0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >CC BY 4.0</a
+                  >。物種參考照，依版面裁切，非八目個體。
+                </li>
+              </ul>
+              <p class="fine-print asset-note">
+                筆記插圖使用
+                <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer"
+                  >OpenMoji</a
+                >（<a
+                  href="https://creativecommons.org/licenses/by-sa/4.0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >CC BY-SA 4.0</a
+                >）；跳蛛照片來自
+                <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer"
+                  >Wikimedia Commons</a
+                >，依各張照片授權使用；A1 飼養盒仍是設計示意。完整來源見
+                <a
+                  href="https://github.com/KotaNia1130/hachime-site/blob/main/ASSET_CREDITS.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >素材授權</a
+                >。
+              </p>
+            </section>
+          </div>
+          <div class="detail-page" data-page="shop" hidden>
+            <header class="shop-heading">
+              <p class="small-kicker">HACHIME SHOP</p>
+              <h2>活體與用品</h2>
+              <p>活體與用品準備中，尚未開放販售。</p>
+            </header>
+            <nav class="section-tabs" aria-label="選購分類">
+              <a href="#shop" data-go="shop">選購總覽</a
+              ><a href="#shop/live" data-go="shop/live">蜘蛛活體</a
+              ><a href="#shop/equipment" data-go="shop/equipment">飼養盒與用品</a>
+            </nav>
+            <section class="shop-panel shop-overview" data-shop="overview">
+              <div class="entry-grid">
+                <a class="entry-card" href="#shop/live" data-go="shop/live"
+                  ><img
+                    src="./assets/photos/regius.jpg"
+                    alt="佛跳第三方物種參考照，非八目個體"
+                  /><small class="entry-photo-caption">物種參考照 · spidereyes2020 · CC0</small>
+                  <h3>蜘蛛活體</h3>
+                  <p>佛跳、老虎狗與獅子狗。</p>
+                  <span>認識這些跳蛛 ↗</span></a
+                ><a class="entry-card" href="#shop/equipment" data-go="shop/equipment"
+                  ><img src="./assets/enclosure-core.svg" alt="A1 飼養盒概念圖" />
+                  <h3>飼養盒與用品</h3>
+                  <p>A1 的四種尺寸與三種款式。</p>
+                  <span>查看 A1 飼養盒 ↗</span></a
+                >
+              </div>
+              <p class="cross-links">
+                還在準備？<a href="#beginner/3" data-go="beginner/3">先看環境準備清單 →</a>
+              </p>
+            </section>
+            <div class="shop-panel" data-shop="live" hidden>
+              <section class="paper live-sheet" aria-labelledby="liveTitle">
+                <div class="paper-topline"><span>LIVE SPIDERS</span><span>尚未販售</span></div>
+                <div class="paper-heading">
+                  <div>
+                    <h2 id="liveTitle">蜘蛛活體</h2>
+                    <p>佛跳、老虎狗與獅子狗。</p>
+                  </div>
+                </div>
+                <p class="live-intro">目前尚未開放販售或預訂。照片與插圖僅供參考，並非在售個體。</p>
+                <section class="shop-carousel" aria-label="跳蛛介紹輪播">
+                  <span class="tape tape-yellow" aria-hidden="true"></span>
+                  <div class="paper-topline"><span>LIVE SPIDERS</span><span>準備中</span></div>
+                  <div class="cover-content cover-text">
+                    <p id="liveCoverName" class="cover-feature-name"></p>
+                    <p id="liveCoverDesc" class="cover-feature-desc"></p>
+                  </div>
+                  <figure class="floating-cover-image live-picture">
+                    <img
+                      id="liveCoverImage"
+                      src="./assets/spider-regius.svg"
+                      alt="跳蛛暫用示意插圖"
+                    />
+                    <figcaption id="liveCoverCredit">示意插圖 · 規劃中</figcaption>
+                  </figure>
+                  <div class="cover-switch">
+                    <span id="liveCoverCount">01 — 03</span
+                    ><button type="button" data-cover-next="live" aria-label="查看下一種跳蛛">
+                      ↻ 下一種
+                    </button>
+                  </div>
+                  <button type="button" id="livePause" class="text-button" aria-pressed="false">
+                    暫停自動輪播
+                  </button>
+                </section>
+                <div class="live-grid" id="liveCards"></div>
+                <p class="fine-print asset-note">
+                  獅子狗插圖：
+                  <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer"
+                    >OpenMoji</a
+                  >
+                  ·
+                  <a
+                    href="https://creativecommons.org/licenses/by-sa/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >CC BY-SA 4.0</a
+                  >
+                  · 原圖未修改，非物種外觀。
+                </p>
+              </section>
+            </div>
+            <div class="shop-panel" data-shop="equipment" hidden>
+              <section aria-labelledby="labTitle" class="paper lab-sheet" id="lab">
+                <span aria-hidden="true" class="tape tape-blue"></span>
+                <div class="paper-topline"><span>HACHIME LAB</span></div>
+                <div class="paper-heading lab-head">
+                  <div>
+                    <h2 id="labTitle">A1 系列飼養盒</h2>
+                    <p>目前規劃四種尺寸、三種款式，還沒有實體樣品。</p>
+                  </div>
+                </div>
+                <div class="product-body">
+                  <div class="product-options">
+                    <fieldset>
+                      <legend>尺寸</legend>
+                      <div class="size-choices" id="sizeChoices"></div>
+                    </fieldset>
+                    <fieldset>
+                      <legend>款式</legend>
+                      <div class="tier-choices" id="tierChoices"></div>
+                    </fieldset>
+                  </div>
+                  <div aria-live="polite" class="product-preview">
+                    <div class="preview-header">
+                      <span>A1 / PRODUCT NOTE</span>
+                    </div>
+                    <figure class="product-drawing">
+                      <img
+                        id="selectedIllustration"
+                        src="./assets/enclosure-plus.svg"
+                        alt="A1 PLUS 產品設計概念圖，非正式商品"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <figcaption>設計草圖</figcaption>
+                    </figure>
+                    <h3 id="selectedName">A1 Standard PLUS</h3>
+                    <div class="preview-price" id="selectedPrice">NT$849</div>
+                    <dl class="spec-line">
+                      <dt>外部尺寸</dt>
+                      <dd id="selectedSize">12 × 12 × 20 cm</dd>
+                      <dt>款式</dt>
+                      <dd id="selectedTier">PLUS ／ 進階</dd>
+                    </dl>
+                    <p class="preview-desc" id="selectedDescription"></p>
+                    <ul class="feature-list" id="selectedFeatures"></ul>
+                    <button class="solid-button" id="addToCart" type="button">
+                      加入購物車 <span>＋</span>
+                    </button>
+                    <p class="fine-print">價格為預估，購物車僅供試用，不會成立訂單或付款。</p>
+                  </div>
+                </div>
+                <div class="product-bottom">
+                  <span>四種尺寸・三種款式</span
+                  ><button class="plain-link" id="showAllPrices" type="button">
+                    查看全部價格 ↗
+                  </button>
+                </div>
+                <div class="price-popover" hidden="" id="pricePopover">
+                  <div class="price-popover-head">
+                    <strong>預估價格</strong
+                    ><button aria-label="關閉完整價目表" id="closePrices" type="button">×</button>
+                  </div>
+                  <div id="priceTable"></div>
+                </div>
+              </section>
+            </div>
+            <p class="cross-links">
+              <a href="#beginner/4" data-go="beginner/4">接回個體前要確認什麼？</a
+              ><a href="#atlas" data-go="atlas">回圖鑑了解物種</a>
+            </p>
+          </div>
+          <div class="detail-page" data-page="breeding" hidden>
+            <article class="paper breeding-article">
+              <div class="paper-topline"><span>BREEDING JOURNAL</span><span>準備中</span></div>
+              <h2>繁殖日記</h2>
+              <p class="live-intro">記下配對、孵化和幼蛛成長。</p>
+              <div class="journal-empty">
+                <h3>尚無紀錄</h3>
+                <p>有了紀錄，會在這裡分享。</p>
+              </div>
+              <div class="cross-links">
+                <a href="#atlas" data-go="atlas">查看跳蛛圖鑑 ↗</a
+                ><a href="#knowledge/observation" data-go="knowledge/observation">日常觀察筆記 ↗</a
+                ><a href="#home" data-go="home">返回首頁</a>
+              </div>
+            </article>
+          </div>
+          <div class="detail-page" data-page="development" hidden>
+            <article class="paper development-article">
+              <div class="paper-topline"><span>DEVELOPMENT NOTES</span><span>概念規劃</span></div>
+              <h2>A1 飼養盒開發札記</h2>
+              <p class="live-intro">A1 還在設計階段，尚未製作樣品。這裡記下目前的構想。</p>
+              <figure class="development-figure">
+                <img
+                  src="./assets/enclosure-plus.svg"
+                  width="360"
+                  height="290"
+                  alt="A1 PLUS 設計概念示意圖"
+                />
+                <figcaption>A1 PLUS 設計草圖</figcaption>
+              </figure>
+              <h3>餵食和清潔</h3>
+              <p>開盒餵食時少一些干擾，清潔時更好操作，是我們想解決的問題。</p>
+              <h3>目前的構想</h3>
+              <p>目前規劃四種尺寸，以及 CORE、PLUS、PRO 三種款式。</p>
+              <h3>接下來要試的事</h3>
+              <ul>
+                <li>箱門、接縫和通風孔會不會讓跳蛛鑽出。</li>
+                <li>通風是否足夠，攀爬和結絲的空間怎麼安排。</li>
+                <li>餵食和清潔是否順手，會不會打擾牠。</li>
+              </ul>
+              <p>有了樣品，會在這裡分享照片和試用紀錄。</p>
+              <div class="cross-links">
+                <a href="#shop/equipment" data-go="shop/equipment">查看 A1 尺寸與款式 ↗</a
+                ><a href="#beginner/3" data-go="beginner/3">先看環境準備清單 ↗</a
+                ><a href="#home" data-go="home">返回首頁</a>
+              </div>
+            </article>
+          </div>
+          <div class="detail-end">八目 HACHIME　·　跳蛛觀察手帖</div>
+        </div>
       </div>
-    </div>
-    <div class="viewport-hint" id="viewportHint"><span aria-hidden="true">✥</span> 拖曳調整畫面　·　點擊便條開啟內容 <button type="button" id="hintClose" aria-label="收起操作提示">×</button></div>
-    <button class="hint-reopen" id="hintReopen" type="button" aria-label="顯示操作說明" title="操作說明" hidden>?</button>
-    <div class="canvas-controls" id="canvasControls" aria-label="頁面縮放"><button type="button" id="zoomOut" aria-label="縮小">−</button><span id="zoomText">100%</span><button type="button" id="zoomIn" aria-label="放大">＋</button><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button><button type="button" id="resetBoard">重置</button></div>
+      <div class="viewport-hint" id="viewportHint">
+        <span aria-hidden="true">✥</span> 拖曳調整畫面　·　點擊便條開啟內容
+        <button type="button" id="hintClose" aria-label="收起操作提示">×</button>
+      </div>
+      <button
+        class="hint-reopen"
+        id="hintReopen"
+        type="button"
+        aria-label="顯示操作說明"
+        title="操作說明"
+        hidden
+      >
+        ?
+      </button>
+      <div class="canvas-controls" id="canvasControls" aria-label="頁面縮放">
+        <button type="button" id="zoomOut" aria-label="縮小">−</button
+        ><span id="zoomText">100%</span
+        ><button type="button" id="zoomIn" aria-label="放大">＋</button
+        ><span class="control-rule"></span><button type="button" id="fitBoard">全覽</button
+        ><button type="button" id="resetBoard">重置</button>
+      </div>
 
-    <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>跳蛛觀察手帖</span></div>
-  </main>
-  <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
-<aside aria-hidden="true" aria-labelledby="drawerTitle" aria-modal="true" class="cart-drawer" id="cartDrawer" role="dialog">
-<div class="drawer-head"><div><span>HACHIME / CART</span><h2 id="drawerTitle">購物車 <small>測試功能</small></h2></div><button aria-label="關閉購物車" class="close-cart" id="cartClose" type="button">×</button></div>
-<p class="drawer-notice">商品尚未上市。這是試用購物車，不會成立訂單或收款。</p>
-<div aria-live="polite" class="cart-items" id="cartItems"></div>
-<div class="drawer-foot"><div class="cart-total"><span>模擬金額</span><strong id="cartTotal">NT$0</strong></div><button class="clear-cart" id="clearCart" type="button">清空購物車</button><button class="checkout-disabled" disabled="" type="button">目前未開放結帳</button></div>
-</aside>
-<script src="./assets/vendor/page-flip/page-flip.browser.js"></script>
-<script src="./assets/paper-turn.js"></script>
-<script src="./assets/species-data.js"></script>
-<script>
-(() => {
-  'use strict';
-  const $ = (s, root=document) => root.querySelector(s);
-  const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
-  const money = n => 'NT$' + n.toLocaleString('zh-TW');
-
-  // Content is deliberately short and factual. This is an interaction prototype.
-  const guide = [
-  {
-    "title": "認識飼養責任",
-    "label": "先決定適不適合自己",
-    "desc": "跳蛛適合安靜觀察，需要規律照護；先了解生活方式，再考慮接回。",
-    "bullets": [
-      "能接受餵養合適的昆蟲餌料",
-      "有時間觀察，外出時能安排照護",
-      "理解跳蛛不是適合反覆抓取把玩的寵物"
-    ],
-    "check": "我已想過照護的時間與責任",
-    "route": "knowledge/feeding",
-    "link": "了解餵食與供水"
-  },
-  {
-    "title": "認識物種差異",
-    "label": "物種與來源確認",
-    "desc": "俗名、學名、成長階段與個體來源都需要核對，不只看照片選擇。",
-    "bullets": [
-      "從圖鑑認識名稱與基本差異",
-      "記下想確認的齡期與來源",
-      "尚未確認的學名不自行推定"
-    ],
-    "check": "我知道需要核對哪些物種資料",
-    "route": "atlas",
-    "link": "翻開跳蛛圖鑑"
-  },
-  {
-    "title": "準備環境與預算",
-    "label": "先把環境準備好",
-    "desc": "先確認通風、防逃、攀附與結絲空間，再考慮選配功能。",
-    "bullets": [
-      "檢查箱門與通風孔是否適合個體",
-      "安排餌料、供水與清潔方式",
-      "區分必要設備與選配；不必一次買齊"
-    ],
-    "check": "我已列出環境與日常用品清單",
-    "route": "shop/equipment",
-    "link": "查看飼養盒與用品"
-  },
-  {
-    "title": "接回前的確認",
-    "label": "接回個體前的確認事項",
-    "desc": "確認個體的來源、成長階段及近期紀錄，讓接回後的照護有依據。",
-    "bullets": [
-      "確認來源、齡期與性別判定程度",
-      "詢問最近進食、脫皮及照顧方式",
-      "先確認交接安排與環境準備"
-    ],
-    "check": "我知道接回前應詢問的事項",
-    "route": "shop/live",
-    "link": "查看蜘蛛活體"
-  },
-  {
-    "title": "到家的第一週",
-    "label": "剛接回時的觀察",
-    "desc": "先穩定安置與觀察，記下活動、絲巢及進食情況，不用固定天數判定是否適應。",
-    "bullets": [
-      "避免頻繁搬動、開盒及強烈日曬",
-      "延續已確認的照顧方式",
-      "有明顯外傷或活動異常時尋求協助"
-    ],
-    "check": "我已準備初期觀察紀錄",
-    "route": "knowledge/observation",
-    "link": "閱讀日常觀察筆記"
-  },
-  {
-    "title": "日常照顧與脫皮",
-    "label": "建立自己的觀察節奏",
-    "desc": "照顧重點是穩定環境、觀察與紀錄；脫皮期間尤其要減少干擾。",
-    "bullets": [
-      "定期檢查供水、箱門與環境",
-      "記錄進食、脫皮與平常活動",
-      "不任意拆除絲巢，不強迫餵食"
-    ],
-    "check": "我知道日常需要觀察與記錄的項目",
-    "route": "knowledge/molting",
-    "link": "閱讀脫皮與成長筆記"
-  },
-  {
-    "title": "遇到狀況怎麼查",
-    "label": "回到紀錄，找到下一步",
-    "desc": "先整理物種、個體狀態與近期變化，再依主題查資料；明顯虛弱或外傷需尋求專業協助。",
-    "bullets": [
-      "用現象搜尋 FAQ，例如拒食或逃脫",
-      "對照近期進食、脫皮及環境紀錄",
-      "避免自行用藥或強迫餵食"
-    ],
-    "check": "我知道如何查資料及何時求助",
-    "route": "knowledge/help",
-    "link": "查看異常與求助筆記"
-  }
-];
-  const species = window.HACHIME_SPECIES;
-  const faq = [
-    {cat:'餵食',q:'跳蛛突然不吃東西？',a:'可能與脫皮、環境變動或餌料不合適有關。先觀察活動能力、絲巢與最近進食紀錄。不要強迫餵食；若有明顯虛弱等狀況，應尋求專業協助。',tags:'拒食 活餌 食慾'},
-    {cat:'脫皮',q:'一直躲在絲巢裡？',a:'跳蛛會在絲巢裡休息，也可能準備脫皮。不要任意拆除絲巢；先觀察近期活動及脫皮紀錄。',tags:'躲起來 不出來 絲'},
-    {cat:'環境',q:'飼養盒要保持多少濕度？',a:'不同物種與成長階段的需求不同，沒有通用的單一數值。需要同時考慮通風、供水與實際環境，避免長期積水或悶濕。',tags:'濕度 溫度 溫濕度計'},
-    {cat:'餵食',q:'可以不餵活餌嗎？',a:'目前仍以合適的活昆蟲為主。飼養前，要先想好餌料從哪裡取得、平常怎麼照顧。',tags:'活蟲 人工飼料'},
-    {cat:'脫皮',q:'準備脫皮時可以餵食嗎？',a:'應減少干擾，避免把可能傷害跳蛛的活餌留在箱內。脫皮後是否恢復餵食，需依個體恢復情況判斷。',tags:'蛻皮 換皮 餵食'},
-    {cat:'行為',q:'一直爬牆是正常的嗎？',a:'許多跳蛛會探索垂直表面和較高的位置。若反覆跌落、無法附著或動作失調，就需要進一步觀察。',tags:'攀附 移動'},
-    {cat:'緊急',q:'跳蛛逃出來怎麼辦？',a:'先限制人與其他寵物進出，關閉房門並仔細檢查附近高處及安靜角落。不要使用殺蟲劑；找到後使用安全容器引導回箱。',tags:'逃跑 逃脫 不見'},
-    {cat:'緊急',q:'跳蛛無法正常行走或攀附？',a:'若有明顯行走失調、虛弱或外傷，先降低環境干擾，避免自行用藥或強迫餵食，並儘快尋求有無脊椎動物照護經驗的專業協助。',tags:'虛弱 跌落 受傷'}
-  ];
-  const sizes={mini:{label:'Mini',dims:'10 × 10 × 15 cm'},standard:{label:'Standard',dims:'12 × 12 × 20 cm'},large:{label:'Large',dims:'15 × 15 × 25 cm'},xl:{label:'XL',dims:'20 × 20 × 30 cm'}};
-  const tiers={core:{label:'CORE',zh:'基礎',desc:'基本箱體結構與可擴充接口。',features:['前開式與防逃設計目標','通風及攀爬空間','基本模組接口']},plus:{label:'PLUS',zh:'進階',desc:'增加環境監測與日常操作配件。',features:['包含 CORE 的基礎設計','微型數位溫濕度監測模組（規劃中）','餵食及攀爬配件']},pro:{label:'PRO',zh:'精品',desc:'升級外觀加工與模組配置。',features:['包含 PLUS 的功能規劃','較高規格材料與外觀處理','背景及配件升級；照明選配']}};
-  const prices={mini:{core:399,plus:649,pro:990},standard:{core:499,plus:849,pro:1390},large:{core:749,plus:1190,pro:1990},xl:{core:1190,plus:1690,pro:2790}};
-
-
-  
-  // Local, licensed reference photos. None represents HACHIME inventory or breeding records.
-  const showcase={spiders:[{"name":"佛羅里達跳蛛","image":"./assets/photos/regius.jpg","source":"https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg","credit":"spidereyes2020 · CC0","license":"CC0","desc":"常見的寵物跳蛛種類之一，選購時仍應確認個體齡期與來源。","short":"不同個體的花紋與色彩，各有特色。","fallback":"./assets/spider-regius.svg"},{"name":"大膽跳蛛","image":"./assets/photos/audax.jpg","source":"https://commons.wikimedia.org/wiki/File:Kaldari_Phidippus_audax_01.jpg","credit":"Kaldari · CC0","license":"CC0","desc":"北美常見跳蛛之一。不同個體和生長階段的花紋會有差異。","short":"觀察鮮明花紋與活躍的動作。","fallback":"./assets/spider-audax.svg"},{"name":"斑腹蠅象（老虎狗）","image":"./assets/photos/hyllus.jpg","source":"https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg","credit":"Doreen · CC BY 4.0","license":"CC BY 4.0","desc":"亞洲部分地區可見。購買前宜核對學名和實際個體情況。","short":"毛絨外觀與靈活的動作。","fallback":"./assets/spider-hyllus.svg"}],enclosures:[{"name":"CORE 基礎款","image":"./assets/enclosure-core.svg","short":"基本箱體、通風與防逃設計的起點。"},{"name":"PLUS 進階款","image":"./assets/enclosure-plus.svg","short":"加入監測與餵食便利的配置。"},{"name":"PRO 精品款","image":"./assets/enclosure-pro.svg","short":"著重展示質感與模組整合。"}]};
-  const liveSpiders=[
-    {name:'佛跳',species:'佛羅里達跳蛛',latin:'Phidippus regius',image:'./assets/spider-regius.svg',short:'常見的寵物跳蛛，花紋與色彩各有不同。',atlasId:'regius'},
-    {name:'老虎狗',species:'斑腹蠅象',latin:'Hyllus diardi',image:'./assets/photos/hyllus.jpg',short:'毛絨絨的外表，是飼養圈熟悉的老虎狗。',atlasId:'hyllus'},
-    {name:'獅子狗',species:'巨蠅象（暫稱）',latin:'Hyllus giganteus',image:'./assets/openmoji-spider.svg',short:'分布於東南亞的跳蛛。',atlasId:'giganteus'}
-  ];
-  function photoCredit(art){return `<a href="${art.source}" target="_blank" rel="noopener noreferrer">${art.credit} · 來源</a> · <a href="${art.license==='CC0'?'https://creativecommons.org/publicdomain/zero/1.0/':'https://creativecommons.org/licenses/by/4.0/'}" target="_blank" rel="noopener noreferrer">授權</a> · 裁切顯示`;}
-  for(const [index,artIndex] of [[0,0],[1,2]]){liveSpiders[index].art=showcase.spiders[artIndex];liveSpiders[index].image=showcase.spiders[artIndex].image;}
-  function liveCredit(item){return item.art?'物種參考照<br>'+photoCredit(item.art):'OpenMoji 一般蜘蛛示意，非'+item.name+'外觀';}
-  $('#liveCards').innerHTML=liveSpiders.map(item=>`<article class="live-card"><figure><img src="${item.image}" alt="${item.name}${item.art?'物種參考照，非八目個體':'一般蜘蛛示意，非物種照片'}"><figcaption>${liveCredit(item)}</figcaption></figure><span class="live-status">尚未開放販售</span><h3>${item.name}</h3><p>${item.short}</p><dl><dt>物種名稱</dt><dd>${item.species}</dd><dt>學名</dt><dd>${item.latin}</dd></dl><p class="cross-links"><a href="#${item.atlasId?'atlas/'+item.atlasId:'beginner/2'}" data-go="${item.atlasId?'atlas/'+item.atlasId:'beginner/2'}">${item.atlasId?'認識這個物種':'先了解物種確認方式'} →</a></p></article>`).join('');
-  let liveIndex=0,livePaused=false;
-  const carousel=$('.shop-carousel');
-  function renderLive(){
-    const item=liveSpiders[liveIndex];
-    $('#liveCoverImage').src=item.image;$('#liveCoverImage').alt=item.name+(item.art?'物種參考照，非八目個體':'一般蜘蛛示意，非物種照片');
-    $('#liveCoverCredit').innerHTML=liveCredit(item);
-    $('#liveCoverName').textContent=item.name;$('#liveCoverDesc').textContent=item.short;
-    $('#liveCoverCount').textContent=String(liveIndex+1).padStart(2,'0')+' — 03';
-  }
-  $('[data-cover-next="live"]').addEventListener('click',()=>{liveIndex=(liveIndex+1)%liveSpiders.length;renderLive();});
-  $('#livePause').addEventListener('click',()=>{livePaused=!livePaused;$('#livePause').setAttribute('aria-pressed',String(livePaused));$('#livePause').textContent=livePaused?'恢復自動輪播':'暫停自動輪播';});
-  const prefersReducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
-  setInterval(()=>{
-    if(livePaused||document.hidden||prefersReducedMotion.matches||!carousel.getClientRects().length||carousel.matches(':hover')||carousel.contains(document.activeElement))return;
-    liveIndex=(liveIndex+1)%liveSpiders.length;renderLive();
-  },5600);
-  renderLive();
-
-  // All guide chapters are part of one document; progress remains per chapter.
-  let completed=[];
-  try{const stored=JSON.parse(localStorage.getItem('hachime-guide-v015')||'[]');if(Array.isArray(stored))completed=[...new Set(stored.filter(n=>Number.isInteger(n)&&n>=0&&n<guide.length))];}catch{}
-  function saveProgress(){try{localStorage.setItem('hachime-guide-v015',JSON.stringify(completed));}catch{}}
-  function updateProgress(){
-    $('#guideProgress').textContent=`已讀 ${completed.length} / ${guide.length} 章`;
-    $$('[data-guide-read]').forEach(input=>input.checked=completed.includes(+input.dataset.guideRead));
-  }
-  $('#guideContent').innerHTML=guide.map((a,i)=>`<section class="guide-chapter" aria-labelledby="guide-chapter-${i+1}"><h3 id="guide-chapter-${i+1}">${a.title}</h3><p>${a.desc}</p><ul>${a.bullets.map(t=>`<li>${t}</li>`).join('')}</ul><label class="guide-check"><input data-guide-read="${i}" type="checkbox"> ${a.check}</label><p class="cross-links"><a data-go="${a.route}" href="#${a.route}">${a.link} ↗</a></p></section>`).join('')+'<p class="chapter-caption">閱讀進度會保留在這個瀏覽器。</p>';
-  $('#guideContent').addEventListener('change',e=>{
-    const input=e.target.closest('[data-guide-read]');if(!input)return;
-    const index=+input.dataset.guideRead;completed=completed.filter(n=>n!==index);if(input.checked)completed.push(index);saveProgress();updateProgress();
-  });
-  $('#resetProgress').addEventListener('click',()=>{completed=[];saveProgress();updateProgress();});
-  updateProgress();
-
-  // Species
-  let speciesIndex=0;
-  const speciesPhotos={regius:showcase.spiders[0],audax:showcase.spiders[1],diardi:showcase.spiders[2]};
-  function drawSpecies(){
-    const s=species[speciesIndex],art=speciesPhotos[s.photo];
-    const photo=art?`<figure><img src="${art.image}" alt="${s.name}物種參考照片，非八目個體" width="960" height="720"><figcaption>物種參考照<br>${photoCredit(art)}</figcaption></figure>`:`<figure class="species-photo-pending"><p>照片待補</p></figure>`;
-    $('#speciesPanel').innerHTML=`<header class="species-heading">${s.status?`<span class="species-status">${s.status}</span>`:''}<h3 id="speciesTitle" tabindex="-1">${s.common}</h3><p class="species-latin"><span class="species-field-label">學名</span>${s.latin?`<em>${s.latin}</em><small>${s.authority}</small>`:'學名待確認'}</p>${s.name&&s.name!==s.common?`<p class="species-common"><span class="species-field-label">中文名</span><strong>${s.name}</strong></p>`:''}</header><div class="species-profile">${photo}<div class="species-info">${s.summary?`<p>${s.summary}</p>`:''}<dl class="species-grid"><dt>分布</dt><dd>${s.origin}</dd></dl>${s.sources.length?`<details class="species-sources"><summary>參考資料</summary>${s.sources.map(source=>`<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.label} ↗</a>`).join('')}</details>`:''}</div></div>`;
-    const img=$('#speciesPanel img');
-    img?.addEventListener('error',()=>{if(img.dataset.fallback)return;img.dataset.fallback='1';img.src=art.fallback;img.alt=s.name+'概念示意插畫，非物種鑑別照片';$('#speciesPanel figcaption').textContent='照片無法載入，改用示意插畫';});
-  }
-  drawSpecies();
-
-  const notes=[{"id": "environment", "title": "環境準備", "body": "先確認通風、防逃、攀附與清潔方式。溫濕度需求因物種與階段不同，沒有通用的單一數值。", "topic": "環境", "step": 3}, {"id": "feeding", "title": "餵食與供水", "body": "依個體與原照顧方式準備合適的餌料及供水。記錄最近進食情況，拒食時先觀察，不強迫餵食。", "topic": "餵食", "step": 6}, {"id": "molting", "title": "脫皮與成長", "body": "留意絲巢與近期活動變化，減少干擾。不要任意拆除絲巢，也不要把可能傷害個體的活餌留在箱內。", "topic": "脫皮", "step": 6}, {"id": "observation", "title": "日常觀察", "body": "記錄活動、進食、絲巢與環境變化，比單次觀察更容易發現和平常不同的地方。", "topic": "行為", "step": 5}, {"id": "help", "title": "異常與求助", "body": "先降低干擾，整理近期紀錄。明顯外傷、無法正常行走或攀附時，尋求有相關照護經驗的專業協助，避免自行用藥。", "topic": "緊急", "step": 7}];
-  $('#noteArticle').innerHTML=notes.map(note=>`<section class="care-chapter" aria-labelledby="care-${note.id}"><h3 id="care-${note.id}">${note.title}</h3><p>${note.body}</p><p class="cross-links"><a href="#beginner/${note.step}" data-go="beginner/${note.step}">閱讀相關的新手指南 →</a></p></section>`).join('');
-  // FAQ filtering
-  let activeTopic='全部';
-  const topics=['全部','餵食','脫皮','環境','行為','緊急'];
-  function drawTopics(){
-    $('#faqTopics').innerHTML=topics.map(t=>`<button type="button" class="${t===activeTopic?'active':''}" data-topic="${t}" aria-pressed="${t===activeTopic}">${t}</button>`).join('');
-    $$('[data-topic]').forEach(b=>b.addEventListener('click',()=>{activeTopic=b.dataset.topic;drawTopics();drawFaq();}));
-  }
-  function drawFaq(){
-    const q=$('#faqSearch').value.trim().toLowerCase();
-    const filtered=faq.filter(f=>(activeTopic==='全部'||f.cat===activeTopic)&&`${f.q} ${f.a} ${f.cat} ${f.tags}`.toLowerCase().includes(q));
-    $('#faqResults').innerHTML=filtered.length?filtered.map(f=>`<details><summary><span>${f.q}</span></summary><p>${f.a}</p></details>`).join(''):'<p class="no-results">找不到相符的問題。可以改用較短的關鍵字搜尋。</p>';
-  }
-  $('#faqSearch').addEventListener('input',drawFaq);drawTopics();drawFaq();
-
-  // Product and cart state (session-only, no checkout)
-  let selectedSize='standard',selectedTier='plus';
-  const cart=new Map();
-  function drawProduct(){
-    $('#sizeChoices').innerHTML=Object.entries(sizes).map(([id,s])=>`<button type="button" class="${selectedSize===id?'active':''}" data-size="${id}" aria-pressed="${selectedSize===id}"><b>${s.label}</b><small>${s.dims}</small></button>`).join('');
-    $('#tierChoices').innerHTML=Object.entries(tiers).map(([id,t])=>`<button type="button" class="${selectedTier===id?'active':''}" data-tier="${id}" aria-pressed="${selectedTier===id}">${t.label}</button>`).join('');
-    const size=sizes[selectedSize],tier=tiers[selectedTier];
-    $('#selectedName').textContent=`A1 ${size.label} ${tier.label}`;
-    $('#selectedPrice').textContent=money(prices[selectedSize][selectedTier]);
-    $('#selectedSize').textContent=size.dims;
-    $('#selectedTier').textContent=`${tier.label} ／ ${tier.zh}`;
-    $('#selectedDescription').textContent=tier.desc;
-    $('#selectedFeatures').innerHTML=tier.features.map(x=>`<li>${x}</li>`).join('');
-    $('#selectedIllustration').src=`./assets/enclosure-${selectedTier}.svg`;
-    $('#selectedIllustration').alt=`A1 ${tier.label} 飼養盒規劃示意圖，非商品實拍`;
-    $$('[data-size]').forEach(b=>b.addEventListener('click',()=>{selectedSize=b.dataset.size;drawProduct();}));
-    $$('[data-tier]').forEach(b=>b.addEventListener('click',()=>{selectedTier=b.dataset.tier;drawProduct();}));
-  }
-  drawProduct();
-  const priceTable=`<table><thead><tr><th>尺寸</th><th>CORE</th><th>PLUS</th><th>PRO</th></tr></thead><tbody>${Object.entries(sizes).map(([id,s])=>`<tr><td>${s.label}<small>${s.dims}</small></td>${Object.keys(tiers).map(t=>`<td>${money(prices[id][t])}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
-  $('#priceTable').innerHTML=priceTable;
-  $('#showAllPrices').addEventListener('click',()=>{$('#pricePopover').hidden=false;});
-  $('#closePrices').addEventListener('click',()=>{$('#pricePopover').hidden=true;});
-
-  function redrawCart(){
-    const items=[...cart.entries()],count=items.reduce((n,[,qty])=>n+qty,0),total=items.reduce((n,[key,qty])=>{const [s,t]=key.split('/');return n+prices[s][t]*qty;},0);
-    $('#cartCount').textContent=count;
-    $('#cartTotal').textContent=money(total);
-    $('#cartItems').innerHTML=items.length?items.map(([key,qty])=>{const [s,t]=key.split('/');return `<div class="cart-line" data-key="${key}"><div><strong>A1 ${sizes[s].label} ${tiers[t].label}</strong><small>${sizes[s].dims} ／ 規劃商品</small></div><span>${money(prices[s][t]*qty)}</span><div class="qty-controls"><button type="button" data-qty="minus" data-key="${key}" aria-label="減少數量">−</button><span>${qty}</span><button type="button" data-qty="plus" data-key="${key}" aria-label="增加數量">＋</button><button type="button" class="remove-line" data-qty="remove" data-key="${key}">移除</button></div></div>`}).join(''):'<div class="cart-empty">購物車目前沒有商品。<br>可以到 A1 系列選擇規格，測試加入購物車。</div>';
-  }
-  const drawer=$('#cartDrawer'),backdrop=$('#drawerBackdrop');
-  let lastFocused=null;
-  function openCart(){lastFocused=document.activeElement;backdrop.hidden=false;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');document.body.classList.add('drawer-open');$('#cartClose').focus();}
-  function closeCart(){drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');backdrop.hidden=true;document.body.classList.remove('drawer-open');if(lastFocused?.focus)lastFocused.focus();}
-  $('#cartOpen').addEventListener('click',openCart);$('#cartClose').addEventListener('click',closeCart);backdrop.addEventListener('click',closeCart);
-  $('#addToCart').addEventListener('click',()=>{const k=`${selectedSize}/${selectedTier}`;cart.set(k,(cart.get(k)||0)+1);redrawCart();openCart();});
-  $('#clearCart').addEventListener('click',()=>{cart.clear();redrawCart();});
-  $('#cartItems').addEventListener('click',e=>{const b=e.target.closest('[data-qty]');if(!b)return;const k=b.dataset.key,old=cart.get(k)||0;if(b.dataset.qty==='plus')cart.set(k,old+1);if(b.dataset.qty==='minus'){if(old<=1)cart.delete(k);else cart.set(k,old-1);}if(b.dataset.qty==='remove')cart.delete(k);redrawCart();});
-  drawer.addEventListener('keydown',e=>{if(e.key!=='Tab')return;const nodes=$$('button:not([disabled]),a[href],input',drawer);const first=nodes[0],last=nodes.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
-  redrawCart();
-
-  // V0.3: overview is a draggable canvas; each category is a readable document.
-  const viewport=$('#viewport'), board=$('#board'), detailView=$('#detailView'), detailScroll=$('#detailScroll');
-  const names={home:'首頁',beginner:'新手起步',atlas:'跳蛛圖鑑',knowledge:'飼養筆記',shop:'活體與用品',about:'關於八目',breeding:'繁殖日記',development:'開發札記'};
-  let scale=1,panX=0,panY=0,drag=null,raf=0,lastRoute='home',overviewFocus=null;
-  function closeBookMenu(){ $('#bookSidebar').classList.remove('is-open');$('#bookMenuToggle').setAttribute('aria-expanded','false'); }
-  let hintDismissed=false;
-  try { hintDismissed=localStorage.getItem('hachime-board-hint-seen')==='1'; } catch(e) {}
-  if(window.matchMedia('(max-width:600px)').matches)hintDismissed=true;
-  function updateHint(){
-    const showing=!detailView.hidden;
-    $('#viewportHint').hidden=showing;
-    $('#viewportHint').classList.toggle('is-dismissed',hintDismissed);
-    $('#hintReopen').hidden=showing;
-    $('.start-note').classList.toggle('is-dismissed',hintDismissed);
-  }
-  function collapseHint(){
-    if(hintDismissed)return;
-    hintDismissed=true;
-    try { localStorage.setItem('hachime-board-hint-seen','1'); } catch(e) {}
-    updateHint();
-  }
-  function reopenHint(){if(window.hachimeWelcome){window.hachimeWelcome.open();return;}hintDismissed=false;updateHint();}
-  const boardSize=()=>({w:board.offsetWidth,h:board.offsetHeight});
-  const bounds=()=>({w:viewport.clientWidth,h:viewport.clientHeight});
-  const mobile=()=>window.matchMedia('(max-width:600px)').matches;
-  function clamp(){
-    const {w,h}=bounds(),{w:bw,h:bh}=boardSize();const sx=bw*scale,sy=bh*scale,edge=mobile()?4:24;
-    panX=sx<=w?(w-sx)/2:Math.max(w-sx-edge,Math.min(edge,panX));
-    panY=sy<=h?(h-sy)/2:Math.max(h-sy-edge,Math.min(edge,panY));
-  }
-  // CSS zoom performs layout at target size instead of scaling a cached text layer.
-  // Offsets are in zoomed CSS coordinates; pan/zoom math remains in viewport pixels.
-  function apply(){clamp();board.style.zoom=scale;board.style.left=`${Math.round(panX/scale)}px`;board.style.top=`${Math.round(panY/scale)}px`;$('#zoomText').textContent=Math.round(scale*100)+'%';}
-  function fitScale(){const {w,h}=bounds(),b=boardSize();return Math.min(mobile()?1:.93,(w-(mobile()?15:110))/b.w,(h-(mobile()?40:95))/b.h);}
-  function zoom(newScale,x,y){const {w,h}=bounds();x??=w/2;y??=h/2;const worldX=(x-panX)/scale,worldY=(y-panY)/scale;scale=Math.max(Math.min(.25,fitScale()),Math.min(1.4,newScale));panX=x-worldX*scale;panY=y-worldY*scale;apply();}
-  function centerBoard(){const {w,h}=bounds(),b=boardSize();scale=fitScale();panX=(w-b.w*scale)/2;panY=(h-b.h*scale)/2;apply();}
-  function focusHome(){
-    const {w,h}=bounds();
-    if(mobile()){scale=Math.min(1,w/420);panX=(w-420*scale)/2;panY=0;}
-    else{scale=Math.min(1,(w-32)/1680,(h-48)/760);panX=(w-1680*scale)/2;panY=12;}
-    apply();
-  }
-  function resolveRoute(value){
-    const [path,query='']=value.split('?');value=path;
-    const section=new URLSearchParams(query).get('section')||'';
-    value=({'home/cover':'home','home/species':'atlas','home/care':'knowledge','home/studio':'shop','home/about':'about','atlas/maratus-volans':'atlas/maratus','atlas/simaetha-thoracica':'atlas/simaetha'})[value]||value;
-    if(value==='lab')value='shop/equipment';if(value==='live')value='shop/live';
-    const [page,sub,...extra]=value.split('/');
-    if(!Object.hasOwn(names,page)||extra.length)return {page:'home',sub:'',id:'home'};
-    const valid=!sub||(page==='shop'&&['live','equipment'].includes(sub))||(page==='beginner'&&/^[1-7]$/.test(sub))||(page==='knowledge'&&notes.some(n=>n.id===sub))||(page==='atlas'&&species.some(n=>n.id===sub));
-    return {page,sub:valid?(sub||''):'',section,id:(valid?value:page)+(section?'?section='+encodeURIComponent(section):'')};
-  }
-  function currentRoute(){try{return decodeURIComponent((location.hash||'#home').slice(1));}catch{return 'home';}}
-  let chapterHeadings=[],chapterFrame=0,navigationFrame=0;
-  function updateChapterMarker(){
-    if(detailView.hidden||!chapterHeadings.length)return;
-    const edge=detailScroll.getBoundingClientRect().top+65;
-    let active=chapterHeadings[0];
-    for(const heading of chapterHeadings){if(heading.getBoundingClientRect().top<=edge)active=heading;}
-    if(detailScroll.scrollHeight>detailScroll.clientHeight+2&&detailScroll.scrollTop+detailScroll.clientHeight>=detailScroll.scrollHeight-2)active=chapterHeadings.at(-1);
-    $$('#bookMenu [data-section]').forEach(link=>{
-      if(link.dataset.section===active?.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');
-    });
-  }
-  function buildChapterMenu(route){
-    const page=$(`.detail-page[data-page="${route.page}"]`);
-    const isAtlas=route.page==='atlas';
-    $('#workspace').classList.toggle('is-atlas',isAtlas);
-    $('#bookMenuToggle').innerHTML=(isAtlas?'物種':'章節')+' <span aria-hidden="true">☰</span>';
-    $('#bookMenu').setAttribute('aria-label',isAtlas?'跳蛛物種目錄':'本篇章節');
-    $('#bookSidebar').setAttribute('aria-label',isAtlas?'跳蛛物種目錄':'本篇章節目錄');
-    if(isAtlas){
-      chapterHeadings=[];
-      $('#bookMenu').innerHTML='<p>跳蛛目錄<small>'+species.length+' 筆</small></p>'+['台灣觀察','寵物與飼養圈','特色與國際物種'].map(group=>`<section class="species-menu-group"><h4>${group}</h4>${species.filter(s=>s.group===group).map(s=>`<a href="#atlas/${s.id}" data-go="atlas/${s.id}" data-species-id="${s.id}" ${s.id===species[speciesIndex].id?'aria-current="page"':''}><strong>${s.common}</strong><small>${s.latin||'學名待確認'}</small></a>`).join('')}</section>`).join('');
-      $('#bookSidebar').hidden=false;return;
-    }
-    const selector=route.page==='beginner'?'.guide-chapter h3':route.page==='knowledge'?'.care-chapter h3,#care-faq':'h2,h3';
-    chapterHeadings=$$(selector,page).filter(h=>h.getClientRects().length);
-    const allHeadings=$$('h2,h3',page);
-    chapterHeadings.forEach(heading=>{heading.id ||= `${route.page}-section-${allHeadings.indexOf(heading)+1}`;heading.tabIndex=-1;});
-    const title=document.createElement('p');title.textContent='本篇章節';
-    $('#bookMenu').replaceChildren(title);
-    for(const heading of chapterHeadings){
-      const link=document.createElement('a');link.textContent=heading.textContent;link.dataset.section=heading.id;
-      const target=route.page==='beginner'?'beginner/'+heading.id.replace('guide-chapter-',''):route.page==='knowledge'&&heading.id!=='care-faq'?'knowledge/'+heading.id.replace('care-',''):route.page+(route.sub?'/'+route.sub:'')+'?section='+encodeURIComponent(heading.id);
-      link.href='#'+target;link.dataset.go=target;$('#bookMenu').append(link);
-    }
-    $('#bookSidebar').hidden=!chapterHeadings.length;
-  }
-  detailScroll.addEventListener('scroll',()=>{if(chapterFrame)return;chapterFrame=requestAnimationFrame(()=>{chapterFrame=0;updateChapterMarker();});},{passive:true});
-  let scrollFrame=0;
-  function stopReadingScroll(){cancelAnimationFrame(scrollFrame);scrollFrame=0;}
-  function scrollToChapter(target,animated){
-    stopReadingScroll();
-    const start=detailScroll.scrollTop;
-    const end=Math.max(0,Math.min(detailScroll.scrollHeight-detailScroll.clientHeight,target?start+target.getBoundingClientRect().top-detailScroll.getBoundingClientRect().top-28:0));
-    const finish=()=>{scrollFrame=0;(target||detailScroll).focus({preventScroll:true});updateChapterMarker();};
-    if(!animated||matchMedia('(prefers-reduced-motion: reduce)').matches||Math.abs(end-start)<2){detailScroll.scrollTop=end;finish();return;}
-    const duration=Math.min(520,Math.max(280,Math.abs(end-start)*.12)),began=performance.now();
-    function step(now){
-      const progress=Math.min(1,(now-began)/duration),eased=progress<.5?4*progress**3:1-(-2*progress+2)**3/2;
-      detailScroll.scrollTop=start+(end-start)*eased;
-      if(progress<1)scrollFrame=requestAnimationFrame(step);else finish();
-    }
-    scrollFrame=requestAnimationFrame(step);
-  }
-  // Manual scrolling immediately takes over from a chapter animation.
-  for(const event of ['wheel','touchstart','pointerdown'])detailScroll.addEventListener(event,stopReadingScroll,{passive:true});
-  detailScroll.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(e.key))stopReadingScroll();});
-  window.addEventListener('resize',stopReadingScroll);
-  matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',stopReadingScroll);
-  function navigate(value,updateUrl=true){
-    const route=resolveRoute(value),id=route.page,previousPage=resolveRoute(lastRoute).page;
-    const changedPage=previousPage!==id;
-    const snapshot=updateUrl&&changedPage?window.hachimePaperTurn?.capture(detailView.hidden?viewport:detailView):null;
-    if(!snapshot)window.hachimePaperTurn?.stop();
-    stopReadingScroll();
-    if(updateUrl)collapseHint();
-    const showing=id!=='home',wasDetail=!detailView.hidden;
-    if(!wasDetail&&showing)overviewFocus=document.activeElement;
-    detailView.hidden=!showing;
-    viewport.hidden=showing;$('#canvasControls').hidden=showing;$('#bottomMark').hidden=showing;closeBookMenu();updateHint();
-    $$('.detail-page').forEach(el=>el.hidden=el.dataset.page!==id);
-    $$('.shop-panel').forEach(el=>el.hidden=el.dataset.shop!==(route.sub||'overview'));
-
-    if(id==='atlas'){speciesIndex=Math.max(0,species.findIndex(n=>n.id===(route.sub||'regius')));drawSpecies();}
-    cancelAnimationFrame(navigationFrame);
-    if(showing){
-      $('#currentPageName').textContent=names[id];buildChapterMenu(route);
-      const targetId=route.section||(id==='beginner'&&route.sub?'guide-chapter-'+route.sub:id==='knowledge'&&route.sub?'care-'+route.sub:'');
-      navigationFrame=requestAnimationFrame(()=>{
-        const target=chapterHeadings.find(h=>h.id===targetId);
-        scrollToChapter(target,updateUrl&&!changedPage&&Boolean(target));
-      });
-    }
-    else requestAnimationFrame(()=>{apply();if(wasDetail&&overviewFocus?.isConnected)overviewFocus.focus({preventScroll:true});});
-    $$('[data-go]:not([data-section])').forEach(el=>{const active=el.closest('.top-nav')?el.dataset.go===(id==='development'?'shop':id):el.dataset.go===(id==='atlas'?'atlas/'+species[speciesIndex].id:route.id);el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
-    if(updateUrl&&location.hash!==`#${route.id}`)history.pushState(null,'',`#${route.id}`);
-    $('#pricePopover').hidden=true;
-    if(!showing)$('#workspace').classList.remove('is-atlas');
-    if(snapshot)window.hachimePaperTurn.play(snapshot,!showing);lastRoute=route.id;
-  }
-  document.addEventListener('click',e=>{
-    const link=e.target.closest('[data-go],[data-jump]');if(!link||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
-    e.preventDefault();const id=link.dataset.go||link.dataset.jump;navigate(id);if(id==='home')focusHome();
-  });
-  document.addEventListener('click',e=>{if(!e.target.closest('#bookSidebar'))closeBookMenu();});
-  $('#bookMenuToggle').addEventListener('click',()=>{const open=$('#bookSidebar').classList.toggle('is-open');$('#bookMenuToggle').setAttribute('aria-expanded',String(open));});
-  $('#detailBack').addEventListener('click',()=>navigate('home'));
-  window.addEventListener('hashchange',()=>navigate(currentRoute(),false));
-  window.addEventListener('popstate',()=>navigate(currentRoute(),false));
-  $('#resetBoard').addEventListener('click',()=>{collapseHint();focusHome();});
-  $('#zoomIn').addEventListener('click',()=>{collapseHint();zoom(scale+.12);});
-  $('#zoomOut').addEventListener('click',()=>{collapseHint();zoom(scale-.12);});
-  $('#fitBoard').addEventListener('click',()=>{collapseHint();centerBoard();});
-  $('#hintClose').addEventListener('click',collapseHint);
-  $('#hintReopen').addEventListener('click',reopenHint);
-  // The notebook is a draggable UI, not a selectable document.
-  // Prevent native selection and image dragging without affecting details.
-  viewport.addEventListener('selectstart', e=>e.preventDefault());
-  viewport.addEventListener('dragstart', e=>e.preventDefault());
-  viewport.addEventListener('pointerdown',e=>{
-    if(e.button!==0||!e.isPrimary)return;
-    if(e.target.closest('button,a,input,textarea,select,summary'))return;
-    // Prevent text highlighting from the very first pixel of a drag.
-    // Cover-note taps still open on pointerup; keyboard activation remains supported.
-    e.preventDefault();
-    drag={pointer:e.pointerId,x:e.clientX,y:e.clientY,startX:panX,startY:panY,moved:false,openId:e.target.closest('[data-open]')?.dataset.open||null};
-    viewport.setPointerCapture(e.pointerId);
-  });
-  viewport.addEventListener('pointermove',e=>{
-    if(!drag||drag.pointer!==e.pointerId)return;
-    const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
-    if(Math.abs(dx)+Math.abs(dy)>7){drag.moved=true;viewport.classList.add('dragging');collapseHint();}
-    if(!drag.moved)return;
-    panX=drag.startX+dx;panY=drag.startY+dy;
-    if(!raf)raf=requestAnimationFrame(()=>{raf=0;apply();});
-  });
-  function endDrag(e){
-    if(!drag||drag.pointer!==e.pointerId)return;
-    const openId=!drag.moved?drag.openId:null;
-    drag=null;viewport.classList.remove('dragging');
-    if(viewport.hasPointerCapture(e.pointerId))viewport.releasePointerCapture(e.pointerId);
-    if(openId)navigate(openId);
-  }
-  viewport.addEventListener('pointerup',endDrag);viewport.addEventListener('pointercancel',e=>{if(drag){drag=null;viewport.classList.remove('dragging');}});
-  $$('#board [data-open]').forEach(n=>n.addEventListener('keydown',e=>{if(e.target!==n)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();navigate(n.dataset.open);}}));
-  viewport.addEventListener('wheel',e=>{e.preventDefault();collapseHint();const r=viewport.getBoundingClientRect();if(e.ctrlKey||e.metaKey)zoom(scale*(e.deltaY>0?.93:1.07),e.clientX-r.left,e.clientY-r.top);else{panX-=e.deltaX;panY-=e.deltaY;apply();}},{passive:false});
-  document.addEventListener('keydown',e=>{
-    if(document.querySelector('#welcomeDialog[open]'))return;
-    if(e.key==='Escape'&&$('#bookSidebar').classList.contains('is-open')){closeBookMenu();$('#bookMenuToggle').focus();return;}
-    if(e.key==='Escape'){$('#pricePopover').hidden=true;if(drawer.classList.contains('open')){closeCart();return;}if(!detailView.hidden){navigate('home');return;}}
-    if(!detailView.hidden||drawer.classList.contains('open')||e.target.closest('input,button,a,textarea,select'))return;
-    const step=e.shiftKey?130:70;
-    if(e.key==='ArrowUp'){e.preventDefault();collapseHint();panY+=step;apply();}
-    if(e.key==='ArrowDown'){e.preventDefault();collapseHint();panY-=step;apply();}
-    if(e.key==='ArrowLeft'){e.preventDefault();collapseHint();panX+=step;apply();}
-    if(e.key==='ArrowRight'){e.preventDefault();collapseHint();panX-=step;apply();}
-  });
-  let resizeTimer,lastMobile=mobile();
-  window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{const changed=lastMobile!==mobile();lastMobile=mobile();if(changed)focusHome();else if(detailView.hidden)apply();},90);});
-  requestAnimationFrame(()=>{focusHome();navigate(currentRoute(),false);});
-})();
-
-</script>
-</body>
+      <div class="bottom-mark" id="bottomMark">八目 HACHIME　<span>跳蛛觀察手帖</span></div>
+    </main>
+    <div class="drawer-backdrop" hidden="" id="drawerBackdrop"></div>
+    <aside
+      aria-hidden="true"
+      aria-labelledby="drawerTitle"
+      aria-modal="true"
+      class="cart-drawer"
+      id="cartDrawer"
+      role="dialog"
+    >
+      <div class="drawer-head">
+        <div>
+          <span>HACHIME / CART</span>
+          <h2 id="drawerTitle">購物車 <small>試用</small></h2>
+        </div>
+        <button aria-label="關閉購物車" class="close-cart" id="cartClose" type="button">×</button>
+      </div>
+      <p class="drawer-notice">商品尚未上市。這是試用購物車，不會成立訂單或收款。</p>
+      <div aria-live="polite" class="cart-items" id="cartItems"></div>
+      <div class="drawer-foot">
+        <div class="cart-total"><span>預估金額</span><strong id="cartTotal">NT$0</strong></div>
+        <button class="clear-cart" id="clearCart" type="button">清空購物車</button
+        ><button class="checkout-disabled" disabled="" type="button">目前未開放結帳</button>
+      </div>
+    </aside>
+    <script src="./assets/vendor/page-flip/page-flip.browser.js"></script>
+    <script src="./assets/paper-turn.js"></script>
+    <script src="./assets/species-data.js"></script>
+    <script src="./assets/site-content.js"></script>
+    <script src="./assets/app.js"></script>
+  </body>
 </html>
