@@ -1,5 +1,5 @@
-/* HACHIME V0.26: documented Taiwan observations, market-listed pets and unusual species.
-   Each record separates Chinese display name, taxonomic name and evidence. Photos are not substituted from other taxa. */
+/* HACHIME V0.26.1: confirmed Taiwan names, aliases and distribution notes.
+   Display headings, taxon IDs, scientific names, photo mappings and existing sources are preserved. */
 window.HACHIME_SPECIES = [
   {
     "id": "adansoni",
@@ -27,13 +27,13 @@ window.HACHIME_SPECIES = [
   {
     "id": "bivittatus",
     "common": "雙帶扁",
-    "name": "雙帶扁蠅虎",
+    "name": "雙帶扁蠅虎（別名：包氏扁蠅虎）",
     "latin": "Menemerus bivittatus",
     "authority": "(Dufour, 1831)",
     "group": "台灣觀察",
     "status": "物種條目",
     "origin": "台灣有紀錄；廣布於熱帶與亞熱帶地區",
-    "summary": "「雙帶扁」暫保留為網站短稱，玩家使用情況待查；名錄中文名為「雙帶扁蠅虎」。先前聲稱的「包氏扁蠅虎」別名未在本輪最新 TBN 頁面確認，暫不作為正式別名。",
+    "summary": "「雙帶扁」是本站短稱；臺灣名錄使用「雙帶扁蠅虎」，另收錄「包氏扁蠅虎」別名。",
     "sources": [
       {
         "label": "臺灣生物多樣性網絡：雙帶扁蠅虎",
@@ -55,8 +55,8 @@ window.HACHIME_SPECIES = [
     "authority": "(Audouin, 1826)",
     "group": "台灣觀察",
     "status": "物種條目",
-    "origin": "臺灣名錄有紀錄；原生於非洲，其他地區廣泛引入",
-    "summary": "臺灣生物多樣性網絡採「褐條斑蠅虎」，另有「茶色條斑蠅虎」別名；部分自然觀察平台也使用「黑色蠅虎」。尚無足夠證據可把這些直接定為跳蛛玩家的通行暱稱。",
+    "origin": "世界多地有紀錄；TaiCOL 列臺灣原生，其他地區的原生或引入狀態需分別核對",
+    "summary": "臺灣名錄採「褐條斑蠅虎」，另收錄「黑色蠅虎」「茶色條斑蠅虎」別名。這些是中文名稱，不代表玩家暱稱。",
     "sources": [
       {
         "label": "臺灣生物多樣性網絡：中文名、同物異名",
@@ -77,9 +77,9 @@ window.HACHIME_SPECIES = [
     "latin": "Carrhotus xanthogramma",
     "authority": "(Latreille, 1819)",
     "group": "台灣觀察",
-    "status": "臺灣分布待交叉核對",
-    "origin": "臺灣名錄列有原生紀錄；WSC 的世界分布摘要未列臺灣",
-    "summary": "臺灣生物多樣性網絡使用「橙黃蠅虎」並標示臺灣原生；World Spider Catalog 接受學名 Carrhotus xanthogramma，但其分布摘要目前未列臺灣。本頁保留來源差異，暫不將臺灣分布標為雙方一致確認。",
+    "status": "臺灣名錄有紀錄",
+    "origin": "TaiCOL 列臺灣原生；國際名錄的分布摘要待交叉核對",
+    "summary": "臺灣名錄使用「橙黃蠅虎」，並列有臺灣原生紀錄。國際名錄摘要是否列出臺灣，與本地已有紀錄是兩件事。",
     "sources": [
       {
         "label": "臺灣生物多樣性網絡：橙黃蠅虎",
@@ -96,13 +96,13 @@ window.HACHIME_SPECIES = [
   {
     "id": "versicolor",
     "common": "眼鏡黑條蠅虎",
-    "name": "眼鏡黑條蠅虎",
+    "name": "眼鏡擬黑條蠅虎（別名：眼鏡黑條蠅虎、多色金蟬蛛）",
     "latin": "Phintelloides versicolor",
     "authority": "(C. L. Koch, 1846)",
     "group": "台灣觀察",
-    "status": "分布待交叉核對",
-    "origin": "臺灣生物多樣性網絡列有本種；World Spider Catalog 分布摘要未列臺灣",
-    "summary": "臺灣生物多樣性網絡使用「眼鏡黑條蠅虎」和 Phintelloides versicolor；WSC 也接受學名，但分布摘要未列臺灣，與臺灣名錄有差異。本頁保留分布待交叉核對，不代表目前已確定在臺灣有原生分布。",
+    "status": "臺灣名錄有紀錄",
+    "origin": "TaiCOL 列臺灣原生；國際名錄的分布摘要待交叉核對",
+    "summary": "TaiCOL 採「眼鏡擬黑條蠅虎」，TBN 頁面仍使用「眼鏡黑條蠅虎」。兩者指向同一學名，另有「多色金蟬蛛」別名。",
     "sources": [
       {
         "label": "臺灣生物多樣性網絡：現用名與中文名",
@@ -113,8 +113,8 @@ window.HACHIME_SPECIES = [
         "url": "https://wsc.nmbe.ch/spec-data/38571/species"
       }
     ],
-    "displayKind": "名錄中文名（非玩家暱稱）",
-    "nameKind": "臺灣名錄中文名"
+    "displayKind": "公開中文用名（臺灣名錄別名）",
+    "nameKind": "臺灣物種名錄中文名：眼鏡擬黑條蠅虎；別名另列"
   },
   {
     "id": "incognitus",
@@ -142,13 +142,13 @@ window.HACHIME_SPECIES = [
   {
     "id": "petersi",
     "common": "彼得條斑蠅虎",
-    "name": "彼得條斑蠅虎（又稱溝渠蠅虎／溝渠跳蛛）",
+    "name": "溝渠蠅虎（亦見彼得條斑蠅虎、溝渠跳蛛）",
     "latin": "Plexippus petersi",
     "authority": "(Karsch, 1878)",
     "group": "台灣觀察",
     "status": "物種條目",
-    "origin": "亞洲；臺灣有觀察紀錄",
-    "summary": "「彼得條斑蠅虎」見於臺灣蛛式會社的物種紀錄；臺灣生命大百科的 iNaturalist 資料則採「溝渠蠅虎」（溝渠跳蛛）。兩者同指 Plexippus petersi，這些都是有公開使用記錄的中文名稱；不必自創暱稱。",
+    "origin": "亞洲；TaiCOL 列臺灣原生",
+    "summary": "臺灣名錄使用「溝渠蠅虎」，臺灣蛛式會社的觀察紀錄另見「彼得條斑蠅虎」。這些中文名稱同指 Plexippus petersi。",
     "sources": [
       {
         "label": "臺灣蛛式會社：彼得條斑蠅虎物種紀錄",
@@ -164,7 +164,7 @@ window.HACHIME_SPECIES = [
       }
     ],
     "displayKind": "公開中文用名",
-    "nameKind": "臺灣蛛式會社用名；臺灣生命大百科另收錄中文俗名"
+    "nameKind": "臺灣物種名錄中文名：溝渠蠅虎；其他公開用名另列"
   },
   {
     "id": "cupreus",
@@ -223,10 +223,10 @@ window.HACHIME_SPECIES = [
     "latin": "Thiania suboppressa",
     "authority": "Strand, 1907",
     "group": "台灣觀察",
-    "status": "學名已核對；兩資料源分布摘要有差異",
+    "status": "臺灣名錄有紀錄",
     "displayKind": "臺灣名錄中文名",
     "nameKind": "臺灣物種名錄中文名",
-    "origin": "臺灣有正式觀察紀錄；WSC 全球分布摘要未列臺灣",
+    "origin": "TaiCOL 列臺灣原生；國際名錄的分布摘要待交叉核對",
     "summary": "飼養圈常說的「金絲貓」「豹虎」通常指方胸蛛屬的多種蜘蛛，不是這一種的專屬名字。現用拼法是 suboppressa；舊資料、商家亦見 subopressa。近似物種不宜只看體色鑑定。",
     "sources": [
       {
@@ -250,11 +250,11 @@ window.HACHIME_SPECIES = [
     "latin": "Ptocasius strupifer",
     "authority": "Simon, 1901",
     "group": "台灣觀察",
-    "status": "學名已核對；臺灣分布紀錄需交叉確認",
-    "displayKind": "臺灣觀察與文獻中文用名",
-    "nameKind": "公開中文用名（非臺灣名錄標準名）",
-    "origin": "臺灣蛛式會社有多筆紀錄；WSC 分布摘要未列臺灣",
-    "summary": "臺灣蛛式會社有多筆已鑑定觀察。不同來源對臺灣分布摘要不一致；圖鑑如實列出兩種資料，不以單一紀錄推論全島常見。",
+    "status": "臺灣名錄有紀錄",
+    "displayKind": "臺灣名錄中文名",
+    "nameKind": "臺灣物種名錄中文名",
+    "origin": "TaiCOL 列臺灣原生；臺灣蛛式會社亦有觀察紀錄",
+    "summary": "臺灣名錄採「毛垛兜蠅虎」，其他圖文資料也使用「毛垛兜跳蛛」。臺灣蛛式會社已有觀察紀錄，各地常見程度仍需看實際紀錄。",
     "sources": [
       {
         "label": "臺灣蛛式會社：物種鑑定紀錄",
@@ -273,11 +273,11 @@ window.HACHIME_SPECIES = [
     "latin": "Burmattus albopunctatus",
     "authority": "(Thorell, 1895)",
     "group": "台灣觀察",
-    "status": "學名已核對；臺灣分布紀錄需交叉確認",
+    "status": "臺灣名錄有紀錄",
     "displayKind": "臺灣名錄中文名",
     "nameKind": "臺灣物種名錄中文名",
-    "origin": "TBN 有臺灣原生紀錄；WSC 摘要未列臺灣",
-    "summary": "臺灣生物多樣性網絡收錄的跳蛛。WSC 接受相同學名，但全球分布摘要未列臺灣；網站保留兩個來源間的差異。",
+    "origin": "TaiCOL 列臺灣原生；國際名錄的分布摘要待交叉核對",
+    "summary": "臺灣名錄與 TBN 都收錄「波氏緬蛛」，並列有臺灣原生紀錄。國際名錄的分布摘要仍待交叉核對。",
     "sources": [
       {
         "label": "TBN：波氏緬蛛",
@@ -297,9 +297,9 @@ window.HACHIME_SPECIES = [
     "authority": "Peng, Tso & Li, 2002",
     "group": "台灣觀察",
     "status": "已核對學名",
-    "displayKind": "臺灣蛛式會社中文用名",
-    "nameKind": "公開中文用名（非臺灣名錄標準名）",
-    "origin": "臺灣有正式鑑定紀錄；WSC 列臺灣分布",
+    "displayKind": "臺灣名錄中文名",
+    "nameKind": "臺灣物種名錄中文名",
+    "origin": "TaiCOL 列臺灣原生；臺灣有觀察與鑑定紀錄",
     "summary": "在臺灣有實際觀察與鑑定資料的斑馬蛛屬物種。屬名 Zebraplatys 不同於國外常見「斑馬蜘蛛」Salticus scenicus，兩者不可混用照片。",
     "sources": [
       {
@@ -338,15 +338,15 @@ window.HACHIME_SPECIES = [
   {
     "id": "lauta",
     "common": "華美麗跳蛛",
-    "name": "華美麗跳蛛（GBIF 亦列優美金毛蛛）",
+    "name": "優美金毛蛛（另有華美麗跳蛛用名）",
     "latin": "Chrysilla lauta",
     "authority": "Thorell, 1887",
     "group": "台灣觀察",
     "status": "已核對學名",
-    "displayKind": "中文文獻／資料庫用名",
-    "nameKind": "公開中文用名（非臺灣名錄標準名）",
-    "origin": "WSC 列臺灣及東南亞部分地區",
-    "summary": "虹彩般的體色讓這類跳蛛很有辨識度。中文名見於農業部研究附件及 GBIF，分類學名與臺灣分布可由 WSC 核對。",
+    "displayKind": "公開中文用名",
+    "nameKind": "臺灣物種名錄中文名：優美金毛蛛；華美麗跳蛛為其他中文用名",
+    "origin": "TaiCOL 與 TBN 列臺灣原生；亦見於東南亞部分地區",
+    "summary": "臺灣名錄與 TBN 使用「優美金毛蛛」，其他中文資料也稱「華美麗跳蛛」。兩個名稱同指 Chrysilla lauta；不要和藍翠蛛、針狀麗跳蛛混用照片。",
     "sources": [
       {
         "label": "林業及自然保育署：研究附件中文名",
@@ -674,8 +674,8 @@ window.HACHIME_SPECIES = [
     "group": "特色與國際物種",
     "status": "已核對學名",
     "displayKind": "公開中文圖鑑用名",
-    "nameKind": "公開中文用名（非臺灣名錄標準名）",
-    "origin": "WSC 列臺灣至澳洲等亞洲與大洋洲地區",
+    "nameKind": "臺灣物種名錄中文名；澳門圖鑑亦使用此名",
+    "origin": "TaiCOL 列臺灣原生；亞洲與大洋洲亦有分布",
     "summary": "孔蛛屬中以追捕、伏擊及模擬獵物振動著稱的物種，常捕食其他蜘蛛。研究有助理解跳蛛行為；不代表容易飼養。",
     "sources": [
       {
@@ -745,15 +745,15 @@ window.HACHIME_SPECIES = [
   {
     "id": "crassipes",
     "common": "粗腳盤蛛",
-    "name": "粗腳盤蛛",
+    "name": "粗腳條斑蠅虎（香港、澳門圖鑑稱粗腳盤蛛）",
     "latin": "Pancorius crassipes",
     "authority": "(Karsch, 1881)",
     "group": "特色與國際物種",
-    "status": "已核對學名",
-    "displayKind": "澳門公開圖鑑中文用名",
-    "nameKind": "公開中文用名（非臺灣名錄標準名）",
-    "origin": "WSC 列東亞、東南亞；臺灣未確認",
-    "summary": "澳門公開圖鑑收錄的盤蛛屬種類，外觀與比例有特色；以有效學名與觀察紀錄辨識，不能拿外形相似的其他跳蛛照片替代。",
+    "status": "臺灣名錄有紀錄",
+    "displayKind": "香港、澳門圖鑑中文用名",
+    "nameKind": "臺灣物種名錄中文名：粗腳條斑蠅虎；其他地區用名另列",
+    "origin": "TaiCOL 列臺灣原生；東亞及東南亞其他地區亦有分布",
+    "summary": "臺灣名錄使用「粗腳條斑蠅虎」，香港、澳門圖鑑稱「粗腳盤蛛」。兩個名稱都對應 Pancorius crassipes；TaiCOL 已列有臺灣原生紀錄。",
     "sources": [
       {
         "label": "澳門生態網：粗腳盤蛛",

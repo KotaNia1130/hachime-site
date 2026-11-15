@@ -32,14 +32,15 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
    if(width>960){const menu=await p.locator('#bookSidebar').boundingBox(),article=await p.locator('#atlas').boundingBox();assert(menu.x<1&&menu.x+menu.width<article.x);}
    else assert.equal(await p.locator('#bookMenuToggle').getAttribute('aria-expanded'),'false');
   }
-  await p.reload();assert.equal(await p.locator('#speciesTitle').innerText(),'大膽跳蛛');
+  await p.reload();assert.equal(await p.locator('#speciesTitle').innerText(),entries.at(-1)[1]);
+  assert.equal(new URL(p.url()).hash,'#atlas/'+entries.at(-1)[0]);
   await p.goto(base+'#atlas/hyllus');await p.waitForFunction(()=>document.querySelector('#speciesPanel img').naturalWidth>0);assert.equal(await p.locator('#speciesTitle').innerText(),'老虎狗');assert.match(await p.locator('#speciesPanel img').getAttribute('src'),/hyllus.jpg/);
   await p.goto(base+'#atlas/giganteus');assert.equal(await p.locator('#speciesTitle').innerText(),'獅子狗');assert.equal(await p.locator('#speciesPanel img').count(),0);
   await p.goBack();assert.equal(await p.locator('#speciesTitle').innerText(),'老虎狗');await p.goForward();assert.equal(await p.locator('#speciesTitle').innerText(),'獅子狗');
-  await p.screenshot({path:`/tmp/hachime-v024-atlas-${width}.png`});
+  await p.screenshot({path:`/tmp/hachime-v0261-atlas-${width}.png`});
   await p.locator('#detailBack').click();assert(await p.locator('#bookSidebar').isHidden());
   for(const selector of ['.home-actions [data-jump]','.observation-slip [data-go]','.update-list [data-go]','.notebook-signoff>[data-go]'])assert(await p.locator(selector).first().evaluate(e=>['none','normal'].includes(getComputedStyle(e,'::before').content)),'small links have no paper backing');
-  console.log(`PASS ${width}px: seventeen left-side entries, names, unresolved taxa, photos, history and plain links`);
+  console.log(`PASS ${width}px: ${entries.length} left-side entries, names, unresolved taxa, photos, history and plain links`);
  }
  await p.goto(base+'#atlas/maratus-volans');
  assert.equal(await p.locator('#speciesTitle').innerText(),'孔雀蜘蛛');
@@ -67,5 +68,5 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
  await tiger.locator('[data-go="atlas/hyllus"]').click();assert.equal(await p.locator('#speciesTitle').innerText(),'老虎狗');
  assert(await p.locator('.species-sources a[href*="seaharescorpion.com"]').isVisible());
  await p.goto(base+'#atlas/giganteus');assert.match(await p.locator('.species-common').innerText(),/暫用中文名/);assert(await p.locator('.species-sources a[href*="facebook.com/JumpersFever"]').isVisible());
- assert.deepEqual(errors,[]);console.log('PASS V0.25.1 naming categories, scientific names, source labels, live/atlas consistency; no JS exceptions');
+ assert.deepEqual(errors,[]);console.log('PASS V0.26.1 naming categories, scientific names, source labels, live/atlas consistency; no JS exceptions');
 }finally{await b.close()}})().catch(e=>{console.error(e);process.exit(1)});
