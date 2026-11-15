@@ -1,4 +1,16 @@
-# 八目 HACHIME｜網站 MVP V0.24.1
+# 八目 HACHIME｜網站 MVP V0.25
+
+## V0.25：跳蛛學名核對，圖鑑入口 10 → 19
+
+- 依 [World Spider Catalog](https://wsc.nmbe.ch/) 與 [台灣生物多樣性網絡](https://www.tbn.org.tw/) 核對學名、命名者與臺灣物種中文名稱。
+- 補充 9 個物種入口：褐條斑蠅虎、橙黃蠅虎、眼鏡黑條蠅虎、淡色條斑蠅虎、Plexippus petersi、紅背跳蛛（譯名）、斑馬跳蛛（譯名）、Maratus volans、Simaetha thoracica。
+- 原 `#atlas/simaetha` 現依世界蜘蛛名錄標為 **Simaetha 屬級整理**，不是單一種；綠翠仍保留學名待確認。
+- 保留已有來源的老虎狗／獅子狗名稱對照；中文標準名稱、玩家俗名及譯名分別註明。
+- 新條目圖片待補，避免拿不同物種的照片冒充；既有照片與合法授權不變。
+- 已更新圖鑑 Playwright 測試預期為 19 項；[完整核對報告](docs/ATLAS_TAXONOMY_V025.md)。
+
+以下是歷史版本說明。網站仍以 V0.24.1 版面／程式為基礎，只擴充圖鑑資料。
+
 
 ## V0.24.1：核對老虎狗與獅子狗的名稱
 
