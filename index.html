@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#EFE9DD">
   <link rel="icon" type="image/svg+xml" href="./assets/hachime-symbol-v2.svg">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.25.3</title>
+  <title>八目 HACHIME｜網站互動原型 V0.26</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -1045,7 +1045,7 @@ body{background:var(--ground);color:var(--ink)}
 <div class="detail-page" data-page="atlas" hidden><section aria-labelledby="atlasTitle" class="paper atlas-sheet" id="atlas">
 <span aria-hidden="true" class="tape tape-yellow"></span>
 <div class="paper-topline"><span>SPECIES</span><span>物種資料</span></div>
-<div class="paper-heading"><div><h2 id="atlasTitle">跳蛛圖鑑</h2><p>選擇想看的跳蛛，查看照片與基本資料。</p></div></div>
+<div class="paper-heading"><div><h2 id="atlasTitle">跳蛛圖鑑</h2><p>台灣觀察、飼養圈可見物種與特殊行為。大標、學名和中文名稱分開標示；僅展示已核對授權的照片。</p></div></div>
 
 <article aria-live="polite" class="species-panel" id="speciesPanel"></article>
 <aside class="atlas-reference-links" aria-label="外部公開跳蛛圖鑑">
@@ -1451,7 +1451,7 @@ body{background:var(--ground);color:var(--ink)}
     $('#bookSidebar').setAttribute('aria-label',isAtlas?'跳蛛物種目錄':'本篇章節目錄');
     if(isAtlas){
       chapterHeadings=[];
-      $('#bookMenu').innerHTML='<p>跳蛛目錄</p>'+['台灣觀察','其他物種'].map(group=>`<section class="species-menu-group"><h4>${group}</h4>${species.filter(s=>s.group===group).map(s=>`<a href="#atlas/${s.id}" data-go="atlas/${s.id}" data-species-id="${s.id}" ${s.id===species[speciesIndex].id?'aria-current="page"':''}><strong>${s.common}</strong><small>${s.latin||'學名待確認'}</small><span class="species-menu-kind">${s.displayKind}</span></a>`).join('')}</section>`).join('');
+      $('#bookMenu').innerHTML='<p>跳蛛目錄<small>'+species.length+' 筆物種／類群入口</small></p>'+['台灣觀察','寵物與飼養圈','特色與國際物種'].map(group=>`<section class="species-menu-group"><h4>${group}</h4>${species.filter(s=>s.group===group).map(s=>`<a href="#atlas/${s.id}" data-go="atlas/${s.id}" data-species-id="${s.id}" ${s.id===species[speciesIndex].id?'aria-current="page"':''}><strong>${s.common}</strong><small>${s.latin||'學名待確認'}</small><span class="species-menu-kind">${s.displayKind}</span></a>`).join('')}</section>`).join('');
       $('#bookSidebar').hidden=false;return;
     }
     const selector=route.page==='beginner'?'.guide-chapter h3':route.page==='knowledge'?'.care-chapter h3,#care-faq':'h2,h3';
