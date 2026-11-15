@@ -2,10 +2,10 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict');
 const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
 (async()=>{const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});try{
  const p=await b.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.route('https://**/*',r=>r.abort());await p.addInitScript(()=>sessionStorage.setItem('hachime-welcome-seen-v2','1'));
- const entries=[['adansoni','安德遜','Hasarius adansoni'],['bivittatus','雙帶扁','Menemerus bivittatus'],['green','綠翠',null],['regius','佛跳','Phidippus regius'],['giganteus','獅子狗','Hyllus giganteus'],['hyllus','老虎狗','Hyllus diardi'],['portia','唇形孔蛛','Portia labiata'],['simaetha','西邁塔',null],['maratus','澳洲孔雀蜘蛛','Maratus spp.'],['audax','大膽跳蛛','Phidippus audax']];
+ const entries=[["adansoni","安德遜","Hasarius adansoni"],["bivittatus","雙帶扁","Menemerus bivittatus"],["green","綠翠",null],["paykulli","褐條斑蠅虎","Plexippus paykulli"],["xanthogramma","橙黃蠅虎","Carrhotus xanthogramma"],["versicolor","眼鏡黑條蠅虎","Phintelloides versicolor"],["incognitus","淡色條斑蠅虎","Plexippus incognitus"],["petersi","Plexippus petersi","Plexippus petersi"],["regius","佛跳","Phidippus regius"],["giganteus","獅子狗","Hyllus giganteus"],["hyllus","老虎狗","Hyllus diardi"],["portia","唇形孔蛛","Portia labiata"],["simaetha","西邁塔","Simaetha"],["johnsoni","紅背跳蛛（譯名）","Phidippus johnsoni"],["scenicus","斑馬跳蛛（譯名）","Salticus scenicus"],["maratus-volans","孔雀蜘蛛 M. volans","Maratus volans"],["simaetha-thoracica","S. thoracica","Simaetha thoracica"],["maratus","澳洲孔雀蜘蛛","Maratus spp."],["audax","大膽跳蛛","Phidippus audax"]];
  for(const width of [320,390,768,1024,1440]){
   await p.setViewportSize({width,height:900});await p.goto(base+'#atlas');
-  assert.equal(await p.locator('#speciesTabs').count(),0);assert.equal(await p.locator('#bookMenu [data-species-id]').count(),10);
+  assert.equal(await p.locator('#speciesTabs').count(),0);assert.equal(await p.locator('#bookMenu [data-species-id]').count(),19);
   assert.equal(await p.locator('#speciesTitle').innerText(),'佛跳');
   for(const [id,name,latin]of entries){
    if(width<=960)await p.locator('#bookMenuToggle').click();
@@ -26,7 +26,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await p.screenshot({path:`/tmp/hachime-v024-atlas-${width}.png`});
   await p.locator('#detailBack').click();assert(await p.locator('#bookSidebar').isHidden());
   for(const selector of ['.home-actions [data-jump]','.observation-slip [data-go]','.update-list [data-go]','.notebook-signoff>[data-go]'])assert(await p.locator(selector).first().evaluate(e=>['none','normal'].includes(getComputedStyle(e,'::before').content)),'small links have no paper backing');
-  console.log(`PASS ${width}px: ten left-side entries, names, unresolved taxa, photos, history and plain links`);
+  console.log(`PASS ${width}px: nineteen left-side entries, names, unresolved taxa, photos, history and plain links`);
  }
  await p.goto(base+'#shop/live');
  await p.locator('#livePause').click();
