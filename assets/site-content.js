@@ -1,0 +1,278 @@
+/* Editable site content. Keep research history in docs, not public descriptions. */
+window.HACHIME_CONTENT = {
+  guide: [
+    {
+      title: '養之前，先想一想',
+      desc: '跳蛛適合觀察，照顧牠也需要時間。接回家前，先想好餌料和日常照顧怎麼安排。',
+      bullets: [
+        '能接受準備和照顧活餌',
+        '每天能抽空觀察，外出時也有人照顧',
+        '願意讓牠安靜活動，不常抓出來把玩',
+      ],
+      check: '我已想好日常照顧的安排',
+      route: 'knowledge/feeding',
+      link: '了解餵食與供水',
+    },
+    {
+      title: '選擇適合的跳蛛',
+      desc: '除了外表，也要了解牠是哪一種、多大了，以及原本怎麼照顧。',
+      bullets: [
+        '從圖鑑看看中文名與學名',
+        '詢問齡期和來源',
+        '同一個俗名可能指不同種類，要一起看學名',
+      ],
+      check: '我知道要詢問物種、齡期和來源',
+      route: 'atlas',
+      link: '翻開跳蛛圖鑑',
+    },
+    {
+      title: '準備飼養環境',
+      desc: '飼養盒要能通風、防逃，也要有攀爬和結絲的空間。',
+      bullets: [
+        '檢查箱門、接縫和通風孔，避免跳蛛鑽出',
+        '準備餌料、供水和清潔用品',
+        '列出必要用品與預算，配件不必一次買齊',
+      ],
+      check: '我已列好飼養用品清單',
+      route: 'shop/equipment',
+      link: '查看飼養盒與用品',
+    },
+    {
+      title: '接回家前要問什麼',
+      desc: '先問清楚最近的進食、脫皮和照顧情況，帶回家後比較容易接著照顧。',
+      bullets: [
+        '詢問來源、齡期，以及性別是否已能判斷',
+        '記下最近進食、脫皮和供水方式',
+        '先準備好飼養環境，再安排交接',
+      ],
+      check: '我已記下接回家前要問的事',
+      route: 'shop/live',
+      link: '查看蜘蛛活體',
+    },
+    {
+      title: '剛到家的幾天',
+      desc: '先讓牠安靜待著，觀察活動、絲巢和進食情況。每隻跳蛛適應的時間不同。',
+      bullets: [
+        '避免頻繁搬動、開盒和陽光直曬',
+        '先延續原本的照顧方式',
+        '發現明顯外傷或活動異常時，尋求協助',
+      ],
+      check: '我知道剛到家時要觀察什麼',
+      route: 'knowledge/observation',
+      link: '閱讀日常觀察筆記',
+    },
+    {
+      title: '日常照顧與脫皮',
+      desc: '留意平常的活動和食慾，脫皮期間減少干擾。',
+      bullets: ['定期檢查供水、箱門和環境', '記下進食與脫皮日期', '不拆絲巢，也不強迫餵食'],
+      check: '我知道日常要留意的事',
+      route: 'knowledge/molting',
+      link: '閱讀脫皮與成長筆記',
+    },
+    {
+      title: '遇到狀況時',
+      desc: '先看看最近有什麼變化。若明顯虛弱或受傷，儘快找有相關照護經驗的人協助。',
+      bullets: [
+        '搜尋正在遇到的情況，例如拒食或逃脫',
+        '整理近期進食、脫皮和環境變化，求助時一起提供',
+        '不要自行用藥或強迫餵食',
+      ],
+      check: '我知道可以查哪些筆記、何時需要求助',
+      route: 'knowledge/help',
+      link: '查看異常與求助筆記',
+    },
+  ],
+  faq: [
+    {
+      cat: '餵食',
+      q: '跳蛛突然不吃東西？',
+      a: '可能快脫皮了，也可能是環境變動或餌料不合適。先看看活動、絲巢和最近的進食情況，不要強迫餵食。若明顯虛弱，儘快尋求協助。',
+      tags: '拒食 活餌 食慾',
+    },
+    {
+      cat: '脫皮',
+      q: '一直躲在絲巢裡？',
+      a: '牠可能在休息，也可能準備脫皮。先觀察最近的活動，不要拆開絲巢查看。',
+      tags: '躲起來 不出來 絲',
+    },
+    {
+      cat: '環境',
+      q: '飼養盒要保持多少濕度？',
+      a: '要看物種、成長階段和實際環境，沒有所有跳蛛都適用的數字。通風與供水也要一起考慮，避免長期積水或悶濕。',
+      tags: '濕度 溫度 溫濕度計',
+    },
+    {
+      cat: '餵食',
+      q: '可以不餵活餌嗎？',
+      a: '目前飼養跳蛛仍以合適的活昆蟲為主。飼養前，要先想好餌料從哪裡取得、平常怎麼照顧。',
+      tags: '活蟲 人工飼料',
+    },
+    {
+      cat: '脫皮',
+      q: '準備脫皮時可以餵食嗎？',
+      a: '這時要減少干擾，不把可能傷害跳蛛的活餌留在盒內。脫皮後何時恢復餵食，要看牠的恢復情況。',
+      tags: '蛻皮 換皮 餵食',
+    },
+    {
+      cat: '行為',
+      q: '一直爬牆是正常的嗎？',
+      a: '跳蛛會探索垂直表面和高處。但如果反覆跌落、抓不住表面或動作失調，就要留意是否有異常。',
+      tags: '攀附 移動',
+    },
+    {
+      cat: '緊急',
+      q: '跳蛛逃出來怎麼辦？',
+      a: '先關好房門，讓其他寵物離開，仔細檢查附近高處和安靜角落。不要使用殺蟲劑；找到後，用容器慢慢引導牠回飼養盒。',
+      tags: '逃跑 逃脫 不見',
+    },
+    {
+      cat: '緊急',
+      q: '跳蛛無法正常行走或攀附？',
+      a: '先減少干擾，不要自行用藥或強迫餵食。記下最近的進食、脫皮和環境變化，儘快尋求有無脊椎動物照護經驗的專業協助。',
+      tags: '虛弱 跌落 受傷',
+    },
+  ],
+  sizes: {
+    mini: {
+      label: 'Mini',
+      dims: '10 × 10 × 15 cm',
+    },
+    standard: {
+      label: 'Standard',
+      dims: '12 × 12 × 20 cm',
+    },
+    large: {
+      label: 'Large',
+      dims: '15 × 15 × 25 cm',
+    },
+    xl: {
+      label: 'XL',
+      dims: '20 × 20 × 30 cm',
+    },
+  },
+  tiers: {
+    core: {
+      label: 'CORE',
+      zh: '基礎',
+      desc: '前開式箱體，預留配件安裝位置。',
+      features: ['前開式箱門', '通風孔與攀爬空間', '配件安裝位置'],
+    },
+    plus: {
+      label: 'PLUS',
+      zh: '進階',
+      desc: '在 CORE 基礎上加入溫濕度監測與餵食配件。',
+      features: ['CORE 的箱體配置', '數位溫濕度監測模組', '餵食與攀爬配件'],
+    },
+    pro: {
+      label: 'PRO',
+      zh: '展示',
+      desc: '在 PLUS 基礎上調整外觀，增加背景與配件。',
+      features: ['PLUS 的功能配置', '外觀加工與材料升級', '背景配件，照明另選'],
+    },
+  },
+  prices: {
+    mini: {
+      core: 399,
+      plus: 649,
+      pro: 990,
+    },
+    standard: {
+      core: 499,
+      plus: 849,
+      pro: 1390,
+    },
+    large: {
+      core: 749,
+      plus: 1190,
+      pro: 1990,
+    },
+    xl: {
+      core: 1190,
+      plus: 1690,
+      pro: 2790,
+    },
+  },
+  liveSpiders: [
+    {
+      name: '佛跳',
+      species: '佛羅里達跳蛛',
+      latin: 'Phidippus regius',
+      image: './assets/spider-regius.svg',
+      short: '常見的寵物跳蛛，花紋與色彩各有不同。',
+      atlasId: 'regius',
+      photo: 'regius',
+    },
+    {
+      name: '老虎狗',
+      species: '斑腹蠅象',
+      latin: 'Hyllus diardi',
+      image: './assets/photos/hyllus.jpg',
+      short: '毛絨絨的外表，是飼養圈熟悉的老虎狗。',
+      atlasId: 'hyllus',
+      photo: 'diardi',
+    },
+    {
+      name: '獅子狗',
+      species: '巨蠅象（暫稱）',
+      latin: 'Hyllus giganteus',
+      image: './assets/openmoji-spider.svg',
+      short: '分布於東南亞的跳蛛。',
+      atlasId: 'giganteus',
+    },
+  ],
+  notes: [
+    {
+      id: 'environment',
+      title: '環境準備',
+      body: '飼養盒要能通風、防逃，並留出攀爬與結絲的空間。溫濕度需求會隨物種和成長階段不同，不能只照一個固定數字。',
+      step: 3,
+    },
+    {
+      id: 'feeding',
+      title: '餵食與供水',
+      body: '依跳蛛的大小和原本的照顧方式準備餌料與供水。記下進食情況；突然拒食時先觀察活動和絲巢，不強迫餵食。',
+      step: 6,
+    },
+    {
+      id: 'molting',
+      title: '脫皮與成長',
+      body: '留意絲巢和近期活動變化，減少開盒干擾。不拆絲巢，也不把可能傷害跳蛛的活餌留在盒內。',
+      step: 6,
+    },
+    {
+      id: 'observation',
+      title: '日常觀察',
+      body: '記下進食、脫皮和活動情況。知道牠平常的樣子，才容易發現變化。',
+      step: 5,
+    },
+    {
+      id: 'help',
+      title: '異常與求助',
+      body: '先減少干擾，整理最近的照顧紀錄。若有明顯外傷、無法正常行走或攀附，儘快尋求有相關照護經驗的專業協助，不要自行用藥。',
+      step: 7,
+    },
+  ],
+  photos: {
+    regius: {
+      image: './assets/photos/regius.jpg',
+      source: 'https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg',
+      credit: 'spidereyes2020 · CC0',
+      license: 'CC0',
+      fallback: './assets/spider-regius.svg',
+    },
+    audax: {
+      image: './assets/photos/audax.jpg',
+      source: 'https://commons.wikimedia.org/wiki/File:Kaldari_Phidippus_audax_01.jpg',
+      credit: 'Kaldari · CC0',
+      license: 'CC0',
+      fallback: './assets/spider-audax.svg',
+    },
+    diardi: {
+      image: './assets/photos/hyllus.jpg',
+      source: 'https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg',
+      credit: 'Doreen · CC BY 4.0',
+      license: 'CC BY 4.0',
+      fallback: './assets/spider-hyllus.svg',
+    },
+  },
+};
