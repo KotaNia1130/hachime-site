@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#EFE9DD">
   <link rel="icon" type="image/svg+xml" href="./assets/hachime-symbol-v2.svg">
   <meta name="description" content="八目 HACHIME｜跳蛛飼養知識、物種資料及 A1 系列飼養盒規劃。">
-  <title>八目 HACHIME｜網站互動原型 V0.24.1</title>
+  <title>八目 HACHIME｜網站互動原型 V0.25.1</title>
   <style>
 :root{
  --paper:#faf9f3;--ground:#f2efe4;--ink:#2e312e;--muted:#73746f;--rule:#d2cec2;--olive:#51675b;--sage:#dce5da;--yellow:#f2e6ba;--peach:#eddcd0;--blue:#dee7e7;
@@ -1296,7 +1296,7 @@ body{background:var(--ground);color:var(--ink)}
   function drawSpecies(){
     const s=species[speciesIndex],art=speciesPhotos[s.photo];
     const photo=art?`<figure><img src="${art.image}" alt="${s.name}物種參考照片，非八目個體" width="960" height="720"><figcaption>物種參考照 · 非八目個體<br>${photoCredit(art)}</figcaption></figure>`:`<figure class="species-photo-pending"><p>照片待補</p><figcaption>確認物種與授權後再放上照片。</figcaption></figure>`;
-    $('#speciesPanel').innerHTML=`<header class="species-heading"><span class="species-status">${s.status}</span><h3 id="speciesTitle" tabindex="-1">${s.common}</h3><p class="species-latin">${s.latin?`<em>${s.latin}</em><small>${s.authority}</small>`:'學名待確認'}</p><p class="species-common">${s.name}</p></header><div class="species-profile">${photo}<div class="species-info"><p>${s.summary}</p><dl class="species-grid"><dt>分布資料</dt><dd>${s.origin}</dd><dt>飼養筆記</dt><dd>整理中，暫不提供未核對的通用參數。</dd><dt>後續補充</dt><dd>辨識特徵、性別差異、成長階段、實拍與觀察紀錄。</dd></dl>${s.sources.length?`<div class="species-sources"><h4>資料來源</h4>${s.sources.map(source=>`<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.label} ↗</a>`).join('')}</div>`:''}</div></div>`;
+    $('#speciesPanel').innerHTML=`<header class="species-heading"><span class="species-status">${s.status}</span><p class="species-display-kind">${s.displayKind}</p><h3 id="speciesTitle" tabindex="-1">${s.common}</h3><p class="species-latin"><span class="species-field-label">分類學名</span>${s.latin?`<em>${s.latin}</em><small>${s.authority}</small>`:'學名待確認'}</p><p class="species-common"><span class="species-field-label">中文名稱</span><strong>${s.name}</strong><small>${s.nameKind}</small></p></header><div class="species-profile">${photo}<div class="species-info"><p>${s.summary}</p><dl class="species-grid"><dt>分布資料</dt><dd>${s.origin}</dd><dt>飼養筆記</dt><dd>整理中，暫不提供未核對的通用參數。</dd><dt>後續補充</dt><dd>辨識特徵、性別差異、成長階段、實拍與觀察紀錄。</dd></dl>${s.sources.length?`<div class="species-sources"><h4>資料來源</h4>${s.sources.map(source=>`<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.label} ↗</a>`).join('')}</div>`:''}</div></div>`;
     const img=$('#speciesPanel img');
     img?.addEventListener('error',()=>{if(img.dataset.fallback)return;img.dataset.fallback='1';img.src=art.fallback;img.alt=s.name+'概念示意插畫，非物種鑑別照片';$('#speciesPanel figcaption').textContent='照片無法載入，改用示意插畫';});
   }
@@ -1432,7 +1432,7 @@ body{background:var(--ground);color:var(--ink)}
     $('#bookSidebar').setAttribute('aria-label',isAtlas?'跳蛛物種目錄':'本篇章節目錄');
     if(isAtlas){
       chapterHeadings=[];
-      $('#bookMenu').innerHTML='<p>跳蛛目錄</p>'+['台灣觀察','其他物種'].map(group=>`<section class="species-menu-group"><h4>${group}</h4>${species.filter(s=>s.group===group).map(s=>`<a href="#atlas/${s.id}" data-go="atlas/${s.id}" data-species-id="${s.id}" ${s.id===species[speciesIndex].id?'aria-current="page"':''}><strong>${s.common}</strong><small>${s.latin||'學名待確認'}</small></a>`).join('')}</section>`).join('');
+      $('#bookMenu').innerHTML='<p>跳蛛目錄</p>'+['台灣觀察','其他物種'].map(group=>`<section class="species-menu-group"><h4>${group}</h4>${species.filter(s=>s.group===group).map(s=>`<a href="#atlas/${s.id}" data-go="atlas/${s.id}" data-species-id="${s.id}" ${s.id===species[speciesIndex].id?'aria-current="page"':''}><strong>${s.common}</strong><small>${s.latin||'學名待確認'}</small><span class="species-menu-kind">${s.displayKind}</span></a>`).join('')}</section>`).join('');
       $('#bookSidebar').hidden=false;return;
     }
     const selector=route.page==='beginner'?'.guide-chapter h3':route.page==='knowledge'?'.care-chapter h3,#care-faq':'h2,h3';
