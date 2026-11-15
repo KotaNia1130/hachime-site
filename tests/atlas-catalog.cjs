@@ -2,11 +2,15 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict');
 const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
 (async()=>{const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});try{
  const p=await b.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.route('https://**/*',r=>r.abort());await p.addInitScript(()=>sessionStorage.setItem('hachime-welcome-seen-v2','1'));
- const entries=[["adansoni","安德遜","Hasarius adansoni"],["bivittatus","雙帶扁","Menemerus bivittatus"],["paykulli","褐條斑蠅虎","Plexippus paykulli"],["xanthogramma","橙黃蠅虎","Carrhotus xanthogramma"],["versicolor","眼鏡黑條蠅虎","Phintelloides versicolor"],["incognitus","淡色條斑蠅虎","Plexippus incognitus"],["petersi","彼得條斑蠅虎","Plexippus petersi"],["regius","佛跳","Phidippus regius"],["hyllus","老虎狗","Hyllus diardi"],["giganteus","獅子狗","Hyllus giganteus"],["portia","唇形孔蛛","Portia labiata"],["simaetha","西邁塔","Simaetha sp."],["scenicus","斑馬蜘蛛","Salticus scenicus"],["maratus","孔雀蜘蛛","Maratus spp."],["audax","大膽跳蛛","Phidippus audax"]];
+ const entries=[["adansoni","安德遜","Hasarius adansoni"],["bivittatus","雙帶扁","Menemerus bivittatus"],["paykulli","褐條斑蠅虎","Plexippus paykulli"],["xanthogramma","橙黃蠅虎","Carrhotus xanthogramma"],["versicolor","眼鏡黑條蠅虎","Phintelloides versicolor"],["incognitus","淡色條斑蠅虎","Plexippus incognitus"],["petersi","彼得條斑蠅虎","Plexippus petersi"],["cupreus","藍翠蛛","Siler cupreus"],["fulvus","白鬚扁蠅虎","Menemerus fulvus"],["suboppressa","細齒方胸蛛","Thiania suboppressa"],["strupifer","毛垛兜蠅虎","Ptocasius strupifer"],["albopunctatus","波氏緬蛛","Burmattus albopunctatus"],["bulbus","球斑馬蛛","Zebraplatys bulbus"],["japonica","日本蟻蛛","Myrmarachne japonica"],["lauta","華美麗跳蛛","Chrysilla lauta"],["regius","佛跳","Phidippus regius"],["hyllus","老虎狗","Hyllus diardi"],["giganteus","獅子狗","Hyllus giganteus"],["simaetha","西邁塔","Simaetha sp."],["audax","大膽跳蛛","Phidippus audax"],["otiosus","大黃蜂跳蛛","Phidippus otiosus"],["pius","教皇跳蛛","Phidippus pius"],["flavigera","黃毛寬胸蠅虎","Rhene flavigera"],["portia","唇形孔蛛","Portia labiata"],["scenicus","斑馬蜘蛛","Salticus scenicus"],["maratus","孔雀蜘蛛","Maratus spp."],["magnus","大蟻蛛","Toxeus magnus"],["fimbriata","纓孔蛛","Portia fimbriata"],["bhamoensis","巴莫方胸蛛","Thiania bhamoensis"],["acerosa","針狀麗跳蛛","Chrysilla acerosa"],["crassipes","粗腳盤蛛","Pancorius crassipes"]];
  for(const width of [320,390,768,1024,1440]){
   await p.setViewportSize({width,height:900});await p.goto(base+'#atlas');
-  assert.equal(await p.locator('#speciesTabs').count(),0);assert.equal(await p.locator('#bookMenu [data-species-id]').count(),15);
+  assert.equal(await p.locator('#speciesTabs').count(),0);assert.equal(await p.locator('#bookMenu [data-species-id]').count(),31);
   assert.equal(await p.locator('#speciesTitle').innerText(),'佛跳');
+  assert.equal(await p.locator('#bookMenu .species-menu-group').count(),3);
+  for(const group of ['台灣觀察','寵物與飼養圈','特色與國際物種'])assert.equal(await p.locator('#bookMenu h4').filter({hasText:group}).count(),1);
+  assert.match(await p.locator('#bookMenu>p').innerText(),/31 筆/);
+
   for(const [id,name,latin]of entries){
    if(width<=960)await p.locator('#bookMenuToggle').click();
    await p.locator(`#bookMenu [data-species-id="${id}"]`).click();
