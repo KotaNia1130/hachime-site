@@ -1,0 +1,64 @@
+/* V0.17: varied paper sizes, local reference photographs and restrained ink accents.
+   Text stays horizontal. Only paper skins and decorative tape are rotated. */
+.infinite-sheet{height:3160px;background-color:#EDE4D2}
+.notebook-intro .brand-phrase{color:#8F4A36}.notebook-intro .home-divider{background:#9B563E}
+.collage-kicker{color:#854833}.photo-note::after{background:#C1A054D9}
+.photo-note .photo-mat img{object-fit:cover}.enclosure-photo .photo-mat img{object-fit:contain}
+.photo-note figcaption a,.photo-sources a,.species-profile figcaption a,.live-card figcaption a,.live-picture figcaption a{text-decoration:underline;text-underline-offset:2px}
+.spider-photo{width:340px}.spider-photo .photo-mat{height:250px}
+.spider-photo figcaption i,.field-photo figcaption i{font-weight:400}
+.enclosure-photo{left:365px;top:230px;width:200px}.pencil-caption{top:465px}
+.collage-magnifier{left:8px;top:425px;width:48px;height:48px}
+.beginner-cover{left:100px;top:740px;width:535px;height:340px;--note-paper:#EFD8C5;--tab-color:#B66749}
+.atlas-cover{left:780px;top:690px;width:580px;height:410px;--note-paper:#E4E8CE}
+.specimen-strip{gap:12px;margin-top:18px}.specimen-strip figure{margin:0;flex:1;min-width:0}
+.specimen-strip img{width:100%;height:115px;object-fit:cover;border:5px solid #FFFCF5;box-shadow:2px 3px 0 #59654126}
+.specimen-strip figcaption{font-size:12px;color:#324D38;padding-top:7px}.specimen-strip i{display:block;font-size:10px;line-height:1.5}
+.knowledge-cover{left:150px;top:1200px;width:570px;height:300px;--note-paper:#EDDB9C;--tab-color:#AD873A}
+.breeding-cover{left:860px;top:1210px;width:470px;height:345px;--note-paper:#3F5847;--paper-tilt:1.5deg;--tab-color:#B76C4B}
+.breeding-cover .cover-content h2,.breeding-cover .cover-content p,.breeding-cover .paper-topline,.breeding-cover .cover-footer{color:#FFF9E8}
+.breeding-cover .cover-footer{border-color:#A5B49E}.breeding-cover .tape{background:#CCAB66}
+.journal-trail{display:flex;gap:16px;align-items:center;margin:20px 0;color:#EBD499;font-size:13px}
+.journal-trail span{border:1px solid #A8B6A5;border-radius:50%;padding:12px 8px}.journal-trail b{font-weight:400}
+.field-photo{left:105px;top:1635px;width:360px;--photo-tilt:-5deg}.field-photo .photo-mat{height:270px}
+.development-note{left:560px;top:1720px;width:820px;height:430px;border-top:5px solid #5B7556}
+.shop-cover{left:100px;top:2220px;width:650px;height:300px;--note-paper:#DCE6DD}
+.updates-note{left:900px;top:2270px;width:470px;border-top-color:#A95A3E;background:#F6ECD9}
+.update-kind{color:#8E4633}.update-list time{font-weight:700}
+.about-cover{left:120px;top:2660px;width:590px;height:200px}
+.notebook-signoff{left:900px;top:2840px;width:450px}.paper-end{top:3110px}
+.scribble-arc{left:850px;top:580px}.scribble-wave{left:175px;top:1540px}.art-herb{left:725px;top:2620px}
+.social-windows{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.social-windows button{flex:1;min-width:88px;padding:13px 8px;border:1px dashed #897C67;background:#F7F0E2;color:#56624D;opacity:1;text-align:center;cursor:default}
+.social-windows b,.social-windows span{display:block}.social-windows b{font-size:12px}.social-windows span{font-size:11px;margin-top:6px}
+.photo-sources{padding-left:20px;font-size:13px;line-height:1.9}.photo-sources li{margin:10px 0}
+.species-common{font-size:15px;color:#4A634D}.species-profile figcaption{line-height:1.8}
+.live-card img{object-fit:cover}.live-card img[src$=".svg"]{object-fit:contain}
+.entry-card img[src$=".jpg"]{object-fit:cover}.entry-photo-caption{display:block;font-size:11px;line-height:1.7;color:#52624D}
+.shop-carousel{min-height:355px}.shop-carousel .live-picture{height:auto;top:35px}
+.shop-carousel .live-picture img{height:160px;object-fit:cover}.shop-carousel .live-picture img[src$=".svg"]{object-fit:contain}
+.shop-carousel .live-picture figcaption{font-size:10px;line-height:1.65}.shop-carousel .cover-switch{bottom:15px}
+.breeding-article{border-top:6px solid #49644B}.breeding-article h2{font-size:32px;margin:25px 0 15px}
+.breeding-article h3{font-size:21px}.breeding-article p{line-height:1.9}
+.journal-empty{margin:28px 0;padding:26px;background:#EDF0E5;border-left:4px solid #8A6A3F}
+.journal-empty>span{font-size:12px;color:#5B6C50}.journal-empty h3{margin:12px 0}.journal-empty p{margin-bottom:0}
+.journal-fields{display:grid;grid-template-columns:120px 1fr;gap:16px;font-size:15px;line-height:1.9}.journal-fields dt{font-weight:700;color:#3D5A42}.journal-fields dd{margin:0}
+.board-index{border-color:#9D8D71;background:#FBF5E8}.board-index button:hover{background:#DFE6CE}
+.welcome-dialog{border-top:5px solid #A15F43}.welcome-mini span{background:#D7E1C3}.welcome-actions button:first-child{background:#3F5847}
+@media(max-width:600px){
+ .infinite-sheet{height:5260px}.spider-photo{width:220px}.spider-photo .photo-mat{height:165px}
+ .enclosure-photo{left:225px;top:168px;width:137px}.pencil-caption{top:325px}.collage-credit{bottom:-30px}
+ .collage-magnifier{left:0;top:300px;width:40px;height:40px}
+ .beginner-cover{top:1030px!important;height:340px!important}.atlas-cover{top:1450px!important;height:370px!important}
+ .specimen-strip{gap:8px}.specimen-strip img{height:85px;border-width:3px}.specimen-strip figcaption{font-size:11px}.specimen-strip i{font-size:9px}
+ .knowledge-cover{top:1900px!important;height:280px!important}.breeding-cover{top:2260px!important;height:340px!important}
+ .field-photo{left:40px;top:2690px;width:340px}.field-photo .photo-mat{height:255px}.field-photo figcaption{font-size:13px}.field-photo figcaption span{font-size:10px}
+ .shop-cover{top:3180px!important;height:300px!important}.development-note{left:23px;top:3560px;width:374px;height:520px}
+ .updates-note{left:23px;top:4150px;width:374px}.about-cover{top:4620px!important;height:230px!important}
+ .notebook-signoff{left:25px;top:4920px;width:370px}.paper-end{left:35px;top:5200px}
+ .board-index button{padding:7px 9px}.social-windows button{padding:11px 6px}
+ .shop-carousel{min-height:400px}.shop-carousel .live-picture{top:95px;height:auto}.shop-carousel .live-picture img{height:135px}
+ .shop-carousel .live-picture figcaption{font-size:9px}.shop-carousel #livePause{bottom:65px}
+ .species-tabs{display:grid;grid-template-columns:1fr}.species-tabs button{text-align:left;white-space:normal;border-bottom:0;border-left:3px solid transparent;padding:10px}.species-tabs button.active{border-left-color:#4B7655;background:#EBEEDD}
+ .journal-fields{grid-template-columns:1fr;gap:8px}.journal-fields dd{margin-bottom:12px}.journal-empty{padding:18px}.breeding-article h2{font-size:27px}
+}

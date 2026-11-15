@@ -1,0 +1,44 @@
+[
+  {
+    "id": "regius",
+    "file": "assets/photos/regius.jpg",
+    "title": "File:Female Phidippus regius - 51291758782.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Female_Phidippus_regius_-_51291758782.jpg/960px-Female_Phidippus_regius_-_51291758782.jpg",
+    "author": "spidereyes2020",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "retrieved": "2026-11-15",
+    "sha256": "152e0f6fda0d0d4ecd46ef3d12c437b1587f811b33c9d86713e27276e4cb2453",
+    "modifications": "Wikimedia 960px thumbnail; CSS crop when displayed; file not edited",
+    "note": "第三方物種參考照片，非八目個體、商品或繁殖紀錄"
+  },
+  {
+    "id": "hyllus",
+    "file": "assets/photos/hyllus.jpg",
+    "title": "File:Hyllus diardi 281266755.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Hyllus_diardi_281266755.jpg/960px-Hyllus_diardi_281266755.jpg",
+    "author": "Doreen",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "retrieved": "2026-11-15",
+    "sha256": "e901ab53d9e24e4d567e0189fb71783cc4e42cd53c3aa06755fede836b64a6d3",
+    "modifications": "Wikimedia 960px thumbnail; CSS crop when displayed; file not edited",
+    "note": "第三方物種參考照片，非八目個體、商品或繁殖紀錄"
+  },
+  {
+    "id": "audax",
+    "file": "assets/photos/audax.jpg",
+    "title": "File:Kaldari Phidippus audax 01.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Kaldari_Phidippus_audax_01.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Kaldari_Phidippus_audax_01.jpg/960px-Kaldari_Phidippus_audax_01.jpg",
+    "author": "Kaldari",
+    "license": "CC0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "retrieved": "2026-11-15",
+    "sha256": "a38217474cef4d5f444e847e13e5c8de1d8678c0efb2df68ac5e94ead8712012",
+    "modifications": "Wikimedia 960px thumbnail; CSS crop when displayed; file not edited",
+    "note": "第三方物種參考照片，非八目個體、商品或繁殖紀錄"
+  }
+]

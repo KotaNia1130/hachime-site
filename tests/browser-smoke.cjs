@@ -6,14 +6,14 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
  try {
   const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:Number(process.env.DEVICE_SCALE_FACTOR||1)});
-  await page.addInitScript(()=>localStorage.setItem('hachime-welcome-seen-v1','1'));
+  await page.addInitScript(()=>sessionStorage.setItem('hachime-welcome-seen-v2','1'));
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.route('https://**/*',r=>r.abort());await page.clock.install();
   const go=async route=>{await page.goto(base+'#'+route,{waitUntil:'load'});await page.clock.runFor(50);};
   const visible=async selector=>assert(await page.locator(selector).isVisible(),selector);
   const count=()=>page.locator('#liveCoverCount').innerText();
   await go('home');
-  assert.equal(await page.locator('#board .cover-note').count(),5);
+  assert.equal(await page.locator('#board .cover-note').count(),6);
   const first=await page.locator('.beginner-cover').boundingBox();assert(first.x>=0&&first.y>=78&&first.x+first.width<=1440);
   await page.locator('.beginner-cover h2').click();await visible('[data-page="beginner"]');
   for(let i=1;i<=7;i++){
@@ -42,7 +42,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await page.locator('[data-topic="全部"]').click();await page.locator('#faqSearch').fill('zzzz');assert.match(await page.locator('#faqResults').innerText(),/找不到/);
   await page.locator('#faqSearch').fill('');assert.equal(await page.locator('#faqResults details').count(),8);
   await page.locator('#faqResults summary').first().click();assert(await page.locator('#faqResults details').first().getAttribute('open')!==null);
-  console.log('PASS three species/deep links/image fallbacks and five care topics/FAQ');
+  console.log('PASS three species/deep links/local photos and five care topics/FAQ');
   await go('shop');await visible('[data-shop="overview"]');
   await page.locator('.entry-card[data-go="shop/live"]').click();await visible('[data-shop="live"]');assert.equal(await page.locator('.live-card').count(),3);
   await page.locator('.shop-carousel').scrollIntoViewIfNeeded();await page.mouse.move(1,1);await page.locator('#detailScroll').focus();
@@ -69,10 +69,10 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await page.locator('#fitBoard').click();await page.screenshot({path:'/tmp/hachime-v015-overview.png'});
   await page.locator('.shop-cover [data-go="shop/equipment"]').click();await visible('[data-shop="equipment"]');
   await go('%E0%A4%A');await visible('#viewport');await go('shop/unknown');await visible('[data-shop="overview"]');
-  console.log('PASS drag, zoom, five-card layout, direct shop entry and invalid routes');
+  console.log('PASS drag, zoom, six-card layout, direct shop entry and invalid routes');
   for(const width of [320,390,600,768,1024,1440]){
    await page.setViewportSize({width,height:900});await page.clock.runFor(150);
-   for(const route of ['home','beginner/3','atlas','knowledge','shop','shop/live','shop/equipment','about']){
+   for(const route of ['home','beginner/3','atlas','knowledge','shop','shop/live','shop/equipment','about','breeding']){
     await go(route);
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`body overflow ${width} ${route}`);
     if(route!=='home')assert(await page.locator('#detailScroll').evaluate(e=>e.scrollWidth<=e.clientWidth),`detail overflow ${width} ${route}`);

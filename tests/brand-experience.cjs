@@ -7,12 +7,14 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
  await p.goto(base,{waitUntil:'domcontentloaded'});await p.locator('#welcomeDialog').waitFor({state:'visible'});assert.equal(await p.locator('.brand-entry').count(),0);
  await p.locator('#welcomeExplore').click();assert(await p.locator('#welcomeDialog').isHidden());
  await p.reload({waitUntil:'load'});assert(await p.locator('#welcomeDialog').isHidden());assert.equal(await p.locator('.brand-entry').count(),0);
+ assert.equal(await p.evaluate(()=>sessionStorage.getItem('hachime-welcome-seen-v2')),'1');
+ const newTab=await c.newPage();newTab.on('pageerror',e=>errors.push(e.message));await newTab.route('https://**/*',r=>r.abort());await newTab.goto(base);await newTab.locator('#welcomeDialog').waitFor({state:'visible'});await newTab.close();
  await p.locator('#hintReopen').click();assert(await p.locator('#welcomeDialog').isVisible());await p.keyboard.press('Escape');assert(await p.locator('#welcomeDialog').isHidden());assert(await p.locator('#viewport').isVisible());
  await p.locator('#hintReopen').click();await p.locator('#welcomeStart').click();assert(await p.locator('[data-page="beginner"]').isVisible());
  await p.locator('.top-nav [data-go="home"]').click();
  for(const width of [320,390,600,768,1024,1440]){
   await p.setViewportSize({width,height:900});
-  for(const id of ['home','beginnerNote','developmentNote','updatesNote']){
+  for(const id of ['home','beginnerNote','breedingNote','developmentNote','updatesNote']){
    await p.locator(`.board-index [data-focus-note="${id}"]`).click();
    const box=await p.locator('#'+id).boundingBox();assert(box&&box.x>=-1&&box.x+box.width<=width+1,`note bounds ${width} ${id}`);
   }
@@ -21,7 +23,11 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
  await p.locator('[data-focus-note="developmentNote"]').click();await p.locator('.development-copy a').click();assert(await p.locator('[data-page="development"]').isVisible());
  assert(await p.locator('#detailScroll').evaluate(e=>e.scrollWidth<=e.clientWidth));await p.reload();assert(await p.locator('[data-page="development"]').isVisible());await p.locator('.development-article [data-go="shop/equipment"]').click();assert(await p.locator('[data-shop="equipment"]').isVisible());
  await p.locator('.top-nav [data-go="home"]').click();await p.locator('[data-focus-note="updatesNote"]').click();await p.locator('.update-list a').first().click();assert(await p.locator('[data-page="beginner"]').isVisible());
+ await p.locator('.top-nav [data-go="home"]').click();await p.locator('[data-focus-note="breedingNote"]').click();await p.locator('#breedingNote').focus();await p.keyboard.press('Enter');assert(await p.locator('[data-page="breeding"]').isVisible());assert.match(await p.locator('.journal-empty').innerText(),/尚無紀錄/);await p.reload();assert(await p.locator('[data-page="breeding"]').isVisible());await p.locator('.breeding-article [data-go="knowledge/observation"]').click();assert(await p.locator('#noteArticle').isVisible());
+ await p.locator('.top-nav [data-go="about"]').click();assert.equal(await p.locator('[data-page="about"] .social-windows button:disabled').count(),3);assert.equal(await p.locator('.photo-sources a').count(),6);
+ await p.goto(base+'#atlas/regius');assert.match(await p.locator('.species-common').innerText(),/佛跳/);assert.match(await p.locator('#speciesPanel em').innerText(),/Phidippus regius/);await p.waitForFunction(()=>document.querySelector('#speciesPanel img').naturalWidth>0);assert.match(await p.locator('#speciesPanel img').getAttribute('src'),/photos\/regius.jpg/);
  await c.close();console.log('PASS first visit, revisit, guide reopening/Escape/start, new content routes and responsive note bounds');
+ const missingPhoto=await fresh();await missingPhoto.p.route('**/assets/photos/hyllus.jpg',r=>r.abort());await missingPhoto.p.goto(base+'#atlas/hyllus');await missingPhoto.p.waitForFunction(()=>document.querySelector('#speciesPanel img').dataset.fallback==='1'&&document.querySelector('#speciesPanel img').naturalWidth>0);assert.match(await missingPhoto.p.locator('#speciesPanel figcaption').innerText(),/示意/);await missingPhoto.c.close();console.log('PASS independent-tab welcome, breeding keyboard/deep link, disabled social slots, photo credits and failed-photo fallback');
  const reduced=await fresh({reducedMotion:'reduce'});await reduced.p.goto(base);assert.equal(await reduced.p.locator('.brand-entry').count(),0);await reduced.p.locator('#welcomeDialog').waitFor({state:'visible'});await reduced.c.close();
  const direct=await fresh();await direct.p.goto(base+'#shop/equipment');assert.equal(await direct.p.locator('.brand-entry').count(),0);assert(await direct.p.locator('#welcomeDialog').isHidden());await direct.c.close();
  const blocked=await fresh();await blocked.p.addInitScript(()=>{for(const name of ['localStorage','sessionStorage'])Object.defineProperty(window,name,{get(){throw new Error('Storage unavailable');}});});await blocked.p.goto(base);await blocked.p.locator('#welcomeDialog').waitFor({state:'visible'});await blocked.p.locator('#welcomeExplore').click();assert(await blocked.p.locator('#viewport').isVisible());await blocked.c.close();

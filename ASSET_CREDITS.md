@@ -1,4 +1,23 @@
-# HACHIME｜素材來源與授權（V0.11）
+# HACHIME｜素材來源與授權（更新至 V0.17）
+
+## V0.17：本地照片與相框
+
+2026-11-15 透過 Wikimedia Commons API，以標明專案用途與儲存庫網址的 User-Agent 查詢來源並取得官方 960px 縮圖。三張照片各約 160–271 KiB，合計約 623 KiB。未編輯下載的圖檔，只用 CSS 依照片框裁切顯示。
+
+| 本地檔案 | 作者 | 授權 | 來源 |
+|---|---|---|---|
+| `assets/photos/regius.jpg` | spidereyes2020 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | [Female Phidippus regius - 51291758782.jpg](https://commons.wikimedia.org/wiki/File:Female_Phidippus_regius_-_51291758782.jpg) |
+| `assets/photos/audax.jpg` | Kaldari | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | [Kaldari Phidippus audax 01.jpg](https://commons.wikimedia.org/wiki/File:Kaldari_Phidippus_audax_01.jpg) |
+| `assets/photos/hyllus.jpg` | Doreen | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | [Hyllus diardi 281266755.jpg](https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg) |
+
+- `assets/photos/sources.json` 保存來源、官方縮圖下載網址、授權、取得日期、使用說明及 SHA-256。
+- `assets/photos/commons-metadata.json` 保存取得時的 API 回覆，含原始檔網址、作者與授權中繼資料。
+- 用途：首頁照片框／圖鑑預覽、物種頁，以及佛跳／老虎狗活體規劃項目的物種參考。均不是八目的個體、商品或繁殖紀錄，不暗示作者為品牌背書。
+- 圖鑑預覽的「來源與授權」連到關於頁逐張署名；獨立照片、圖鑑詳細頁與活體卡／輪播附來源及授權連結。CC BY 圖片明示裁切顯示。
+- 獅子狗仍使用 OpenMoji 一般蜘蛛插圖，學名待確認。A1 沒有實物照片，維持原創概念圖，不找相似商品照片冒充。
+- 相框、膠帶、紙張及顏色為本站 CSS。參考ほとりで的圖文留白與自由編排，未使用該站圖檔或字標。
+
+以下保留各版歷史紀錄。
 
 ## V0.16：品牌拼貼與新增裝飾
 
@@ -11,7 +30,7 @@
 
 主圖採本站既有 `spider-regius.svg` 與 `enclosure-core.svg`，開發札記採 `enclosure-plus.svg`。全部為概念插圖，不代表八目在養個體、完成打樣或實際商品。新紙張、膠帶、引導縮圖與線條使用本站 CSS 排版，未複製參考站的圖檔。分享圖 `hachime-share.png` 由 `scripts/render-share.cjs` 排版本站標誌及原創跳蛛圖產生，不包含上述 OpenMoji 裝飾。
 
-本次重新查詢 Wikimedia API／檔案來源頁遇到 HTTP 403，因此未下載新的來源不明照片。既有圖鑑照片引用及本地後備插圖維持原行為。
+V0.16 當時重新查詢 Wikimedia 遇到 HTTP 403，未新增照片。V0.17 已依 Wikimedia 的 User-Agent 要求完成查詢並保存合法副本，見上方。
 
 ## V0.14：蜘蛛活體示意素材與 LOGO 修正
 
@@ -93,7 +112,7 @@ OpenMoji 相關圖片的 CC BY-SA 4.0 授權**不表示整個 HACHIME 網站程�
 | 大膽跳蛛 (*Phidippus audax*) | [Kaldari Phidippus audax 01.jpg](https://commons.wikimedia.org/wiki/File:Kaldari_Phidippus_audax_01.jpg) | Kaldari | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 網站照片框可裁切顯示，原始照片未修改 |
 | 老虎狗跳蛛 (*Hyllus diardi*) | [Hyllus diardi 281266755.jpg](https://commons.wikimedia.org/wiki/File:Hyllus_diardi_281266755.jpg) | Doreen（iNaturalist 作者） | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | **須署名並提供授權連結；**網頁依圖片框裁切顯示，不改變原始照片 |
 
-照片透過 Wikimedia Commons 的 `Special:Redirect/file` 外部參照，本站現在**未儲存照片二進位副本**。此方式可展示但可能受網路、檔案轉址及外部站點變更影響。若載入失敗，會替換成先前自繪的示意 SVG。正式對外營運前，宜按各授權下載保留合法可用的自有版本，並記錄來源日期與校驗值。
+V0.13 當時透過 Wikimedia Commons 的 `Special:Redirect/file` 外部參照，未儲存照片二進位副本；V0.17 已下載本地副本，取代外部轉址。此方式可展示但可能受網路、檔案轉址及外部站點變更影響。若載入失敗，會替換成先前自繪的示意 SVG。正式對外營運前，宜按各授權下載保留合法可用的自有版本，並記錄來源日期與校驗值。
 
 ### 使用與授權注意
 
