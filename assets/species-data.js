@@ -1,5 +1,4 @@
-/* HACHIME V0.25.1: displayKind explicitly distinguishes player labels from catalog names and translations.
-   Taxonomic validity (latin) and Chinese names (name) are separate claims. */
+/* HACHIME V0.25.1: heading source and taxonomic Chinese names are separate assertions. */
 window.HACHIME_SPECIES = [
   {
     "id": "adansoni",
@@ -13,8 +12,12 @@ window.HACHIME_SPECIES = [
     "summary": "「安德遜」是本站使用的短稱，尚未找到充分的玩家稱呼原始用例；臺灣名錄使用「安德遜蠅虎」。不能把短稱誤寫為分類學正式名稱。",
     "sources": [
       {
-        "label": "TaiCOL 臺灣物種名錄",
-        "url": "https://taicol.tw/zh-hant/taxon/t0029542"
+        "label": "臺灣生物多樣性網絡：安德遜蠅虎",
+        "url": "https://www.tbn.org.tw/taxa/76208ff0-2e56-4f3a-a4e3-677b934ed2d4"
+      },
+      {
+        "label": "香港常見蜘蛛網：中文俗名",
+        "url": "https://hkspider.owlhk.org/spider/hasarius-adansoni"
       }
     ],
     "displayKind": "玩家縮稱（來源待補）",
@@ -32,8 +35,12 @@ window.HACHIME_SPECIES = [
     "summary": "「雙帶扁」暫保留為網站短稱，玩家使用情況待查；名錄中文名為「雙帶扁蠅虎」。先前聲稱的「包氏扁蠅虎」別名未在本輪最新 TBN 頁面確認，暫不作為正式別名。",
     "sources": [
       {
-        "label": "TaiCOL 臺灣物種名錄",
-        "url": "https://taicol.tw/zh-hant/taxon/t0096348"
+        "label": "臺灣生物多樣性網絡：雙帶扁蠅虎",
+        "url": "https://www.tbn.org.tw/taxa/363e7721-0c73-4d47-845a-0439bed388d7"
+      },
+      {
+        "label": "WSC：有效學名與分布",
+        "url": "https://wsc.nmbe.ch/spec-data/37329"
       }
     ],
     "displayKind": "玩家縮稱（來源待補）",
@@ -83,9 +90,9 @@ window.HACHIME_SPECIES = [
     "latin": "Carrhotus xanthogramma",
     "authority": "(Latreille, 1819)",
     "group": "台灣觀察",
-    "status": "物種條目",
-    "origin": "臺灣物種名錄有紀錄；其他分布見學名名錄",
-    "summary": "「橙黃蠅虎」為臺灣名錄採用的中文名。外觀、顏色有個體差異；未有完成物種核對的照片前先不放示意實拍。",
+    "status": "臺灣分布待交叉核對",
+    "origin": "臺灣名錄列有原生紀錄；WSC 的世界分布摘要未列臺灣",
+    "summary": "臺灣生物多樣性網絡使用「橙黃蠅虎」並標示臺灣原生；World Spider Catalog 接受學名 Carrhotus xanthogramma，但其分布摘要目前未列臺灣。本頁保留來源差異，暫不將臺灣分布標為雙方一致確認。",
     "sources": [
       {
         "label": "臺灣生物多樣性網絡：橙黃蠅虎",
@@ -181,8 +188,12 @@ window.HACHIME_SPECIES = [
     "summary": "常見於寵物跳蛛飼養。個體的性別、齡期和來源，仍要另外確認。",
     "sources": [
       {
-        "label": "物種資料與參考文獻",
-        "url": "https://en.wikipedia.org/wiki/Phidippus_regius"
+        "label": "WSC：Phidippus regius 有效學名",
+        "url": "https://wsc.nmbe.ch/spec-data/38482"
+      },
+      {
+        "label": "森流：佛羅里達跳蛛商業名稱",
+        "url": "https://www.greenflow.hk/collections/jumping-spider"
       }
     ],
     "displayKind": "玩家／飼養圈稱呼",
@@ -259,12 +270,12 @@ window.HACHIME_SPECIES = [
     "summary": "唇形孔蛛是中文資料對 Portia labiata 的稱呼，學名經 WSC 核對；尚無足夠來源表明它也是玩家的特定暱稱。本種以捕食其他蜘蛛的行為受到研究關注。",
     "sources": [
       {
-        "label": "中文名稱與物種資料",
-        "url": "https://zh.wikipedia.org/zh-tw/%E5%94%87%E5%BD%A2%E5%AD%94%E8%9B%9B"
+        "label": "WSC：Portia labiata 有效學名",
+        "url": "https://www.wsc.nmbe.ch/spec-data/38763"
       },
       {
-        "label": "行為研究與參考文獻",
-        "url": "https://en.wikipedia.org/wiki/Portia_labiata"
+        "label": "中文文獻用名：唇形孔蛛",
+        "url": "https://zh.wikipedia.org/wiki/%E5%94%87%E5%BD%A2%E5%AD%94%E8%9B%9B"
       }
     ],
     "displayKind": "中文文獻名（非玩家暱稱）",
@@ -328,7 +339,7 @@ window.HACHIME_SPECIES = [
     "summary": "英文 Zebra jumping spider 的直譯「斑馬跳蛛」用於幫助理解，並不是已核對的臺灣名錄正式中文名或特定玩家暱稱。",
     "sources": [
       {
-        "label": "World Spider Catalog：S. scenicus",
+        "label": "WSC：Salticus scenicus 有效學名",
         "url": "https://wsc.nmbe.ch/spec-data/39135"
       }
     ],
@@ -413,8 +424,8 @@ window.HACHIME_SPECIES = [
     "summary": "Phidippus audax 是有效種，英文常稱 Bold jumping spider；「大膽跳蛛」是中文譯稱，不代表已確認有獨立玩家圈暱稱。",
     "sources": [
       {
-        "label": "物種資料與參考文獻",
-        "url": "https://en.wikipedia.org/wiki/Phidippus_audax"
+        "label": "WSC：Phidippus audax 有效學名",
+        "url": "https://www.wsc.nmbe.ch/spec-data/38434"
       }
     ],
     "displayKind": "英文俗名直譯（非玩家暱稱）",
