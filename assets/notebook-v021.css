@@ -1,0 +1,37 @@
+/* One continuous overview. Turning paper is reserved for opening/closing content. */
+:root{--book-rail:184px}
+#viewport,.detail-view{right:var(--book-rail)}
+.infinite-sheet{background-image:linear-gradient(#9aab9417 1px,transparent 1px),linear-gradient(90deg,#9aab9417 1px,transparent 1px),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.06' filter='url(%23n)'/%3E%3C/svg%3E");background-size:28px 28px,28px 28px,160px 160px}
+.section-mark small{margin-left:0}
+/* Retain the requested stationery types without changing the overview into chapters. */
+.beginner-cover::after{background:repeating-linear-gradient(0deg,transparent 0 31px,#89764215 31px 32px),#eed584!important;clip-path:polygon(0 0,100% 0,100% 98%,95% 99%,90% 97%,85% 99%,80% 97%,75% 99%,70% 97%,65% 99%,60% 97%,55% 99%,50% 97%,45% 99%,40% 97%,35% 99%,30% 97%,25% 99%,20% 97%,15% 99%,10% 97%,5% 99%,0 98%)}
+.knowledge-cover::after{background:linear-gradient(90deg,transparent 24px,#b76b5e55 24px 25px,transparent 25px),repeating-linear-gradient(0deg,transparent 0 31px,#91a59030 31px 32px),#faf6e5!important}
+.knowledge-cover .paper-topline,.knowledge-cover .cover-content p,.knowledge-cover .cover-footer{color:#3a4e3b}
+.knowledge-cover .cover-content h2{color:#fffbed;background:#34573f;display:inline-block;padding:2px 12px}
+.care-jottings li{border-color:#9da68c66}.care-jottings a{color:#34513c}.knowledge-cover .tape{background:#adbd9f99}
+.breeding-cover::after{background:repeating-linear-gradient(0deg,transparent 0 34px,#c4b9a22b 34px 35px),#fbf5e8!important;border:1px solid #c4b29a!important;border-top:7px solid #b87952!important}
+.workspace .shop-cover::before{display:block;content:'選購資料';position:absolute;left:20px;top:-30px;width:125px;height:38px;padding:8px 15px;background:#c7ad82;color:#3e533d;font-size:12px;transform:rotate(-3deg);border:0;z-index:-2}
+.about-cover::after{border:1px solid #aeb59e!important;background:linear-gradient(90deg,transparent 96%,#83987555 96%),#f1eedc!important}
+/* The contents opens existing articles rather than swapping overview pages. */
+.book-sidebar{position:absolute;z-index:35;right:0;top:0;bottom:0;width:var(--book-rail);padding:20px 12px;background:#e5e4d7;border-left:1px solid #c9ceb9}
+.book-menu{max-height:100%;overflow:auto;padding:0 5px 12px}
+.book-menu>p{font-size:20px;color:#3c553c;margin:12px 0 20px}.book-menu>p small{display:block;font:9px monospace;letter-spacing:.15em;margin-top:9px}
+.book-menu>a{display:block;position:relative;margin:0 0 10px;padding:11px;border-left:4px solid #9ba786;background:#f7f3e6;box-shadow:2px 3px 0 #b6bea145;color:#35513b;font-size:14px;line-height:1.5}
+.book-menu>a:nth-of-type(3){border-color:#8a9e7d}.book-menu>a:nth-of-type(4){border-color:#b89c68}.book-menu>a:nth-of-type(6){border-color:#819c92}.book-menu>a:nth-of-type(7){border-color:#b67c61}
+.book-menu>a small{display:block;font-size:10px;color:#657055;margin-top:4px}.book-menu>a[aria-current]{background:#34563f;color:#fff8e4;border-color:#d6be81}.book-menu>a[aria-current] small{color:#eee4c9}.book-menu>a:hover{outline:1px solid #829779}
+.book-menu-foot{display:block;font:10px Georgia,serif;letter-spacing:.12em;color:#6b765c;margin-top:20px}#bookMenuToggle{display:none}
+.book-menu a:focus-visible,#bookMenuToggle:focus-visible{outline:3px solid #a56d41;outline-offset:3px}
+.hint-reopen{left:13px;right:auto;top:13px}
+/* A short paper overlay; no reading text transforms and no pointer interception. */
+.main-area.is-turning::after{content:'';position:absolute;z-index:33;top:15px;bottom:20px;right:calc(var(--book-rail) + 12px);width:52%;pointer-events:none;background:linear-gradient(90deg,#f3ecdc00,#f7f1e4ee 65%,#d9d3bddd);box-shadow:-12px 0 30px #56604416;transform-origin:right center;animation:note-open .4s ease-out both}
+.main-area[data-turn="back"].is-turning::after{animation-name:note-close}
+@keyframes note-open{0%{opacity:.9;transform:perspective(1200px) rotateY(-68deg)}100%{opacity:0;transform:perspective(1200px) rotateY(0deg)}}
+@keyframes note-close{0%{opacity:.8;transform:perspective(1200px) rotateY(0deg)}100%{opacity:0;transform:perspective(1200px) rotateY(-85deg)}}
+@media(max-width:960px){
+ :root{--book-rail:0px}.book-sidebar{width:auto;left:auto;top:12px;right:12px;bottom:auto;background:none;border:0;padding:0}
+ #bookMenuToggle{display:block;border:1px solid #aab79c;background:#34563f;color:#fff9e9;padding:10px 15px;font-size:13px}#bookMenuToggle span{margin-left:13px}
+ .book-menu{display:none;position:absolute;right:0;top:46px;width:240px;padding:20px;background:#e9e5d3;border:1px solid #aab79c;max-height:max(110px,calc(100dvh - 240px));box-shadow:0 8px 30px #35452c33}.book-sidebar.is-open .book-menu{display:block}.book-menu>p{margin:0 0 20px}.book-menu>a{padding:12px;margin-bottom:12px}.main-area.is-turning::after{right:0}
+ .detail-toolbar{padding-right:120px}
+}
+@media(max-width:600px){.infinite-sheet{background-size:24px 24px,24px 24px,160px 160px}.detail-toolbar{padding-left:14px;gap:8px}.detail-breadcrumb{display:none}}
+@media(prefers-reduced-motion:reduce){.main-area.is-turning::after{display:none}}
