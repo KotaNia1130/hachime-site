@@ -4,7 +4,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
 (async()=>{const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});try{
  const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('https://**/*',r=>r.abort());
  await page.addInitScript(()=>{sessionStorage.setItem('hachime-welcome-seen-v2','1');sessionStorage.setItem('hachime-entry-seen-v1','1');});
- async function chapter(id){if(await page.locator('#bookMenuToggle').isVisible())await page.locator('#bookMenuToggle').click();await page.locator(`#bookMenu [data-section="${id}"]`).click();await page.waitForTimeout(60);}
+ async function chapter(id){if(await page.locator('#bookMenuToggle').isVisible())await page.locator('#bookMenuToggle').click();await page.locator(`#bookMenu [data-section="${id}"]`).click();await page.waitForTimeout(650);}
  async function panTo(selector){const r=await page.locator(selector).boundingBox(),v=await page.locator('#viewport').boundingBox();await page.mouse.move(v.x+v.width/2,v.y+v.height/2);await page.mouse.wheel(r.x+r.width/2-v.x-v.width/2,r.y+r.height/2-v.y-v.height/2);await page.waitForTimeout(100);}
  for(const [width,height] of [[320,740],[390,844],[600,900],[768,900],[961,768],[1024,900],[1366,768],[1440,1000]]){
   await page.setViewportSize({width,height});await page.goto(base);await page.evaluate(()=>document.fonts.ready);
@@ -29,7 +29,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await page.reload();await page.waitForTimeout(100);assert.equal(await page.locator('#bookMenu [aria-current]').getAttribute('data-section'),'guide-chapter-5');
   await chapter('guide-chapter-2');await page.goBack();await page.waitForTimeout(100);assert.equal(await page.locator('#bookMenu [aria-current]').getAttribute('data-section'),'guide-chapter-5');await page.goForward();await page.waitForTimeout(100);assert.equal(await page.locator('#bookMenu [aria-current]').getAttribute('data-section'),'guide-chapter-2');
   await page.locator('#detailScroll').evaluate(e=>e.scrollTop=0);await page.waitForTimeout(100);assert.equal(await page.locator('#bookMenu [aria-current]').getAttribute('data-section'),'guide-chapter-1','manual scroll updates chapter marker');
-  await page.screenshot({path:`/tmp/hachime-v022-guide-${width}.png`});
+  await page.screenshot({path:`/tmp/hachime-v023-guide-${width}.png`});
   assert(await page.locator('#detailScroll').evaluate(e=>e.scrollWidth<=e.clientWidth));
   await page.locator('#detailBack').click();assert(await page.locator('#bookSidebar').isHidden());
   // A reload resets the board; an ordinary article return must preserve the current view.
@@ -39,7 +39,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await page.locator('.top-nav [data-go="home"]').click();
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert(await page.evaluate(()=>[...document.querySelectorAll('#board h1,#board h2,#board p,#board figcaption')].every(e=>getComputedStyle(e).transform==='none')));
   if(width>600){await page.locator('#fitBoard').click();const b=await page.locator('#board').boundingBox(),v=await page.locator('#viewport').boundingBox();assert(b.x>=v.x-1&&b.y>=v.y-1&&b.x+b.width<=v.x+v.width+1&&b.y+b.height<=v.y+v.height+1);}
-  await page.locator('#resetBoard').click();await page.waitForTimeout(450);await page.screenshot({path:`/tmp/hachime-v022-home-${width}.png`});console.log(`PASS ${width}×${height}: no homepage contents, continuous guide/care, chapter anchors, focus/history/reload and return position`);
+  await page.locator('#resetBoard').click();await page.waitForTimeout(450);await page.screenshot({path:`/tmp/hachime-v023-home-${width}.png`});console.log(`PASS ${width}×${height}: no homepage contents, continuous guide/care, chapter anchors, focus/history/reload and return position`);
  }
  for(const [alias,pageName] of [['home/cover','home'],['home/species','atlas'],['home/care','knowledge'],['home/studio','shop'],['home/about','about']]){await page.goto(base+'#'+alias);assert(await page.locator(pageName==='home'?'#viewport':`[data-page="${pageName}"]`).isVisible());}
  await page.goto(base+'#development');await chapter('development-section-3');assert.match(page.url(),/section=development-section-3/);await page.reload();await page.waitForTimeout(100);assert(await page.locator('[data-page="development"]').isVisible());

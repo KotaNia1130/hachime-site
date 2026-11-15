@@ -1,4 +1,11 @@
-# HACHIME｜素材來源與授權（更新至 V0.22）
+# HACHIME｜素材來源與授權（更新至 V0.23）
+
+## V0.23：翻頁程式與便條樣式
+
+新增 [StPageFlip 2.0.7](https://github.com/Nodlik/StPageFlip)（Copyright © 2020 Nodlik，MIT）。瀏覽器程式與 [LICENSE](assets/vendor/page-flip/LICENSE) 保存於 `assets/vendor/page-flip/`；來源、原始 SHA-256 與 destroy／RAF 清理修改詳見 [vendor README](assets/vendor/page-flip/README.md)。執行時不連外部 CDN。
+
+參考 Turn.js、BookBlock 的公開說明，但未採用其程式、圖片或樣式。紙背、紙籤、紙底及膠帶由本站 CSS 製作。沒有新增第三方圖片或字型，既有照片的引用與授權保持。
+
 
 ## V0.22：內頁連續閱讀
 

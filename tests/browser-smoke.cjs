@@ -36,7 +36,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await page.reload();await page.clock.runFor(50);assert.match(await page.locator('#speciesPanel h3').innerText(),/老虎狗/);
   await go('knowledge');
   for(const id of ['environment','feeding','molting','observation','help']){
-   await page.locator(`#bookMenu [data-go="knowledge/${id}"]`).click();await visible('#care-'+id);await page.clock.runFor(50);
+   await page.locator(`#bookMenu [data-go="knowledge/${id}"]`).click();await visible('#care-'+id);await page.clock.runFor(650);
    assert.equal(await page.locator(`#bookMenu [data-go="knowledge/${id}"]`).getAttribute('aria-current'),'location');
   }
   await page.locator('[data-topic="全部"]').click();await page.locator('#faqSearch').fill('zzzz');assert.match(await page.locator('#faqResults').innerText(),/找不到/);
