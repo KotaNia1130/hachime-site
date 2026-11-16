@@ -671,7 +671,7 @@
     if (updateUrl && location.hash !== `#${route.id}`) history.pushState(null, '', `#${route.id}`);
     $('#pricePopover').hidden = true;
     if (!showing) $('#workspace').classList.remove('is-atlas');
-    if (snapshot) window.hachimePaperTurn.play(snapshot, !showing);
+    window.hachimePaperTurn?.play(snapshot, !showing);
     lastRoute = route.id;
   }
   document.addEventListener('click', (e) => {

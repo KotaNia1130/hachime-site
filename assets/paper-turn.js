@@ -1,4 +1,4 @@
-/* A disposable paper face: lift a corner, then peel it away over the next page. */
+/* Open by lifting a corner; return by laying the homepage leaf back over the article. */
 (() => {
   'use strict';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -36,6 +36,7 @@
     const previous = active;
     active = null;
     clearTimeout(previous.timer);
+    cancelAnimationFrame(previous.frame);
     previous.animations.forEach((animation) => animation.cancel());
     previous.host.remove();
   }
@@ -44,6 +45,10 @@
   // repeated clicks reveal the latest destination without restarting the fold.
   function capture() {
     if (active || reduced.matches || !Element.prototype.animate || document.hidden) return null;
+    return copySurface();
+  }
+
+  function copySurface() {
     const surface = document.querySelector('#workspace');
     const copy = surface.cloneNode(true);
     copy.style.setProperty(
@@ -57,14 +62,14 @@
         ? [{ node: clones[index], top: node.scrollTop, left: node.scrollLeft }]
         : [],
     );
-    copy.querySelectorAll('[hidden],script').forEach((node) => node.remove());
+    copy.querySelectorAll('[hidden],script,.paper-turn').forEach((node) => node.remove());
     copy.querySelectorAll('[aria-live]').forEach((node) => node.removeAttribute('aria-live'));
     return { copy, scrolls };
   }
 
   // Clip the rectangle at x+y=crease, then reflect only the blank paper back.
   // Five vertices per frame keeps polygon interpolation stable at the page edges.
-  function geometry(width, height, distance, backward) {
+  function geometry(width, height, distance) {
     const crease = width + height - distance;
     const rectangle = [
       [0, 0],
@@ -90,7 +95,7 @@
       return points;
     }
     function polygon(points) {
-      return `polygon(${points.map(([x, y]) => `${backward ? width - x : x}px ${y}px`).join(',')})`;
+      return `polygon(${points.map(([x, y]) => `${x}px ${y}px`).join(',')})`;
     }
     return {
       face: polygon(half(false)),
@@ -99,6 +104,14 @@
   }
 
   function play(snapshot, backward = false) {
+    // Retarget an incoming sheet after rapid navigation without restarting its motion.
+    if (active) {
+      if (active.refresh) {
+        cancelAnimationFrame(active.frame);
+        active.frame = requestAnimationFrame(active.refresh);
+      }
+      return;
+    }
     if (!snapshot || reduced.matches) return;
     const surface = document.querySelector('#workspace');
     const { width, height } = surface.getBoundingClientRect();
@@ -108,7 +121,7 @@
     host.dataset.direction = backward ? 'backward' : 'forward';
     host.inert = true;
     const shadow = host.attachShadow({ mode: 'closed' });
-    const state = { host, animations: [], timer: 0 };
+    const state = { host, animations: [], timer: 0, frame: 0 };
     active = state;
     try {
       prepareStyles();
@@ -121,18 +134,24 @@
         *,*::before,*::after { pointer-events:none!important; animation:none!important; transition:none!important }
         .turn-face,.turn-back,.turn-shadow { position:absolute; inset:0; will-change:clip-path }
         .turn-face { overflow:hidden }
-        .turn-face > .main-area { inset:0; width:100%; height:100%; margin:0 }
-        .turn-back { background:linear-gradient(${backward ? 225 : 135}deg,#faf7e9 0%,#f1ead6 45%,#d5cbb2 100%); }
+        .turn-face > .main-area,.turn-underlay > .main-area { inset:0; width:100%; height:100%; margin:0 }
+        .turn-underlay,.turn-stage,.turn-leaf { position:absolute; inset:0 }
+        .turn-underlay { isolation:isolate }
+        .turn-stage { z-index:1; perspective:${Math.max(width * 5, 1800)}px; perspective-origin:0% 100% }
+        .turn-leaf { transform-origin:0% 100%; backface-visibility:hidden; will-change:transform;
+          box-shadow:14px 4px 26px #302b2426 }
+        .turn-back { background:linear-gradient(135deg,#faf7e9 0%,#f1ead6 45%,#d5cbb2 100%); }
         .turn-back::after { content:''; position:absolute; inset:0; opacity:.45;
           background:repeating-linear-gradient(0deg,transparent 0 27px,#b4ae9730 27px 28px) }
         .turn-crease { position:absolute; left:0; top:0; width:${Math.hypot(width, height) * 2}px; height:70px;
           transform-origin:0 0; will-change:transform;
           background:linear-gradient(0deg,#85785c66 0%,#fcfaefcc 24%,#fffdf444 48%,transparent 100%) }
-        .turn-shadow { background:#3b382e; opacity:.16; transform:translate(${backward ? 5 : -5}px,5px) }
+        .turn-shadow { background:#3b382e; opacity:.16; transform:translate(-5px,5px) }
       `;
       const face = document.createElement('div');
       face.className = 'turn-face';
-      face.append(snapshot.copy);
+      const incoming = backward ? copySurface() : snapshot;
+      face.append(incoming.copy);
       const back = document.createElement('div');
       back.className = 'turn-back';
       const crease = document.createElement('div');
@@ -140,31 +159,57 @@
       back.append(crease);
       const shade = document.createElement('div');
       shade.className = 'turn-shadow';
-      shadow.append(style, face, shade, back);
+      shadow.append(style);
+      let leaf;
+      if (backward) {
+        const underlay = document.createElement('div');
+        underlay.className = 'turn-underlay';
+        underlay.append(snapshot.copy);
+        const stage = document.createElement('div');
+        stage.className = 'turn-stage';
+        leaf = document.createElement('div');
+        leaf.className = 'turn-leaf';
+        leaf.append(face, shade, back);
+        stage.append(leaf);
+        shadow.append(underlay, stage);
+        // Board positioning/focus is applied by navigation in the next frame.
+        // Capture after that work, also when the latest destination changes.
+        state.refresh = () => {
+          if (active !== state) return;
+          const latest = copySurface();
+          face.replaceChildren(latest.copy);
+          restoreScroll(latest);
+        };
+      } else shadow.append(face, shade, back);
       surface.append(host);
-      snapshot.scrolls.forEach(({ node, top, left }) => {
-        node.scrollTop = top;
-        node.scrollLeft = left;
-      });
+      function restoreScroll(paper) {
+        paper.scrolls.forEach(({ node, top, left }) => {
+          node.scrollTop = top;
+          node.scrollLeft = left;
+        });
+      }
+      restoreScroll(snapshot);
+      if (backward) restoreScroll(incoming);
       const faceFrames = [],
         backFrames = [],
         creaseFrames = [];
       const lift = Math.min(110, width * 0.19, height * 0.16);
       for (let i = 0; i <= 40; i++) {
         const t = i / 40;
-        // First 180ms: the corner alone lifts. Then the crease travels across the page.
+        // Opening lifts the corner first; the returning leaf gradually lays its corner flat.
         const p = Math.max(0, (t - 0.24) / 0.76);
-        const distance =
-          t <= 0.24
+        const distance = backward
+          ? lift * Math.pow(1 - t, 1.4)
+          : t <= 0.24
             ? lift * Math.sin(((t / 0.24) * Math.PI) / 2)
             : lift + (width + height - lift + 2) * (p * p * (3 - 2 * p));
-        const shape = geometry(width, height, distance, backward);
+        const shape = geometry(width, height, distance);
         faceFrames.push({ clipPath: shape.face, offset: t });
         backFrames.push({ clipPath: shape.back, offset: t });
         const x = width - distance / 2,
           y = height - distance / 2;
         creaseFrames.push({
-          transform: `translate(${backward ? width - x : x}px,${y}px) rotate(${backward ? 45 : -45}deg) translate(-50%,-100%)`,
+          transform: `translate(${x}px,${y}px) rotate(-45deg) translate(-50%,-100%)`,
           offset: t,
         });
       }
@@ -177,6 +222,23 @@
         shade.animate(backFrames, options),
         crease.animate(creaseFrames, options),
       ];
+      if (leaf) {
+        // A return is the homepage leaf swinging back around its left binding,
+        // not the article being cut away in the opposite diagonal direction.
+        state.animations.push(
+          leaf.animate(
+            [
+              { transform: 'rotateY(-100deg) rotateZ(-1.8deg)', offset: 0 },
+              { transform: 'rotateY(-78deg) rotateZ(-1.4deg)', offset: 0.18 },
+              { transform: 'rotateY(-36deg) rotateZ(-.5deg)', offset: 0.52 },
+              { transform: 'rotateY(-7deg) rotateZ(-.1deg)', offset: 0.78 },
+              { transform: 'rotateY(0deg) rotateZ(0deg)', offset: 1 },
+            ],
+            options,
+          ),
+        );
+        state.frame = requestAnimationFrame(state.refresh);
+      }
       state.animations[0].onfinish = () => {
         if (active === state) finish();
       };

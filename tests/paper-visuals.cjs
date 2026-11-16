@@ -101,6 +101,13 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
             top: Math.min(...ys),
             bottom: Math.max(...ys),
             backText: root.querySelector('.turn-back').textContent,
+            returning: !!root.querySelector('.turn-leaf'),
+            leafFacing: root.querySelector('.turn-leaf')
+              ? new DOMMatrixReadOnly(getComputedStyle(root.querySelector('.turn-leaf')).transform)
+                  .m11
+              : 1,
+            incomingHome: !!root.querySelector('.turn-leaf #viewport'),
+            oldArticle: !!root.querySelector('.turn-underlay #detailView'),
           };
         });
         assert.equal(corner.opacity, '1', 'front never flashes to a faded paper back');
@@ -111,9 +118,16 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
           'first phase only lifts a small corner',
         );
         assert(
-          backward ? corner.left < 1 : corner.right > width - 1,
-          'correct corner for direction',
+          corner.right > width - 1,
+          'opening lifts the right corner; returning paper gently flattens it',
         );
+        if (backward) {
+          assert(
+            corner.returning && corner.incomingHome && corner.oldArticle,
+            'homepage swings in over the intact article',
+          );
+          assert(corner.leafFacing > 0, 'incoming printed side faces the reader, never mirrored');
+        }
         await seek(380);
         assert.notEqual(
           await page.evaluate(
@@ -122,6 +136,18 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
           corner.clip,
           'after the corner lift, the crease continues across the page',
         );
+        if (backward) {
+          await seek(760);
+          assert(
+            await page.evaluate(() => {
+              const matrix = new DOMMatrixReadOnly(
+                getComputedStyle(turnRoot.querySelector('.turn-leaf')).transform,
+              );
+              return matrix.isIdentity;
+            }),
+            'return finishes with the paper laid flat',
+          );
+        }
         await page.clock.runFor(900);
         assert.equal(await page.locator('.paper-turn').count(), 0);
       }
@@ -138,6 +164,11 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
       // A preference change removes the paper while preserving the latest navigation.
       await page.locator('.top-nav [data-go="home"]').evaluate((e) => e.click());
       await page.locator('.top-nav [data-go="atlas"]').evaluate((e) => e.click());
+      await page.clock.runFor(32);
+      assert(
+        await page.evaluate(() => !!turnRoot.querySelector('.turn-leaf [data-page="atlas"]')),
+        'incoming sheet follows the newest destination',
+      );
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.clock.runFor(32);
       await page.locator('.paper-turn').waitFor({ state: 'detached', timeout: 1500 });
