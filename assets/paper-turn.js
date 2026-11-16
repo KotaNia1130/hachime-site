@@ -1,4 +1,4 @@
-/* One paper fold: play forward to open, reverse to return. */
+/* One bottom-corner fold: right to open, left to return. */
 (() => {
   'use strict';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -36,7 +36,6 @@
     const previous = active;
     active = null;
     clearTimeout(previous.timer);
-    cancelAnimationFrame(previous.frame);
     previous.animations.forEach((animation) => animation.cancel());
     previous.host.remove();
   }
@@ -69,7 +68,7 @@
 
   // Clip the rectangle at x+y=crease, then reflect only the blank paper back.
   // Five vertices per frame keeps polygon interpolation stable at the page edges.
-  function geometry(width, height, distance) {
+  function geometry(width, height, distance, backward) {
     const crease = width + height - distance;
     const rectangle = [
       [0, 0],
@@ -95,7 +94,7 @@
       return points;
     }
     function polygon(points) {
-      return `polygon(${points.map(([x, y]) => `${x}px ${y}px`).join(',')})`;
+      return `polygon(${points.map(([x, y]) => `${backward ? width - x : x}px ${y}px`).join(',')})`;
     }
     return {
       face: polygon(half(false)),
@@ -104,14 +103,8 @@
   }
 
   function play(snapshot, backward = false) {
-    // Retarget an incoming sheet after rapid navigation without restarting its motion.
-    if (active) {
-      if (active.refresh) {
-        cancelAnimationFrame(active.frame);
-        active.frame = requestAnimationFrame(active.refresh);
-      }
-      return;
-    }
+    // Keep the outgoing paper intact while navigation updates the page below it.
+    if (active) return;
     if (!snapshot || reduced.matches) return;
     const surface = document.querySelector('#workspace');
     const { width, height } = surface.getBoundingClientRect();
@@ -121,7 +114,7 @@
     host.dataset.direction = backward ? 'backward' : 'forward';
     host.inert = true;
     const shadow = host.attachShadow({ mode: 'closed' });
-    const state = { host, animations: [], timer: 0, frame: 0 };
+    const state = { host, animations: [], timer: 0 };
     active = state;
     try {
       prepareStyles();
@@ -134,22 +127,20 @@
         *,*::before,*::after { pointer-events:none!important; animation:none!important; transition:none!important }
         .turn-face,.turn-back,.turn-shadow { position:absolute; inset:0; will-change:clip-path }
         .turn-face { overflow:hidden; z-index:1 }
-        .turn-face > .main-area,.turn-underlay > .main-area { inset:0; width:100%; height:100%; margin:0 }
-        .turn-underlay { position:absolute; inset:0; isolation:isolate }
+        .turn-face > .main-area { inset:0; width:100%; height:100%; margin:0 }
         .turn-shadow { z-index:2 }
         .turn-back { z-index:3 }
-        .turn-back { background:linear-gradient(135deg,#faf7e9 0%,#f1ead6 45%,#d5cbb2 100%); }
+        .turn-back { background:linear-gradient(${backward ? 225 : 135}deg,#faf7e9 0%,#f1ead6 45%,#d5cbb2 100%); }
         .turn-back::after { content:''; position:absolute; inset:0; opacity:.45;
           background:repeating-linear-gradient(0deg,transparent 0 27px,#b4ae9730 27px 28px) }
         .turn-crease { position:absolute; left:0; top:0; width:${Math.hypot(width, height) * 2}px; height:70px;
           transform-origin:0 0; will-change:transform;
           background:linear-gradient(0deg,#85785c66 0%,#fcfaefcc 24%,#fffdf444 48%,transparent 100%) }
-        .turn-shadow { background:#3b382e; opacity:.16; transform:translate(-5px,5px) }
+        .turn-shadow { background:#3b382e; opacity:.16; transform:translate(${backward ? 5 : -5}px,5px) }
       `;
       const face = document.createElement('div');
       face.className = 'turn-face';
-      const incoming = backward ? copySurface() : snapshot;
-      face.append(incoming.copy);
+      face.append(snapshot.copy);
       const back = document.createElement('div');
       back.className = 'turn-back';
       const crease = document.createElement('div');
@@ -158,20 +149,6 @@
       const shade = document.createElement('div');
       shade.className = 'turn-shadow';
       shadow.append(style);
-      if (backward) {
-        const underlay = document.createElement('div');
-        underlay.className = 'turn-underlay';
-        underlay.append(snapshot.copy);
-        shadow.append(underlay);
-        // Board positioning/focus is applied by navigation in the next frame.
-        // Capture after that work, also when the latest destination changes.
-        state.refresh = () => {
-          if (active !== state) return;
-          const latest = copySurface();
-          face.replaceChildren(latest.copy);
-          restoreScroll(latest);
-        };
-      }
       shadow.append(face, shade, back);
       surface.append(host);
       function restoreScroll(paper) {
@@ -181,7 +158,6 @@
         });
       }
       restoreScroll(snapshot);
-      if (backward) restoreScroll(incoming);
       const faceFrames = [],
         backFrames = [],
         creaseFrames = [];
@@ -194,24 +170,22 @@
           t <= 0.24
             ? lift * Math.sin(((t / 0.24) * Math.PI) / 2)
             : lift + (width + height - lift + 2) * (p * p * (3 - 2 * p));
-        const shape = geometry(width, height, distance);
+        const shape = geometry(width, height, distance, backward);
         faceFrames.push({ clipPath: shape.face, offset: t });
         backFrames.push({ clipPath: shape.back, offset: t });
         const x = width - distance / 2,
           y = height - distance / 2;
         creaseFrames.push({
-          transform: `translate(${x}px,${y}px) rotate(-45deg) translate(-50%,-100%)`,
+          transform: `translate(${backward ? width - x : x}px,${y}px) rotate(${backward ? 45 : -45}deg) translate(-50%,-100%)`,
           offset: t,
         });
       }
-      const first = backward ? faceFrames.length - 1 : 0;
-      face.style.clipPath = faceFrames[first].clipPath;
-      back.style.clipPath = shade.style.clipPath = backFrames[first].clipPath;
+      face.style.clipPath = faceFrames[0].clipPath;
+      back.style.clipPath = shade.style.clipPath = backFrames[0].clipPath;
       const options = {
         duration,
         fill: 'both',
         easing: 'linear',
-        direction: backward ? 'reverse' : 'normal',
       };
       state.animations = [
         face.animate(faceFrames, options),
@@ -219,7 +193,6 @@
         shade.animate(backFrames, options),
         crease.animate(creaseFrames, options),
       ];
-      if (backward) state.frame = requestAnimationFrame(state.refresh);
       state.animations[0].onfinish = () => {
         if (active === state) finish();
       };

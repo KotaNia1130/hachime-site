@@ -36,7 +36,6 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
             animation.currentTime = time;
           });
         }, time);
-      let sharedFrames;
       const forwardShapes = {};
       for (const [target, backward] of [
         ['beginner', false],
@@ -92,21 +91,16 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
           })),
         );
         assert.equal(animations.length, 4, 'no separate return rotation');
-        assert(animations.every((a) => a.direction === (backward ? 'reverse' : 'normal')));
-        if (!sharedFrames) sharedFrames = animations.map((a) => a.frames);
-        assert.deepEqual(
-          animations.map((a) => a.frames),
-          sharedFrames,
-          'both directions use identical keyframes',
+        assert(
+          animations.every((a) => a.direction === 'normal'),
+          'both folds start at the bottom, never play backward in time',
         );
         for (const time of [150, 380, 610]) {
-          await seek(backward ? 760 - time : time);
+          await seek(time);
           const shape = await page.evaluate(() =>
-            ['.turn-face', '.turn-back', '.turn-crease'].map((selector) => {
+            ['.turn-face', '.turn-back'].map((selector) => {
               const style = getComputedStyle(turnRoot.querySelector(selector));
-              return (selector === '.turn-crease' ? style.transform : style.clipPath)
-                .match(/-?[\d.]+(?:e[-+]?\d+)?/g)
-                .map(Number);
+              return style.clipPath.match(/-?[\d.]+(?:e[-+]?\d+)?/g).map(Number);
             }),
           );
           if (!backward) forwardShapes[time] = shape;
@@ -115,13 +109,18 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
               assert.equal(points.length, forwardShapes[time][index].length);
               points.forEach((value, point) =>
                 assert(
-                  Math.abs(value - forwardShapes[time][index][point]) < 0.05,
-                  'reverse playback retraces the opening geometry',
+                  Math.abs(
+                    value -
+                      (point % 2 === 0
+                        ? width - forwardShapes[time][index][point]
+                        : forwardShapes[time][index][point]),
+                  ) < 0.05,
+                  'return mirrors the fold horizontally, keeping the same vertical path',
                 ),
               );
             });
         }
-        await seek(backward ? 610 : 150);
+        await seek(150);
         const corner = await page.evaluate(() => {
           const root = turnRoot,
             face = root.querySelector('.turn-face');
@@ -129,13 +128,18 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
             .clipPath.match(/-?[\d.]+/g)
             .map(Number);
           const xs = points.filter((_, i) => i % 2 === 0);
+          const ys = points.filter((_, i) => i % 2 === 1);
           return {
             opacity: getComputedStyle(face).opacity,
             transform: getComputedStyle(face).transform,
             width: Math.max(...xs) - Math.min(...xs),
+            left: Math.min(...xs),
+            right: Math.max(...xs),
+            top: Math.min(...ys),
+            bottom: Math.max(...ys),
+            height: root.host.clientHeight,
             backText: root.querySelector('.turn-back').textContent,
-            incomingHome: !!root.querySelector('.turn-face #viewport'),
-            oldArticle: !!root.querySelector('.turn-underlay #detailView'),
+            oldArticle: !!root.querySelector('.turn-face #detailView'),
             separateRotation: !!root.querySelector('.turn-leaf,.turn-stage'),
           };
         });
@@ -145,13 +149,18 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
         assert(!corner.separateRotation);
         assert(
           corner.width > 20 && corner.width < 120,
-          'same small corner opens first and closes last',
+          'both directions first lift a small corner',
+        );
+        assert(
+          corner.top >= corner.height - 120 && Math.abs(corner.bottom - corner.height) < 1,
+          'opening and return both lift from the bottom edge',
+        );
+        assert(
+          backward ? Math.abs(corner.left) < 1 : Math.abs(corner.right - width) < 1,
+          'return uses bottom-left; opening uses bottom-right',
         );
         if (backward)
-          assert(
-            corner.incomingHome && corner.oldArticle,
-            'homepage folds back over the original article',
-          );
+          assert(corner.oldArticle, 'outgoing article stays readable on the returning paper');
         await page.clock.runFor(900);
         assert.equal(await page.locator('.paper-turn').count(), 0);
       }
@@ -170,8 +179,8 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
       await page.locator('.top-nav [data-go="atlas"]').evaluate((e) => e.click());
       await page.clock.runFor(32);
       assert(
-        await page.evaluate(() => !!turnRoot.querySelector('.turn-face [data-page="atlas"]')),
-        'incoming sheet follows the newest destination',
+        await page.locator('[data-page="atlas"]').isVisible(),
+        'latest destination is ready below the outgoing paper',
       );
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.clock.runFor(32);
@@ -182,7 +191,7 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
       await page.close();
     }
     console.log(
-      'PASS pixel continuity, identical forward/reverse keyframes and motion, scrolled article and atlas rail, readable front, latest navigation and reduced-motion cancellation at desktop/mobile sizes',
+      'PASS pixel continuity, bottom corners in both directions and horizontally mirrored fold geometry, scrolled article and atlas rail, readable front, latest navigation and reduced-motion cancellation at desktop/mobile sizes',
     );
   } finally {
     await browser.close();
