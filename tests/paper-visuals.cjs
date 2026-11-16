@@ -53,9 +53,25 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
             e.scrollTop = 200;
           });
         }
-        const clip = await page.locator('#workspace').boundingBox();
+        const clip = await page.locator('#viewport:visible,#detailView:visible').boundingBox();
+        const desk = await page.locator('#workspace').boundingBox();
+        assert(
+          clip.x > desk.x &&
+            clip.y > desk.y &&
+            clip.x + clip.width < desk.x + desk.width &&
+            clip.y + clip.height < desk.y + desk.height,
+          'all notebook corners sit inside the desk',
+        );
+        const margin = { x: desk.x, y: clip.y, width: clip.x - desk.x - 1, height: clip.height };
+        const deskBefore = await page.screenshot({ clip: margin });
         const before = await page.screenshot({ clip });
         await page.locator(`.top-nav [data-go="${target}"]`).evaluate((e) => e.click());
+        const overlay = await page.locator('.paper-turn').boundingBox();
+        for (const key of ['x', 'y', 'width', 'height'])
+          assert(
+            Math.abs(overlay[key] - clip[key]) < 1,
+            'turn follows notebook edges, not the browser viewport',
+          );
         await seek(0);
         const after = await page.screenshot({ clip });
         const difference = await page.evaluate(
@@ -112,7 +128,7 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
                   Math.abs(
                     value -
                       (point % 2 === 0
-                        ? width - forwardShapes[time][index][point]
+                        ? clip.width - forwardShapes[time][index][point]
                         : forwardShapes[time][index][point]),
                   ) < 0.05,
                   'return mirrors the fold horizontally, keeping the same vertical path',
@@ -156,11 +172,17 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
           'opening and return both lift from the bottom edge',
         );
         assert(
-          backward ? Math.abs(corner.left) < 1 : Math.abs(corner.right - width) < 1,
+          backward ? Math.abs(corner.left) < 1 : Math.abs(corner.right - clip.width) < 1,
           'return uses bottom-left; opening uses bottom-right',
         );
         if (backward)
           assert(corner.oldArticle, 'outgoing article stays readable on the returning paper');
+        await seek(380);
+        assert.deepEqual(
+          await page.screenshot({ clip: margin }),
+          deskBefore,
+          'desk stays fixed beside the turning notebook',
+        );
         await page.clock.runFor(900);
         assert.equal(await page.locator('.paper-turn').count(), 0);
       }

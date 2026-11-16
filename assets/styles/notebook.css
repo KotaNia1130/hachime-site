@@ -3243,3 +3243,45 @@
     font-size: 15px;
   }
 }
+
+/* The notebook has its own visible paper edges; the desk stays outside the turn. */
+.main-area {
+  --notebook-gap: 20px;
+  background: #d9d8c9;
+}
+#viewport,
+.detail-view {
+  inset: var(--notebook-gap) var(--notebook-gap) 56px;
+  box-shadow:
+    0 0 0 1px #b7b9a3,
+    0 3px 0 #f2eedf,
+    0 4px 0 #b8b8a2,
+    0 7px 0 #eeeadb,
+    0 8px 0 #aeb29c,
+    0 14px 24px #48513d20;
+}
+.canvas-controls {
+  left: var(--notebook-gap);
+  bottom: 8px;
+  height: 38px;
+}
+.bottom-mark {
+  right: calc(var(--notebook-gap) + 48px);
+  bottom: 18px;
+}
+.hint-reopen {
+  left: auto;
+  top: auto;
+  right: var(--notebook-gap);
+  bottom: 10px;
+}
+@media (max-width: 960px) {
+  .main-area {
+    --notebook-gap: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .main-area {
+    --notebook-gap: 8px;
+  }
+}

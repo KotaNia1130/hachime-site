@@ -10,7 +10,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   await page.setViewportSize({width,height});await page.goto(base);await page.evaluate(()=>document.fonts.ready);
   assert.equal(await page.locator('.notebook-leaf,#pageNavigation,[data-leaf-link]').count(),0);
   assert(await page.locator('#bookSidebar').isHidden(),'no homepage contents');assert(await page.locator('#bookMenuToggle').isHidden());
-  const viewport=await page.locator('#viewport').boundingBox();assert(viewport.width>=width-2,'homepage uses full width');
+  const viewport=await page.locator('#viewport').boundingBox();assert(viewport.width>=width*.9&&viewport.x>0&&viewport.x+viewport.width<width&&viewport.y+viewport.height<height,'notebook keeps usable width and visible paper corners inside the desk');
   assert.equal(await page.locator('#board .cover-note:visible').count(),6);
   assert.equal(await page.locator('#board').evaluate(e=>e.offsetHeight),width<=600?4770:2600);
   const overflow=await page.locator('#board .cover-note').evaluateAll(notes=>notes.filter(n=>n.querySelector('.cover-footer').getBoundingClientRect().bottom>n.getBoundingClientRect().bottom+1).map(n=>n.id));assert.deepEqual(overflow,[]);

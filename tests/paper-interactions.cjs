@@ -10,7 +10,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
   window.cancelAnimationFrame=id=>{pendingFrames.delete(id);cancel(id)};
  });
  await page.goto(base+'#beginner');await page.clock.install();
- assert(await page.locator('#bookSidebar').evaluate(e=>e.getBoundingClientRect().left===0));
+ assert(await page.locator('#bookSidebar').evaluate(e=>Math.abs(e.getBoundingClientRect().left-document.querySelector('#detailView').getBoundingClientRect().left)<1));
  const left=await page.locator('#bookSidebar').boundingBox(),content=await page.locator('#detailScroll').boundingBox();assert(left.x+left.width<=content.x+1);
  const position=()=>page.locator('#detailScroll').evaluate(e=>e.scrollTop);
  const destination=()=>page.evaluate(()=>{const s=document.querySelector('#detailScroll'),h=document.querySelector('#guide-chapter-7');return Math.min(s.scrollHeight-s.clientHeight,s.scrollTop+h.getBoundingClientRect().top-s.getBoundingClientRect().top-28)});

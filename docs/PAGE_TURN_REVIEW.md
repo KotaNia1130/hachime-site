@@ -1,8 +1,10 @@
 # 翻頁修改與驗收
 
-實作分支：`fix/bottom-corner-turns`。
+實作分支：`fix/notebook-boundary`。
 
 ## 現行方案
+
+筆記本四周保留桌面留白，紙張下方增加頁緣；縮放與說明按鈕放在紙面外。翻頁只截取並覆蓋目前筆記本紙面的實際範圍，桌面與導覽不進入快照。桌面留白採整數像素，避免轉場時紙面落在不同的次像素位置。
 
 開啟與返回共用同一套紙面、紙背、陰影及折角動畫，長度 760ms。兩邊都從底部掀起小角：開啟從右下，返回從左下。返回水平對調裁切幾何與折線位置，時間維持正放，不再倒播，因此不會從上方開始。
 
@@ -12,8 +14,9 @@
 
 ## 驗收
 
-`npm test -- paper-interactions paper-visuals browser-smoke`
+`npm test`
 
+- 檢查四個紙角都在桌面內，轉場範圍與紙面一致；翻到一半時桌面邊緣維持相同像素。
 - 檢查兩個方向在開頭都從底邊的小角掀起；對應時間點的裁切座標只左右對調，垂直位置一致，返回用左下角、開啟用右下角。
 - 比對翻頁第一格與原頁，包含捲動過的文章及圖鑑目錄，避免整頁變淡、文字鏡像或位置跳動。
 - 檢查快速連點、最後目的地、減少動態效果、縮放和轉場清理。
@@ -25,8 +28,10 @@
 
 | 檔案 | 修改 |
 |---|---|
-| `assets/paper-turn.js` | 返回改用左下角，與開啟一樣先掀底部小角，再翻整頁 |
-| `index.html` | 翻頁程式加上版本參數，避免沿用快取的舊動畫 |
-| `tests/paper-visuals.cjs` | 驗證兩個方向都從底邊起始，且只水平對調裁切路徑 |
-| `DESIGN_SPEC.md` | 更新兩個方向都從底部起始的規格 |
-| `docs/PAGE_TURN_REVIEW.md` | 本次方案與驗收紀錄 |
+| `assets/paper-turn.js` | 依目前筆記本紙面擷取快照與計算翻頁邊界 |
+| `assets/styles/notebook.css` | 桌面留白、紙張頁緣及紙面外工具列 |
+| `index.html` | 更新樣式與翻頁程式版本參數 |
+| `scripts/check.cjs` | 檢查帶版本參數的樣式引用 |
+| `tests/paper-visuals.cjs` | 紙面邊界、固定桌面與第一格連續性 |
+| `tests/paper-interactions.cjs`、`tests/atlas-catalog.cjs`、`tests/notebook-composition.cjs` | 目錄相對紙面左側定位，保留可見紙角與足夠閱讀寬度 |
+| `DESIGN_SPEC.md`、`docs/PAGE_TURN_REVIEW.md` | 更新翻頁範圍與驗收說明 |

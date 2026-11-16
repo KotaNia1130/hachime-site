@@ -40,7 +40,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8000/';
    if(latin)assert.equal(await p.locator('#speciesPanel em').innerText(),latin);else{assert.equal(await p.locator('#speciesPanel em').count(),0);assert.match(await p.locator('.species-latin').innerText(),/待確認/);}
    if(!['regius','audax','hyllus'].includes(id)){assert.equal(await p.locator('#speciesPanel img').count(),0);assert.match(await p.locator('.species-photo-pending').innerText(),/照片待補/);}
    assert(await p.locator('#detailScroll').evaluate(e=>e.scrollWidth<=e.clientWidth),`${width} ${id} overflow`);
-   if(width>960){const menu=await p.locator('#bookSidebar').boundingBox(),article=await p.locator('#atlas').boundingBox();assert(menu.x<1&&menu.x+menu.width<article.x);}
+   if(width>960){const menu=await p.locator('#bookSidebar').boundingBox(),article=await p.locator('#atlas').boundingBox();const paper=await p.locator('#detailView').boundingBox();assert(Math.abs(menu.x-paper.x)<1&&menu.x+menu.width<article.x);}
    else assert.equal(await p.locator('#bookMenuToggle').getAttribute('aria-expanded'),'false');
   }
   await p.reload();assert.equal(await p.locator('#speciesTitle').innerText(),entries.at(-1)[1]);
