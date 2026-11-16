@@ -11,6 +11,7 @@ const suites = [
   'field-layout',
   'notebook-composition',
   'paper-interactions',
+  'paper-visuals',
 ];
 let server, child;
 function run(file, env) {

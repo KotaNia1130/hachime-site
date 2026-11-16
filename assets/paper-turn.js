@@ -1,92 +1,268 @@
-/* Disposable soft-paper transition. Reading and navigation remain ordinary HTML. */
+/* Open by lifting a corner; return by laying the homepage leaf back over the article. */
 (() => {
   'use strict';
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  let active=null,styles=null,sharedSheet=null;
-  function stop(){
-    if(!active)return;
-    const previous=active;active=null;
-    clearTimeout(previous.timer);cancelAnimationFrame(previous.frame);
-    try{previous.flip?.destroy();}catch{}
-    previous.host.remove();
-    document.querySelector('#workspace').classList.remove('is-turning');
-  }
-  function capture(source){
-    stop();
-    if(reduced.matches||!window.St?.PageFlip)return null;
-    return copySource(source);
-  }
-  function copySource(source){
-    const copy=source.cloneNode(false);
-    if(source.id==='viewport'){
-      const board=source.querySelector('#board'),sheet=board.cloneNode(false),bounds=source.getBoundingClientRect();
-      for(const child of board.children){
-        const r=child.getBoundingClientRect();
-        if(r.width&&r.height&&r.bottom>=bounds.top-80&&r.top<=bounds.bottom+80&&r.right>=bounds.left-80&&r.left<=bounds.right+80)sheet.append(child.cloneNode(true));
-      }
-      copy.append(sheet);
-    }else{
-      const original=source.querySelector('.detail-scroll'),scroll=original.cloneNode(false),offset=document.createElement('div');
-      offset.style.transform=`translateY(-${original.scrollTop}px)`;
-      const page=original.querySelector('.detail-page:not([hidden])');if(page)offset.append(page.cloneNode(true));
-      scroll.append(offset);scroll.style.overflow='hidden';
-      copy.append(source.querySelector('.detail-toolbar').cloneNode(true),scroll);
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const duration = 760;
+  let active = null;
+  let sharedSheet;
+  let styles;
+
+  function prepareStyles() {
+    if (styles !== undefined) return;
+    styles = [...document.styleSheets]
+      .map((sheet) => {
+        try {
+          return [...sheet.cssRules]
+            .map((rule) =>
+              rule.cssText.replace(
+                /url\((['"]?)(.*?)\1\)/g,
+                (_, quote, url) => `url("${new URL(url, sheet.href || location.href).href}")`,
+              ),
+            )
+            .join('\n');
+        } catch {
+          return '';
+        }
+      })
+      .join('\n');
+    if ('adoptedStyleSheets' in ShadowRoot.prototype) {
+      sharedSheet = new CSSStyleSheet();
+      sharedSheet.replaceSync(styles);
     }
-    copy.querySelectorAll('[hidden],script').forEach(el=>el.remove());
-    copy.querySelectorAll('[aria-live]').forEach(el=>el.removeAttribute('aria-live'));
-    return copy;
   }
-  function prepareStyles(){
-    if(styles!==null)return;
-    styles=[...document.styleSheets].map(sheet=>{try{return [...sheet.cssRules].map(rule=>rule.cssText.replace(/url\((['"]?)(.*?)\1\)/g,(_,quote,url)=>url.startsWith('data:')||url.startsWith('#')?`url("${url}")`:`url("${new URL(url,sheet.href||location.href).href}")`)).join('\n');}catch{return '';}}).join('\n');
-    if('adoptedStyleSheets' in ShadowRoot.prototype){sharedSheet=new CSSStyleSheet();sharedSheet.replaceSync(styles);}
+
+  function finish() {
+    if (!active) return;
+    const previous = active;
+    active = null;
+    clearTimeout(previous.timer);
+    cancelAnimationFrame(previous.frame);
+    previous.animations.forEach((animation) => animation.cancel());
+    previous.host.remove();
   }
-  // Parse shared snapshot styles once while idle, not at the first click.
-  const warm=()=>window.requestIdleCallback?requestIdleCallback(prepareStyles,{timeout:1500}):setTimeout(prepareStyles,60);
-  if(document.readyState==='complete')warm();else window.addEventListener('load',warm,{once:true});
-  function play(copy,backward=false){
-    if(!copy||reduced.matches||!window.St?.PageFlip)return;
-    stop();
-    const surface=document.querySelector('#workspace'),rect=surface.getBoundingClientRect();
-    const host=document.createElement('div');host.className='paper-turn';host.setAttribute('aria-hidden','true');host.inert=true;
-    // Shadow DOM isolates snapshot IDs, selectors, controls and duplicate chapter markup.
-    const shadow=host.attachShadow({mode:'closed'});
-    prepareStyles();if(sharedSheet)shadow.adoptedStyleSheets=[sharedSheet];
-    const style=document.createElement('style');style.textContent=(sharedSheet?'':styles)+`
-      :host{display:block;pointer-events:none}*,*::before,*::after{pointer-events:none!important;animation:none!important;transition:none!important}
-      .turn-book{width:${rect.width}px;height:${rect.height}px;position:relative;transform:${backward?'scaleX(-1)':'none'}}
-      .turn-page{overflow:hidden;background:transparent}
-      .turn-paper-back{background:repeating-linear-gradient(0deg,transparent 0 27px,#a5a88b20 27px 28px),#eee8d8}
-      .turn-paper-back .turn-snapshot{opacity:.045}
-      .turn-snapshot *,.turn-snapshot *::before,.turn-snapshot *::after{box-shadow:none!important;filter:none!important}
-      .turn-snapshot .infinite-sheet{background-image:linear-gradient(#9aab9417 1px,transparent 1px),linear-gradient(90deg,#9aab9417 1px,transparent 1px);background-size:28px 28px}
-      .turn-snapshot{position:absolute;inset:0;overflow:hidden;background:#f3f0e5;transform:${backward?'scaleX(-1)':'none'}}
-      .turn-snapshot>.workspace,.turn-snapshot>.detail-view{position:absolute;inset:0;width:100%;height:100%;margin:0}
-      .turn-snapshot .book-sidebar{display:none}.turn-snapshot .detail-scroll{margin-left:var(--book-rail);margin-right:0}
-      .stf__parent,.stf__wrapper{pointer-events:none!important}
-    `;
-    const book=document.createElement('div');book.className='turn-book';
-    const paper=document.createElement('div');paper.className='turn-page';paper.dataset.density='soft';
-    const snapshot=document.createElement('div');snapshot.className='turn-snapshot';snapshot.append(copy);paper.append(snapshot);
-    const clear=document.createElement('div');clear.className='turn-page';clear.dataset.density='soft';
-    const pages=[paper,clear];book.append(...pages);shadow.append(style,book);surface.append(host);
-    const state={host,flip:null,timer:0,frame:0};active=state;surface.classList.add('is-turning');
-    try{
-      const flip=new St.PageFlip(book,{width:Math.round(rect.width),height:Math.round(rect.height),size:'fixed',autoSize:false,usePortrait:true,startPage:0,flippingTime:680,drawShadow:true,maxShadowOpacity:.28,useMouseEvents:false,mobileScrollSupport:false,clickEventForward:false,disableFlipByClick:false,showPageCorners:false});
-      state.flip=flip;let started=false;
-      flip.on('changeState',event=>{if(event.data==='flipping')started=true;if(started&&event.data==='read'&&active===state)stop();});
-      flip.loadFromHTML(pages);
-      state.frame=requestAnimationFrame(()=>{if(active!==state)return;
-        const destination=document.createElement('div');destination.className='turn-snapshot';
-        destination.append(copySource(document.querySelector('#detailView').hidden?document.querySelector('#viewport'):document.querySelector('#detailView')));clear.append(destination);
-        // Mirror only the disposable book for a left-to-right return; counter-mirror its print.
-        flip.flipNext('bottom');
-        book.querySelectorAll('.turn-page').forEach(page=>{if(!pages.includes(page))page.classList.add('turn-paper-back');});});
-      state.timer=setTimeout(()=>{if(active===state)stop();},950);
-    }catch{stop();}
+
+  // Navigation stays immediate underneath. Keep an in-flight paper intact so
+  // repeated clicks reveal the latest destination without restarting the fold.
+  function capture() {
+    if (active || reduced.matches || !Element.prototype.animate || document.hidden) return null;
+    return copySurface();
   }
-  window.addEventListener('resize',stop);
-  reduced.addEventListener('change',()=>{if(reduced.matches)stop();});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
-  window.hachimePaperTurn={capture,play,stop};
+
+  function copySurface() {
+    const surface = document.querySelector('#workspace');
+    const copy = surface.cloneNode(true);
+    copy.style.setProperty(
+      '--book-rail',
+      getComputedStyle(surface).getPropertyValue('--book-rail'),
+    );
+    const originals = [surface, ...surface.querySelectorAll('*')];
+    const clones = [copy, ...copy.querySelectorAll('*')];
+    const scrolls = originals.flatMap((node, index) =>
+      node.scrollTop || node.scrollLeft
+        ? [{ node: clones[index], top: node.scrollTop, left: node.scrollLeft }]
+        : [],
+    );
+    copy.querySelectorAll('[hidden],script,.paper-turn').forEach((node) => node.remove());
+    copy.querySelectorAll('[aria-live]').forEach((node) => node.removeAttribute('aria-live'));
+    return { copy, scrolls };
+  }
+
+  // Clip the rectangle at x+y=crease, then reflect only the blank paper back.
+  // Five vertices per frame keeps polygon interpolation stable at the page edges.
+  function geometry(width, height, distance) {
+    const crease = width + height - distance;
+    const rectangle = [
+      [0, 0],
+      [width, 0],
+      [width, height],
+      [0, height],
+    ];
+    function half(peeled) {
+      const points = [];
+      for (let i = 0; i < 4; i++) {
+        const a = rectangle[i],
+          b = rectangle[(i + 1) % 4];
+        const da = a[0] + a[1] - crease,
+          db = b[0] + b[1] - crease;
+        if (peeled ? da >= 0 : da <= 0) points.push(a);
+        if ((da < 0 && db > 0) || (da > 0 && db < 0)) {
+          const t = da / (da - db);
+          points.push([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]);
+        }
+      }
+      if (!points.length) points.push([0, 0]);
+      while (points.length < 5) points.push(points.at(-1));
+      return points;
+    }
+    function polygon(points) {
+      return `polygon(${points.map(([x, y]) => `${x}px ${y}px`).join(',')})`;
+    }
+    return {
+      face: polygon(half(false)),
+      back: polygon(half(true).map(([x, y]) => [crease - y, crease - x])),
+    };
+  }
+
+  function play(snapshot, backward = false) {
+    // Retarget an incoming sheet after rapid navigation without restarting its motion.
+    if (active) {
+      if (active.refresh) {
+        cancelAnimationFrame(active.frame);
+        active.frame = requestAnimationFrame(active.refresh);
+      }
+      return;
+    }
+    if (!snapshot || reduced.matches) return;
+    const surface = document.querySelector('#workspace');
+    const { width, height } = surface.getBoundingClientRect();
+    const host = document.createElement('div');
+    host.className = 'paper-turn';
+    host.setAttribute('aria-hidden', 'true');
+    host.dataset.direction = backward ? 'backward' : 'forward';
+    host.inert = true;
+    const shadow = host.attachShadow({ mode: 'closed' });
+    const state = { host, animations: [], timer: 0, frame: 0 };
+    active = state;
+    try {
+      prepareStyles();
+      if (sharedSheet) shadow.adoptedStyleSheets = [sharedSheet];
+      const style = document.createElement('style');
+      style.textContent =
+        (sharedSheet ? '' : styles) +
+        `
+        :host { display:block; pointer-events:none }
+        *,*::before,*::after { pointer-events:none!important; animation:none!important; transition:none!important }
+        .turn-face,.turn-back,.turn-shadow { position:absolute; inset:0; will-change:clip-path }
+        .turn-face { overflow:hidden }
+        .turn-face > .main-area,.turn-underlay > .main-area { inset:0; width:100%; height:100%; margin:0 }
+        .turn-underlay,.turn-stage,.turn-leaf { position:absolute; inset:0 }
+        .turn-underlay { isolation:isolate }
+        .turn-stage { z-index:1; perspective:${Math.max(width * 5, 1800)}px; perspective-origin:0% 100% }
+        .turn-leaf { transform-origin:0% 100%; backface-visibility:hidden; will-change:transform;
+          box-shadow:14px 4px 26px #302b2426 }
+        .turn-back { background:linear-gradient(135deg,#faf7e9 0%,#f1ead6 45%,#d5cbb2 100%); }
+        .turn-back::after { content:''; position:absolute; inset:0; opacity:.45;
+          background:repeating-linear-gradient(0deg,transparent 0 27px,#b4ae9730 27px 28px) }
+        .turn-crease { position:absolute; left:0; top:0; width:${Math.hypot(width, height) * 2}px; height:70px;
+          transform-origin:0 0; will-change:transform;
+          background:linear-gradient(0deg,#85785c66 0%,#fcfaefcc 24%,#fffdf444 48%,transparent 100%) }
+        .turn-shadow { background:#3b382e; opacity:.16; transform:translate(-5px,5px) }
+      `;
+      const face = document.createElement('div');
+      face.className = 'turn-face';
+      const incoming = backward ? copySurface() : snapshot;
+      face.append(incoming.copy);
+      const back = document.createElement('div');
+      back.className = 'turn-back';
+      const crease = document.createElement('div');
+      crease.className = 'turn-crease';
+      back.append(crease);
+      const shade = document.createElement('div');
+      shade.className = 'turn-shadow';
+      shadow.append(style);
+      let leaf;
+      if (backward) {
+        const underlay = document.createElement('div');
+        underlay.className = 'turn-underlay';
+        underlay.append(snapshot.copy);
+        const stage = document.createElement('div');
+        stage.className = 'turn-stage';
+        leaf = document.createElement('div');
+        leaf.className = 'turn-leaf';
+        leaf.append(face, shade, back);
+        stage.append(leaf);
+        shadow.append(underlay, stage);
+        // Board positioning/focus is applied by navigation in the next frame.
+        // Capture after that work, also when the latest destination changes.
+        state.refresh = () => {
+          if (active !== state) return;
+          const latest = copySurface();
+          face.replaceChildren(latest.copy);
+          restoreScroll(latest);
+        };
+      } else shadow.append(face, shade, back);
+      surface.append(host);
+      function restoreScroll(paper) {
+        paper.scrolls.forEach(({ node, top, left }) => {
+          node.scrollTop = top;
+          node.scrollLeft = left;
+        });
+      }
+      restoreScroll(snapshot);
+      if (backward) restoreScroll(incoming);
+      const faceFrames = [],
+        backFrames = [],
+        creaseFrames = [];
+      const lift = Math.min(110, width * 0.19, height * 0.16);
+      for (let i = 0; i <= 40; i++) {
+        const t = i / 40;
+        // Opening lifts the corner first; the returning leaf gradually lays its corner flat.
+        const p = Math.max(0, (t - 0.24) / 0.76);
+        const distance = backward
+          ? lift * Math.pow(1 - t, 1.4)
+          : t <= 0.24
+            ? lift * Math.sin(((t / 0.24) * Math.PI) / 2)
+            : lift + (width + height - lift + 2) * (p * p * (3 - 2 * p));
+        const shape = geometry(width, height, distance);
+        faceFrames.push({ clipPath: shape.face, offset: t });
+        backFrames.push({ clipPath: shape.back, offset: t });
+        const x = width - distance / 2,
+          y = height - distance / 2;
+        creaseFrames.push({
+          transform: `translate(${x}px,${y}px) rotate(-45deg) translate(-50%,-100%)`,
+          offset: t,
+        });
+      }
+      face.style.clipPath = faceFrames[0].clipPath;
+      back.style.clipPath = shade.style.clipPath = backFrames[0].clipPath;
+      const options = { duration, fill: 'both', easing: 'linear' };
+      state.animations = [
+        face.animate(faceFrames, options),
+        back.animate(backFrames, options),
+        shade.animate(backFrames, options),
+        crease.animate(creaseFrames, options),
+      ];
+      if (leaf) {
+        // A return is the homepage leaf swinging back around its left binding,
+        // not the article being cut away in the opposite diagonal direction.
+        state.animations.push(
+          leaf.animate(
+            [
+              { transform: 'rotateY(-100deg) rotateZ(-1.8deg)', offset: 0 },
+              { transform: 'rotateY(-78deg) rotateZ(-1.4deg)', offset: 0.18 },
+              { transform: 'rotateY(-36deg) rotateZ(-.5deg)', offset: 0.52 },
+              { transform: 'rotateY(-7deg) rotateZ(-.1deg)', offset: 0.78 },
+              { transform: 'rotateY(0deg) rotateZ(0deg)', offset: 1 },
+            ],
+            options,
+          ),
+        );
+        state.frame = requestAnimationFrame(state.refresh);
+      }
+      state.animations[0].onfinish = () => {
+        if (active === state) finish();
+      };
+      // Also clean up when a browser suspends animation completion events.
+      state.timer = setTimeout(() => {
+        if (active === state) finish();
+      }, duration + 100);
+    } catch {
+      finish();
+    }
+  }
+
+  window.addEventListener('resize', finish);
+  reduced.addEventListener('change', () => {
+    if (reduced.matches) finish();
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) finish();
+  });
+  window.hachimePaperTurn = { capture, play, stop: finish };
+  const warm = () =>
+    window.requestIdleCallback
+      ? requestIdleCallback(prepareStyles, { timeout: 1500 })
+      : setTimeout(prepareStyles, 60);
+  if (document.readyState === 'complete') warm();
+  else window.addEventListener('load', warm, { once: true });
 })();

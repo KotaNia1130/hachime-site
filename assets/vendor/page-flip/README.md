@@ -1,5 +1,7 @@
 # StPageFlip 2.0.7
 
+Historical dependency: retained for source/license provenance. The site no longer loads this bundle; current corner turns use `assets/paper-turn.js` and browser animations.
+
 Source: https://registry.npmjs.org/page-flip/-/page-flip-2.0.7.tgz
 Upstream: https://github.com/Nodlik/StPageFlip
 License: MIT (LICENSE retained)
