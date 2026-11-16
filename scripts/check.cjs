@@ -27,7 +27,7 @@ for (const m of html.matchAll(/<script\b[^>]*src="\.\/([^\"]+)"/g)) {
   for (const item of read(file).matchAll(/["'`](\.\/assets\/[^"'`<>\s]+)["'`]/g))
     localReference('index.html', item[1]);
 }
-for (const m of html.matchAll(/href="\.\/([^\"]+\.css)"/g)) {
+for (const m of html.matchAll(/href="\.\/([^\"]+\.css(?:[?#][^\"]*)?)"/g)) {
   const file = decodeURIComponent(m[1].split(/[?#]/)[0]);
   for (const item of read(file).matchAll(/url\(\s*(?:"([^"]*)"|'([^']*)'|([^)'"]*))\s*\)/g))
     localReference(file, item[1] ?? item[2] ?? item[3]);

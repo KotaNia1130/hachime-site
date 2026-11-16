@@ -42,14 +42,19 @@
 
   // Navigation stays immediate underneath. Keep an in-flight paper intact so
   // repeated clicks reveal the latest destination without restarting the fold.
-  function capture() {
+  function capture(source) {
     if (active || reduced.matches || !Element.prototype.animate || document.hidden) return null;
-    return copySurface();
+    return copySurface(source);
   }
 
-  function copySurface() {
-    const surface = document.querySelector('#workspace');
+  function copySurface(surface) {
+    const pageRect = surface.getBoundingClientRect();
+    const deskRect = document.querySelector('#workspace').getBoundingClientRect();
     const copy = surface.cloneNode(true);
+    copy.classList.toggle(
+      'is-atlas',
+      document.querySelector('#workspace').classList.contains('is-atlas'),
+    );
     copy.style.setProperty(
       '--book-rail',
       getComputedStyle(surface).getPropertyValue('--book-rail'),
@@ -63,7 +68,16 @@
     );
     copy.querySelectorAll('[hidden],script,.paper-turn').forEach((node) => node.remove());
     copy.querySelectorAll('[aria-live]').forEach((node) => node.removeAttribute('aria-live'));
-    return { copy, scrolls };
+    return {
+      copy,
+      scrolls,
+      bounds: {
+        left: pageRect.left - deskRect.left,
+        top: pageRect.top - deskRect.top,
+        width: pageRect.width,
+        height: pageRect.height,
+      },
+    };
   }
 
   // Clip the rectangle at x+y=crease, then reflect only the blank paper back.
@@ -107,9 +121,16 @@
     if (active) return;
     if (!snapshot || reduced.matches) return;
     const surface = document.querySelector('#workspace');
-    const { width, height } = surface.getBoundingClientRect();
+    const { left, top, width, height } = snapshot.bounds;
     const host = document.createElement('div');
     host.className = 'paper-turn';
+    Object.assign(host.style, {
+      inset: 'auto',
+      left: `${left}px`,
+      top: `${top}px`,
+      width: `${width}px`,
+      height: `${height}px`,
+    });
     host.setAttribute('aria-hidden', 'true');
     host.dataset.direction = backward ? 'backward' : 'forward';
     host.inert = true;
@@ -127,7 +148,7 @@
         *,*::before,*::after { pointer-events:none!important; animation:none!important; transition:none!important }
         .turn-face,.turn-back,.turn-shadow { position:absolute; inset:0; will-change:clip-path }
         .turn-face { overflow:hidden; z-index:1 }
-        .turn-face > .main-area { inset:0; width:100%; height:100%; margin:0 }
+        .turn-face > #viewport,.turn-face > #detailView { inset:0; width:100%; height:100%; margin:0; box-shadow:none }
         .turn-shadow { z-index:2 }
         .turn-back { z-index:3 }
         .turn-back { background:linear-gradient(${backward ? 225 : 135}deg,#faf7e9 0%,#f1ead6 45%,#d5cbb2 100%); }
