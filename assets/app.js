@@ -619,7 +619,6 @@
       updateUrl && changedPage
         ? window.hachimePaperTurn?.capture(detailView.hidden ? viewport : detailView)
         : null;
-    if (!snapshot) window.hachimePaperTurn?.stop();
     stopReadingScroll();
     if (updateUrl) collapseHint();
     const showing = id !== 'home',

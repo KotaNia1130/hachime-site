@@ -2864,17 +2864,14 @@
   right: auto;
   top: 13px;
 }
-/* The soft-paper geometry lives in an inert, disposable StPageFlip overlay. */
+/* The old page and its folded corner live in an inert, disposable overlay. */
 .paper-turn {
   position: absolute;
   inset: 0;
-  z-index: 34;
+  z-index: 90;
   pointer-events: none;
   overflow: hidden;
   contain: layout paint;
-}
-.main-area.is-turning::after {
-  content: none;
 }
 @media (max-width: 960px) {
   :root {
@@ -2923,9 +2920,6 @@
   .book-menu > a {
     padding: 12px;
     margin-bottom: 12px;
-  }
-  .main-area.is-turning::after {
-    right: 0;
   }
   .detail-toolbar {
     padding-left: 118px;

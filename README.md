@@ -34,12 +34,13 @@ npm run check
 npm test
 ```
 
-`check` 檢查本地引用、文件連結、JS 語法、重複 ID 與資料對應。`test` 自動啟動暫時的本機伺服器，執行六套 Chromium 瀏覽器測試，結束後關閉。
+`check` 檢查本地引用、文件連結、JS 語法、重複 ID 與資料對應。`test` 自動啟動暫時的本機伺服器，執行七套 Chromium 瀏覽器測試，結束後關閉。
 
 若電腦沒有 Chromium，先執行 `npx playwright install chromium`。測試會優先採用 `CHROMIUM_PATH`，其次是 `/usr/bin/chromium`，再使用 Playwright 安裝的版本。
 
 - `npm run test:smoke`：只跑主要操作。
-- `npm test -- atlas-catalog paper-interactions`：指定測試。
+- `npm test -- atlas-catalog paper-interactions paper-visuals`：指定測試。
+- `paper-visuals`：比較翻頁起始與原頁像素，檢查正反向折角、捲動位置、連點及減少動態效果。
 - `BASE_URL=http://127.0.0.1:8000/ npm test`：使用已開啟的伺服器。
 - `npm run format`：格式化目前頁面、資料、樣式及維護腳本。
 - `npm run share`：重新產生分享預覽圖。
