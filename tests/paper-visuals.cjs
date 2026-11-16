@@ -36,6 +36,8 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
             animation.currentTime = time;
           });
         }, time);
+      let sharedFrames;
+      const forwardShapes = {};
       for (const [target, backward] of [
         ['beginner', false],
         ['home', true],
@@ -83,71 +85,73 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
           difference < 0.001,
           `${width} → ${target}: outgoing paper changes ${(difference * 100).toFixed(3)}% of pixels`,
         );
-        await seek(150);
+        const animations = await page.evaluate(() =>
+          turnRoot.getAnimations().map((animation) => ({
+            direction: animation.effect.getTiming().direction,
+            frames: animation.effect.getKeyframes(),
+          })),
+        );
+        assert.equal(animations.length, 4, 'no separate return rotation');
+        assert(animations.every((a) => a.direction === (backward ? 'reverse' : 'normal')));
+        if (!sharedFrames) sharedFrames = animations.map((a) => a.frames);
+        assert.deepEqual(
+          animations.map((a) => a.frames),
+          sharedFrames,
+          'both directions use identical keyframes',
+        );
+        for (const time of [150, 380, 610]) {
+          await seek(backward ? 760 - time : time);
+          const shape = await page.evaluate(() =>
+            ['.turn-face', '.turn-back', '.turn-crease'].map((selector) => {
+              const style = getComputedStyle(turnRoot.querySelector(selector));
+              return (selector === '.turn-crease' ? style.transform : style.clipPath)
+                .match(/-?[\d.]+(?:e[-+]?\d+)?/g)
+                .map(Number);
+            }),
+          );
+          if (!backward) forwardShapes[time] = shape;
+          else
+            shape.forEach((points, index) => {
+              assert.equal(points.length, forwardShapes[time][index].length);
+              points.forEach((value, point) =>
+                assert(
+                  Math.abs(value - forwardShapes[time][index][point]) < 0.05,
+                  'reverse playback retraces the opening geometry',
+                ),
+              );
+            });
+        }
+        await seek(backward ? 610 : 150);
         const corner = await page.evaluate(() => {
           const root = turnRoot,
             face = root.querySelector('.turn-face');
           const points = getComputedStyle(root.querySelector('.turn-back'))
             .clipPath.match(/-?[\d.]+/g)
             .map(Number);
-          const xs = points.filter((_, i) => i % 2 === 0),
-            ys = points.filter((_, i) => i % 2 === 1);
+          const xs = points.filter((_, i) => i % 2 === 0);
           return {
-            clip: getComputedStyle(face).clipPath,
             opacity: getComputedStyle(face).opacity,
             transform: getComputedStyle(face).transform,
-            left: Math.min(...xs),
-            right: Math.max(...xs),
-            top: Math.min(...ys),
-            bottom: Math.max(...ys),
+            width: Math.max(...xs) - Math.min(...xs),
             backText: root.querySelector('.turn-back').textContent,
-            returning: !!root.querySelector('.turn-leaf'),
-            leafFacing: root.querySelector('.turn-leaf')
-              ? new DOMMatrixReadOnly(getComputedStyle(root.querySelector('.turn-leaf')).transform)
-                  .m11
-              : 1,
-            incomingHome: !!root.querySelector('.turn-leaf #viewport'),
+            incomingHome: !!root.querySelector('.turn-face #viewport'),
             oldArticle: !!root.querySelector('.turn-underlay #detailView'),
+            separateRotation: !!root.querySelector('.turn-leaf,.turn-stage'),
           };
         });
-        assert.equal(corner.opacity, '1', 'front never flashes to a faded paper back');
-        assert.equal(corner.transform, 'none', 'front text is never mirrored');
-        assert.equal(corner.backText, '', 'blank paper back cannot show reversed text');
+        assert.equal(corner.opacity, '1');
+        assert.equal(corner.transform, 'none', 'front text is never mirrored or rotated');
+        assert.equal(corner.backText, '');
+        assert(!corner.separateRotation);
         assert(
-          corner.right - corner.left > 20 && corner.right - corner.left < 120,
-          'first phase only lifts a small corner',
+          corner.width > 20 && corner.width < 120,
+          'same small corner opens first and closes last',
         );
-        assert(
-          corner.right > width - 1,
-          'opening lifts the right corner; returning paper gently flattens it',
-        );
-        if (backward) {
+        if (backward)
           assert(
-            corner.returning && corner.incomingHome && corner.oldArticle,
-            'homepage swings in over the intact article',
+            corner.incomingHome && corner.oldArticle,
+            'homepage folds back over the original article',
           );
-          assert(corner.leafFacing > 0, 'incoming printed side faces the reader, never mirrored');
-        }
-        await seek(380);
-        assert.notEqual(
-          await page.evaluate(
-            () => getComputedStyle(turnRoot.querySelector('.turn-face')).clipPath,
-          ),
-          corner.clip,
-          'after the corner lift, the crease continues across the page',
-        );
-        if (backward) {
-          await seek(760);
-          assert(
-            await page.evaluate(() => {
-              const matrix = new DOMMatrixReadOnly(
-                getComputedStyle(turnRoot.querySelector('.turn-leaf')).transform,
-              );
-              return matrix.isIdentity;
-            }),
-            'return finishes with the paper laid flat',
-          );
-        }
         await page.clock.runFor(900);
         assert.equal(await page.locator('.paper-turn').count(), 0);
       }
@@ -166,7 +170,7 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
       await page.locator('.top-nav [data-go="atlas"]').evaluate((e) => e.click());
       await page.clock.runFor(32);
       assert(
-        await page.evaluate(() => !!turnRoot.querySelector('.turn-leaf [data-page="atlas"]')),
+        await page.evaluate(() => !!turnRoot.querySelector('.turn-face [data-page="atlas"]')),
         'incoming sheet follows the newest destination',
       );
       await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -178,7 +182,7 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:8000/';
       await page.close();
     }
     console.log(
-      'PASS outgoing page pixel continuity, scrolled article and atlas rail, corner lift, readable front, latest navigation and reduced-motion cancellation at desktop/mobile sizes',
+      'PASS pixel continuity, identical forward/reverse keyframes and motion, scrolled article and atlas rail, readable front, latest navigation and reduced-motion cancellation at desktop/mobile sizes',
     );
   } finally {
     await browser.close();
