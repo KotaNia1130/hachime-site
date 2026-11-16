@@ -1,6 +1,6 @@
 # 折角翻頁修改與驗收
 
-分支：`fix/corner-page-turn`。未合併或發布。
+實作分支：`fix/corner-page-turn`。
 
 ## 修改方案與實作
 
