@@ -22,13 +22,13 @@ const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
 assert.equal(new Set(ids).size, ids.length, 'Duplicate IDs in index.html');
 for (const m of html.matchAll(/\b(?:src|href)="([^"]+)"/g)) localReference('index.html', m[1]);
 for (const m of html.matchAll(/<script\b[^>]*src="\.\/([^\"]+)"/g)) {
-  const file = m[1];
+  const file = decodeURIComponent(m[1].split(/[?#]/)[0]);
   new vm.Script(read(file), { filename: file });
   for (const item of read(file).matchAll(/["'`](\.\/assets\/[^"'`<>\s]+)["'`]/g))
     localReference('index.html', item[1]);
 }
 for (const m of html.matchAll(/href="\.\/([^\"]+\.css)"/g)) {
-  const file = m[1];
+  const file = decodeURIComponent(m[1].split(/[?#]/)[0]);
   for (const item of read(file).matchAll(/url\(\s*(?:"([^"]*)"|'([^']*)'|([^)'"]*))\s*\)/g))
     localReference(file, item[1] ?? item[2] ?? item[3]);
 }
